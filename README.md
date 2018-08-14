@@ -1,6 +1,7 @@
-# MOB-2.5 - Concurrency & Parallelism in iOS
+# MOB-2.3 - Concurrency & Parallelism in iOS
 
 ## Course Description
+Mobile devices are built with multiple cores that can be used to improve program performance. We will explore the depths of Concurrency & Parallelism in iOS and learn some of the foundation of Grand Central Dispatch. We will build applications with improved speed through running multiple tasks simultaneously.
 
 ## Course Specifics
 
@@ -14,7 +15,7 @@ Class Sessions:  14 classes, 7 labs
 
 ## Prerequisites:  
 
-None <br>
+MOB 2.1 <br>
 
 ## Topics
 - Concurrency
