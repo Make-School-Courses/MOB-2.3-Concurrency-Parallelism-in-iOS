@@ -31,11 +31,11 @@ Students by the end of the course will be able to ...
 | Class |          Date          |                 Topics                  |
 |:-----:|:----------------------:|:---------------------------------------:|
 |  1 |  Tu, May 28                        | [Introduction to Concurrency in iOS](Lessons/intro-to-concurrency) |
-|  2 |  Th, May 30                       | [Concurrency & Parallelism - Dispatch Queues](Lessons/dispatch-queues) / [Concurrency & Parallelism - Concurrency Challenges](Lessons/challenges-with-concurrency) |
-|  3 |  Tu, June 4                        | [Concurrency & Parallelism - Executing work with GCD](Lessons/executing-work-gcd) / [Interview Practice Problem - Concurrency](Lessons/interview-practice-problem-concurrency) |
+|  2 |  Th, May 30                       | [Concurrency & Parallelism - Dispatch Queues](Lessons/dispatch-queues) <br/> **/** <br/> [Concurrency & Parallelism - Concurrency Challenges](Lessons/challenges-with-concurrency) |
+|  3 |  Tu, June 4                        | [Concurrency & Parallelism - Executing work with GCD](Lessons/executing-work-gcd) <br/> **/** <br/> [Interview Practice Problem - Concurrency](Lessons/interview-practice-problem-concurrency) |
 |  4 |  Th, June 6                      | [(NS)Operations](Lessons/operations) |
 |  5 |  Tu, June 11                       | [Xcode Project Management - Schemes, Targets & Build Settings](Lessons/xcode-project-management) |
-|  6 |  Th, June 13                      | [Behavior Driven Development](Lessons/bdd) / Lesson 8 (TODO) |
+|  6 |  Th, June 13                      | [Behavior Driven Development](Lessons/bdd) <br/> **/** <br/> Lesson 8 (TODO) |
 |  7 |  Tu, June 18                       | Lesson 9 (TODO) |
 |  8 |  Th, June 20                      | Lesson 10 (TODO) / Lesson 11 (TODO) |
 |  9 |  Tu, June 25                       | Lesson 12 (TODO) |
