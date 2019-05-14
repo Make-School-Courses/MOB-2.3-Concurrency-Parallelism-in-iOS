@@ -1,21 +1,11 @@
 # MOB-2.3 - Concurrency & Parallelism in iOS
 
 ## Course Description
-Mobile devices are built with multiple cores that can be used to improve program performance. We will explore the depths of Concurrency & Parallelism in iOS and learn some of the foundation of Grand Central Dispatch. We will build applications with improved speed through running multiple tasks simultaneously.
-
-## Course Specifics
-
-Weeks to Completion:  7 <br>
-Total Seat Hours:  37.5 hours <br>
-Total Out-of-Class Hours: 75 hours <br>
-Total Hours: 112.5 hours <br>
-Units:  3 units <br>
-Delivery Method:  Residential <br>
-Class Sessions:  14 classes, 7 labs
+This course covers concurrency and parallelism in iOS to optimize programming performance on mobile devices which built with multiple cores. Students will learn the foundation of Grand Central Dispatch and build applications that run multiple tasks simultaneously which improves speed. 
 
 ## Prerequisites:  
 
-MOB 2.1 <br>
+[MOB 2.1](https://github.com/Make-School-Courses/MOB-2.1-Local-Persistence-in-iOS)
 
 ## Topics
 - Concurrency
@@ -48,16 +38,6 @@ By the end of this class students will:
 - learn how to test code in iOS
 - learn how to use Xcode's project management tools to build better projects
 
-## Evaluation
-
-To pass this course you must meet the following requirements:
-
-- No more than two no call no shows
-- No more than four excused absences
-- Make up all classwork from all absences
-- Finish all required tutorials and projects
-- Pass the final exam (summative assessment) with >=80%
-
 ## Lessons
 
 Should be ~13 planned lessons (7 weeks x 2 meetings per week -~1 holiday)
@@ -78,19 +58,31 @@ Should be ~13 planned lessons (7 weeks x 2 meetings per week -~1 holiday)
 <!-- - [Interview Practice Problem - Async Image Loading & Caching](async-image-and-caching) -->
 <!-- - [Interview Practice Problem - Networking & API's]() -->
 
-## Tutorials & Projects
+## Class Assignments
 
-Projects:
+### Projects
 
-- [Class Project Write Up](class-project)
+- [Project Template - Use to build your own project spec](https://docs.google.com/document/d/1j4ualsYjrd-7ePdyP3KU03xrpg41k1AoSU0YKkx9_I8/edit?usp=sharing)
+    -   [Sample Project Rubric](Sample_Rubric.md)
 
+## Evaluation
+
+To pass this course you must meet the following requirements:
+
+- Complete all required assignments 
+- Pass all projects according to the associated project rubric
+- Pass the final summative assessment according to the rubric as specified in this class
+    - This will be further explained in the [study guide](ADD_STUDY_GUIDE_LNK)
+- Actively participate in class and abide by the attendance policy
+- Make up all classwork from all absences
 
 ## Make School Course Policies
 
-[Academic Honesty](https://github.com/Product-College-Courses/Common-Syllabus-Sections/blob/master/Academic-Honesty-and-Plagiarism.md)<br>
-[Accomodation Policy](https://github.com/Product-College-Courses/Common-Syllabus-Sections/blob/master/Accommodation-Policy.md)<br>
-[Diversity Statement](https://github.com/Product-College-Courses/Common-Syllabus-Sections/blob/master/Diversity-Statement.md)<br>
-[Evaluation Methods](https://github.com/Product-College-Courses/Common-Syllabus-Sections/blob/master/Evaluation-Methods.md)
-<br>
-[Title IX Disclaimer](https://github.com/Product-College-Courses/Common-Syllabus-Sections/blob/master/Evaluations-Title-X-Disclaimer.md)<br>
-[Program Learning Outcomes](https://github.com/Product-College-Courses/Common-Syllabus-Sections/blob/master/Program-Learning-Outcomes.md)
+- [Program Learning Outcomes](https://make.sc/program-learning-outcomes)
+- [Grading System](https://make.sc/grading-system)
+- [Diversity and Inclusion Statement](https://make.sc/diversity-and-inclusion-statement)
+- [Academic Honesty](https://make.sc/academic-honesty-policy)
+- [Attendance Policy](https://make.sc/attendance-policy)
+- [Course Credit Policy](https://make.sc/course-credit-policy)
+- [Disability Services (Academic Accommodations)](https://make.sc/disability-services)
+- [Student Handbook](https://make.sc/student-handbook)
