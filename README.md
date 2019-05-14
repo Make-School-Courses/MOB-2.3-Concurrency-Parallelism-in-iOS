@@ -1,62 +1,47 @@
 # MOB-2.3 - Concurrency & Parallelism in iOS
 
 ## Course Description
-This course covers concurrency and parallelism in iOS to optimize programming performance on mobile devices which built with multiple cores. Students will learn the foundation of Grand Central Dispatch and build applications that run multiple tasks simultaneously which improves speed. 
+This course covers concurrency and parallelism in iOS to optimize programming performance on mobile devices built with multiple cores. Students will learn the foundation of Grand Central Dispatch and build applications that run multiple tasks simultaneously which improves speed. 
 
 ## Prerequisites:  
 
 [MOB 2.1](https://github.com/Make-School-Courses/MOB-2.1-Local-Persistence-in-iOS)
 
-## Topics
-- Concurrency
-- Parallelism
-- GCD
-- Operations
-- Synchronous vs Asynchronous
-- Delayed task execution
-- DispatchWorkItem
-- Concurrent Loops
-- Problems with Concurrency & Shared Memory
-  - Deadlocks
-  - Race Conditions
-  - Readers-Writers Problem
-  - Thread explosion
-  - Priority inversion
-- Interview challenges in iOS
-- Testing in iOS (XCTest, Quick & Nimble)
-- Xcode Project Management (Schemes, Targets, Build settings)
 
-## Competencies
+## Learning Outcomes
 
-By the end of this class students will:
-- know the difference between concurrency & parallelism
-- know how to create serial and concurrent queues
-- know how to create delayed tasks
-- know how to identify deadlocks, race conditions and priority inversion in multi-threaded code
-- practice common iOS interview projects & questions
-- leverage various concepts in Grand Central Dispatch to use in their projects
-- learn how to test code in iOS
-- learn how to use Xcode's project management tools to build better projects
+Students by the end of the course will be able to ...
 
-## Lessons
+1. Define and distinguish concurrency from parallelism
+1. Create serial and concurrent queues
+1. Create delayed tasks
+1. Identify deadlocks, race conditions and priority inversion in multi-threaded code
+1. Practice common iOS interview projects & questions
+1. Apply concepts in Grand Central Dispatch to use in projects
+1. Build organized projects through Xcode's project management tools
 
-Should be ~13 planned lessons (7 weeks x 2 meetings per week -~1 holiday)
+## Schedule
 
-- [Introduction to Concurrency in iOS](intro-to-concurrency)
-  - Threads, Work/Tasks, Concurrency & Parallelism, Core(s)
-- [Concurrency & Parallelism - Dispatch Queues](dispatch-queues)
-    - Dispatch Queues, Dispatch QoS
-- [Concurrency & Parallelism - Concurrency Challenges](challenges-with-concurrency)
-    - Deadlocks, Priority Inversion, Race Conditions, Critical Section, Locking(mutexes, semaphores)
-- [Concurrency & Parallelism - Executing work with GCD](executing-work-gcd)
-  - Readers-Writers Problem, DispatchWorkItem, DispatchGroups, Concurrent Loops, Delayed Task Execution
-- [Interview Practice Problem - Concurrency](interview-practice-problem-concurrency)
-- [(NS)Operations](operations)
-- [Xcode Project Management - Schemes, Targets & Build Settings](xcode-project-management)
-- [Testing](intro-to-testing)
-- [Behavior Driven Development](bdd)
-<!-- - [Interview Practice Problem - Async Image Loading & Caching](async-image-and-caching) -->
-<!-- - [Interview Practice Problem - Networking & API's]() -->
+**NOTE:** Due to the shorter summer sessions, for some class sessions you will see multiple topics covered. This is to ensure that we cover the same material that we normally would in non-summer terms.
+
+**Course Dates:** Tuesday, May 28 – Tuesday, July 2, 2019 (6 weeks)
+
+**Class Times:** Tuesday and Thursday at 1:30–3:20pm (11 class sessions)
+
+| Class |          Date          |                 Topics                  |
+|:-----:|:----------------------:|:---------------------------------------:|
+|  1 |  Tu, May 28                        | [Introduction to Concurrency in iOS](Lessons/intro-to-concurrency) |
+|  2 |  Th, May 30                       | [Concurrency & Parallelism - Dispatch Queues](Lessons/dispatch-queues) / [Concurrency & Parallelism - Concurrency Challenges](Lessons/challenges-with-concurrency) |
+|  3 |  Tu, June 4                        | [Concurrency & Parallelism - Executing work with GCD](Lessons/executing-work-gcd) / [Interview Practice Problem - Concurrency](Lessons/interview-practice-problem-concurrency) |
+|  4 |  Th, June 6                      | [(NS)Operations](Lessons/operations) |
+|  5 |  Tu, June 11                       | [Xcode Project Management - Schemes, Targets & Build Settings](Lessons/xcode-project-management) |
+|  6 |  Th, June 13                      | [Behavior Driven Development](Lessons/bdd) / Lesson 8 (TODO) |
+|  7 |  Tu, June 18                       | Lesson 9 (TODO) |
+|  8 |  Th, June 20                      | Lesson 10 (TODO) / Lesson 11 (TODO) |
+|  9 |  Tu, June 25                       | Lesson 12 (TODO) |
+| 10 |  Th, June 27                        | Lesson 13 (TODO) |
+| 11 |  Tu, July 2                       | Final Exams/Presentations |  
+
 
 ## Class Assignments
 
