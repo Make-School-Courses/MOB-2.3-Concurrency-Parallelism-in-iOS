@@ -36,8 +36,31 @@
 
 ### Terms & Concepts
 
+Process
+Thread
+Task (Work Item, Code Block)
+Cores
+Concurrency
+Parallelism
+Queues (Serial, Concurrent)
+Synchronous vs Asynchronous Tasks
+Grand Central Dispatch (GCD)
+Operations
+Dispatch Groups
+Semaphores
+Background Tasks
 
-### Problems
+In addition:
+- Debugging in Xcode
+- Unit Tests
+
+### Challenges
+
+Deadlocks
+Race Conditions
+Readers-Writers Problem
+Thread Explosions
+Priority Inversion
 
 
 ### Evolution History
