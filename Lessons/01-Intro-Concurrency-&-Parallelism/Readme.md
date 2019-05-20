@@ -11,32 +11,48 @@
 | 1:15        | 0:45      | In Class Activity II      |
 | TOTAL       | 2:00      |                           |
 
-## Why you should know this or industry application (optional) (5 min)
+## Why you should know this (5 min)
 
-Explain why students should care to learn the material presented in this class.
+
+<!-- Explain why students should care to learn the material presented in this class. -->
 
 ## Learning Objectives (5 min)
 
-1. Identify and describe
+<!-- 1. Identify and describe
 1. Define
 1. Design
-1. Implement
+1. Implement -->
 
 ## Initial Exercise (15 min)
 
-- Funny comic
+<!-- - Funny comic
 - Prime the Pump (e.g. think and jot, think pair share, etc)
 - Productivity Tip/Tool
 - Review of current event (e.g. tech news relevant to your track/topic)
 - Quiz on homework or topic(s) of past class
-- Concept Test
+- Concept Test -->
 
 ## Overview/TT I (20 min)
 
-- Why learn this?
+### Terms & Concepts
+
+
+### Problems
+
+
+### Evolution History
+
+
+### Concurrency
+
+### Parallelism
+
+
+
+<!-- - Why learn this?
 - Industry examples of usage
 - Best practices
-- Personal anecdote
+- Personal anecdote -->
 
 ## In Class Activity I (30 min)
 
@@ -55,6 +71,13 @@ Explain why students should care to learn the material presented in this class.
 
 ## In Class Activity II (optional) (30 min)
 
+
+## After Class
+1. Research:
+-
+2. Assignment:
+-
+
 ## Wrap Up (5 min)
 
 - Continue working on your current tutorial
@@ -63,4 +86,8 @@ Explain why students should care to learn the material presented in this class.
 
 ## Additional Resources
 
-1. Links to additional readings and videos
+1. [Slides]()
+2. []()
+3. []()
+4. []()
+5. []()
