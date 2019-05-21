@@ -32,14 +32,31 @@
 
 ## Overview/TT I (20 min)
 
+In iOS, Concurrency can by handled by two APIs:
+- Grand Central Dispatch (GCD)
+- Operations
+
+> We will Operations in upcoming lessons. We will also learn about the differences between GCD and Operations, as well as when to choose one API over the other...
+
+
+which to use? In general, GCD is good to use for simple jobs/tasks, Operations make it easier to do complex jobs/tasks. <complex? the amount of communication between tasks and how closely you want to monitor execution >
+
+Operations are objects that encapsulate data and functionality.
+
+In GCD, you are working with functions.
+
+
 < How iOS uses GCD - other platforms use x (which was supposed to be in Swift 5, but deferred) >
 
-< GCD vs Operations - high-level >
 
 ### What is GCD?
 
+< GCD is named after Grand Central Station...
 
-### why use it?
+
+### why use it? What does it do?
+
+< purpose -- queues >
 
 ### Dispatch Queues
 
