@@ -13,9 +13,9 @@
 
 ## Why you should know this (5 min)
 
-*Why do apps need concurrent activities?*
+**Q:** *Why do apps need concurrent activities?*
 
-&nbsp;&nbsp;&nbsp;&nbsp;- *To keep the UI responsive.*
+**A:** &nbsp;&nbsp;&nbsp;&nbsp;- *To keep the UI responsive.*
 
 When you create a new iOS app, the app acquires its `main` thread. That `main` thread is responsible for running all of the code that powers the app's user interface.
 
