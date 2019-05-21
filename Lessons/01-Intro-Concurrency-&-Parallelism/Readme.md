@@ -15,7 +15,7 @@
 
 Why do apps need concurrent activities?
 
-To keep the UI responsive.
+&nbsp;&nbsp;&nbsp;&nbsp;> To keep the UI responsive.
 
 When you create a new iOS app, the app acquires its `main` thread. That `main` thread is responsible for running all of the code that powers the app's user interface.
 
@@ -28,9 +28,9 @@ A common example:
 
 The concept of __*Concurrency*__ in iOS is about how to structure your app to avoid such UI performance issues by directing  slow, non-UI tasks to run somewhere other than on the UI thread (aka, the `main` thread).
 
-Concurrency issues loom large in any lists of the top mistakes made by iOS developers. They are also the underlying cause of the majority of negative app reviews.
+Concurrency issues loom large in any list of the top mistakes made by iOS developers. They are also the underlying cause of the majority of negative app reviews.
 
-Thus, it is not surprising that questions on iOS concurrency are now a standard part of the technical interview process for iOS development jobs.
+Thus it is not surprising that questions on iOS concurrency are now a standard part of the technical interview process for iOS development jobs.
 
 ## Learning Objectives (5 min)
 
