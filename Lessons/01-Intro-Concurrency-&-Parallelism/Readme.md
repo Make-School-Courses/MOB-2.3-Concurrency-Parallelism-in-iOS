@@ -13,6 +13,7 @@
 
 ## Why you should know this (5 min)
 
+- why do apps need concurrent activities?
 
 <!-- Explain why students should care to learn the material presented in this class. -->
 
@@ -36,40 +37,36 @@
 
 ### Terms & Concepts
 
-Process
-Thread
-Task (Work Item, Code Block)
-Cores
-Concurrency
-Parallelism
-Queues (Serial, Concurrent)
-Synchronous vs Asynchronous Tasks
-Grand Central Dispatch (GCD)
-Operations
-Dispatch Groups
-Semaphores
-Background Tasks
+We will cover in this course...
 
-In addition:
+- Process
+- Thread
+- Task
+- Multi-Core Systems
+- Concurrency
+- Parallelism
+- Queues (Serial, Concurrent)
+- Synchronous vs Asynchronous
+- Grand Central Dispatch (GCD)
+- Background Tasks
+- Quality of Service (QoS)
+- Operations
+- Dispatch Groups
+- Semaphores
 - Debugging in Xcode
-- Unit Tests
+- Unit Testing & Concurrency
 
 ### Challenges
 
-Deadlocks
-Race Conditions
-Readers-Writers Problem
-Thread Explosions
-Priority Inversion
+- Deadlocks
+- Race Conditions
+- Readers-Writers Problem
+- Thread Explosions
+- Priority Inversion
 
+### Anatomy of an iOS app
 
-### Evolution History
-
-
-### Concurrency
-
-### Parallelism
-
+#### VMs, Processes, & threads
 
 
 <!-- - Why learn this?
@@ -79,7 +76,9 @@ Priority Inversion
 
 ## In Class Activity I (30 min)
 
-- I do, We do, You do
+< Movie Theatre game? >
+
+<!-- - I do, We do, You do
 - Reading & Discussion Questions in small groups
 - Draw a picture/diagram
 - Complete Challenges solo or in pair
@@ -88,12 +87,26 @@ Priority Inversion
 - Pair program
 - Formative assessment
 - Form into groups
-- etc (get creative :D)
+- etc (get creative :D) -->
 
 ## Overview/TT II (optional) (20 min)
 
+### Evolution / History
+
+### Concurrency
+
+### Parallelism
+
+
+### Processors / Cores
+
+- How many cores on an iPhone?
+
+#### queues & tasks
+
 ## In Class Activity II (optional) (30 min)
 
+< ? >
 
 ## After Class
 1. Research:
