@@ -1,4 +1,4 @@
-# Lesson Title
+# GCD: Threads & Queues
 
 ## Minute-by-Minute [OPTIONAL]
 
@@ -11,9 +11,7 @@
 | 1:15        | 0:45      | In Class Activity II      |
 | TOTAL       | 2:00      |                           |
 
-## Why you should know this or industry application (optional) (5 min)
 
-Explain why students should care to learn the material presented in this class.
 
 ## Learning Objectives (5 min)
 
@@ -24,19 +22,56 @@ Explain why students should care to learn the material presented in this class.
 
 ## Initial Exercise (15 min)
 
-- Funny comic
+
+<!-- - Funny comic
 - Prime the Pump (e.g. think and jot, think pair share, etc)
 - Productivity Tip/Tool
 - Review of current event (e.g. tech news relevant to your track/topic)
 - Quiz on homework or topic(s) of past class
-- Concept Test
+- Concept Test -->
 
 ## Overview/TT I (20 min)
 
-- Why learn this?
-- Industry examples of usage
-- Best practices
-- Personal anecdote
+< How iOS uses GCD - other platforms use x (which was supposed to be in Swift 5, but deferred) >
+
+< GCD vs Operations - high-level >
+
+### What is GCD?
+
+
+### why use it?
+
+### Dispatch Queues
+
+FIFO
+Serial / Concurrent
+QoS Priority
+Default Queues
+Custom Queues
+Main Queue
+
+#### FIFO
+
+#### serial queues
+
+
+#### concurrent queues
+
+	- requires QoS Priority
+
+##### QoS levels
+
+
+#### Default Queues
+
+
+#### Custom Queues
+
+
+### The Main queue
+
+
+
 
 ## In Class Activity I (30 min)
 
@@ -52,6 +87,15 @@ Explain why students should care to learn the material presented in this class.
 - etc (get creative :D)
 
 ## Overview/TT II (optional) (20 min)
+
+### Sync vs async
+
+
+#### Calling Sync on Current Queue
+
+< never call Sync on main queue >
+
+
 
 ## In Class Activity II (optional) (30 min)
 
