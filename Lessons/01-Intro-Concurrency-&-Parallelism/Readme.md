@@ -161,6 +161,8 @@ Multi-core devices execute multiple threads at the same time via Parallelism.
 
 ![414px-Dual_Core_Generic.svg](assets/414px-Dual_Core_Generic.svg.png)
 
+> Diagram of a generic dual-core processor with CPU-local level-1 caches and a shared, on-die level-2 cache.
+
 *Source:* </br>
 >By CountingPine at English Wikipedia - Transferred from en.wikipedia to Commons by Liftarn using CommonsHelper., Public Domain, https://commons.wikimedia.org/w/index.php?curid=11894458
 
