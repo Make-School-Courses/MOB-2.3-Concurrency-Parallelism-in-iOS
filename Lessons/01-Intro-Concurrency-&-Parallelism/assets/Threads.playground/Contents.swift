@@ -21,4 +21,3 @@ thread.name = "Background Thread"
 thread.qualityOfService = .userInitiated
 
 thread.start()
-

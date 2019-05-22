@@ -11,6 +11,24 @@
 | 1:15        | 0:45      | In Class Activity II      |
 | TOTAL       | 2:00      |                           |
 
+
+## Learning Objectives (5 min)
+
+<!-- 1. Identify and describe
+1. Define
+1. Design
+1. Implement -->
+
+<!-- By the end of this lesson, you should be able to...
+
+1. Describe and implement basic examples of:
+- Optional ways for creating **Observables**  
+- **Hot & Cold Observables**
+- **Subjects** - A special type of Observable
+- **Schedulers**
+- Key Rx **Operators** selected from the roster of operator types available in RxSwift/RxCocoa -->
+
+
 ## Why you should know this (5 min)
 
 **Q:** *Why do apps need concurrent activities?*
@@ -31,22 +49,6 @@ The concept of __*Concurrency*__ in iOS is about how to structure your app to av
 Concurrency issues loom large in any list of the top mistakes made by iOS developers. They are also the underlying cause of the majority of negative app reviews.
 
 Thus it is not surprising that questions on iOS concurrency are now a standard part of the technical interview process for iOS development jobs.
-
-## Learning Objectives (5 min)
-
-<!-- 1. Identify and describe
-1. Define
-1. Design
-1. Implement -->
-
-<!-- By the end of this lesson, you should be able to...
-
-1. Describe and implement basic examples of:
-- Optional ways for creating **Observables**  
-- **Hot & Cold Observables**
-- **Subjects** - A special type of Observable
-- **Schedulers**
-- Key Rx **Operators** selected from the roster of operator types available in RxSwift/RxCocoa -->
 
 ## Initial Exercise (15 min)
 
@@ -78,22 +80,11 @@ Key concepts covered in this course will include...
 - Dispatch Groups
 - Semaphores
 - Debugging
-- Testing
+- Testing Strategies
 
-### Challenges
+...we will cover a few today...and the rest later in the course...
 
-Concurrency presents specific development challenges. The course will introduce the following challenges, along with standard approaches to avoiding and/or resolving them:
-
-- Deadlocks
-- Race Conditions
-- Readers-Writers Problem
-- Thread Explosions
-- Priority Inversion
-
-
-### Essential Initial Concepts
-
-#### Processes, Threads & Tasks
+### Processes, Threads & Tasks
 
 **Process** &mdash; The runtime instance of an application. A process has its own virtual memory space (aka, virtual machine) and system resources (including port rights) that are independent of those assigned to other programs.
 
@@ -127,7 +118,7 @@ For examples, you could create a task to perform some calculations, blur an imag
 - Wikipedia
 - Apple Concurrency Programming
 
-### Where do tasks run?
+#### Where do tasks run?
 
 Tasks run on threads...
 
@@ -135,7 +126,7 @@ Tasks run on threads...
 - The System also creates other threads for its own tasks. Your app can use these threads...or create its own threads.
 
 
-#### Parallel Computing (Parallelism)
+### Parallel Computing (Parallelism)
 
 Parallel programming utilizes a shift from procedural tasks to tasks that run at the same time.
 
@@ -175,6 +166,13 @@ With the advent of modern multi-core central processing units, parallel computin
 
 Multi-core devices execute multiple threads at the same time via Parallelism.
 
+
+![414px-Dual_Core_Generic.svg](assets/414px-Dual_Core_Generic.svg.png)
+
+*Source:* </br>
+>By CountingPine at English Wikipedia - Transferred from en.wikipedia to Commons by Liftarn using CommonsHelper., Public Domain, https://commons.wikimedia.org/w/index.php?curid=11894458
+
+
 Parallel Computing is closely related to Concurrent Computing — they are frequently used together, and often conflated, though the two are distinct:
 
 - it is possible to have __*parallelism without concurrency*__ (such as bit-level parallelism)
@@ -210,13 +208,16 @@ Tasks which can run at same time:
 
 - tasks that only read values
 
-> Note: Tasks that modify the *same* resource __*must not*__ run at the same time, unless the resource is `threadsafe` (we'll > cover thread safety later in the course)
-
+> Note: Tasks that modify the *same* resource __*must not*__ run at the same time, unless the resource is `threadsafe` (we'll cover thread safety later in the course)
 
 
 ## In Class Activity I (30 min)
 
-< Movie Theatre game? >
+### As A Class
+
+&nbsp;&nbsp;&nbsp;&nbsp; A Movie Theatre Game...
+
+<!-- TODO: insert location of game documents -->
 
 
 
@@ -268,6 +269,16 @@ an eternity. "It's too slow" is one of the main contributors to your app being u
 ### Intro to GCD
 
 
+### Challenges
+
+Concurrency presents specific development challenges. The course will introduce the following challenges, along with standard approaches to avoiding and/or resolving them:
+
+- Deadlocks
+- Race Conditions
+- Readers-Writers Problem
+- Thread Explosions
+- Priority Inversion
+
 
 ## In Class Activity II (optional) (30 min)
 
@@ -286,7 +297,8 @@ an eternity. "It's too slow" is one of the main contributors to your app being u
 
 ## After Class
 1. Research:
--
+- nonatomic vs atomic
+
 2. Assignment:
 -
 

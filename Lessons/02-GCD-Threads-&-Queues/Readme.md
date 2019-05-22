@@ -122,6 +122,9 @@ Main Queue
 -
 2. Assignment:
 -
+<!-- TODO: have students to the Ray W tute on Concurrency -->
+
+
 
 ## Wrap Up (5 min)
 
