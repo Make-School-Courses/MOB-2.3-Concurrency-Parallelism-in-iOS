@@ -199,6 +199,21 @@ On a multi-core chip, the threads could be spread across all available cores, al
 *Source:* </br>
 https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html
 
+
+### How to use concurrency?
+
+In general, by structuring your apps so that some tasks can run at the same time.
+
+Tasks which can run at same time:
+
+- tasks that access different resources
+
+- tasks that only read values
+
+> Note: Tasks that modify the *same* resource __*must not*__ run at the same time, unless the resource is `threadsafe` (we'll > cover thread safety later in the course)
+
+
+
 ## In Class Activity I (30 min)
 
 < Movie Theatre game? >
@@ -230,16 +245,6 @@ iPhones and iPads have been dual-core since 2011...
 
 
 
-### How to use concurrency?
-
-by structuring apps so that some tasks can run at the same time,
-
-tasks that can run at same time:
-- tasks that access different resources
-- tasks that only read values
-
-
-- tasks that modify the same resource must not run at the same time, unless the resource is `threadsafe` (we'll cover thread safety later in the course)
 
 
 
