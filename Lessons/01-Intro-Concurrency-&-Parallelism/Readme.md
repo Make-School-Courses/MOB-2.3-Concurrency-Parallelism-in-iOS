@@ -187,26 +187,6 @@ On a multi-core chip, the threads could be spread across all available cores, al
 *Source:* </br>
 https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html
 
-
-#### ipHone hardware
-
-iPhones and iPads have been dual-core since 2011...
-
-- How many cores on an iPhone?
-
-
-
-
-#### queues
-
-
-
-
-<!-- - Why learn this?
-- Industry examples of usage
-- Best practices
-- Personal anecdote -->
-
 ## In Class Activity I (30 min)
 
 < Movie Theatre game? >
@@ -223,6 +203,17 @@ iPhones and iPads have been dual-core since 2011...
 - etc (get creative :D) -->
 
 ## Overview/TT II (optional) (20 min)
+
+### Concurrency on iOS
+
+#### ipHone hardware
+
+iPhones and iPads have been dual-core since 2011...
+
+- How many cores on an iPhone?
+
+
+
 
 ### Anatomy of an iOS app
 
@@ -266,6 +257,12 @@ Concurrency by Tutorials Chapter 1: Introduction second to see a response after 
 an eternity. "It's too slow" is one of the main contributors to your app being uninstalled. -->
 
 <!-- Scrolling through a table of images is one of the more common situations wherein the end user will be impacted by the lack of concurrency. If you need to download an image from the network, or perform some type of image processing before displaying it, the scrolling will stutter and you'll be forced to display multiple "busy" indicators instead of the expected image. -->
+
+
+
+#### queues
+
+### Intro to GCD
 
 
 
