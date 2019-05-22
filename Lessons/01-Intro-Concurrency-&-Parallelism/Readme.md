@@ -174,30 +174,17 @@ Parallel computing is closely related to concurrent computing — they are frequ
 
 ### What does it mean for a task to run concurrently?
 
+Single-core devices can achieve concurrency through __*time-slicing,*__ in which the OS uses "context switching" to alternate between multiple threads.
 
+For a multi-threaded application running on a traditional single-core chip, the OS would run one thread, perform a context switch, then run another thread, as illustrated in Figure 4.3 below where T1 (Thread 1) pauses while threads 2 thru 4 run, then T1 resumes, etc.:
 
+![figure_4.3](assets/figure_4.3.png) </br>
 
-Single-core devices can achieve concurrency through time-slicing.
-
-They would run one thread, perform a context switch, then run another thread.
-
-
-< on a device with only 1 cpu, this means the OS is "context switching" (aka, "time slicing") between multiple tasks >
-
-
-
-![figure_4.3](assets/ffigure_4.3.png) </br>
-
-
-
-
-A multi-threaded application running on a traditional single-core chip would have to interleave the threads, as shown in Figure 4.3. On a multi-core chip, however, the threads could be spread across the available cores, allowing true parallel processing, as shown in Figure 4.4.
-
+On a multi-core chip, the threads could be spread across all available cores, allowing true parallel processing, as shown in Figure 4.4:
 
 ![figure_4.4](assets/Figure_4.4.png) </br>
 
-
-
+*Source:* </br>
 https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html
 
 
