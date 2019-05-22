@@ -107,6 +107,9 @@ Concurrency presents specific development challenges. The course will introduce 
 
 - Threads can execute concurrently, but that is up to the operating system.
 
+<!-- TODO: turn comparison into table -->
+
+
 Comparison Notes:
 - processes are typically independent, while threads exist as *subsets* of a process.
 - processes have separate address spaces; threads share their address space with other threads in the same process.
@@ -134,7 +137,7 @@ In Parallel Computing:
 
 - A computational task is typically broken down into several very similar __*sub-tasks*__ that can be processed independently and whose results are combined after all tasks are completed.
 
-> Note that table there are several different forms of Parallel Computing: bit-level, instruction-level, data, and task parallelism.
+> Note that there are several different forms of Parallel Computing: bit-level, instruction-level, data, and task parallelism.
 
 <!--
 ### Concurrency & Concurrent Computing
@@ -150,7 +153,7 @@ Concurrent Computing is an example of one of the four forms of Parallel Computin
 
 ### Concurrency
 
-**Concurrency** refers to the ability to decompose a program, algorithm, or problem into components or units that can be executed out-of-order, or in partial order, without affecting the final outcome.
+**Concurrency** refers to the ability to __*decompose*__ a program, algorithm, or problem into smaller components or units that can be executed out-of-order, or in partial order, without affecting the final outcome.
 
 Concurrency is the act of dividing up work.
 
@@ -183,7 +186,7 @@ They would run one thread, perform a context switch, then run another thread.
 
 
 
-![figure_4.3](assets/figure_4.3.png) </br>
+![figure_4.3](assets/ffigure_4.3.png) </br>
 
 
 
@@ -191,7 +194,7 @@ They would run one thread, perform a context switch, then run another thread.
 A multi-threaded application running on a traditional single-core chip would have to interleave the threads, as shown in Figure 4.3. On a multi-core chip, however, the threads could be spread across the available cores, allowing true parallel processing, as shown in Figure 4.4.
 
 
-![figure_4.3](assets/figure_4.4.png) </br>
+![figure_4.4](assets/Figure_4.4.png) </br>
 
 
 
