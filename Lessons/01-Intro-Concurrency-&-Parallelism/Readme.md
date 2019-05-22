@@ -158,12 +158,13 @@ With the advent of modern multi-core central processing units, parallel computin
 
 Multi-core devices execute multiple threads at the same time via Parallelism.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![414px-Dual_Core_Generic.svg](assets/414px-Dual_Core_Generic.svg.png)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![414px-Dual_Core_Generic.svg](assets/414px-Dual_Core_Generic.svg.png)
 
 *Diagram of a generic dual-core processor with CPU-local level-1 caches and a shared, on-die level-2 cache.*
 
 *Source:* </br>
-&nbsp;&nbsp;*CountingPine at English Wikipedia - Public Domain, https://commons.wikimedia.org/w/index.php?curid=11894458*
+*CountingPine at English Wikipedia - Public Domain,*
+https://commons.wikimedia.org/w/index.php?curid=11894458
 
 ### Are Parallelism and Concurrency the same thing?
 
