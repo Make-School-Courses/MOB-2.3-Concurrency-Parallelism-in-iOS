@@ -172,6 +172,7 @@ Multi-core devices execute multiple threads at the same time via Parallelism.
 *Source:* </br>
 >By CountingPine at English Wikipedia - Transferred from en.wikipedia to Commons by Liftarn using CommonsHelper., Public Domain, https://commons.wikimedia.org/w/index.php?curid=11894458
 
+### Are Parallelism and Concurrency the same thing?
 
 Parallel Computing is closely related to Concurrent Computing — they are frequently used together, and often conflated, though the two are distinct:
 
