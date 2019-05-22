@@ -39,6 +39,15 @@ Thus it is not surprising that questions on iOS concurrency are now a standard p
 1. Design
 1. Implement -->
 
+<!-- By the end of this lesson, you should be able to...
+
+1. Describe and implement basic examples of:
+- Optional ways for creating **Observables**  
+- **Hot & Cold Observables**
+- **Subjects** - A special type of Observable
+- **Schedulers**
+- Key Rx **Operators** selected from the roster of operator types available in RxSwift/RxCocoa -->
+
 ## Initial Exercise (15 min)
 
 <!-- - Funny comic
@@ -52,7 +61,7 @@ Thus it is not surprising that questions on iOS concurrency are now a standard p
 
 ### Terms & Concepts
 
-We will cover in this course...
+Key concepts covered in this course will include...
 
 - Process
 - Thread
@@ -68,10 +77,12 @@ We will cover in this course...
 - Operations
 - Dispatch Groups
 - Semaphores
-- Debugging in Xcode
-- Unit Testing & Concurrency
+- Debugging
+- Testing
 
 ### Challenges
+
+Concurrency presents specific development challenges. The course will introduce the following challenges, along with standard approaches to avoiding and/or resolving them:
 
 - Deadlocks
 - Race Conditions
@@ -79,9 +90,126 @@ We will cover in this course...
 - Thread Explosions
 - Priority Inversion
 
-### Anatomy of an iOS app
 
-#### VMs, Processes, & threads
+### Essential Initial Concepts
+
+#### Processes, Threads & Tasks
+
+**Process** &mdash; The runtime instance of an application. A process has its own virtual memory space (aka, virtual machine) and system resources (including port rights) that are independent of those assigned to other programs.
+
+- A process always contains at least one thread (the main thread) and may contain any number of additional threads.
+
+**Thread** &mdash; A flow of execution inside a process, a __*thread of execution*__ is the *smallest sequence* of programmed instructions that can be managed independently by the operating system's (thread) scheduler.
+
+- Each thread has its own (application) stack space but otherwise shares memory with other threads in the same process.
+
+- A thread defines a discrete mechanism, within a single process, for executing tasks
+
+- Threads can execute concurrently, but that is up to the operating system.
+
+Comparison Notes:
+- processes are typically independent, while threads exist as *subsets* of a process.
+- processes have separate address spaces; threads share their address space with other threads in the same process.
+- processes carry considerably more state information than threads, whereas multiple threads within a process share process state as well as memory and other resources.
+
+
+**Task** &mdash; A quantity of work to be performed.
+
+- A task is simply some work that your application needs to perform (some Block of code)
+
+For examples, you could create a task to perform some calculations, blur an image, create or modify a data structure, process some data read from a file, convert JSON data, fetch data from local/remote sources.
+
+
+*Sources:* </br>
+- Wikipedia
+- Apple Concurrency Programming
+
+#### Parallel Computing (Parallelism)
+
+Parallel programming utilizes a shift from procedural tasks to tasks that run at the same time.
+
+In Parallel Computing:
+
+- Many calculations or the execution of processes are carried out __*simultaneously.*__
+
+- A computational task is typically broken down into several very similar __*sub-tasks*__ that can be processed independently and whose results are combined after all tasks are completed.
+
+> Note that table there are several different forms of Parallel Computing: bit-level, instruction-level, data, and task parallelism.
+
+<!--
+### Concurrency & Concurrent Computing
+
+**Concurrency** refers to the ability to decompose a program, algorithm, or problem into components or units that can be executed out-of-order or in partial order without affecting the final outcome.
+
+Concurrency is the act of dividing up work.
+
+This allows for parallel execution of the concurrent units, which can significantly improve overall speed of the execution in multi-processor and multi-core systems.
+
+Concurrent Computing is an example of one of the four forms of Parallel Computing, [task parallelism](https://en.wikipedia.org/wiki/Task_parallelism), which focuses on distributing tasks — __*concurrently*__ performed by processes or threads — across different processors. -->
+
+
+### Concurrency
+
+**Concurrency** refers to the ability to decompose a program, algorithm, or problem into components or units that can be executed out-of-order, or in partial order, without affecting the final outcome.
+
+Concurrency is the act of dividing up work.
+
+This allows for *parallel* execution of the concurrent units, which can significantly improve overall speed of the execution in multi-processor and multi-core systems.
+
+### Processors / Cores
+
+A recent trend in computer architecture is to produce chips with multiple cores (CPUs) on a single chip, a trend driven by concerns over the excessive heat generated by increased power consumption.
+
+With the advent of modern multi-core central processing units, parallel computing has become the dominant paradigm in computer architecture due to its potential to optimize performance.
+
+Multi-core devices execute multiple threads at the same time via parallelism.
+
+Parallel computing is closely related to concurrent computing — they are frequently used together, and often conflated, though the two are distinct:
+
+- it is possible to have parallelism without concurrency (such as bit-level parallelism)
+- it is also possible to have concurrency without parallelism (such as multitasking by time-sharing on a single-core CPU).
+
+### What does it mean for a task to run concurrently?
+
+
+
+
+Single-core devices can achieve concurrency through time-slicing.
+
+They would run one thread, perform a context switch, then run another thread.
+
+
+< on a device with only 1 cpu, this means the OS is "context switching" (aka, "time slicing") between multiple tasks >
+
+
+
+![figure_4.3](assets/figure_4.3.png) </br>
+
+
+
+
+A multi-threaded application running on a traditional single-core chip would have to interleave the threads, as shown in Figure 4.3. On a multi-core chip, however, the threads could be spread across the available cores, allowing true parallel processing, as shown in Figure 4.4.
+
+
+![figure_4.3](assets/figure_4.4.png) </br>
+
+
+
+https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html
+
+
+#### ipHone hardware
+
+iPhones and iPads have been dual-core since 2011...
+
+- How many cores on an iPhone?
+
+
+
+
+#### queues
+
+
 
 
 <!-- - Why learn this?
@@ -106,25 +234,17 @@ We will cover in this course...
 
 ## Overview/TT II (optional) (20 min)
 
-### Evolution / History
-
-### Concurrency
-
-< on a device with only 1 cpu, this means the OS is "context switching" (aka, "time slicing") between multiple tasks >
+### Anatomy of an iOS app
 
 
-### Parallelism
+#### VMs, Processes, & threads
 
 
-### Processors / Cores
 
-iPhones and iPads have been dual-core since 2011...
 
-- How many cores on an iPhone?
 
-#### queues & tasks
 
-where to tasks run?
+### where to tasks run?
 
 Tasks run on threads.
 - The UI runs on the Main thread
@@ -182,3 +302,12 @@ an eternity. "It's too slow" is one of the main contributors to your app being u
 3. []()
 4. []()
 5. []()
+
+
+https://en.wikipedia.org/wiki/Concurrency_(computer_science)
+
+https://en.wikipedia.org/wiki/Amdahl%27s_law
+
+https://en.wikipedia.org/wiki/Apple-designed_processors
+
+https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html
