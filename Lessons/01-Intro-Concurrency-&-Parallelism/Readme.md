@@ -4,12 +4,13 @@
 
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
-| 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:15      | Overview                  |
-| 0:20        | 0:45      | In Class Activity I       |
-| 1:05        | 0:10      | BREAK                     |
-| 1:15        | 0:45      | In Class Activity II      |
-| TOTAL       | 2:00      |                           |
+| 0:00        | 0:10     | Objectives                |
+| 0:10        | 0:20      | Overview I               |
+| 0:30        | 0:30      | In Class Activity I       |
+| 1:00        | 0:10      | BREAK                     |
+| 1:10        | 0:20      | Overview II               |
+| 1:25        | 0:20      | In Class Activity II      |
+| TOTAL       | 1:45      |                           |
 
 
 ## Learning Objectives (5 min)
@@ -49,15 +50,6 @@ The concept of __*Concurrency*__ in iOS is about how to structure your app to av
 Concurrency issues loom large in any list of the top mistakes made by iOS developers. They are also the underlying cause of the majority of negative app reviews.
 
 Thus it is not surprising that questions on iOS concurrency are now a standard part of the technical interview process for iOS development jobs.
-
-## Initial Exercise (15 min)
-
-<!-- - Funny comic
-- Prime the Pump (e.g. think and jot, think pair share, etc)
-- Productivity Tip/Tool
-- Review of current event (e.g. tech news relevant to your track/topic)
-- Quiz on homework or topic(s) of past class
-- Concept Test -->
 
 ## Overview/TT I (20 min)
 
