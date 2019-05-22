@@ -158,9 +158,10 @@ With the advent of modern multi-core central processing units, parallel computin
 
 Multi-core devices execute multiple threads at the same time via Parallelism.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![414px-Dual_Core_Generic.svg](assets/414px-Dual_Core_Generic.svg.png)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![414px-Dual_Core_Generic.svg](assets/414px-Dual_Core_Generic.svg.png)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Diagram of a generic dual-core processor with CPU-local level-1 caches and a shared, on-die level-2 cache.*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Diagram of a generic dual-core processor with CPU-local level-1 caches* </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *and a shared, on-die level-2 cache.*
 
 *Source:* </br>
 &nbsp;&nbsp;&nbsp; *CountingPine at English Wikipedia - Public Domain,* </br>
