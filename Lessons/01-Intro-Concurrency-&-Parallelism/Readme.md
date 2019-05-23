@@ -171,7 +171,9 @@ Multi-core devices execute multiple threads at the same time via Parallelism.
 
 ### Are Parallelism and Concurrency the same thing?
 
-Parallel Computing is closely related to Concurrent Computing — they are frequently used together, and often conflated, though the two are distinct:
+Parallel Computing is closely related to Concurrent Computing (in fact, Concurrent Computing is an example of *task parallelism.*)
+
+Though both are frequently used together, and often conflated, the two concepts are distinct:
 
 - it is possible to have __*parallelism without concurrency*__ (such as bit-level parallelism)
 - it is also possible to have __*concurrency without parallelism*__ (such as multitasking by time-sharing on a single-core CPU).
@@ -184,7 +186,7 @@ But for threads to execute tasks *concurrently,* must multiple threads run at th
 
 Single-core devices can achieve concurrency through __*time-slicing,*__ in which the OS uses "context switching" to alternate between multiple threads.
 
-For a *multi-threaded application* running on a traditional *single-core chip,* the OS would run one thread, perform a context switch, then run another thread, as illustrated in the first diagram below where thread 1 (T1) pauses while threads 2 thru 4 run, then thread 1 resumes, etc.:
+For a __*multi-threaded application*__ running on a traditional __*single-core chip,*__ the OS would run one thread, perform a context switch, then run another thread, as illustrated in the first diagram below where thread 1 (T1) pauses while threads 2 thru 4 run, then thread 1 resumes, etc.:
 
 </br>
 
@@ -192,7 +194,7 @@ For a *multi-threaded application* running on a traditional *single-core chip,* 
 
 </br>
 
-On a multi-core chip, the threads could be spread across all available cores, allowing __*true parallel processing,*__ as shown here:
+On a __*multi-core chip,*__ the threads could be spread across all available cores, allowing __*true parallel processing,*__ as shown here:
 
 </br>
 
@@ -304,6 +306,7 @@ Concurrency presents specific development challenges. The course will introduce 
 ## After Class
 1. Research:
 - nonatomic vs atomic
+- task parallelism
 
 2. Assignment:
 -
