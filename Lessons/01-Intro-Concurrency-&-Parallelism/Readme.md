@@ -93,19 +93,13 @@ Key concepts covered in this course will include:
 <!-- TODO: turn comparison into table -->
 
 
-**Comparison Notes** </br
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Processes & Threads Compared**
 
 | Processes | Threads |
 | ------------- | ------------- |
 | are typically independent | threads exist as *subsets* of a process |
 | have separate address spaces | threads share their address space with other threads in the same process |
 | carry considerably more state information than threads  | multiple threads within a process share process state as well as memory and other resources  |
-
-
-Comparison Notes:
-- processes are typically independent, while threads exist as *subsets* of a process.
-- processes have separate address spaces; threads share their address space with other threads in the same process.
-- processes carry considerably more state information than threads, whereas multiple threads within a process share process state as well as memory and other resources.
 
 
 **Task** &mdash; A quantity of work to be performed.
