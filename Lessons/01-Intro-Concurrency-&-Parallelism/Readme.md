@@ -93,7 +93,8 @@ Key concepts covered in this course will include:
 <!-- TODO: turn comparison into table -->
 
 
-**Comparison Notes** </br>
+**Comparison Notes** </br
+
 | Processes | Threads |
 | ------------- | ------------- |
 | are typically independent | threads exist as *subsets* of a process |
