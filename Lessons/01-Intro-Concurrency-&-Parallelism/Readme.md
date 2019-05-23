@@ -32,15 +32,15 @@
 
 ## Why you should know this (5 min)
 
-**Q:** *Why do apps need concurrent activities?*
+**Q:** Why do apps need concurrent activities?
 
-**A:** *To keep the UI responsive.*
+**A:** To keep the UI responsive.
 
 When you create a new iOS app, the app acquires its `main` thread. That `main` thread is responsible for running all of the code that powers the app's user interface.
 
-As you add code on your `main` thread that performs large items of non-UI work &mdash; such as image processing or fetching and transforming data  &mdash; you will find that your UI's performance suffers drastically.
+As you add code on your `main` thread to perform large items of non-UI work &mdash; such as image processing or fetching and transforming data  &mdash; you will find that your UI's performance suffers drastically.
 
-Your user interface will slow down, or maybe even stop entirely.
+Your user interface will slow down, or maybe even stop altogether.
 
 A common example:
 - A table view that will not scroll properly while the app is downloading and transforming images; multiple "busy" indicators are displayed instead of expected images.
@@ -55,7 +55,7 @@ Thus it is not surprising that questions on iOS concurrency are now a standard p
 
 ### Terms & Concepts
 
-Key concepts covered in this course will include...
+Key concepts covered in this course will include:
 
 - Process
 - Thread
@@ -74,7 +74,7 @@ Key concepts covered in this course will include...
 - Debugging
 - Testing Strategies
 
-...we will cover a few today...and the rest later in the course...
+...we will cover a few of the most essential concepts today...and the rest, we'll cover later in the course...
 
 ### Processes, Threads & Tasks
 
@@ -91,6 +91,14 @@ Key concepts covered in this course will include...
 - Threads can execute concurrently, but that is up to the operating system.
 
 <!-- TODO: turn comparison into table -->
+
+
+**Comparison Notes**
+| Processes | Threads |
+| ------------- | ------------- |
+| are typically independent | threads exist as *subsets* of a process |
+| have separate address spaces | threads share their address space with other threads in the same process |
+| carry considerably more state information than threads  | multiple threads within a process share process state as well as memory and other resources  |
 
 
 Comparison Notes:
@@ -213,9 +221,11 @@ Tasks which can run at same time:
 
 ### As A Class
 
-&nbsp;&nbsp;&nbsp;&nbsp; A Movie Theatre Game...
+&nbsp;&nbsp;&nbsp;&nbsp; Let's play the __*Movie Theatre Game*__...
 
-<!-- TODO: insert location of game documents -->
+<!-- Game description doc and Snack Order Lists are here:
+https://drive.google.com/drive/u/0/folders/1NoSPe3pQJFEXBZmsHKLquYh1uzoWVWYK?ths=true
+-->
 
 
 
