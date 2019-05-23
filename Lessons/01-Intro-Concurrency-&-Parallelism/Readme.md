@@ -245,6 +245,9 @@ iPhones and iPads have been dual-core since 2011...
 
 ### Anatomy of an iOS app
 
+![iOS_runtime_process](assets/iOS_runtime_process.png) </br>
+
+iOS_runtime_process
 
 #### VMs, Processes, & threads
 
@@ -311,6 +314,8 @@ Concurrency presents specific development challenges. The course will introduce 
 - task parallelism
 - Thread Pool
 - bit-level parallelism
+- Scheduler
+- Run Loop
 
 2. Assignment:
 -
@@ -337,3 +342,6 @@ https://en.wikipedia.org/wiki/Amdahl%27s_law
 https://en.wikipedia.org/wiki/Apple-designed_processors
 
 https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html
+
+
+https://developer.apple.com/documentation/foundation/processes_and_threads
