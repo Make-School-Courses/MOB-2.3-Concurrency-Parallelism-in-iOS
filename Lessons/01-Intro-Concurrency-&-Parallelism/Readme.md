@@ -278,9 +278,10 @@ an eternity. "It's too slow" is one of the main contributors to your app being u
 ### Intro to GCD
 
 
+
 ### Challenges
 
-Concurrency presents specific development challenges. The course will introduce the following challenges, along with standard approaches to avoiding and/or resolving them:
+Concurrency presents specific development challenges. The course will introduce the following challenges, along with standard approaches to avoid or resolve them:
 
 - Deadlocks
 - Race Conditions
@@ -309,6 +310,7 @@ Concurrency presents specific development challenges. The course will introduce 
 - nonatomic vs atomic
 - task parallelism
 - Thread Pool
+- bit-level parallelism
 
 2. Assignment:
 -
