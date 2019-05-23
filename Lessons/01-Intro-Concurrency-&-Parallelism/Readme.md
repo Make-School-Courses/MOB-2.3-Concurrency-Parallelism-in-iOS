@@ -193,6 +193,7 @@ For a *multi-threaded application* running on a traditional *single-core chip,* 
 </br>
 
 On a multi-core chip, the threads could be spread across all available cores, allowing __*true parallel processing,*__ as shown here:
+
 </br>
 
 ![figure_4.4](assets/Figure_4.4.png) </br>
