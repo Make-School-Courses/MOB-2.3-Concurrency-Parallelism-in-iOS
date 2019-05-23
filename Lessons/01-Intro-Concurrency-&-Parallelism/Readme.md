@@ -76,7 +76,7 @@ Key concepts covered in this course will include:
 
 ...we will cover a few of the most essential concepts today...and the rest, we'll cover later in the course...
 
-### Processes, Threads & Tasks
+### Processes & Threads
 
 **Process** &mdash; The runtime instance of an application. A process has its own virtual memory space (aka, virtual machine) and system resources (including port rights) that are independent of those assigned to other programs.
 
@@ -93,7 +93,7 @@ Key concepts covered in this course will include:
 <!-- TODO: turn comparison into table -->
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Processes & Threads Compared**
+**Processes & Threads Compared**
 
 | Processes | Threads |
 | ------------- | ------------- |
@@ -101,6 +101,8 @@ Key concepts covered in this course will include:
 | have separate address spaces | threads share their address space with other threads in the same process |
 | carry considerably more state information than threads  | multiple threads within a process share process state as well as memory and other resources  |
 
+
+### Tasks
 
 **Task** &mdash; A quantity of work to be performed.
 
