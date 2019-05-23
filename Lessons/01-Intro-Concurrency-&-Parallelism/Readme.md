@@ -173,12 +173,11 @@ Multi-core devices execute multiple threads at the same time via Parallelism.
 
 Parallel Computing is closely related to Concurrent Computing (in fact, Concurrent Computing is an example of *task parallelism.*)
 
-Though both are frequently used together, and often conflated, the two concepts are distinct:
+Concurrency is about structure, while Parallelism is about execution.
 
+Though both are frequently used together, and often conflated, the two concepts are distinct:
 - it is possible to have __*parallelism without concurrency*__ (such as bit-level parallelism)
 - it is also possible to have __*concurrency without parallelism*__ (such as multitasking by time-sharing on a single-core CPU).
-
-Concurrency is about structure, while Parallelism is about execution.
 
 ### What does it mean for a task to run concurrently?
 
