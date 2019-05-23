@@ -186,6 +186,7 @@ Single-core devices can achieve concurrency through __*time-slicing,*__ in which
 
 For a *multi-threaded application* running on a traditional *single-core chip,* the OS would run one thread, perform a context switch, then run another thread, as illustrated in the first diagram below where thread 1 (T1) pauses while threads 2 thru 4 run, then thread 1 resumes, etc.:
 
+</br>
 
 ![figure_4.3](assets/figure_4.3.png) </br>
 
