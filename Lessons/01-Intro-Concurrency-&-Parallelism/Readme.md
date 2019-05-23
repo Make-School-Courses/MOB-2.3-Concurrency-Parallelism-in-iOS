@@ -178,6 +178,8 @@ Though both are frequently used together, and often conflated, the two concepts 
 - it is possible to have __*parallelism without concurrency*__ (such as bit-level parallelism)
 - it is also possible to have __*concurrency without parallelism*__ (such as multitasking by time-sharing on a single-core CPU).
 
+Concurrency is about structure, while Parallelism is about execution.
+
 ### What does it mean for a task to run concurrently?
 
 Tasks run on threads.
@@ -307,6 +309,7 @@ Concurrency presents specific development challenges. The course will introduce 
 1. Research:
 - nonatomic vs atomic
 - task parallelism
+- Thread Pool
 
 2. Assignment:
 -
