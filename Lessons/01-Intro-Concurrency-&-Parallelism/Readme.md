@@ -243,10 +243,11 @@ https://drive.google.com/drive/u/0/folders/1NoSPe3pQJFEXBZmsHKLquYh1uzoWVWYK?ths
 
 #### How many cores on an iOS device?
 
-iPhones and iPads have been dual-core since 2011, with more recent models boasting as much as 8 cores (octa-core) per chip.<sup>1</sup>
+iPhones and iPads have been dual-core since 2011, with more recent models boasting as many as 8 cores per chip (see *octa-core* in <sup>1</sup>).
 
+With more than one core (CPU), iOS apps are capable of running more than a single task at the same time. (Potentially, up to 8 tasks simultaneously, though this again is ultimately up to the operating systems).
 
-<!-- Having more than one core means they are capable of running more than a single task at the same time. By splitting your app into logical "chunks" of code you enable the iOS device to run multiple parts of your program at the same time, thus improving overall performance. -->
+Splitting your app into logical "chunks" of code enables iOS to run multiple parts of your app across more than one core at the same time, which can greatly improve overall performance.
 
 ### Anatomy of a running iOS app
 
@@ -258,9 +259,9 @@ The diagram below is a simplified depiction of the structure inside the runtime 
 
 From that point on &mdash; and until the `Application` object's *run loop* (lifecycle) ends &mdash; all UI-related code in your app will execute on the `main thread`.
 
-This behavior ensures that user-related events are processed serially in the order in which they were received.
+- This behavior ensures that user-related events are processed serially in the order in which they were received.
 
-But, unless specified otherwise, all non-UI code will also execute on the `main thread` (exceptions to this include frameworks such as `URLSession` in which some tasks run on non-UI threads by default).
+- But unless specified otherwise, all non-UI code will also execute on the `main thread` (exceptions to this include frameworks such as `URLSession` in which some tasks run on non-UI threads by default).
 
 (3) Meanwhile the system also creates additional threads (nonUI threads), along with their corresponding `call stack`s, making them available for use by your app.
 
