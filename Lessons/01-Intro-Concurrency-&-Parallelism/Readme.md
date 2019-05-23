@@ -43,7 +43,7 @@ As you add code on your `main` thread to perform large items of non-UI work &mda
 Your user interface will slow down, or maybe even stop altogether.
 
 A common example:
-- A table view that will not scroll properly while the app is downloading and transforming images; multiple "busy" indicators are displayed instead of expected images.
+- A table view that will not scroll properly while the app is downloading and transforming images; scrolling stutters and you might need to display multiple "busy" indicators of the expected images.
 
 The concept of __*Concurrency*__ in iOS is about how to structure your app to avoid such UI performance issues by directing  slow, non-UI tasks to run somewhere other than on the UI thread (aka, the `main` thread).
 
@@ -209,11 +209,18 @@ https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html
 
 In general, look for opportunities to structure your apps so that some tasks can run at the same time.
 
+<!-- looking at the logic of your app to determine which pieces can run at the same time, and possibly in a random order, yet still result in a correct implementation of your data flow.
+
+Tasks which access different resources, or read-only shared resources, can all be accessed via different threads to allow for much faster processing.
+
+-->
+
+
 Tasks which are good candidates to run simultaneously typically fall into these categories:
 
 - tasks that access different resources
 
-- tasks that only read values
+- tasks that only read values from shared resources
 
 > Note: Tasks that modify the *same* resource __*must not*__ run at the same time, unless the resource is `threadsafe` (we'll cover thread safety later in the course)
 
@@ -234,22 +241,31 @@ https://drive.google.com/drive/u/0/folders/1NoSPe3pQJFEXBZmsHKLquYh1uzoWVWYK?ths
 
 ### Concurrency on iOS
 
-#### ipHone hardware
+#### How many cores on an iOS device?
 
-iPhones and iPads have been dual-core since 2011...
-
-- How many cores on an iPhone?
+iPhones and iPads have been dual-core since 2011, with more recent models boasting as much as 8 cores (octa-core) per chip.<sup>1</sup>
 
 
+<!-- Having more than one core means they are capable of running more than a single task at the same time. By splitting your app into logical "chunks" of code you enable the iOS device to run multiple parts of your program at the same time, thus improving overall performance. -->
+
+### Anatomy of a running iOS app
 
 
-### Anatomy of an iOS app
 
-![iOS_runtime_process](assets/iOS_runtime_process.png) </br>
+1. When an iOS app starts, the system automatically creates the app's `main thread` and the corresponding `call stack` which the `main thread` manages.
 
-iOS_runtime_process
+2. The `main thread` eventually (after executing required Cocoa Touch functions) allocates your app's `Application` object in its `stack frame`, which in turn executes its delegate methods on its `AppDelegate` object in their respective `stack frame`s, which begins creating all of the components of your app's user interface and behavior.
 
-#### VMs, Processes, & threads
+From that point on &mdash; and until the `Application` object's *run loop* (lifecycle) ends &mdash; all UI-related code in your app will execute on the `main thread`.
+
+This behavior ensures that user-related events are processed serially in the order in which they were received.
+
+But, unless specified otherwise, all non-UI code will also execute on the `main thread` (exceptions to this include frameworks such as `URLSession` in which some tasks run on non-UI threads by default).
+
+3. Meanwhile the system also creates additional threads (nonUI threads), along with their corresponding `call stack`s, making them available for use by your app.
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![iOS_runtime_process](assets/iOS_runtime_process.png) </br>
 
 
 
@@ -281,8 +297,18 @@ an eternity. "It's too slow" is one of the main contributors to your app being u
 ### Intro to GCD
 
 
+<!-- Most modern programming languages provide for some form of concurrency and Swift is of course no exception. Different languages use widely different mechanisms for handling concurrency. C# and Typescript, for example use an async/await pattern, whereas Swift uses closures to handle what runs on another thread. Swift 5 originally had plans to implement the more common async/await pattern but it was removed from the specification until the next release. -->
 
-### Challenges
+
+<!--
+There are two APIs that you'll use when making your app concurrent: Grand Central Dispatch, commonly referred to as GCD, and Operations. These are neither competing technologies nor something that you have to exclusively pick between. In fact, Operations are built on top of GCD!
+
+
+GCD is Apple's implementation of C's libdispatch library. Its purpose is to queue up tasks — either a method or a closure — that can be run in parallel, depending on availability of resources; it then executes the tasks on an available processor core.
+While GCD uses threads in its implementation, you, as the developer, do not need to worry about managing them yourself. GCD's tasks are so lightweight to enqueue that Apple, in its 2009 technical brief on GCD, stated that only 15 instructions are required for implementation, whereas creating traditional threads could require several hundred instructions. -->
+
+
+### Challenges of Currency/Parallelism
 
 Concurrency presents specific development challenges. The course will introduce the following challenges, along with standard approaches to avoid or resolve them:
 
@@ -339,7 +365,7 @@ https://en.wikipedia.org/wiki/Concurrency_(computer_science)
 
 https://en.wikipedia.org/wiki/Amdahl%27s_law
 
-https://en.wikipedia.org/wiki/Apple-designed_processors
+https://en.wikipedia.org/wiki/Apple-designed_processors <sup>1</sup>
 
 https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html
 
