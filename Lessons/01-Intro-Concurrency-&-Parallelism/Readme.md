@@ -250,11 +250,11 @@ iPhones and iPads have been dual-core since 2011, with more recent models boasti
 
 ### Anatomy of a running iOS app
 
+The diagram below is a simplified depiction of the structure inside the runtime process (aka, virtual machine) of an iOS app at launch &mdash; at the moment the user presses the app icon.
 
+(1) When an iOS app starts, the system automatically creates the app's `main thread` and the corresponding `call stack` which the `main thread` manages.
 
-1. When an iOS app starts, the system automatically creates the app's `main thread` and the corresponding `call stack` which the `main thread` manages.
-
-2. The `main thread` eventually (after executing required Cocoa Touch functions) allocates your app's `Application` object in its `stack frame`, which in turn executes its delegate methods on its `AppDelegate` object in their respective `stack frame`s, which begins creating all of the components of your app's user interface and behavior.
+(2) The `main thread` eventually (after executing required Cocoa Touch functions) allocates your app's `Application` object in its `stack frame`, which in turn executes its delegate methods on its `AppDelegate` object in their respective `stack frame`s, which begins creating all of the components of your app's user interface and behavior.
 
 From that point on &mdash; and until the `Application` object's *run loop* (lifecycle) ends &mdash; all UI-related code in your app will execute on the `main thread`.
 
@@ -262,22 +262,9 @@ This behavior ensures that user-related events are processed serially in the ord
 
 But, unless specified otherwise, all non-UI code will also execute on the `main thread` (exceptions to this include frameworks such as `URLSession` in which some tasks run on non-UI threads by default).
 
-3. Meanwhile the system also creates additional threads (nonUI threads), along with their corresponding `call stack`s, making them available for use by your app.
-
+(3) Meanwhile the system also creates additional threads (nonUI threads), along with their corresponding `call stack`s, making them available for use by your app.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![iOS_runtime_process](assets/iOS_runtime_process.png) </br>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- Performance. Responsiveness. They're not sexy tasks. When done properly, nobody is going to thank you. When done incorrectly, app retention is going to suffer and you'll be dinged during your next yearly performance review.
