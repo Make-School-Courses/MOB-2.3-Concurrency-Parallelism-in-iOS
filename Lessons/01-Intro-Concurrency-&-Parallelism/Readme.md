@@ -184,7 +184,7 @@ Tasks run on threads.
 
 But for threads to execute tasks *concurrently,* must multiple threads run at the same time?
 
-Single-core devices can achieve concurrency through __*time-slicing,*__ in which the OS uses "context switching" to alternate between multiple threads.
+__*Single-core devices*__ can achieve __*Concurrency*__ through __*time-slicing,*__ in which the OS uses "context switching" to alternate between multiple threads.
 
 For a __*multi-threaded application*__ running on a traditional __*single-core chip,*__ the OS would run one thread, perform a context switch, then run another thread, as illustrated in the first diagram below where thread 1 (T1) pauses while threads 2 thru 4 run, then thread 1 resumes, etc.:
 
