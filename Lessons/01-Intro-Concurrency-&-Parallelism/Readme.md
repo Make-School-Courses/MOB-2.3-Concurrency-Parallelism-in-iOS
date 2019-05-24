@@ -371,9 +371,11 @@ Dispatch Queues are objects that maintain a queue of tasks, either anonymous cod
 
 ### Why use GCD?
 
-This model improves simplicity, portability and performance.
+- GCD's design improves simplicity, portability and performance.
 
-It can help you improve your app’s responsiveness by deferring computationally expensive tasks to the background. It’s an easier concurrency model to work with than locks and threads.
+- It can help you improve your app’s responsiveness by deferring computationally expensive tasks from the foreground (`main` thread) to the background (non-UI threads).
+
+- It’s an easier concurrency model to work with than locks and threads.
 
 
 
