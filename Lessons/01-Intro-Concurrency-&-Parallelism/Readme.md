@@ -151,11 +151,11 @@ Concurrent Computing is an example of one of the four forms of Parallel Computin
 
 ### Concurrency
 
-**Concurrency** refers to the ability to __*decompose*__ a program, algorithm, or problem into smaller components or units that can be executed out-of-order, or in partial order, without affecting the final outcome.
+**Concurrency** refers to the ability to __*decompose*__ a program, algorithm, or problem __*into smaller components or units*__ that can be executed out-of-order, or in partial order, without affecting the final outcome.
 
 Concurrency is the act of dividing up work.
 
-This allows for *parallel execution* of the concurrent units, which can significantly improve overall speed of execution on multi-processor and multi-core systems.
+This __*allows for parallel execution*__ of the concurrent units, which can significantly improve overall speed of execution on multi-processor and multi-core systems.
 
 ### Multiple Processors / Cores
 
@@ -237,11 +237,11 @@ With more than one core available, iOS apps are capable of running more than a s
 
 ### Anatomy of a running iOS app
 
-The diagram below is a simplified depiction of the structure inside the runtime process (aka, virtual machine) of an iOS app at launch: the moment the user taps the app icon.
+Below is a simplified depiction of the structure inside the `runtime process` (aka, `virtual machine`) of an iOS app at launch: the moment the user taps the app icon.
 
-(1) When an iOS app starts, the system automatically creates the app's `main thread` and the corresponding `call stack` that the `main thread` manages.
+**(1)** When an iOS app starts, the system automatically creates the app's `main thread` and the corresponding `call stack` that the `main thread` manages.
 
-(2) The `main thread` eventually (after executing required Cocoa Touch functions) allocates your app's `Application` object in its `stack frame`, which in turn executes its delegate methods on its `AppDelegate` object in their respective `stack frame`s, then the `AppDelegate` begins creating all of your app's user interface components and behavior.
+**(2)** The `main thread` eventually (after executing required Cocoa Touch functions) allocates your app's `Application` object in its `stack frame`, which in turn executes its delegate methods on its `AppDelegate` object in their respective `stack frame`s, then the `AppDelegate` begins creating all of your app's user interface components and behavior.
 
 From that point on &mdash; and until the `Application` object's lifecycle (*run loop*) ends &mdash; all UI-related code in your app will execute on the `main thread`.
 
@@ -249,7 +249,7 @@ From that point on &mdash; and until the `Application` object's lifecycle (*run 
 
 - But unless specified otherwise, all non-UI code will also execute on the `main thread` (exceptions to this include frameworks such as `URLSession` in which some tasks run on non-UI threads by default).
 
-(3) Meanwhile the system also creates additional threads (nonUI threads), along with their corresponding `call stack`s, making them available for use by your app.
+**(3)** Meanwhile the system also creates additional threads (nonUI threads), along with their corresponding `call stack`s, making them available for use by your app.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![iOS_runtime_process](assets/iOS_runtime_process.png) </br>
 
