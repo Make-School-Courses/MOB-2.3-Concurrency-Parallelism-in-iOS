@@ -15,14 +15,16 @@
 
 ## Learning Objectives (5 min)
 
-<!-- By the end of this lesson, you should be able to...
+By the end of this lesson, you should be able to...
 
-1. Describe and implement basic examples of:
-- Optional ways for creating **Observables**  
-- **Hot & Cold Observables**
-- **Subjects** - A special type of Observable
-- **Schedulers**
-- Key Rx **Operators** selected from the roster of operator types available in RxSwift/RxCocoa -->
+1. Describe:
+- Why __*Concurrency*__ is important in iOS
+- The relationships between __*processes,*__ __*threads,*__ and __*tasks,*__ and how they interact at the launch of any iOS application
+- The similarities and key differences between __*Parallelism*__ and __*Concurrency*__
+- How you could have __*Concurrency without Parallelism*__ and vice-versa
+- (at a very high level) Apple's primary API for managing Concurrency - __*Grand Central Dispatch*__ (GCD)
+2. Identify:
+- the _+*five major challenges*__ associated with Concurrency
 
 
 ## Why you should know this (5 min)
@@ -278,10 +280,7 @@ Most modern programming languages provide some form of Concurrency, but differen
  - *Grand Central Dispatch* &mdash; commonly known as GCD (also simply called  "[Dispatch](https://developer.apple.com/documentation/dispatch)" by Apple).
 - Operations &mdash; which are built on top of GCD.
 
-> In the next lessons, we will dig deeper into these two Apple APIs, including learning more about the differences between GCD and Operations, as well as when to choose one over the other...
-
-
-### What is GCD?
+#### What is GCD?
 
 **Grand Central Dispatch (GCD)** is a low-level API for managing concurrent operations.
 
@@ -293,18 +292,23 @@ The fundamental idea is to move the management of the thread pool out of the han
 
 GCD offers you an efficient mechanism for executing code concurrently on multicore hardware by submitting work to __*dispatch queues*__ managed by the system.
 
+> In the next lessons, we will dig deeper into these two Apple APIs, including learning more about the differences between GCD and Operations, as well as when to choose one over the other...
 
 ### Challenges of Currency/Parallelism
 
-Concurrency presents specific development challenges. This course will introduce the following challenges, along with standard approaches to avoid or resolve them:
+By now, you've likely gotten the idea that Concurrency can significantly alleviate performance issues for you.
+
+But it isn't free.
+
+Concurrency presents its own specific development challenges.
+
+In this course we will explore the following set of the most major challenges associated with Concurrency, along with standard approaches to avoid or resolve them:
 
 - Deadlocks
 - Race Conditions
 - Readers-Writers Problem
 - Thread Explosions
 - Priority Inversion
-
-<!-- concurrency comes with several hazards, pitfalls, ...dangers...  -->
 
 ## In Class Activity II (optional) (30 min)
 
@@ -383,16 +387,17 @@ thread.start()
 1. Research:
 - Task Parallelism
 - Bit-Level Parallelism
+- Amdahl's Law
 - Thread Pool design pattern
 - Scheduler (for iOS thread scheduling)
 - Run Loop
 - Nonatomic (vs Atomic)
+- Dispatch Queues
+- Quality of Service (QoS) - as defined by Apple for iOS/macOS
 
 ## Wrap Up (5 min)
 
-- Continue working on your current tutorial
-- Complete reading
-- Complete challenges
+- Complete reading / research
 
 ## Additional Resources
 
@@ -403,13 +408,9 @@ thread.start()
 5. [Apple-designed_processors - Apple](https://en.wikipedia.org/wiki/Apple-designed_processors) <sup>1</sup>
 5. [Dispatch - from Apple](https://developer.apple.com/documentation/dispatch)
 5. [Grand_Central_Dispatch - wikipedia](https://en.wikipedia.org/wiki/Grand_Central_Dispatch) <sup>2</sup>
-5. []()
-5. []()
 
 
-
-https://en.wikipedia.org/wiki/Amdahl%27s_law
-
+<!-- DETRITUS:  -->
 <!-- Performance. Responsiveness. They're not sexy tasks. When done properly, nobody is going to thank you. When done incorrectly, app retention is going to suffer and you'll be dinged during your next yearly performance review.
 There are a multitude of ways in which an app can be optimized for speed, performance and overall responsiveness. This book will focus on the topic of concurrency. -->
 
