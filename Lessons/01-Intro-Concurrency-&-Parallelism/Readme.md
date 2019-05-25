@@ -316,7 +316,7 @@ Before we delve deep into GCD in the next lesson, let's explore a simplified exa
 
 ### Part 1 - Individually
 
-The code in the `Threads.playground` below is incomplete. It is intended to create a second thread instance called "Background Thread" that executes the `calculation` function/closure.
+The code in the [Threads.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tree/master/Lessons/01-Intro-Concurrency-%26-Parallelism/assets/Threads.playground) below is incomplete. It is intended to create a second thread instance called "Background Thread" that executes the `calculation` function/closure.
 
 **TODO:** Complete the code to match the output listed below it:
 
