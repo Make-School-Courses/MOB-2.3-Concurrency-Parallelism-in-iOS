@@ -237,7 +237,7 @@ With more than one core available, iOS apps are capable of running more than a s
 
 ### Anatomy of a running iOS app
 
-Below is a simplified depiction of the structure inside the `runtime process` (aka, `virtual machine`) of an iOS app at launch: the moment the user taps the app icon.
+Below is a simplified diagram of the structure inside the `runtime process` (aka, `virtual machine`) of an iOS app at launch: the moment the user taps the app icon.
 
 **(1)** When an iOS app starts, the system automatically creates the app's `main thread` and the corresponding `call stack` that the `main thread` manages.
 
@@ -250,6 +250,8 @@ From that point on &mdash; and until the `Application` object's lifecycle (*run 
 - But unless specified otherwise, all non-UI code will also execute on the `main thread` (exceptions to this include frameworks such as `URLSession` in which some tasks run on non-UI threads by default).
 
 **(3)** Meanwhile the system also creates additional threads (nonUI threads), along with their corresponding `call stack`s, making them available for use by your app.
+
+</br>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![iOS_runtime_process](assets/iOS_runtime_process.png) </br>
 
@@ -402,6 +404,7 @@ https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tr
 - Task Parallelism
 - Bit-Level Parallelism
 - Amdahl's Law
+- Call Stack, Stack Frames, and Stack Pointer
 - Thread Pool design pattern
 - Scheduler (for iOS thread scheduling)
 - Run Loop
@@ -426,7 +429,7 @@ https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tr
 9. [The App LifeCycle - Apple](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/TheAppLifeCycle/TheAppLifeCycle.html)
 10. [Context switch - wikipedia](https://en.wikipedia.org/wiki/Context_switch)
 11. [Thread safety - wikipedia](https://en.wikipedia.org/wiki/Thread_safety)
-
+12. [Call Stack](https://en.wikipedia.org/wiki/Call_stack)
 
 <!-- DETRITUS:  -->
 <!-- Performance. Responsiveness. They're not sexy tasks. When done properly, nobody is going to thank you. When done incorrectly, app retention is going to suffer and you'll be dinged during your next yearly performance review.

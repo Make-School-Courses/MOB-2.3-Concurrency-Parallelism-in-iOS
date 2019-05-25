@@ -1,5 +1,8 @@
 # GCD: Threads & Queues
 
+<!-- INSTRUCTOR Notes:
+1) xxx -->
+
 ## Minute-by-Minute [OPTIONAL]
 
 | **Elapsed** | **Time**  | **Activity**              |
@@ -24,7 +27,13 @@
 
 
 
+
 <!-- TODO: should this be a quiz? on research topics from last After Class? ...or use the playground exercise from prior lesson plans -->
+
+<!-- TODO: quiz questions:
+- from last class material
+from assigned research
+ -->
 
 
 
