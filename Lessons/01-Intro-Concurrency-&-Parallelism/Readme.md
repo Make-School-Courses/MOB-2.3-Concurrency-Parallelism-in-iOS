@@ -1,6 +1,14 @@
 # Concurrency & Parallelism
 
-## Minute-by-Minute [OPTIONAL]
+<!-- INSTRUCTOR Notes:
+1) instructions and other material for the game in Activity 1 are here:
+
+https://drive.google.com/drive/u/0/folders/1NoSPe3pQJFEXBZmsHKLquYh1uzoWVWYK?ths=true
+
+2) Solution for Activity II:
+- is listed below the Activity -->
+
+## Minute-by-Minute
 
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
@@ -215,8 +223,7 @@ https://drive.google.com/drive/u/0/folders/1NoSPe3pQJFEXBZmsHKLquYh1uzoWVWYK?ths
 -->
 
 
-
-## Overview/TT II (optional) (20 min)
+## Overview/TT II (20 min)
 
 ### Concurrency on iOS
 
@@ -310,7 +317,7 @@ In this course we will explore the following set of the most major challenges as
 - Thread Explosions
 - Priority Inversion
 
-## In Class Activity II (optional) (30 min)
+## In Class Activity II (30 min)
 
 Before we delve deep into GCD in the next lesson, let's explore a simplified example of what *implementing Concurrency* __*without GCD*__ might entail...
 
@@ -362,6 +369,12 @@ thread.start()
  100
  */
 ```
+
+<!-- INSTRUCTOR NOTE:
+Solution for Activity II is in this playground:
+
+https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tree/master/Lessons/01-Intro-Concurrency-%26-Parallelism/assets/Threads(solution).playground -->
+
 
 ### Part 2 - In Pairs
 
