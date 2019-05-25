@@ -15,11 +15,6 @@
 
 ## Learning Objectives (5 min)
 
-<!-- 1. Identify and describe
-1. Define
-1. Design
-1. Implement -->
-
 <!-- By the end of this lesson, you should be able to...
 
 1. Describe and implement basic examples of:
@@ -280,108 +275,28 @@ Tasks which are good candidates to run simultaneously typically fall into these 
 Most modern programming languages provide some form of Concurrency, but different languages use widely disparate mechanisms for handling it.
 
  Swift and iOS provide two APIs you can use to improve your app's performance through Concurrency:
- - *Grand Central Dispatch* &mdash; commonly known as GCD (and also simplycalled  "[Dispatch](https://developer.apple.com/documentation/dispatch)" by Apple).
+ - *Grand Central Dispatch* &mdash; commonly known as GCD (also simply called  "[Dispatch](https://developer.apple.com/documentation/dispatch)" by Apple).
 - Operations &mdash; which are built on top of GCD.
 
-> We'll delve more into GCD *and* Operations in the next lessons...
-> We will Operations in upcoming lessons. We will also learn about the differences between GCD and Operations, as well as when to choose one API over the other...
+> In the next lessons, we will dig deeper into these two Apple APIs, including learning more about the differences between GCD and Operations, as well as when to choose one over the other...
 
 
 ### What is GCD?
 
-Grand Central Dispatch (GCD) is a low-level API for managing concurrent operations.
+**Grand Central Dispatch (GCD)** is a low-level API for managing concurrent operations.
 
 Named after Grand Central Station in New York City, GCD was released by Apple in 2009 to optimize application support for systems with __*multi-core processors*__ and other __*symmetric multiprocessing systems.*__
 
 It is an implementation of __*task parallelism*__ based on the __*thread pool*__ design pattern.
 
-
-
-### What does it do?
-
-GCD works by allowing specific __*tasks*__ in a program that can be run in parallel to be __*queued up*__ for execution and, depending on availability of processing resources, __*scheduling*__ them to execute on any of the available processor cores (referred to as "routing" by Apple). <sup>2</sup>
-
-GCD abstracts the notion of threads, and exposes dispatch queues to handle work items (work items are blocks of code that you want to execute). These tasks are assigned to a dispatch queue, which processes them in a First-In-First-Out (FIFO) order.
-
 The fundamental idea is to move the management of the thread pool out of the hands of the developer, and closer to the operating system.
 
-At the core of GCD is the idea of work items, which can be dispatched to a queue; the queue hides all thread management related tasks. You can configure the queue, but you won’t interact directly with a thread. This model simplifies the creation and the execution of asynchronous or synchronous tasks.
-
-Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.
-
-
-
-
-*Sources:* </br>
--
--
-
-
-<!-- TODO: move these ideas to next lesson, if not used here... -->
-<!-- Most modern programming languages provide for some form of concurrency and Swift is of course no exception. Different languages use widely different mechanisms for handling concurrency. C# and Typescript, for example use an async/await pattern, whereas Swift uses closures to handle what runs on another thread. Swift 5 originally had plans to implement the more common async/await pattern but it was removed from the specification until the next release. -->
-
-<!--
-There are two APIs that you'll use when making your app concurrent: Grand Central Dispatch, commonly referred to as GCD, and Operations. These are neither competing technologies nor something that you have to exclusively pick between. In fact, Operations are built on top of GCD!
-
-
-GCD is Apple's implementation of C's libdispatch library. Its purpose is to queue up tasks — either a method or a closure — that can be run in parallel, depending on availability of resources; it then executes the tasks on an available processor core.
-While GCD uses threads in its implementation, you, as the developer, do not need to worry about managing them yourself. GCD's tasks are so lightweight to enqueue that Apple, in its 2009 technical brief on GCD, stated that only 15 instructions are required for implementation, whereas creating traditional threads could require several hundred instructions. -->
-
-
-
-#### Threads & Tasks in GCD
-
-
-Grand Central Dispatch still uses threads at the low level but abstracts them away from the programmer, who will not need to be concerned with as many details.
-
-
-The way you work with threads is by creating a DispatchQueue. When you create a queue, the OS will potentially create and assign one or more threads to the queue. If existing threads are available, they can be reused; if not, then the OS will create them as necessary.
-
-Thread Pool
-<!-- Instead of creating a new thread whenever a task is to be executed (and then destroying it when the task finishes), available threads are taken from the thread pool. Thread creation and destruction is an expensive process, so the thread pool pattern offers considerable performance gains. Letting the library or operating system manage the threads means that you have less to worry about (read: fewer lines of code to write). Besides, the library can optimize the thread management behind the scenes. -->
-
-Tasks in GCD are lightweight to create and queue; Apple states that 15 instructions are required to queue up a work unit in GCD, while creating a traditional thread could easily require several hundred instructions. <sup>2</sup>
-
-
-A task can be expressed either as a function or as a "block."[14] Blocks are an extension to the syntax of C, C++, and Objective-C programming languages that encapsulate code and data into a single object in a way similar to a closure.[11] GCD can still be used in environments where blocks are not available.[15]
-
-A task in Grand Central Dispatch can be used either to create a work item that is placed in a queue or assign it to an event source. If a task is assigned to an event source, then a work unit is made from the block or function when the event triggers, and the work unit is placed in an appropriate queue. This is described by Apple as more efficient than creating a thread whose sole purpose is to wait on a single event triggering.
-
-
-< closures and blocks >
-
-
-
-
-#### DispatchQueues
-
-
-
-
-DispatchQueue
-An object that manages the execution of tasks serially or concurrently on your app's main thread or on a background thread.
-
-
-
-
-
-Dispatch Queues are objects that maintain a queue of tasks, either anonymous code blocks or functions, and execute these tasks in their turn. The library automatically creates several queues with different priority levels that execute several tasks concurrently, selecting the optimal number of tasks to run based on the operating environment. A client to the library may also create any number of serial queues, which execute tasks in the order they are submitted, one at a time.[12] Because a serial queue can only run one task at a time, each task submitted to the queue is critical with regard to the other tasks on the queue, and thus a serial queue can be used instead of a lock on a contended resource.
-
-
-
-### Why use GCD?
-
-- GCD's design improves simplicity, portability and performance.
-
-- It can help you improve your app’s responsiveness by deferring computationally expensive tasks from the foreground (`main` thread) to the background (non-UI threads).
-
-- It’s an easier concurrency model to work with than locks and threads.
-
+GCD offers you an efficient mechanism for executing code concurrently on multicore hardware by submitting work to __*dispatch queues*__ managed by the system.
 
 
 ### Challenges of Currency/Parallelism
 
-Concurrency presents specific development challenges. The course will introduce the following challenges, along with standard approaches to avoid or resolve them:
+Concurrency presents specific development challenges. This course will introduce the following challenges, along with standard approaches to avoid or resolve them:
 
 - Deadlocks
 - Race Conditions
@@ -393,9 +308,13 @@ Concurrency presents specific development challenges. The course will introduce 
 
 ## In Class Activity II (optional) (30 min)
 
+Before we delve deep into GCD in the next lesson, let's explore a simplified example of what *implementing Concurrency* __*without GCD*__ might entail...
+
 ### Part 1 - Individually
 
-**TODO:** The code in the `Threads.playground` below is incomplete. Complete the code to match the output listed below it:
+The code in the `Threads.playground` below is incomplete. It is intended to create a second thread instance called "Background Thread" that executes the `calculation` function/closure.
+
+**TODO:** Complete the code to match the output listed below it:
 
 ```Swift
 import Foundation
@@ -447,7 +366,7 @@ thread.start()
 
 **TODO:** Trace down the source of the Foundation types `Thread`, `Thread.current`, and the `.start()` function.
 - Is it easy to infer how to implement these properties and functions?
-- What might debugging multiple threads be like?
+- What does the construction of this built-in type suggest about the complexity of debugging multiple threads, each executing specific tasks concurrently?
 
 **Q:** In the following output:
 - What do the hexadecimal numbers next to `<NSThread: ` tell us? How could that information be useful?
@@ -462,12 +381,12 @@ thread.start()
 
 ## After Class
 1. Research:
-- nonatomic vs atomic
-- task parallelism
-- Thread Pool
-- bit-level parallelism
-- Scheduler
+- Task Parallelism
+- Bit-Level Parallelism
+- Thread Pool design pattern
+- Scheduler (for iOS thread scheduling)
 - Run Loop
+- Nonatomic (vs Atomic)
 
 ## Wrap Up (5 min)
 
