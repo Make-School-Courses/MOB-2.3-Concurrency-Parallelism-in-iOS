@@ -17,8 +17,8 @@ https://drive.google.com/drive/u/0/folders/1NoSPe3pQJFEXBZmsHKLquYh1uzoWVWYK?ths
 | 0:30        | 0:30      | In Class Activity I       |
 | 1:00        | 0:10      | BREAK                     |
 | 1:10        | 0:20      | Overview II               |
-| 1:25        | 0:20      | In Class Activity II      |
-| TOTAL       | 1:45      |                           |
+| 1:25        | 0:25      | In Class Activity II      |
+| TOTAL       | 1:50      |                           |
 
 
 ## Learning Objectives (5 min)
@@ -27,12 +27,12 @@ By the end of this lesson, you should be able to...
 
 1. Describe:
 - Why __*Concurrency*__ is important in iOS
-- The relationships between __*processes,*__ __*threads,*__ and __*tasks,*__ and how they interact at the launch of any iOS application
+- The relationships between __*processes,*__ __*threads,*__ and __*tasks,*__ and how they fit together at the launch of any iOS application
 - The similarities and key differences between __*Parallelism*__ and __*Concurrency*__
 - How you could have __*Concurrency without Parallelism*__ and vice-versa
 - (at a very high level) Apple's primary API for managing Concurrency - __*Grand Central Dispatch*__ (GCD)
 2. Identify:
-- the _+*five major challenges*__ associated with Concurrency
+- the __*five major challenges*__ associated with Concurrency
 
 
 ## Why you should know this (5 min)
@@ -415,12 +415,16 @@ https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tr
 ## Additional Resources
 
 1. [Slides]()
-2. [Concurrency_(computer_science) - wikipedia](https://en.wikipedia.org/wiki/Concurrency_(computer_science))
-3. [Threads - an article](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html)
-4. [processes_and_threads - Apple](https://developer.apple.com/documentation/foundation/processes_and_threads)
-5. [Apple-designed_processors - Apple](https://en.wikipedia.org/wiki/Apple-designed_processors) <sup>1</sup>
-5. [Dispatch - from Apple](https://developer.apple.com/documentation/dispatch)
-5. [Grand_Central_Dispatch - wikipedia](https://en.wikipedia.org/wiki/Grand_Central_Dispatch) <sup>2</sup>
+2. [Parallel computing - wikipedia](https://en.wikipedia.org/wiki/Parallel_computing)
+3. [Concurrency (computer_science) - wikipedia](https://en.wikipedia.org/wiki/Concurrency_(computer_science))
+4. [Threads - an article](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html)
+5. [processes and threads - Apple](https://developer.apple.com/documentation/foundation/processes_and_threads)
+6. [Apple-designed_processors - Apple](https://en.wikipedia.org/wiki/Apple-designed_processors) <sup>1</sup>
+7. [Dispatch - from Apple](https://developer.apple.com/documentation/dispatch)
+8. [Grand_Central_Dispatch - wikipedia](https://en.wikipedia.org/wiki/Grand_Central_Dispatch) <sup>2</sup>
+9. [The App LifeCycle - Apple](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/TheAppLifeCycle/TheAppLifeCycle.html)
+10. [Context switch - wikipedia](https://en.wikipedia.org/wiki/Context_switch)
+11. [Thread safety - wikipedia](https://en.wikipedia.org/wiki/Thread_safety)
 
 
 <!-- DETRITUS:  -->
