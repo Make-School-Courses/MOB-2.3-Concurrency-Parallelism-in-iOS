@@ -266,7 +266,7 @@ Tasks which are good candidates to run simultaneously from different threads typ
 - tasks that access *different* resources
 - tasks that *only read* values from *shared* resources
 
-> Note: Tasks which modify the *same* resource __*must not*__ run at the same time, unless the resource is `threadsafe` (we'll cover thread safety later in the course)
+> **Important Note:** Tasks which modify the *same* resource __*must not*__ run at the same time, unless the resource is `threadsafe` (we'll cover thread safety later in the course)
 
 <!-- Tasks which access different resources, or read-only shared resources, can all be accessed via different threads to allow for much faster processing. -->
 
@@ -276,22 +276,22 @@ Tasks which are good candidates to run simultaneously from different threads typ
 Most modern programming languages provide some form of Concurrency, but different languages use widely disparate mechanisms for handling it.
 
  Swift and iOS provide two APIs you can use to improve your app's performance through Concurrency:
- - *Grand Central Dispatch* &mdash; commonly known as GCD (also simply called  "[Dispatch](https://developer.apple.com/documentation/dispatch)" by Apple).
-- Operations &mdash; which are built on top of GCD.
+ - **Grand Central Dispatch** &mdash; commonly known as GCD (also simply called  "[Dispatch](https://developer.apple.com/documentation/dispatch)" by Apple).
+- **Operations** &mdash; which are built on top of GCD.
 
 #### What is GCD?
 
-**Grand Central Dispatch (GCD)** is a low-level API for managing concurrent operations.
+__*Grand Central Dispatch (GCD)*__ is a low-level API for managing concurrent operations.
 
 Named after Grand Central Station in New York City, GCD was released by Apple in 2009 to optimize application support for systems with __*multi-core processors*__ and other __*symmetric multiprocessing systems.*__
 
-It is an implementation of __*task parallelism*__ based on the __*thread pool*__ design pattern.
+It is an implementation of __*task parallelism*__ based on the __*Thread Pool*__ design pattern.
 
 The fundamental idea is to move the management of the thread pool out of the hands of the developer, and closer to the operating system.
 
 GCD offers you an efficient mechanism for executing code concurrently on multicore hardware by submitting work to __*dispatch queues*__ managed by the system.
 
-> In the next lessons, we will dig deeper into these two Apple concurrency frameworks, including learning more about the differences between GCD and Operations, as well as when to choose one over the other...
+> *In the next lessons, we will dig deeper into these two Apple concurrency frameworks, including learning more about the differences between GCD and Operations, as well as when to choose one over the other...*
 
 ### Challenges of Currency/Parallelism
 
