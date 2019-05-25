@@ -258,27 +258,17 @@ From that point on &mdash; and until the `Application` object's lifecycle (*run 
 
 ### How to apply Concurrency?
 
-<!-- TODO: explain this better -->
-
-
 Splitting your app into logical "chunks" of code enables iOS to run multiple parts of your app across more than one core at the same time, which can greatly improve overall performance.
 
-In general, look for opportunities to structure your apps so that some tasks can run at the same time.
+In general, look for opportunities to structure your apps so that some tasks can run simultaneously: Determine which pieces can run at the same time &mdash; and possibly in random order &mdash; yet still result in a correct implementation of your data flow for your users.
 
-<!-- looking at the logic of your app to determine which pieces can run at the same time, and possibly in a random order, yet still result in a correct implementation of your data flow.
+Tasks which are good candidates to run simultaneously from different threads typically fall into these categories:
+- tasks that access *different* resources
+- tasks that *only read* values from *shared* resources
 
-Tasks which access different resources, or read-only shared resources, can all be accessed via different threads to allow for much faster processing.
+> Note: Tasks which modify the *same* resource __*must not*__ run at the same time, unless the resource is `threadsafe` (we'll cover thread safety later in the course)
 
--->
-
-
-Tasks which are good candidates to run simultaneously typically fall into these categories:
-
-- tasks that access different resources
-
-- tasks that only read values from shared resources
-
-> Note: Tasks that modify the *same* resource __*must not*__ run at the same time, unless the resource is `threadsafe` (we'll cover thread safety later in the course)
+<!-- Tasks which access different resources, or read-only shared resources, can all be accessed via different threads to allow for much faster processing. -->
 
 
 ### Introducing to GCD
