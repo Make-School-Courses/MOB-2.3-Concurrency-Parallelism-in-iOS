@@ -12,7 +12,7 @@ let calculation = {
 }
 
 let thread = Thread {
-    
+
     //TODO: What must the thread do here to match the expected output listed below?
 }
 
