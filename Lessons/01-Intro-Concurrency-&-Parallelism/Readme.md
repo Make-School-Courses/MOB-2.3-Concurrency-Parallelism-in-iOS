@@ -266,7 +266,7 @@ Tasks which are good candidates to run simultaneously from different threads typ
 - tasks that access *different* resources
 - tasks that *only read* values from *shared* resources
 
-> **Important Note:** Tasks which modify the *same* resource __*must not*__ run at the same time, unless the resource is `threadsafe` (we'll cover thread safety later in the course)
+> **Important Note:** Tasks which modify the *same* resource __*must not*__ run at the same time, unless the resource is `threadsafe` (we'll cover `thread safety` later in the course)
 
 <!-- Tasks which access different resources, or read-only shared resources, can all be accessed via different threads to allow for much faster processing. -->
 
@@ -315,7 +315,7 @@ Before we delve deeper into GCD in the next lesson, let's explore a simplified e
 
 ### Part 1 - Individually
 
-The code in the [Threads.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tree/master/Lessons/01-Intro-Concurrency-%26-Parallelism/assets/Threads.playground) below is incomplete. It is intended to create a second thread instance called "Background Thread" that executes the `calculation` function/closure.
+The code in the [Threads.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tree/master/Lessons/01-Intro-Concurrency-%26-Parallelism/assets/Threads.playground) below is incomplete. It is intended to create a second instance of the `Thread` class named "Background Thread" that executes the `calculation` function/closure.
 
 **TODO:** Complete the code to match the output listed below it:
 
