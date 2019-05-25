@@ -299,7 +299,7 @@ The fundamental idea is to move the management of the thread pool out of the han
 
 GCD offers you an efficient mechanism for executing code concurrently on multicore hardware by submitting work to __*dispatch queues*__ managed by the system.
 
-> In the next lessons, we will dig deeper into these two Apple APIs, including learning more about the differences between GCD and Operations, as well as when to choose one over the other...
+> In the next lessons, we will dig deeper into these two Apple concurrency frameworks, including learning more about the differences between GCD and Operations, as well as when to choose one over the other...
 
 ### Challenges of Currency/Parallelism
 
@@ -319,7 +319,7 @@ In this course we will explore the following set of the most major challenges as
 
 ## In Class Activity II (30 min)
 
-Before we delve deep into GCD in the next lesson, let's explore a simplified example of what *implementing Concurrency* __*without GCD*__ might entail...
+Before we delve deeper into GCD in the next lesson, let's explore a simplified example of what implementing Concurrency __*without GCD*__ might entail...
 
 ### Part 1 - Individually
 
@@ -383,17 +383,18 @@ https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tr
 
 **TODO:** Trace down the source of the Foundation types `Thread`, `Thread.current`, and the `.start()` function.
 - Is it easy to infer how to implement these properties and functions?
-- What does the construction of this built-in type suggest about the complexity of debugging multiple threads, each executing specific tasks concurrently?
+- What does the construction of this built-in type suggest about the complexity of debugging multiple threads where each custom thread executes specific tasks concurrently?
 
-**Q:** In the following output:
-- What do the hexadecimal numbers next to `<NSThread: ` tell us? How could that information be useful?
+**Q:** Listed below is a selected portion of the output:
+- What do the hexadecimal numbers next to `<NSThread: ` tell us and how could that information be useful?
 - Where did the properties `number` and `name` come from?
 
 ```Swift
   On thread: <NSThread: 0x600003af0dc0>{number = 1, name = main} doing nothing
   On thread: <NSThread: 0x600003acc340>{number = 3, name = Background Thread} doing work
 ```
-**Q:** This approach involves direct creation and management of threads. What drawbacks do you anticipate with this approach?
+**Q:** This approach involved direct creation and management of threads.
+- What drawbacks do you foresee with this approach, especially in more complex implementations?
 
 
 ## After Class
@@ -418,7 +419,7 @@ https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tr
 2. [Parallel computing - wikipedia](https://en.wikipedia.org/wiki/Parallel_computing)
 3. [Concurrency (computer_science) - wikipedia](https://en.wikipedia.org/wiki/Concurrency_(computer_science))
 4. [Threads - an article](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html)
-5. [processes and threads - Apple](https://developer.apple.com/documentation/foundation/processes_and_threads)
+5. [Processes and Threads - Apple](https://developer.apple.com/documentation/foundation/processes_and_threads)
 6. [Apple-designed_processors - Apple](https://en.wikipedia.org/wiki/Apple-designed_processors) <sup>1</sup>
 7. [Dispatch - from Apple](https://developer.apple.com/documentation/dispatch)
 8. [Grand_Central_Dispatch - wikipedia](https://en.wikipedia.org/wiki/Grand_Central_Dispatch) <sup>2</sup>
