@@ -254,8 +254,8 @@ From that point on &mdash; and until the `Application` object's lifecycle (*run 
 </br>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![iOS_runtime_process](assets/iOS_runtime_process.png) </br>
-
 </br>
+
 ### How to apply Concurrency?
 
 <!-- TODO: explain this better -->
