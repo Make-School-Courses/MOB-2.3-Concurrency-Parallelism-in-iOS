@@ -68,7 +68,7 @@ Before we dive deeper into GCD, let's quickly compare the two to begin your unde
 |  | Grand_Central_Dispatch | Operations |
 | ------------- | ------------- | ------------- |
 |  			| Uses functions/closures to handle what runs on another thread. |  Operations are objects that encapsulate data and functionality.  |
-|  			|  |   |
+| **Developer Control**	| You don’t schedule these units of work; the system takes care of scheduling for you. | you can add dependency among various operations and re-use, cancel or suspend them.  |
 | **When to Use** 			|  |   |
 
 
@@ -77,7 +77,7 @@ Before we dive deeper into GCD, let's quickly compare the two to begin your unde
 
 a lightweight way to represent units of work that are going to be executed concurrently. Uses functions/closures to handle what runs on another thread.
 
-You don’t schedule these units of work; the system takes care of scheduling for you.
+<!-- You don’t schedule these units of work; the system takes care of scheduling for you. -->
 
 Adding dependency among blocks can be a headache. Canceling or suspending a block creates extra work for you as a developer!
 
