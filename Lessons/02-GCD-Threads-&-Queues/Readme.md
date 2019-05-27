@@ -68,14 +68,16 @@ Before we dive deeper into GCD, let's quickly compare the two to begin your unde
 |  | Grand_Central_Dispatch | Operations |
 | ------------- | ------------- | ------------- |
 |  			| Uses functions/closures to handle what runs on another thread. |  Operations are objects that encapsulate data and functionality.  |
-| **Developer Control**	| You don’t schedule these units of work; the system takes care of scheduling for you. | you can add dependency among various operations and re-use, cancel or suspend them.  |
-| **When to Use** 			|  |   |
+|			| lightweight way to represent units of work that are going to be executed concurrently | |
+| **Developer Control**	| You don’t schedule these units of work; the system takes care of scheduling for you. Adding dependencies, cancelling or suspending code blocks is labor intensive | you can add dependency among various operations and re-use, cancel or suspend them.  |
+| **When to Use** 			| GCD is good to use for simple, common tasks that need to be run only once and in the background. |   |
 
 
 
 **Grand Central Dispatch (GCD)**
 
-a lightweight way to represent units of work that are going to be executed concurrently. Uses functions/closures to handle what runs on another thread.
+a lightweight way to represent units of work that are going to be executed concurrently.
+<!-- Uses functions/closures to handle what runs on another thread. -->
 
 <!-- You don’t schedule these units of work; the system takes care of scheduling for you. -->
 
@@ -83,9 +85,9 @@ Adding dependency among blocks can be a headache. Canceling or suspending a bloc
 
 
 
-In general, GCD is good to use for simple jobs/tasks,
+<!-- In general, GCD is good to use for simple jobs/tasks,
 
-GCD is great for common tasks that need to be run a single time in the background.
+GCD is great for common tasks that need to be run a single time in the background. -->
 
 
 
