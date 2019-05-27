@@ -79,11 +79,17 @@ In GCD, you are working with functions.
 ### Dispatch Queues
 
 FIFO
+
 Serial / Concurrent
+
 QoS Priority
+
 Default Queues
+
 Custom Queues
+
 Main Queue
+
 
 #### FIFO
 
@@ -244,3 +250,5 @@ Dispatch Queues are objects that maintain a queue of tasks, either anonymous cod
 3. []()
 4. []()
 5. []()
+
+8. [Grand_Central_Dispatch - wikipedia](https://en.wikipedia.org/wiki/Grand_Central_Dispatch) <sup>2</sup>

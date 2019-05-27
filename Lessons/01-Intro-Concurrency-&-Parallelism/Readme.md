@@ -400,7 +400,7 @@ https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tr
 - Run Loop
 - Nonatomic (vs Atomic)
 - Dispatch Queues
-- Quality of Service (QoS) - as defined by Apple for iOS/macOS
+- Quality of Service (QoS) Priority - as defined by Apple for iOS/macOS
 
 ## Wrap Up (5 min)
 
