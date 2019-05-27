@@ -67,13 +67,11 @@ Before we dive deeper into GCD, let's quickly compare the two to begin your unde
 
 |  Grand_Central_Dispatch | Operations |
 | ------------- | ------------- |
-| A *lightweight* way to represent units of work that are going to be executed concurrently. GCD uses **closures** to handle what runs on another thread. |  Operations are **objects** that encapsulate data and functionality.  |
-| The system takes care of scheduling for you. Adding dependencies, cancelling or suspending code blocks is labor intensive | You have some control over scheduling through adding dependencies among various operations and can re-use, cancel or suspend them.  |
+| A *lightweight* way to represent units of work that are going to be executed concurrently. GCD uses **closures** to handle what runs on another thread. |  Operations are **objects** that encapsulate data and functionality. Operations add a little *extra development overhead* compared to GCD. |
+| The system takes care of scheduling for you. Adding dependencies, cancelling or suspending code blocks is labor intensive | Allow for greater control over the submitted tasks, including some control over scheduling through adding dependencies among various operations and can re-use, cancel or suspend them.  |
 | GCD is good to use for simple, common tasks that need to be run only once and in the background. |  Operations make it easier to do complex tasks. Use them when you need (a) task reusability, (b) considerable communication between tasks, or (c) to closely monitor task execution. |
 
-Operation adds a little extra overhead compared to GCD,
-
-operations allow for greater control over the submitted task.
+Operation ,
 
 **Grand Central Dispatch (GCD)**
 
