@@ -398,6 +398,7 @@ https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tr
 - Thread Pool design pattern
 - Scheduler (for iOS thread scheduling)
 - Run Loop
+- Async/Await pattern (and Swift 5.0)
 - Nonatomic (vs Atomic)
 - Dispatch Queues
 - Quality of Service (QoS) Priority - as defined by Apple for iOS/macOS

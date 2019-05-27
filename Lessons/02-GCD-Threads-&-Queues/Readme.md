@@ -1,4 +1,4 @@
-# GCD: Threads & Queues
+# Grand Central Dispatch
 
 <!-- INSTRUCTOR Notes:
 1) xxx -->
@@ -46,7 +46,29 @@ from assigned research
 
 ## Overview/TT I (20 min)
 
-In iOS, Concurrency can by handled by two APIs:
+
+GCD vs Operations
+
+Dispatch Queues
+
+FIFO
+
+Serial / Concurrent
+
+QoS Priority
+
+Default Queues
+
+Custom Queues
+
+Main Queue
+
+Sync vs async
+
+### GCD vs Operations
+
+In Lesson 1, we mentioned that Apple provides two built-in APIs to handle Concurrency:
+
 - Grand Central Dispatch (GCD)
 - Operations
 
@@ -75,24 +97,6 @@ In GCD, you are working with functions.
 ### why use it? What does it do?
 
 < purpose -- queues > -->
-
-### Dispatch Queues
-
-FIFO
-
-Serial / Concurrent
-
-QoS Priority
-
-Default Queues
-
-Custom Queues
-
-Main Queue
-
-
-#### FIFO
-
 
 
 
@@ -126,6 +130,14 @@ While GCD uses threads in its implementation, you, as the developer, do not need
 
 
 
+### Why use GCD?
+
+- GCD's design improves simplicity, portability and performance.
+
+- It can help you improve your app’s responsiveness by deferring computationally expensive tasks from the foreground (`main` thread) to the background (non-UI threads).
+
+- It’s an easier concurrency model to work with than locks and threads.
+
 #### Threads & Tasks in GCD
 
 
@@ -149,30 +161,17 @@ A task in Grand Central Dispatch can be used either to create a work item that i
 
 
 
-
-#### DispatchQueues
-
-
-
+### Dispatch Queues
 
 DispatchQueue
 An object that manages the execution of tasks serially or concurrently on your app's main thread or on a background thread.
 
 
 
-
-
 Dispatch Queues are objects that maintain a queue of tasks, either anonymous code blocks or functions, and execute these tasks in their turn. The library automatically creates several queues with different priority levels that execute several tasks concurrently, selecting the optimal number of tasks to run based on the operating environment. A client to the library may also create any number of serial queues, which execute tasks in the order they are submitted, one at a time.[12] Because a serial queue can only run one task at a time, each task submitted to the queue is critical with regard to the other tasks on the queue, and thus a serial queue can be used instead of a lock on a contended resource.
 
 
-
-### Why use GCD?
-
-- GCD's design improves simplicity, portability and performance.
-
-- It can help you improve your app’s responsiveness by deferring computationally expensive tasks from the foreground (`main` thread) to the background (non-UI threads).
-
-- It’s an easier concurrency model to work with than locks and threads.
+#### FIFO
 
 
 #### serial queues
@@ -252,3 +251,9 @@ Dispatch Queues are objects that maintain a queue of tasks, either anonymous cod
 5. []()
 
 8. [Grand_Central_Dispatch - wikipedia](https://en.wikipedia.org/wiki/Grand_Central_Dispatch) <sup>2</sup>
+
+https://en.wikipedia.org/wiki/Async/await
+
+https://en.wikipedia.org/wiki/Coroutine
+
+https://gist.github.com/lattner/429b9070918248274f25b714dcfc7619
