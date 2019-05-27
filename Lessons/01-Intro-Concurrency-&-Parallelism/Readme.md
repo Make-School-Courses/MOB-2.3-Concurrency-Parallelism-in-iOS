@@ -289,7 +289,7 @@ It is an implementation of __*task parallelism*__ based on the __*Thread Pool*__
 
 The fundamental idea is to move the management of the thread pool out of the hands of the developer, and closer to the operating system.
 
-GCD offers you an efficient mechanism for executing code concurrently on multicore hardware by submitting work to __*dispatch queues*__ managed by the system.
+GCD offers you an efficient mechanism for executing code concurrently on multicore hardware by submitting work to __*dispatch queues*__ managed by the system rather than working with threads directly.
 
 > *In the next lessons, we will dig deeper into these two Apple concurrency frameworks, including learning more about the differences between GCD and Operations, as well as when to choose one over the other...*
 

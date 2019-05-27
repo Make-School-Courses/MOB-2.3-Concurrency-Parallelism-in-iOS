@@ -46,40 +46,72 @@ from assigned research
 
 ## Overview/TT I (20 min)
 
+### Topics for this Session
 
-GCD vs Operations
+- GCD vs Operations
+- Dispatch Queues
+- FIFO
+- Serial vs Concurrent
+- QoS Priorities
+- Default Queues
+- Custom Queues
+- The Main Queue
+- Synchronous vs Asynchronous
 
-Dispatch Queues
+### GCD and Operations (cont'd)
 
-FIFO
+In Lesson 1, we introduced the two Apple-provided APIs you use in iOS to manage concurrent tasks *without* working with threads *directly*: **Grand Central Dispatch (GCD)** and **Operations.**
 
-Serial / Concurrent
+Before we dive deeper into GCD, let's quickly compare the two to begin your understanding of when and how to use them:
 
-QoS Priority
 
-Default Queues
+|  | Grand_Central_Dispatch | Operations |
+| ------------- | ------------- | ------------- |
+|  			| Uses functions/closures to handle what runs on another thread. |  Operations are objects that encapsulate data and functionality.  |
+|  			|  |   |
+| **When to Use** 			|  |   |
 
-Custom Queues
 
-Main Queue
 
-Sync vs async
+**Grand Central Dispatch (GCD)**
 
-### GCD vs Operations
+a lightweight way to represent units of work that are going to be executed concurrently. Uses functions/closures to handle what runs on another thread.
 
-In Lesson 1, we mentioned that Apple provides two built-in APIs to handle Concurrency:
+You don’t schedule these units of work; the system takes care of scheduling for you.
 
-- Grand Central Dispatch (GCD)
-- Operations
+Adding dependency among blocks can be a headache. Canceling or suspending a block creates extra work for you as a developer!
+
+
+
+In general, GCD is good to use for simple jobs/tasks,
+
+GCD is great for common tasks that need to be run a single time in the background.
+
+
+
+ **Operations.**
+
+ <!-- Operations are objects that encapsulate data and functionality. -->
+
+
+Operation adds a little extra overhead compared to GCD, but you can add dependency among various operations and re-use, cancel or suspend them.
+
+
+Operations make it easier to do complex jobs/tasks. <complex? the amount of communication between tasks and how closely you want to monitor execution >
+
+
+
+
 
 <!-- > We will Operations in upcoming lessons. We will also learn about the differences between GCD and Operations, as well as when to choose one API over the other... -->
 
 
-which to use? In general, GCD is good to use for simple jobs/tasks, Operations make it easier to do complex jobs/tasks. <complex? the amount of communication between tasks and how closely you want to monitor execution >
+which to use?
 
-Operations are objects that encapsulate data and functionality.
 
-In GCD, you are working with functions.
+
+
+
 
 
 < How iOS uses GCD - other platforms use x (which was supposed to be in Swift 5, but deferred) >
@@ -97,6 +129,14 @@ In GCD, you are working with functions.
 ### why use it? What does it do?
 
 < purpose -- queues > -->
+
+highest-level of abstraction...
+
+most developers use a combination of both
+
+since operations are built on GCD, it is important to know GCD first...
+
+> *Note: Where Swift uses closures (functions) to handle the code that runs on another thread, C#, Typescript, Python, JavaScript and other languages use the the more common Async/Await pattern. The original plans for Swift 5.0 included adding the Async/Await pattern, but this was removed from the Swift specification until some future release.*
 
 
 
@@ -119,7 +159,6 @@ At the core of GCD is the idea of work items, which can be dispatched to a queue
 
 
 <!-- TODO: move these ideas to next lesson, if not used here... -->
-<!-- Most modern programming languages provide for some form of concurrency and Swift is of course no exception. Different languages use widely different mechanisms for handling concurrency. C# and Typescript, for example use an async/await pattern, whereas Swift uses closures to handle what runs on another thread. Swift 5 originally had plans to implement the more common async/await pattern but it was removed from the specification until the next release. -->
 
 <!--
 There are two APIs that you'll use when making your app concurrent: Grand Central Dispatch, commonly referred to as GCD, and Operations. These are neither competing technologies nor something that you have to exclusively pick between. In fact, Operations are built on top of GCD!
