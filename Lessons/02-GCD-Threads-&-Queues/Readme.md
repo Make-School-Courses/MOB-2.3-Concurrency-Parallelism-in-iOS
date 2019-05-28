@@ -1,7 +1,14 @@
-# Grand Central Dispatch
+# GCD: Threads & Queues
+
+<!-- # Grand Central Dispatch -->
 
 <!-- INSTRUCTOR Notes:
-1) xxx -->
+
+1) for initial exercise, the quiz location is:
+https://docs.google.com/document/d/1679wsznKuafup32eV-ae5KQZ6jcx_aIkGY7CQ6ZGp_w/edit
+
+2) xxxx
+ -->
 
 ## Minute-by-Minute [OPTIONAL]
 
@@ -70,7 +77,7 @@ In Lesson 1, we introduced the two Apple-provided APIs you use in iOS to manage 
 Before we dive deeper into GCD, let's quickly compare the two to begin your understanding of when and how to use them:
 
 
-|  Grand_Central_Dispatch | Operations |
+|  Grand Central Dispatch | Operations |
 | ------------- | ------------- |
 | A *lightweight* way to represent units of work that are going to be executed concurrently. GCD uses **closures** to handle what runs on another thread. |  Operations are **objects** that encapsulate data and functionality. Operations add a little *extra development overhead* compared to GCD. |
 | The system takes care of scheduling for you. Adding dependencies, cancelling or suspending code blocks is labor intensive | Allow for greater control over the submitted tasks, including some control over scheduling through adding dependencies among various operations and can re-use, cancel or suspend them.  |
@@ -78,7 +85,7 @@ Before we dive deeper into GCD, let's quickly compare the two to begin your unde
 
 Apple recommends using the API with the "highest-level of abstraction" (which is Operations), though most developers use a combination of both APIs.
 
-And because Operations are build on top of GCD, it is important to the lower-level API first...
+And because Operations are build on top of GCD, it is important to master the lower-level API first...
 
 > *Note: Where Swift uses closures (functions) to handle the code that runs on another thread, C#, Typescript, Python, JavaScript and other languages use the the more common Async/Await pattern. The original plans for Swift 5.0 included adding the Async/Await pattern, but this was removed from the Swift specification until some future release.*
 
@@ -140,10 +147,10 @@ When you create a queue, the OS will potentially create and assign one or more t
 Thread creation and destruction are expensive processes. Instead of creating a new thread whenever a task is to be executed, then destroying it when the task finishes, available threads are taken from a thread pool ([Thread Pool pattern](https://en.wikipedia.org/wiki/Thread_pool)).
 
 
-![thread_pool](/assets/thread_pool.png) </br>
+![thread_pool](assets/thread_pool.png) </br>
 
 
-A sample thread pool (green boxes) with waiting tasks (blue) and completed tasks (yellow)
+*A sample thread pool (green boxes) with waiting tasks (blue) and completed tasks (yellow)*
 
 *Source:* https://en.wikipedia.org/wiki/Thread_pool
 
