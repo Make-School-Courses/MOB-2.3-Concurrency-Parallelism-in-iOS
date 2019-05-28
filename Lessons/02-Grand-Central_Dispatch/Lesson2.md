@@ -130,7 +130,7 @@ In Computer Science, a `queue` is a data structure that manages a collection of 
 
  <!-- (just like the ticket line at a movie theater and other examples of queues in real-life). -->
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![queue-line](assets/queue-line.png) </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![queue-line](assets/queue-line.png) </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Photo credit: FreeImages.com/Sigurd Decroos
 
 </br>
@@ -145,9 +145,9 @@ DispatchQueues:
 
 Except for the dispatch queue representing your app's `main` thread, the system makes no guarantees about which thread it uses to execute a task.
 
-Work submitted to dispatch queues executes on a pool of threads managed by the system.
+Work submitted to `dispatch queues`executes on a *pool of threads* managed by the system.
 
-When you create a queue, the OS will potentially create and assign one or more threads to the queue. If existing threads are available in the pool, they can be reused; if not, then the OS will create them as necessary.
+When you create a `DispatchQueue`, the OS will potentially create and assign one or more threads to the queue. If existing threads are available in the pool, they can be reused; if not, then the OS will create them as needed.
 
 __*Thread Pools*__
 Thread creation and destruction are expensive processes. Instead of creating a new thread whenever a task is to be executed, then destroying it when the task finishes, available threads are taken from a thread pool ([Thread Pool pattern](https://en.wikipedia.org/wiki/Thread_pool)).
