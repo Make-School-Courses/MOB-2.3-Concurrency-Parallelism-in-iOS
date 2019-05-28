@@ -375,7 +375,6 @@ https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tr
 
 **TODO:** Trace down the source of the Foundation types `Thread`, `Thread.current`, and the `.start()` function.
 - Is it easy to infer how to implement these properties and functions?
-- What does the construction of this built-in type suggest about the complexity of debugging multiple threads where each custom thread executes specific tasks concurrently?
 
 **Q:** Listed below is a selected portion of the output:
 - What do the hexadecimal numbers next to `<NSThread: ` tell us and how could that information be useful?
@@ -393,7 +392,7 @@ https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tr
 1. Research:
 - Task Parallelism
 - Bit-Level Parallelism
-- Amdahl's Law
+- Amdahl's Law and Gustafson's Law
 - Call Stack, Stack Frames, and Stack Pointer
 - Thread Pool design pattern
 - Scheduler (for iOS thread scheduling)

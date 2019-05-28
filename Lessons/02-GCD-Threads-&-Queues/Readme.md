@@ -127,6 +127,13 @@ Grand Central Dispatch still uses threads at a low level but abstracts them away
 
 You work with threads by creating `DispatchQueues`.
 
+![queue-line](assets/queue-line.png) </br>
+
+
+Photo credit: FreeImages.com/Sigurd Decroos
+
+
+
 __*DispatchQueues*__
 
 A `DispatchQueue` is an object that manages the execution of tasks serially or concurrently on your app's `main` thread or on a `background thread`.
@@ -148,8 +155,7 @@ Thread creation and destruction are expensive processes. Instead of creating a n
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![thread_pool](assets/thread_pool.png) </br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  *A sample thread pool (green boxes) with waiting tasks (blue) and completed tasks (yellow)*
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  *A sample thread pool (green boxes) with waiting tasks (blue) and completed tasks (yellow)* </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:* https://en.wikipedia.org/wiki/Thread_pool
 
 
