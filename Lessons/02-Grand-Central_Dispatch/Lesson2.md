@@ -135,6 +135,9 @@ __*DispatchQueues*__
 
 A `DispatchQueue` is an object that manages the execution of tasks serially or concurrently on your app's `main` thread or on a `background thread`.
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![queue-line](assets/queue-line.png) </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Photo credit: FreeImages.com/Sigurd Decroos
+
 DispatchQueues:
 - maintain a queue of tasks and execute these tasks, either serially or concurrently, in their turn.
 - hide all thread management related activities. (You can configure a queue, but you won’t interact directly with a thread.)
