@@ -143,10 +143,10 @@ Work submitted to dispatch queues executes on a pool of threads managed by the s
 
 When you create a queue, the OS will potentially create and assign one or more threads to the queue. If existing threads are available in the pool, they can be reused; if not, then the OS will create them as necessary.
 
-**Thread Pools**
+__*Thread Pools*__
 Thread creation and destruction are expensive processes. Instead of creating a new thread whenever a task is to be executed, then destroying it when the task finishes, available threads are taken from a thread pool ([Thread Pool pattern](https://en.wikipedia.org/wiki/Thread_pool)).
 
-![thread_pool](assets/thread_pool.png) </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![thread_pool](assets/thread_pool.png) </br>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *A sample thread pool (green boxes) with waiting tasks (blue) and completed tasks (yellow)*
 
