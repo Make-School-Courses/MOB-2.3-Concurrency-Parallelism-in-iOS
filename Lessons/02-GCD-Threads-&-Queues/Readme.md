@@ -8,7 +8,7 @@ https://docs.google.com/document/d/1679wsznKuafup32eV-ae5KQZ6jcx_aIkGY7CQ6ZGp_w/
 2) xxxx
  -->
 
-## Minute-by-Minute
+## Minute-by-Minute [OPTIONAL]
 
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
@@ -124,18 +124,16 @@ Grand Central Dispatch still uses threads at a low level but abstracts them away
 
 You work with threads by creating `DispatchQueues`.
 
+
+
+
+
 __*DispatchQueues*__
 
-In Computer Science, a `queue` is a data structure that manages a collection of objects in FIFO order, where the first object added to the queue is the first object removed from (executed by) the queue.
+A `DispatchQueue` is an object that manages the execution of tasks serially or concurrently on your app's `main` thread or on a `background thread`.
 
- <!-- (just like the ticket line at a movie theater and other examples of queues in real-life). -->
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![queue-line](assets/queue-line.png) </br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Photo credit: FreeImages.com/Sigurd Decroos
-
-</br>
-
-In GCD, `DispatchQueue` is a queue object that manages the execution of tasks serially or concurrently on your app's `main` thread or on a `background thread`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![queue-line](assets/queue-line.png) </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Photo credit: FreeImages.com/Sigurd Decroos
 
 DispatchQueues:
 - maintain a queue of tasks and execute these tasks, either serially or concurrently, in their turn.
@@ -145,16 +143,16 @@ DispatchQueues:
 
 Except for the dispatch queue representing your app's `main` thread, the system makes no guarantees about which thread it uses to execute a task.
 
-Work submitted to `dispatch queues`executes on a *pool of threads* managed by the system.
+Work submitted to dispatch queues executes on a pool of threads managed by the system.
 
-When you create a `DispatchQueue`, the OS will potentially create and assign one or more threads to the queue. If existing threads are available in the pool, they can be reused; if not, then the OS will create them as needed.
+When you create a queue, the OS will potentially create and assign one or more threads to the queue. If existing threads are available in the pool, they can be reused; if not, then the OS will create them as necessary.
 
 __*Thread Pools*__
 Thread creation and destruction are expensive processes. Instead of creating a new thread whenever a task is to be executed, then destroying it when the task finishes, available threads are taken from a thread pool ([Thread Pool pattern](https://en.wikipedia.org/wiki/Thread_pool)).
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![thread_pool](assets/thread_pool.png) </br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  *A sample thread pool (green boxes) with waiting tasks (blue) and completed tasks (yellow)* </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *A sample thread pool (green boxes) with waiting tasks (blue) and completed tasks (yellow)* </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:* https://en.wikipedia.org/wiki/Thread_pool
 
 
