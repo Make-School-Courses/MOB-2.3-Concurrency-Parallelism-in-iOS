@@ -1,7 +1,7 @@
 # MOB-2.3 - Concurrency & Parallelism in iOS
 
 ## Course Description
-This course covers concurrency and parallelism in iOS to optimize programming performance on mobile devices built with multiple cores. Students will learn the foundation of Grand Central Dispatch and build applications that run multiple tasks simultaneously which improves speed. 
+This course covers concurrency and parallelism in iOS to optimize programming performance on mobile devices built with multiple cores. Students will learn the foundation of Grand Central Dispatch and build applications that run multiple tasks simultaneously which improves speed.
 
 ## Prerequisites:  
 
@@ -30,7 +30,7 @@ Students by the end of the course will be able to ...
 
 | Class |          Date          |                 Topics                  |
 |:-----:|:----------------------:|:---------------------------------------:|
-|  1 |  Tu, May 28                        | [Introduction to Concurrency in iOS](Lessons/intro-to-concurrency) |
+|  1 |  Tu, May 28                        | [Introduction to Concurrency & Parallelism] |
 |  2 |  Th, May 30                       | [Concurrency & Parallelism - Dispatch Queues](Lessons/dispatch-queues) <br/> **/** <br/> [Concurrency & Parallelism - Concurrency Challenges](Lessons/challenges-with-concurrency) |
 |  3 |  Tu, June 4                        | [Concurrency & Parallelism - Executing work with GCD](Lessons/executing-work-gcd) <br/> **/** <br/> [Interview Practice Problem - Concurrency](Lessons/interview-practice-problem-concurrency) |
 |  4 |  Th, June 6                      | [(NS)Operations](Lessons/operations) |
@@ -42,6 +42,7 @@ Students by the end of the course will be able to ...
 | 10 |  Th, June 27                        | Lesson 13 (TODO) |
 | 11 |  Tu, July 2                       | Final Exams/Presentations |  
 
+[Introduction to Concurrency & Parallelism]: Lessons/01-Intro-Concurrency-&-Parallelism/Lesson1.md
 
 ## Class Assignments
 
@@ -54,7 +55,7 @@ Students by the end of the course will be able to ...
 
 To pass this course you must meet the following requirements:
 
-- Complete all required assignments 
+- Complete all required assignments
 - Pass all projects according to the associated project rubric
 - Pass the final summative assessment according to the rubric as specified in this class
     - This will be further explained in the [study guide](ADD_STUDY_GUIDE_LNK)
