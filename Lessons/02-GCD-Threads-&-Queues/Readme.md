@@ -152,7 +152,7 @@ Thread creation and destruction are expensive processes. Instead of creating a n
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *A sample thread pool (green boxes) with waiting tasks (blue) and completed tasks (yellow)*
 
-*Source:* https://en.wikipedia.org/wiki/Thread_pool
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:* https://en.wikipedia.org/wiki/Thread_pool
 
 
 
