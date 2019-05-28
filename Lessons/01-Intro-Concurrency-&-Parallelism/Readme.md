@@ -409,7 +409,7 @@ https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tr
 
 ## Additional Resources
 
-1. [Slides]()
+1. [Slides](https://docs.google.com/presentation/d/10N4toxHiXr6QAszM4aKvgtRAOsKR30b5fYe9RXfqa88/edit?usp=sharing)
 2. [Parallel computing - wikipedia](https://en.wikipedia.org/wiki/Parallel_computing)
 3. [Concurrency (computer_science) - wikipedia](https://en.wikipedia.org/wiki/Concurrency_(computer_science))
 4. [Threads - an article](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html)
