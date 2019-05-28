@@ -121,13 +121,13 @@ Allowing the `libdispatch` library and the operating system to manage threads me
 - wikipedia
 - Apple docs
 
-#### Threads, Tasks & DispatchQueues in GCD
+### Threads, Tasks & DispatchQueues in GCD
 
 Grand Central Dispatch still uses threads at a low level but abstracts them away from the developer.
 
 You work with threads by creating `DispatchQueues`.
 
-**DispatchQueues**
+__*DispatchQueues*__
 
 A `DispatchQueue` is an object that manages the execution of tasks serially or concurrently on your app's `main` thread or on a `background thread`.
 
@@ -156,11 +156,12 @@ Thread creation and destruction are expensive processes. Instead of creating a n
 <!-- Tasks in GCD are lightweight to create and queue; Apple states that 15 instructions are required to queue up a work unit in GCD, while creating a traditional thread could easily require several hundred instructions. <sup>2</sup> -->
 
 
-**Tasks**
-encapsulate code and data into a single object in
+__*Tasks*__
 
 
-A task can be expressed either as a function or as a "block."
+
+A task can be expressed either as a function or as a "block" of code (eg, a closure). Tasks encapsulate code and data into a single object in
+
 
 Blocks are an extension to the syntax of C, C++, and Objective-C programming languages that encapsulate code and data into a single object in a way similar to a closure.[11] GCD can still be used in environments where blocks are not available.[15]
 
