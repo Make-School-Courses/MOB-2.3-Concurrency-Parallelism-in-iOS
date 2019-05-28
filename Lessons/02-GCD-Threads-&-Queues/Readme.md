@@ -33,6 +33,11 @@
 <!-- TODO: quiz questions:
 - from last class material
 from assigned research
+
+Review of Concurrency & Parallelism?
+
+
+
  -->
 
 
@@ -101,6 +106,8 @@ GCD works by allowing specific __*tasks*__ &mdash; functions or closures &mdash;
 
 GCD abstracts the notion of threads, and exposes __*dispatch queues*__ to handle __*work items*__ (*work items* are blocks <sup>2</sup> of code that you want to execute). These tasks are assigned (dispatched) to a dispatch queue, which processes them in a __*First-In-First-Out (FIFO)*__ order.
 
+Allowing the `libdispatch` library and the operating system to manage threads means developers have much fewer lines of code to write and less to debug; and the library can optimize thread management behind the scenes much more efficiently than a developer.
+
 > <sup>2</sup> Note: Apple's documentation sometimes refers to a `block` in lieu of a `closure` because `block` was the name used in Objective-C. In the context of concurrency in iOS, you can consider `block` and `closure` interchangeable> [action]
 
 *Sources include:* </br>
@@ -113,31 +120,34 @@ Grand Central Dispatch still uses threads at a low level but abstracts them away
 
 You work with threads by creating `DispatchQueues`.
 
+**DispatchQueues**
 
+A `DispatchQueue` is an object that manages the execution of tasks serially or concurrently on your app's `main` thread or on a `background thread`.
 
+DispatchQueues:
+- maintain a queue of tasks and execute these tasks, either serially or concurrently, in their turn.
+- hide all thread management related activities. (You can configure a queue, but you won’t interact directly with a thread.)
+- are *thread safe*: They can be accessed from different threads simultaneously without locking. (Developers can use `DispatchQueues` to make their own code thread safe.)
+- are *FIFO* <sup>3</sup> queues.
 
-DispatchQueue
-An object that manages the execution of tasks serially or concurrently on your app's main thread or on a background thread.
+Except for the dispatch queue representing your app's `main` thread, the system makes no guarantees about which thread it uses to execute a task.
 
+Work submitted to dispatch queues executes on a pool of threads managed by the system.
 
-
-the queue hides all thread management related tasks. You can configure the queue, but you won’t interact directly with a thread.
-
-
-
-Dispatch Queues are objects that maintain a queue of tasks, either anonymous code blocks or functions, and execute these tasks in their turn.
-
-
-When you create a queue, the OS will potentially create and assign one or more threads to the queue. If existing threads are available, they can be reused; if not, then the OS will create them as necessary.
-
-**Thread Pools**
-Thread creation and destruction are expensive processes. Instead of creating a new thread whenever a task is to be executed, then destroying it when the task finishes, available threads are taken from a thread pool.
-
-Allowing the `libdispatch` library and the operating system to manage threads means developers have much fewer lines of code to write and less to debug; and the library can optimize thread management behind the scenes much better than a developer could.
-
-
+When you create a queue, the OS will potentially create and assign one or more threads to the queue. If existing threads are available in the pool, they can be reused; if not, then the OS will create them as necessary.
 
 **Thread Pools**
+Thread creation and destruction are expensive processes. Instead of creating a new thread whenever a task is to be executed, then destroying it when the task finishes, available threads are taken from a thread pool ([Thread Pool pattern](https://en.wikipedia.org/wiki/Thread_pool)).
+
+
+![thread_pool](/assets/thread_pool.png) </br>
+
+
+A sample thread pool (green boxes) with waiting tasks (blue) and completed tasks (yellow)
+
+*Source:* https://en.wikipedia.org/wiki/Thread_pool
+
+
 
 <!-- Tasks in GCD are lightweight to create and queue; Apple states that 15 instructions are required to queue up a work unit in GCD, while creating a traditional thread could easily require several hundred instructions. <sup>2</sup> -->
 
@@ -155,13 +165,20 @@ A task in Grand Central Dispatch can be used either to create a work item that i
 
 
 
+> <sup>3</sup> FIFO: First In, First Out &mdash; Tasks run in the order in which they are added to the queue — the first task in the queue will be the first to start. Though each block of code will be taken off the queue in the order they were put in, because more than one code block can be executed at the same time,  the finish order isn't guaranteed.
 
 
 
-#### FIFO
+
+, either anonymous code blocks or functions, &mdash; anonymous code blocks (closures) or functions &mdash;
 
 
-#### serial queues
+
+Dispatch queues are *FIFO* <sup>3</sup> queues to which your application can submit tasks in the form of block objects.
+
+
+
+#### Serial Queues
 
 The library automatically creates several queues with different priority levels that execute several tasks concurrently, selecting the optimal number of tasks to run based on the operating environment.
 
@@ -202,10 +219,30 @@ A client to the library may also create any number of serial queues, which execu
 
 ### Sync vs async
 
+Schedules a work item for immediate execution, and returns immediately.
+
+Submits a work item for execution on the current queue and returns after that block finishes executing.
+
+
+You schedule work items synchronously or asynchronously. When you schedule a work item synchronously, your code waits until that item finishes execution. When you schedule a work item asynchronously, your code continues executing while the work item runs elsewhere.
+Important
+Attempting to synchronously execute a work item on the main queue results in deadlock.
+
+
 
 #### Calling Sync on Current Queue
 
 < never call Sync on main queue >
+
+
+#### Calling
+
+
+When designing tasks for concurrent execution, do not call methods that block the current thread of execution. When a task scheduled by a concurrent dispatch queue blocks a thread, the system creates additional threads to run other queued concurrent tasks. If too many tasks block, the system may run out of threads for your app.
+Another way that apps consume too many threads is by creating too many private concurrent dispatch queues. Because each dispatch queue consumes thread resources, creating additional concurrent dispatch queues exacerbates the thread consumption problem. Instead of creating private concurrent queues, submit tasks to one of the global concurrent dispatch queues. For serial tasks, set the target of your serial queue to one of the global concurrent queues. That way, you can maintain the serialized behavior of the queue while minimizing the number of separate queues creating threads.
+
+
+https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 
 
@@ -219,7 +256,9 @@ A client to the library may also create any number of serial queues, which execu
 
 ## After Class
 1. Research:
+- `DispatchObject`
 -
+
 2. Assignment:
 -
 <!-- TODO: have students to the Ray W tute on Concurrency -->
@@ -246,3 +285,6 @@ A client to the library may also create any number of serial queues, which execu
 
 
 https://gist.github.com/lattner/429b9070918248274f25b714dcfc7619
+
+
+https://developer.apple.com/documentation/dispatch/dispatchqueue
