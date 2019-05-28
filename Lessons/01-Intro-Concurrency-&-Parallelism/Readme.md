@@ -394,6 +394,7 @@ https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tr
 - Bit-Level Parallelism
 - Amdahl's Law and Gustafson's Law
 - Call Stack, Stack Frames, and Stack Pointer
+- The Heap
 - Thread Pool design pattern
 - Scheduler (for iOS thread scheduling)
 - Run Loop
