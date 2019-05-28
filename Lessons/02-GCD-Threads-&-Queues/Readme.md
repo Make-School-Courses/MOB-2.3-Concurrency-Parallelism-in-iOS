@@ -146,14 +146,11 @@ When you create a queue, the OS will potentially create and assign one or more t
 **Thread Pools**
 Thread creation and destruction are expensive processes. Instead of creating a new thread whenever a task is to be executed, then destroying it when the task finishes, available threads are taken from a thread pool ([Thread Pool pattern](https://en.wikipedia.org/wiki/Thread_pool)).
 
-
 ![thread_pool](assets/thread_pool.png) </br>
-
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *A sample thread pool (green boxes) with waiting tasks (blue) and completed tasks (yellow)*
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:* https://en.wikipedia.org/wiki/Thread_pool
-
 
 
 <!-- Tasks in GCD are lightweight to create and queue; Apple states that 15 instructions are required to queue up a work unit in GCD, while creating a traditional thread could easily require several hundred instructions. <sup>2</sup> -->
@@ -197,12 +194,27 @@ Submits a work item for execution on the current queue and returns after that bl
 your app will wait and block the current run loop until execution finishes before moving on to the next task
 
 
+A synchronous function returns control to the caller after the task is completed.
+
+An asynchronous function returns immediately, ordering the task to be done but not waiting for it. Thus, an asynchronous function does not block the current thread of execution from proceeding on to the next function.
+
+
+![synchronous](assets/synchronous.png) </br>
+
 
 **Asynchronous**
 
 Schedules a work item for immediate execution, and returns immediately.
 
  a task that is run asynchronously will start, but return execution to your app immediately. This way, the app is free to run other tasks while the first one is executing.
+
+Asynchronous tasks are started by one thread but actually run on a different thread, taking advantage of additional processor resources to finish their work more quickly.
+
+
+
+![asynchronous](assets/asynchronous.png) </br>
+
+
 
 
 You schedule work items synchronously or asynchronously. When you schedule a work item synchronously, your code waits until that item finishes execution. When you schedule a work item asynchronously, your code continues executing while the work item runs elsewhere.
