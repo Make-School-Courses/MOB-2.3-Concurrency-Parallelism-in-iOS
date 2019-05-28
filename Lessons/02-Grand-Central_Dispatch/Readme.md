@@ -1,4 +1,6 @@
-# Grand Central Dispatch
+# GCD: Threads & Queues
+
+<!-- # Grand Central Dispatch -->
 
 <!-- INSTRUCTOR Notes:
 
@@ -73,6 +75,7 @@ Review of Concurrency & Parallelism?
 In Lesson 1, we introduced the two Apple-provided APIs you use in iOS to manage concurrent tasks *without* working with threads *directly*: **Grand Central Dispatch (GCD)** and **Operations.**
 
 Before we dive deeper into GCD, let's quickly compare the two to begin your understanding of when and how to use them:
+
 
 |  Grand Central Dispatch | Operations |
 | ------------- | ------------- |
