@@ -172,7 +172,7 @@ A task in Grand Central Dispatch can be used either to create a work item that i
 
 
 
-> <sup>3</sup> FIFO: First In, First Out &mdash; Tasks run in the order in which they are added to the queue — the first task in the queue will be the first to start. Though each block of code will be taken off the queue in the order they were put in, because more than one code block can be executed at the same time,  the finish order isn't guaranteed.
+> <sup>3</sup> FIFO: First In, First Out &mdash; Tasks run in the order in which they are added to the queue — the first task in the queue will be the first to start. Though each block of code will be *started* in the order they were submitted, because more than one code block can be executed at the same time, the order in which tasks *finish* isn't guaranteed.
 
 
 
@@ -183,6 +183,59 @@ A task in Grand Central Dispatch can be used either to create a work item that i
 
 Dispatch queues are *FIFO* <sup>3</sup> queues to which your application can submit tasks in the form of block objects.
 
+
+<!-- TODO: insert iOS app process diagram with Main Queue here ?-->
+
+
+### Synchronous & Asynchronous Tasks
+
+Tasks placed into a queue can either run __*synchronously*__ or __*asynchronously.*__
+
+**Synchronous**
+Submits a work item for execution on the current queue and returns after that block finishes executing.
+
+your app will wait and block the current run loop until execution finishes before moving on to the next task
+
+
+
+**Asynchronous**
+
+Schedules a work item for immediate execution, and returns immediately.
+
+ a task that is run asynchronously will start, but return execution to your app immediately. This way, the app is free to run other tasks while the first one is executing.
+
+
+You schedule work items synchronously or asynchronously. When you schedule a work item synchronously, your code waits until that item finishes execution. When you schedule a work item asynchronously, your code continues executing while the work item runs elsewhere.
+
+
+
+### The Main queue
+
+
+
+Important
+Attempting to synchronously execute a work item on the main queue results in deadlock.
+
+
+<!-- TODO: insert example of delegating back to main queue here -->
+
+
+
+
+## In Class Activity I (30 min)
+
+- I do, We do, You do
+- Reading & Discussion Questions in small groups
+- Draw a picture/diagram
+- Complete Challenges solo or in pair
+- Q&A about tutorials
+- Pair up and code review
+- Pair program
+- Formative assessment
+- Form into groups
+- etc (get creative :D)
+
+## Overview/TT II (optional) (20 min)
 
 
 #### Serial Queues
@@ -204,36 +257,11 @@ A client to the library may also create any number of serial queues, which execu
 #### Custom Queues
 
 
-### The Main queue
 
 
 
 
-## In Class Activity I (30 min)
 
-- I do, We do, You do
-- Reading & Discussion Questions in small groups
-- Draw a picture/diagram
-- Complete Challenges solo or in pair
-- Q&A about tutorials
-- Pair up and code review
-- Pair program
-- Formative assessment
-- Form into groups
-- etc (get creative :D)
-
-## Overview/TT II (optional) (20 min)
-
-### Sync vs async
-
-Schedules a work item for immediate execution, and returns immediately.
-
-Submits a work item for execution on the current queue and returns after that block finishes executing.
-
-
-You schedule work items synchronously or asynchronously. When you schedule a work item synchronously, your code waits until that item finishes execution. When you schedule a work item asynchronously, your code continues executing while the work item runs elsewhere.
-Important
-Attempting to synchronously execute a work item on the main queue results in deadlock.
 
 
 
@@ -242,14 +270,20 @@ Attempting to synchronously execute a work item on the main queue results in dea
 < never call Sync on main queue >
 
 
-#### Calling
+#### Calling xxxx
 
 
 When designing tasks for concurrent execution, do not call methods that block the current thread of execution. When a task scheduled by a concurrent dispatch queue blocks a thread, the system creates additional threads to run other queued concurrent tasks. If too many tasks block, the system may run out of threads for your app.
+
 Another way that apps consume too many threads is by creating too many private concurrent dispatch queues. Because each dispatch queue consumes thread resources, creating additional concurrent dispatch queues exacerbates the thread consumption problem. Instead of creating private concurrent queues, submit tasks to one of the global concurrent dispatch queues. For serial tasks, set the target of your serial queue to one of the global concurrent queues. That way, you can maintain the serialized behavior of the queue while minimizing the number of separate queues creating threads.
 
 
 https://developer.apple.com/documentation/dispatch/dispatchqueue
+
+
+<!-- TODO: Ask questions:
+- what would happen if the system (a) runs out of threads, and/or (b) creating too many queues? (hint: are queues limited by cores?)
+ -->
 
 
 
