@@ -31,7 +31,7 @@ Students by the end of the course will be able to ...
 | Class |          Date          |                 Topics                  |
 |:-----:|:----------------------:|:---------------------------------------:|
 |  1 |  Tu, May 28                        | [Introduction to Concurrency & Parallelism] |
-|  2 |  Th, May 30                       | [Concurrency & Parallelism - Dispatch Queues](Lessons/dispatch-queues) <br/> **/** <br/> [Concurrency & Parallelism - Concurrency Challenges](Lessons/challenges-with-concurrency) |
+|  2 |  Th, May 30                       | [Grand Central Dispatch] |
 |  3 |  Tu, June 4                        | [Concurrency & Parallelism - Executing work with GCD](Lessons/executing-work-gcd) <br/> **/** <br/> [Interview Practice Problem - Concurrency](Lessons/interview-practice-problem-concurrency) |
 |  4 |  Th, June 6                      | [(NS)Operations](Lessons/operations) |
 |  5 |  Tu, June 11                       | [Xcode Project Management - Schemes, Targets & Build Settings](Lessons/xcode-project-management) |
@@ -43,6 +43,12 @@ Students by the end of the course will be able to ...
 | 11 |  Tu, July 2                       | Final Exams/Presentations |  
 
 [Introduction to Concurrency & Parallelism]: Lessons/01-Intro-Concurrency-&-Parallelism/Lesson1.md
+[xxxx]: Lessons/xxx/LessonX.md
+[xxxx]: Lessons/xxx/LessonX.md
+[xxxx]: Lessons/xxx/LessonX.md
+[xxxx]: Lessons/xxx/LessonX.md
+[xxxx]: Lessons/xxx/LessonX.md
+
 
 ## Class Assignments
 
