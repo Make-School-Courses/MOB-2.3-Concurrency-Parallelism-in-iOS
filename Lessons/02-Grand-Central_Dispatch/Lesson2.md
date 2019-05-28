@@ -133,7 +133,11 @@ Photo credit: FreeImages.com/Sigurd Decroos
 
 __*DispatchQueues*__
 
-A `DispatchQueue` is an object that manages the execution of tasks serially or concurrently on your app's `main` thread or on a `background thread`.
+In Computer Science, a `queue` is a data structure that manages a collection of objects in FIFO order, where the first object added to the queue is the first object removed from (executed by) the queue.
+
+ <!-- (just like the ticket line at a movie theater and other examples of queues in real-life). -->
+
+A `DispatchQueue` is a queue object that manages the execution of tasks serially or concurrently on your app's `main` thread or on a `background thread`.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![queue-line](assets/queue-line.png) </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Photo credit: FreeImages.com/Sigurd Decroos
