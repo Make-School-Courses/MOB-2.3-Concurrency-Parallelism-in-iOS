@@ -231,7 +231,7 @@ https://drive.google.com/drive/u/0/folders/1NoSPe3pQJFEXBZmsHKLquYh1uzoWVWYK?ths
 
 There can be as many threads executing at once as there are cores in a device's CPU.
 
-iPhones and iPads have been dual-core since 2011, with more recent models boasting as many as 8 cores per chip (see *octa-core* in <sup>1</sup>).
+iPhones and iPads have been dual-core since 2011, with more recent models boasting as many as 12 cores per chip (see <sup>1</sup>).
 
 With more than one core available, iOS apps are capable of running more than a single task at the same time. (Potentially, up to 8 tasks simultaneously, though this again is ultimately up to the operating system).
 
