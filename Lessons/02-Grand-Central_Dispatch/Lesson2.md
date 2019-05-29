@@ -251,6 +251,7 @@ Attempting to synchronously execute a work item on the main queue results in dea
 
 
 
+
 ## In Class Activity I (30 min)
 
 - I do, We do, You do
@@ -361,15 +362,17 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 
 
+
 ## After Class
 1. Research:
 - `DispatchObject`
-- `WorkItem`
+- `DispatchWorkItem`
 -
 
 2. Assignment:
 -
 <!-- TODO: have students to the Ray W tute on Concurrency -->
+
 
 
 
