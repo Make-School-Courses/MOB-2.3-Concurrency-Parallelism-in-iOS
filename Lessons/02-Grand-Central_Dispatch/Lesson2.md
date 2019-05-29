@@ -92,7 +92,7 @@ GCD's design improves simplicity, portability and performance.
 
 - It can help you __*improve your app’s responsiveness*__ by deferring computationally expensive tasks from the foreground (`main` thread) to the background (non-UI threads).
 
-- It __*simplifies__* the creation and the execution of asynchronous or synchronous tasks.
+- It __*simplifies*__ the creation and the execution of asynchronous or synchronous tasks.
 
 - It’s a concurrency model that is __*much easier to work with__* than locks and threads.
 
@@ -126,52 +126,50 @@ You work with threads by creating `DispatchQueues`.
 
 __*DispatchQueues*__
 
-In Computer Science, a `queue` is a data structure that manages a collection of objects in FIFO order, where the first object added to the queue is the first object removed from (executed by) the queue.
+In Computer Science, a `queue` is a data structure that manages a collection of objects in FIFO <sup>3</sup> order, where the first object added to the queue is the first object removed from (executed by) the queue.
 
  <!-- (just like the ticket line at a movie theater and other examples of queues in real-life). -->
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![queue-line](assets/queue-line.png) </br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Photo credit: FreeImages.com/Sigurd Decroos
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![queue-line](assets/queue-line.png) </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Photo credit: FreeImages.com/Sigurd Decroos
 
 </br>
 
-In GCD, `DispatchQueue` is a queue object that manages the execution of tasks serially or concurrently on your app's `main` thread or on a `background thread`.
+In GCD, `DispatchQueue` is a queue object that manages the execution of tasks on your app's `main` thread or on a `background thread`.
 
-DispatchQueues:
-- maintain a queue of tasks and execute these tasks, either serially or concurrently, in their turn.
-- hide all thread management related activities. (You can configure a queue, but you won’t interact directly with a thread.)
-- are *thread safe*: They can be accessed from different threads simultaneously without locking. (Developers can use `DispatchQueues` to make their own code thread safe.)
-- are *FIFO* <sup>3</sup> queues.
+It is a FIFO <sup>3</sup> queue to which your application can submit tasks in the form of block objects (functions or closures).
 
-Except for the dispatch queue representing your app's `main` thread, the system makes no guarantees about which thread it uses to execute a task.
+`DispatchQueues`:
+- maintain a queue of tasks and execute these tasks, either __*serially or concurrently,*__ in their turn.
+- __*hide all thread management*__ related activities. (You can configure a queue, but you won’t interact directly with any thread associated with it.)
+- are __*thread safe*__: They can be accessed from different threads simultaneously without locking. (Developers can use `DispatchQueues` to make their own code thread safe.)
 
-Work submitted to `dispatch queues`executes on a *pool of threads* managed by the system.
+Work submitted to `dispatch queues` executes on the *pool of threads* managed by the system.
 
-When you create a `DispatchQueue`, the OS will potentially create and assign one or more threads to the queue. If existing threads are available in the pool, they can be reused; if not, then the OS will create them as needed.
+Except for the dispatch queue (the `main queue`) representing your app's `main thread`, the system makes no guarantees about which thread it uses to execute a task.
 
 __*Thread Pools*__
-Thread creation and destruction are expensive processes. Instead of creating a new thread whenever a task is to be executed, then destroying it when the task finishes, available threads are taken from a thread pool ([Thread Pool pattern](https://en.wikipedia.org/wiki/Thread_pool)).
+Thread creation and destruction are expensive processes.
+
+Instead of creating a new thread whenever a task is to be executed, then destroying it when the task finishes, available threads are taken from a pool of available threads created and managed by the operating system ([Thread Pool pattern](https://en.wikipedia.org/wiki/Thread_pool)).
+
+When you create a `DispatchQueue`, the OS will potentially create and assign one or more threads to the queue. If existing threads are available in the pool, they can be reused; if not, then the OS will create them as needed.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![thread_pool](assets/thread_pool.png) </br>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  *A sample thread pool (green boxes) with waiting tasks (blue) and completed tasks (yellow)* </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:* https://en.wikipedia.org/wiki/Thread_pool
 
-
-<!-- Tasks in GCD are lightweight to create and queue; Apple states that 15 instructions are required to queue up a work unit in GCD, while creating a traditional thread could easily require several hundred instructions. <sup>2</sup> -->
-
-
 __*Tasks*__
 
+Tasks encapsulate code and data into a single object.
+
+A task can be expressed either as a function or as an anonymous "block" of code (eg, a closure).
 
 
-A task can be expressed either as a function or as a "block" of code (eg, a closure). Tasks encapsulate code and data into a single object in
+<!-- Blocks are an extension to the syntax of C, C++, and Objective-C programming languages that encapsulate code and data into a single object in a way similar to a closure.[11] GCD can still be used in environments where blocks are not available.[15] -->
 
 
-Blocks are an extension to the syntax of C, C++, and Objective-C programming languages that encapsulate code and data into a single object in a way similar to a closure.[11] GCD can still be used in environments where blocks are not available.[15]
-
-
-A task in Grand Central Dispatch can be used either to create a work item that is placed in a queue or assign it to an event source. If a task is assigned to an event source, then a work unit is made from the block or function when the event triggers, and the work unit is placed in an appropriate queue. This is described by Apple as more efficient than creating a thread whose sole purpose is to wait on a single event triggering.
 
 
 
@@ -180,11 +178,14 @@ A task in Grand Central Dispatch can be used either to create a work item that i
 
 
 
-, either anonymous code blocks or functions, &mdash; anonymous code blocks (closures) or functions &mdash;
+
+Tasks in GCD are lightweight to create and queue; 
 
 
+A task in Grand Central Dispatch can be used either to create a work item that is placed in a queue or assign it to an event source. If a task is assigned to an event source, then a work unit is made from the block or function when the event triggers, and the work unit is placed in an appropriate queue. This is described by Apple as more efficient than creating a thread whose sole purpose is to wait on a single event triggering.
 
-Dispatch queues are *FIFO* <sup>3</sup> queues to which your application can submit tasks in the form of block objects.
+
+<!-- Tasks in GCD are lightweight to create and queue; Apple states that 15 instructions are required to queue up a work unit in GCD, while creating a traditional thread could easily require several hundred instructions. <sup>2</sup> -->
 
 
 <!-- TODO: insert iOS app process diagram with Main Queue here ?-->
@@ -316,6 +317,7 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 ## After Class
 1. Research:
 - `DispatchObject`
+- `WorkItem`
 -
 
 2. Assignment:
