@@ -232,24 +232,6 @@ Asynchronous tasks are started by one thread but actually run on a different thr
 <!-- TODO: insert code showing how to create a concurrent queue -->
 
 
-### The Main queue
-
-
-
-When your app starts, a main dispatch queue is automatically created for you. It's a serial queue that's responsible for your UI. Because it's used so often, Apple has made it available as a class variable, which you access via DispatchQueue.main. You never want to execute something synchronously against the main queue, unless it's related to actual UI work. Otherwise, you'll lock up your UI which could potentially degrade your app performance.
-
-
-Important
-Attempting to synchronously execute a work item on the main queue results in deadlock.
-
-
-<!-- TODO: insert example of delegating back to main queue here -->
-
-
-
-<!-- from Ray W --  Note: You should never perform UI updates on any queue other than the main queue. If it's not documented what queue an API callback uses, dispatch it to the main queue! -->
-
-
 
 
 ## In Class Activity I (30 min)
@@ -323,6 +305,25 @@ Concurrent queues are so common that Apple has provided six different global con
 
 #### Custom Queues
 
+
+
+
+### The Main queue
+
+
+
+When your app starts, a main dispatch queue is automatically created for you. It's a serial queue that's responsible for your UI. Because it's used so often, Apple has made it available as a class variable, which you access via DispatchQueue.main. You never want to execute something synchronously against the main queue, unless it's related to actual UI work. Otherwise, you'll lock up your UI which could potentially degrade your app performance.
+
+
+Important
+Attempting to synchronously execute a work item on the main queue results in deadlock.
+
+
+<!-- TODO: insert example of delegating back to main queue here -->
+
+
+
+<!-- from Ray W --  Note: You should never perform UI updates on any queue other than the main queue. If it's not documented what queue an API callback uses, dispatch it to the main queue! -->
 
 
 
