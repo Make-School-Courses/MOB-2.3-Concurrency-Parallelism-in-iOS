@@ -195,41 +195,48 @@ A task in Grand Central Dispatch can be used either to create a work item that i
 
 Tasks placed into a queue can either run __*synchronously*__ or __*asynchronously.*__
 
+
+You schedule work items synchronously or asynchronously. When you schedule a work item synchronously, your code waits until that item finishes execution. When you schedule a work item asynchronously, your code continues executing while the work item runs elsewhere.
+
+
 **Synchronous**
-Submits a work item for execution on the current queue and returns after that block finishes executing.
+Submits a work item (task) for execution on the current queue and __*returns*__ control to the calling function __*only after*__ that code block (task) finishes executing.
 
-your app will wait and block the current run loop until execution finishes before moving on to the next task
+Your app will __*wait*__ and __*block*__ the current thread's run loop until execution finishes before moving on to the next task.
 
-
-A synchronous function returns control to the caller after the task is completed.
-
-An asynchronous function returns immediately, ordering the task to be done but not waiting for it. Thus, an asynchronous function does not block the current thread of execution from proceeding on to the next function.
-
-
-![synchronous](assets/synchronous.png) </br>
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![synchronous](assets/synchronous.png) </br>
 
 **Asynchronous**
 
-Schedules a work item for immediate execution, and returns immediately.
+Schedules a work item for __*immediate execution,*_ and __*returns immediately.*__
+
+An asynchronous function returns immediately, ordering the task to be done but not waiting for it. Thus, an asynchronous function does not block the current thread of execution from proceeding on to the next function.
+
 
  a task that is run asynchronously will start, but return execution to your app immediately. This way, the app is free to run other tasks while the first one is executing.
 
 Asynchronous tasks are started by one thread but actually run on a different thread, taking advantage of additional processor resources to finish their work more quickly.
 
 
-
-![asynchronous](assets/asynchronous.png) </br>
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![asynchronous](assets/asynchronous.png) </br>
 
 
+### Creating a Queue
 
-You schedule work items synchronously or asynchronously. When you schedule a work item synchronously, your code waits until that item finishes execution. When you schedule a work item asynchronously, your code continues executing while the work item runs elsewhere.
 
+<!-- QUESTION: Should this come AFTER Async/Sync? see Ray W book for clues -->
+
+<!-- TODO: insert code showing how to create a default (serial) queue -->
+
+
+<!-- TODO: insert code showing how to create a concurrent queue -->
 
 
 ### The Main queue
 
+
+
+When your app starts, a main dispatch queue is automatically created for you. It's a serial queue that's responsible for your UI. Because it's used so often, Apple has made it available as a class variable, which you access via DispatchQueue.main. You never want to execute something synchronously against the main queue, unless it's related to actual UI work. Otherwise, you'll lock up your UI which could potentially degrade your app performance.
 
 
 Important
@@ -238,6 +245,9 @@ Attempting to synchronously execute a work item on the main queue results in dea
 
 <!-- TODO: insert example of delegating back to main queue here -->
 
+
+
+<!-- from Ray W --  Note: You should never perform UI updates on any queue other than the main queue. If it's not documented what queue an API callback uses, dispatch it to the main queue! -->
 
 
 
@@ -259,15 +269,52 @@ Attempting to synchronously execute a work item on the main queue results in dea
 
 #### Serial Queues
 
-The library automatically creates several queues with different priority levels that execute several tasks concurrently, selecting the optimal number of tasks to run based on the operating environment.
 
-A client to the library may also create any number of serial queues, which execute tasks in the order they are submitted, one at a time.[12] Because a serial queue can only run one task at a time, each task submitted to the queue is critical with regard to the other tasks on the queue, and thus a serial queue can be used instead of a lock on a contended resource.
+A client to the library may also create any number of serial queues, which execute tasks in the order they are submitted, one at a time.
+
+Because a serial queue can only run one task at a time, each task submitted to the queue is critical with regard to the other tasks on the queue, and thus a serial queue can be used instead of a lock on a contended resource.
+
+
+
+Serial queues only have a single thread associated with them and thus only allow a single task to be executed at any given time.
+
+<!-- TODO: insert graphic here -->
+
+
 
 #### concurrent queues
 
 	- requires QoS Priority
 
+ A concurrent queue, on the other hand, is able to utilize as many threads as the system has resources for. Threads will be created and released as necessary on a concurrent queue.
+
+
+<!-- from Ray W --  Note: While you can tell iOS that you'd like to use a concurrent queue, remember that there is no guarantee that more than one task will run at a time. If your iOS device is completely bogged down and your app is competing for resources, it may only be capable of running a single task. -->
+
+<!-- TODO: insert graphic here -->
+
+-- Asynchronous doesn't mean concurrent
+
+
+<!-- from Ray W --  
+While the difference seems subtle at first, just because your tasks are asynchronous doesn't mean they will run concurrently. You're actually able to submit asynchronous tasks to either a serial queue or a concurrent queue. Being synchronous or asynchronous simply identifies whether or not the queue on which you're running the task must wait for the task to complete before it can spawn the next task.
+
+On the other hand, categorizing something as serial versus concurrent identifies whether the queue has a single thread or multiple threads available to it. If you think about it, submitting three asynchronous tasks to a serial queue means that each task has to completely finish before the next task is able to start as there is only one thread available.
+
+In other words, a task being synchronous or not speaks to the source of the task.
+
+Being serial or concurrent speaks to the destination of the task.
+-->
+
 ##### QoS levels
+
+
+The library automatically creates several queues with different priority levels that execute several tasks concurrently, selecting the optimal number of tasks to run based on the operating environment.
+
+Concurrent queues are so common that Apple has provided six different global concurrent queues, depending on the Quality of service (QoS) the queue should have.
+
+<!-- TODO: insert table here -->
+
 
 
 #### Default Queues
