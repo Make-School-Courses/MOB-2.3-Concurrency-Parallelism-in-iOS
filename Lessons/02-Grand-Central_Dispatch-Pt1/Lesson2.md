@@ -441,64 +441,37 @@ The **pseudocode example** below illustrates the typical steps to running a non-
 
 #### Never Call .sync on Current Queue
 
-You never want to execute something synchronously against the main queue, unless it's related to actual UI work. Otherwise, you'll lock up your UI which could potentially degrade your app performance.
+__*Do not call*__ the `dispatch_sync` (aka, `.sync`) function from a task that is executing on the same queue that you pass to your function call. Doing so will **deadlock** the queue.
+
+If you need to dispatch to the current queue, __*do so asynchronously*__ using the `dispatch_async` (`.async`) function.
+
+*Source: Apple docs*
+
+A **deadlock.** occurs when two or more tasks are waiting on each other to finish and get stuck in a never-ending cycle. Neither can proceed until the other completes; but, since neither can proceed, neither will finish.
+
+A **deadlock** can occur even when the perpetually-waiting tasks are on the same thread.
+
+![deadlock](assets/deadlock.png) </br>
+
+#### Calling .sync on the Main Queue
+
+You never want to execute something __*synchronously*__ against the `main queue`, unless it's related to actual UI work. Doing so could cause your app to crash or it might simply degrade your app's performance by locking your UI.
+
+For example, this statement:
+
+```Swift  
+  DispatchQueue.main.sync {}
+```
+
+...will cause the following events:
+1. `sync` queues the block in the `main queue`.
+2. `sync` blocks the thread of the `main queue` until the block finishes executing.
+3. `sync` will wait forever because the thread where the block is intended to run is blocked.
+
+The key to understanding this is that `.sync` does not __*execute*__ tasks/blocks, it only __*queues*__ them. Execution will happen on a future iteration of the run loop.
 
 
-
-
-<!-- TODO: insert example of delegating back to main queue here -->
-
-
-
-<!-- Introduce Deadlock
-
-show diagram  -->
-
-Important
-Attempting to synchronously execute a work item on the main queue results in deadlock.
-
-<!-- TODO: see this:
-
-https://medium.com/swift-india/parallel-programming-with-swift-part-1-4-df7caac564ae
-
--->
-
-
-
-<!-- from Ray W --  Note: You should never perform UI updates on any queue other than the main queue. If it's not documented what queue an API callback uses, dispatch it to the main queue! -->
-
-
-
-
-
-
-#### Calling Sync on Current Queue
-
-< never call Sync on main queue >
-
-
-#### Calling xxxx
-
-
-When designing tasks for concurrent execution, do not call methods that block the current thread of execution. When a task scheduled by a concurrent dispatch queue blocks a thread, the system creates additional threads to run other queued concurrent tasks. If too many tasks block, the system may run out of threads for your app.
-
-Another way that apps consume too many threads is by creating too many private concurrent dispatch queues. Because each dispatch queue consumes thread resources, creating additional concurrent dispatch queues exacerbates the thread consumption problem. Instead of creating private concurrent queues, submit tasks to one of the global concurrent dispatch queues. For serial tasks, set the target of your serial queue to one of the global concurrent queues. That way, you can maintain the serialized behavior of the queue while minimizing the number of separate queues creating threads.
-
-
-https://developer.apple.com/documentation/dispatch/dispatchqueue
-
-
-<!-- TODO: Ask questions:
-- what would happen if the system (a) runs out of threads, and/or (b) creating too many queues? (hint: are queues limited by cores?)
- -->
-
-
-
-
-
-
-
-
+*Source:* https://medium.com/swift-india/parallel-programming-with-swift-part-1-4-df7caac564ae
 
 
 
@@ -538,7 +511,7 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 2. [Grand_Central_Dispatch - wikipedia](https://en.wikipedia.org/wiki/Grand_Central_Dispatch) <sup>1</sup>
 3. [Async/await - wikipedia](https://en.wikipedia.org/wiki/Async/await)
 4. [Coroutine - wikipedia](https://en.wikipedia.org/wiki/Coroutine)
-5. []()
+5. [Deadlock - wikipedia](https://en.wikipedia.org/wiki/Deadlock)
 
 8.
 

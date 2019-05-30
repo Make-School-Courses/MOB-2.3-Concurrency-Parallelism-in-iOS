@@ -104,6 +104,24 @@ Concurrent queues are so common that Apple has provided six different global con
 
 
 
+Another way that apps consume too many threads is by creating too many private concurrent dispatch queues. Because each dispatch queue consumes thread resources, creating additional concurrent dispatch queues exacerbates the thread consumption problem. Instead of creating private concurrent queues, submit tasks to one of the global concurrent dispatch queues. For serial tasks, set the target of your serial queue to one of the global concurrent queues. That way, you can maintain the serialized behavior of the queue while minimizing the number of separate queues creating threads.
+
+https://developer.apple.com/documentation/dispatch/dispatchqueue
+
+
+<!-- TODO: Ask questions:
+- what would happen if the system (a) runs out of threads, and/or (b) creating too many queues? (hint: are queues limited by cores?)
+ -->
+
+
+ > Note &mdash; When designing tasks for concurrent execution, do not call methods that block the current thread of execution. When a task scheduled by a concurrent dispatch queue blocks a thread, the system creates additional threads to run other queued concurrent tasks. If too many tasks block, the system may run out of threads for your app.
+
+ https://developer.apple.com/documentation/dispatch/dispatchqueue
+
+
+
+
+
 ## In Class Activity I (30 min)
 
 - I do, We do, You do
