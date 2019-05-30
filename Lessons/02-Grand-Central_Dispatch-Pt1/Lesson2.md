@@ -316,7 +316,12 @@ To define whether a task runs __*synchronously*__ or __*asynchronously*__, you c
 ### Individually
 
 **Required Resources:**
-- The [GCDPlay.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tree/master/Lessons/02-Grand-Central_Dispatch-Pt1/assets/GCDPlay.playground) </br>
+- The ![GCDPlay.playground](assets/GCDPlay.playground) </br>
+<!-- - The [GCDPlay.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tree/master/Lessons/02-Grand-Central_Dispatch-Pt1/assets/GCDPlay.playground) </br> -->
+
+<!-- ![xxx](assets/xxxx.png) </br>
+[these](ClosuresChallenges.md) -->
+
 
 **TODO:**
 1. run the `GCDPlay.playground` and observe its output
