@@ -13,13 +13,13 @@ https://docs.google.com/document/d/1679wsznKuafup32eV-ae5KQZ6jcx_aIkGY7CQ6ZGp_w/
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
 | 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:25      | Initial Activity                |
-| 0:30        | 0:20      | Overview I                  |
-| 0:20        | 0:45      | In Class Activity I       |
+| 0:05        | 0:30      | Initial Activity                |
+| 0:35        | 0:20      | Overview I                  |
+| 0:55        | 0:10      | In Class Activity I       |
 | 1:05        | 0:10      | BREAK                     |
-| 0:30        | 0:20      | Overview II                  |
-| 1:15        | 0:45      | In Class Activity II      |
-| TOTAL       | 2:00      |                           |
+| 1:15        | 0:15      | Overview II                  |
+| 1:30        | 0:xx      | In Class Activity II      |
+| TOTAL       | 1:50      |                           |
 
 
 
@@ -30,7 +30,7 @@ https://docs.google.com/document/d/1679wsznKuafup32eV-ae5KQZ6jcx_aIkGY7CQ6ZGp_w/
 1. Design
 1. Implement
 
-## Initial Exercise (25 min)
+## Initial Exercise (30 min)
 
 Discuss as a class...
 
@@ -287,15 +287,134 @@ Asynchronous tasks are started by one thread but actually run on a different thr
 
 
 
+<!-- The way you work with threads is by creating a DispatchQueue. When you create a queue, the OS will potentially create and assign one or more threads to the queue. If existing threads are available, they can be reused; if not, then the OS will create them as necessary. -->
 
-## In Class Activity I (30 min)
+<!-- Creating a dispatch queue is pretty simple on your part, as you can see in the example below: -->
+
+<!-- Normally, you'd put the text of the label directly inside the initializer, but it's broken into separate statements for the sake of brevity. -->
+
+```Swift
+  let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking")
+ ```
+
+The `label:` argument needs to be a unique identifier. The example above illustrates the preferred practice of using a reverse-DNS name (eg, com.your_company.your_app) to guarantee uniqueness (you could also use a UUID). And because the `label:` helps immensely when debugging, it is a good idea to assign it text that is meaningful to you (ie, the ".networking" token above).
 
 
-<!-- TODO: add simple sync/async example exercise -->
+<!-- The label argument simply needs to be any unique value for identification purposes. While you could simply use a UUID to guarantee uniqueness, it's best to use a reverse- DNS style name, as shown above (e.g. com.company.app), since the label is what you'll see when debugging and it's helpful to assign it meaningful text. -->
 
+
+## In Class Activity I (10 min)
+
+GCDPlay.playground
+
+[GCDPlay.playground]()
+
+<!-- TODO: add link to GCDPlay.playground -->
+
+**TODO:**
+1. run the `GCDPlay.playground` and observe its output
+
+**Q:** What can you infer about the order in which the 2 `for loops` execute?
+
+**Q:** On what queue does the following `for loop` run?
+
+```Swift  
+  for i in 100..<110 {
+      print("🐳 ", i)
+  }
+
+```
+
+2. Currently, the playground runs the `.sync` function on the queue labeled `"com.makeschool.queue"`
+- change `.sync` to `.async` and run the playground again
+
+**Q:** How has the output changed after changing `.sync` to `.async`? (ie, in what order do the `for loops` execute now?)
+
+```Swift
+  import Foundation
+
+  let queue = DispatchQueue(label: "com.makeschool.queue")
+
+  queue.sync {
+      for i in 0..<10 {
+          print("🍎 ", i)
+      }
+  }
+
+  for i in 100..<110 {
+      print("🐳 ", i)
+  }
+ ```
+
+
+
+ <!-- TODO: add another example exercise
+
+  - see previous Lesson Plans for suitable playgrounds
+
+ -->
 
 
 ## Overview/TT II (optional) (20 min)
+
+
+
+
+### The Main queue
+
+
+
+When your app starts, a main dispatch queue is automatically created for you. It's a serial queue that's responsible for your UI. Because it's used so often, Apple has made it available as a class variable, which you access via DispatchQueue.main. You never want to execute something synchronously against the main queue, unless it's related to actual UI work. Otherwise, you'll lock up your UI which could potentially degrade your app performance.
+
+
+
+
+<!-- TODO: insert example of delegating back to main queue here -->
+
+
+
+<!-- Introduce Deadlock
+
+show diagram  -->
+
+Important
+Attempting to synchronously execute a work item on the main queue results in deadlock.
+
+
+<!-- from Ray W --  Note: You should never perform UI updates on any queue other than the main queue. If it's not documented what queue an API callback uses, dispatch it to the main queue! -->
+
+
+![iOS_runtime_process_with-queues.png](assets/iOS_runtime_process_with-queues.png) </br>
+
+
+
+
+
+
+#### Calling Sync on Current Queue
+
+< never call Sync on main queue >
+
+
+#### Calling xxxx
+
+
+When designing tasks for concurrent execution, do not call methods that block the current thread of execution. When a task scheduled by a concurrent dispatch queue blocks a thread, the system creates additional threads to run other queued concurrent tasks. If too many tasks block, the system may run out of threads for your app.
+
+Another way that apps consume too many threads is by creating too many private concurrent dispatch queues. Because each dispatch queue consumes thread resources, creating additional concurrent dispatch queues exacerbates the thread consumption problem. Instead of creating private concurrent queues, submit tasks to one of the global concurrent dispatch queues. For serial tasks, set the target of your serial queue to one of the global concurrent queues. That way, you can maintain the serialized behavior of the queue while minimizing the number of separate queues creating threads.
+
+
+https://developer.apple.com/documentation/dispatch/dispatchqueue
+
+
+<!-- TODO: Ask questions:
+- what would happen if the system (a) runs out of threads, and/or (b) creating too many queues? (hint: are queues limited by cores?)
+ -->
+
+
+
+
+
 
 
 #### Serial Queues
@@ -356,56 +475,6 @@ Concurrent queues are so common that Apple has provided six different global con
 
 
 
-### The Main queue
-
-
-
-When your app starts, a main dispatch queue is automatically created for you. It's a serial queue that's responsible for your UI. Because it's used so often, Apple has made it available as a class variable, which you access via DispatchQueue.main. You never want to execute something synchronously against the main queue, unless it's related to actual UI work. Otherwise, you'll lock up your UI which could potentially degrade your app performance.
-
-
-
-
-<!-- TODO: insert example of delegating back to main queue here -->
-
-
-
-<!-- Introduce Deadlock
-
-show diagram  -->
-
-Important
-Attempting to synchronously execute a work item on the main queue results in deadlock.
-
-
-<!-- from Ray W --  Note: You should never perform UI updates on any queue other than the main queue. If it's not documented what queue an API callback uses, dispatch it to the main queue! -->
-
-
-![iOS_runtime_process_with-queues.png](assets/iOS_runtime_process_with-queues.png) </br>
-
-
-
-
-
-
-#### Calling Sync on Current Queue
-
-< never call Sync on main queue >
-
-
-#### Calling xxxx
-
-
-When designing tasks for concurrent execution, do not call methods that block the current thread of execution. When a task scheduled by a concurrent dispatch queue blocks a thread, the system creates additional threads to run other queued concurrent tasks. If too many tasks block, the system may run out of threads for your app.
-
-Another way that apps consume too many threads is by creating too many private concurrent dispatch queues. Because each dispatch queue consumes thread resources, creating additional concurrent dispatch queues exacerbates the thread consumption problem. Instead of creating private concurrent queues, submit tasks to one of the global concurrent dispatch queues. For serial tasks, set the target of your serial queue to one of the global concurrent queues. That way, you can maintain the serialized behavior of the queue while minimizing the number of separate queues creating threads.
-
-
-https://developer.apple.com/documentation/dispatch/dispatchqueue
-
-
-<!-- TODO: Ask questions:
-- what would happen if the system (a) runs out of threads, and/or (b) creating too many queues? (hint: are queues limited by cores?)
- -->
 
 
 
@@ -422,7 +491,7 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 1. Research:
 - `DispatchObject`
 - `DispatchWorkItem`
--
+- `dispatchMain()`
 
 2. Assignment:
 -
