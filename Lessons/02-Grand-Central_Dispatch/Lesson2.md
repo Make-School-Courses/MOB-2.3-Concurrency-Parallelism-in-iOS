@@ -38,15 +38,14 @@ Discuss as a class...
 
 In the Movie Theatre Game from Lesson 1:
 
-- What physical construct (ie., customer line, casher, etc.) represented:
-&nbsp;&nbsp; - A *process*?
-&nbsp;&nbsp; - A *thread*?
-&nbsp;&nbsp; - A *long-running task*?
+- What physical construct (ie., customer line, casher, etc.) represented: </br>
+&nbsp;&nbsp; - A *process*? </br>
+&nbsp;&nbsp; - A *thread*? </br>
+&nbsp;&nbsp; - A *long-running task*? </br>
 
-- Which aspect of your solution represented:
-&nbsp;&nbsp; - Concurrency?
-&nbsp;&nbsp; - Parallelism
-
+- Which aspect of your solution represented: </br>
+&nbsp;&nbsp; - Concurrency? </br>
+&nbsp;&nbsp; - Parallelism? </br>
 
 ### Part 2
 
