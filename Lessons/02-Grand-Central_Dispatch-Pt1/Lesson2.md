@@ -1,4 +1,4 @@
-# Grand Central Dispatch (Part 1)
+# Grand Central Dispatch
 
 <!-- INSTRUCTOR Notes:
 

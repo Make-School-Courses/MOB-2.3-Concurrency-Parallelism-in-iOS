@@ -1,6 +1,13 @@
-# Lesson Title
+# Grand Central Dispatch (Part 2)
 
-## Minute-by-Minute [OPTIONAL]
+<!-- INSTRUCTOR Notes:
+
+1) for initial exercise...
+
+2) xxxx
+ -->
+
+## Minute-by-Minute
 
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
