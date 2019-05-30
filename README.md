@@ -37,8 +37,8 @@ Students by the end of the course will be able to ...
 |  5 |  Tu, June 11                       | [Semaphores] |
 |  6 |  Th, June 13                      | [Operations (Pt 1)] |
 |  7 |  Tu, June 18                      | [Operations (Pt 2)] |
-|  8 |  Th, June 20                      | Background Tasks |
-|  9 |  Tu, June 25                       | Debugging Techniques|
+|  8 |  Th, June 20                      | [Background Tasks] |
+|  9 |  Tu, June 25                       | [Debugging Techniques] |
 | 10 |  Th, June 27                        | Lesson 13 (TODO) |
 | 11 |  Tu, July 2                       | Final Exams/Presentations |  
 
