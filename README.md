@@ -43,7 +43,7 @@ Students by the end of the course will be able to ...
 | 11 |  Tu, July 2                       | Final Exams/Presentations |  
 
 [Introduction to Concurrency & Parallelism]: Lessons/01-Intro-Concurrency-&-Parallelism/Lesson1.md
-[Grand Central Dispatch (Pt 1)]: Lessons/xxx/Lesson2.md
+[Grand Central Dispatch (Pt 1)]: Lessons/02-Grand-Central_Dispatch-Pt1/Lesson2.md
 [Grand Central Dispatch (Pt 2)]: Lessons/xxx/Lesson3.md
 [xxxx]: Lessons/xxx/LessonX.md
 [xxxx]: Lessons/xxx/LessonX.md
