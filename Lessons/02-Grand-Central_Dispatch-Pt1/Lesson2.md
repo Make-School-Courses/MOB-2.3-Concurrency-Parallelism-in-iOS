@@ -25,10 +25,16 @@ https://docs.google.com/document/d/1679wsznKuafup32eV-ae5KQZ6jcx_aIkGY7CQ6ZGp_w/
 
 ## Learning Objectives (5 min)
 
-1. Identify and describe
-1. Define
-1. Design
-1. Implement
+By the end of this lesson, you should be able to...
+
+1. Identify and describe:
+- Apple's 2 APIs for managing Concurrency - __*Grand Central Dispatch*__ and __*Operations*__
+- __*queues*__ and __*dispatch queues*__
+- __*FIFO*__ Queues
+- __*Synchronous*__ and __*Asynchronous*__ tasks
+- the lifecycle and other attributes of the __*Main Queue*__
+2. How to implement:
+- basic examples of __*dispatch queues*__ running built-in `.sync` and `.async` functions
 
 ## Initial Exercise (30 min)
 
@@ -522,3 +528,7 @@ https://gist.github.com/lattner/429b9070918248274f25b714dcfc7619
 
 
 https://developer.apple.com/documentation/dispatch/dispatchqueue
+
+
+Rob Pike - 'Concurrency Is Not Parallelism'
+https://www.youtube.com/watch?v=cN_DpYBzKso
