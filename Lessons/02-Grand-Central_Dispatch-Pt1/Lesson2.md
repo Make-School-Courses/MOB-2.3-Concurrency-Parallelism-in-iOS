@@ -395,7 +395,7 @@ Our updated diagram of the structure inside the runtime process of an iOS app si
 
 (3) Notice that, though the system also creates a pool of additional threads for potential non-UI tasks and their corresponding call stacks, what actually happens is here is that __*additional dispatch queues*__ are created (to which the system will assign a thread from the pool, as needed):
 
-![iOS_runtime_process_with-queues.png](assets/iOS_runtime_process_with-queues.png) </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![iOS_runtime_process_with-queues.png](assets/iOS_runtime_process_with-queues.png) </br>
 
 #### DispatchQueue.main (class variable)
 Because it's used so often, Apple has made it available as a class variable, which you access via `DispatchQueue.main`.
@@ -461,7 +461,7 @@ A **deadlock.** occurs when two or more tasks are waiting on each other to finis
 
 A **deadlock** can occur even when the perpetually-waiting tasks are on the same thread.
 
-![deadlock](assets/deadlock.png) </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![deadlock](assets/deadlock.png) </br>
 
 #### Calling .sync on the Main Queue
 
