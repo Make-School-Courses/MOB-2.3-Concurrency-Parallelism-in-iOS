@@ -236,12 +236,11 @@ Tasks in GCD:
 
 </br>
 
-
-<!-- Blocks are an extension to the syntax of C, C++, and Objective-C programming languages that encapsulate code and data into a single object in a way similar to a closure.[11] GCD can still be used in environments where blocks are not available.[15] -->
-
 > <sup>3</sup> FIFO: First In, First Out &mdash; Tasks run in the order in which they are added to the queue — the first task in the queue will be the first to start. Though each block of code will be *started* in the order they were submitted, because more than one code block can be executed at the same time, the order in which tasks *finish* isn't guaranteed.
 
+</br>
 
+<!-- Blocks are an extension to the syntax of C, C++, and Objective-C programming languages that encapsulate code and data into a single object in a way similar to a closure.[11] GCD can still be used in environments where blocks are not available.[15] -->
 
 <!-- A task in Grand Central Dispatch can be used either to create a work item that is placed in a queue or assign it to an event source. If a task is assigned to an event source, then a work unit is made from the block or function when the event triggers, and the work unit is placed in an appropriate queue. This is described by Apple as more efficient than creating a thread whose sole purpose is to wait on a single event triggering. -->
 
@@ -252,20 +251,32 @@ Tasks placed into a queue can either run __*synchronously*__ or __*asynchronousl
 
 **Synchronous** &mdash; Submits a task for execution on the current queue and __*returns*__ control to the calling function __*only after*__ that code block (task) finishes executing.
 
-When you schedule a work item (task) __*synchronously,*__ your app will __*wait*__ and __*block*__ the current thread's run loop until execution of the current task finishes, before moving on to the next task.
+When you schedule a work item (task) __*synchronously,*__ your app will __*wait*__ and __*block*__ the current thread's run loop until execution of the current task finishes, before returning control to the current queue and executing the next task.
+
+__*Diagram 1 - Synchronous Task, Same Queue*__ </br>
+In this diagram, each task must __*wait*__ for the preceding task to complete before it will be executed. Once started, each task will prevent (__*block*__) any other code from accessing the current queue (the `main queue`, in this case) until done:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![synchronous](assets/synchronous.png) </br>
 
-**Asynchronous** &mdash; Schedules a task for __*immediate execution,*__ and __*returns immediately.*__
+__*Diagram 2 - Synchronous Task, Different Queue*__ </br>
+
+Again, each task must also __*wait*__ for the preceding task to complete before it will be executed. Once started, each task will still prevent __*block*__ the current queue until completed, even though the submitted task executes on a different queue.
+
+If the current queue is the `main queue`, then this will block any UI-related tasks from proceeding until the submitted tasks is completed on the other queue's thread.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![synchronous2](assets/synchronous2.png) </br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:* https://medium.com/shakuro/introduction-to-ios-concurrency-a5db1cf18fa6 </br>
+
+**Asynchronous** &mdash; Schedules a task for __*immediate execution,*__ and __*immediately returns*__ control to the calling function.
 
 When you schedule a work item (task) __*asynchronously,*__ that task:
 - will be submitted to its queue immediately, but it will also return execution to your app immediately, ordering the submitted task to be executed but *not waiting for it.* This way, the app is free to run other tasks while the submitted task is executing.
-- can be *started* (submitted) by one thread but actually *run on a different thread,* taking advantage of additional processor resources to finish their work more quickly.
+- can be submitted by code on one thread but actually *run on a different thread.* This allows the task to be __*started immediately*__ and to take advantage of additional processor resources to finish their work more quickly.
 
 An asynchronous task (a closure or function) __*does not block*__ the current thread of execution from proceeding on to the next function; your code on the current thread __*does not wait*__ for the submitted task to finish &mdash; it continues executing while the submitted task runs elsewhere.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![asynchronous](assets/asynchronous.png) </br>
-
 
 ### Creating a Queue
 
@@ -297,6 +308,17 @@ When you create a `DispatchQueue`, the OS will potentially create and assign one
 The `label:` argument needs to be a unique identifier. The example above illustrates the preferred practice of using a reverse-DNS name (eg, com.your_company.your_app) to guarantee uniqueness (you could also use a UUID).
 
 And because the `label:` helps immensely when debugging, it is a good idea to assign it text that is meaningful to you (ie, the ".networking" token above).
+
+
+To define whether a task runs __*synchronously*__ or __*asynchronously*__, we call the `.sync` or the `.async` function on the newly-created queue:
+
+```Swift  
+  let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking")
+
+  myQueue.sync {
+      // do something here...
+  }
+```
 
 ## In Class Activity I (10 min)
 
@@ -374,6 +396,13 @@ show diagram  -->
 
 Important
 Attempting to synchronously execute a work item on the main queue results in deadlock.
+
+<!-- TODO: see this:
+
+https://medium.com/swift-india/parallel-programming-with-swift-part-1-4-df7caac564ae
+
+-->
+
 
 
 <!-- from Ray W --  Note: You should never perform UI updates on any queue other than the main queue. If it's not documented what queue an API callback uses, dispatch it to the main queue! -->
