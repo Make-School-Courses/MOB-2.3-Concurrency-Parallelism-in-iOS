@@ -259,14 +259,14 @@ In this diagram, each task must __*wait*__ for the preceding task to complete be
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![synchronous](assets/synchronous.png) </br>
 
 __*Diagram 2 - Synchronous Task, Different Queue*__ </br>
-
-Again, each task must also __*wait*__ for the preceding task to complete before it will be executed. Once started, each task will still prevent __*block*__ the current queue until completed, even though the submitted task executes on a different queue.
+Again, each task must also __*wait*__ for the preceding task to complete before it will be executed. Once started, each task will still __*block*__ the current queue until completed, even though the submitted task executes on a different queue.
 
 If the current queue is the `main queue`, then this will block any UI-related tasks from proceeding until the submitted tasks is completed on the other queue's thread.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![synchronous2](assets/synchronous2.png) </br>
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![synchronous2](assets/synchronous2.png) </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:* https://medium.com/shakuro/introduction-to-ios-concurrency-a5db1cf18fa6 </br>
+
 
 **Asynchronous** &mdash; Schedules a task for __*immediate execution,*__ and __*immediately returns*__ control to the calling function.
 
@@ -274,32 +274,17 @@ When you schedule a work item (task) __*asynchronously,*__ that task:
 - will be submitted to its queue immediately, but it will also return execution to your app immediately, ordering the submitted task to be executed but *not waiting for it.* This way, the app is free to run other tasks while the submitted task is executing.
 - can be submitted by code on one thread but actually *run on a different thread.* This allows the task to be __*started immediately*__ and to take advantage of additional processor resources to finish their work more quickly.
 
-An asynchronous task (a closure or function) __*does not block*__ the current thread of execution from proceeding on to the next function; your code on the current thread __*does not wait*__ for the submitted task to finish &mdash; it continues executing while the submitted task runs elsewhere.
+An asynchronous task (a closure or function) __*does not block*__ the current thread of execution from proceeding on to the next function, and your code on the current thread __*does not wait*__ for the submitted task to finish &mdash; it continues executing while the submitted task runs elsewhere.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![asynchronous](assets/asynchronous.png) </br>
 
 ### Creating a Queue
 
-
-<!-- QUESTION: Should this come AFTER Async/Sync? see Ray W book for clues -->
-
-<!-- TODO: insert code showing how to create a default (serial) queue -->
-
-
-<!-- TODO: insert code showing how to create a concurrent queue -->
-
-<!-- TODO: explain use of .sync and .async methods -->
-
-
-
-<!-- The way you work with threads is by creating a DispatchQueue. When you create a queue, the OS will potentially create and assign one or more threads to the queue. If existing threads are available, they can be reused; if not, then the OS will create them as necessary. -->
+The way you work with threads in GCD is by creating a `DispatchQueue`.
 
 When you create a `DispatchQueue`, the OS will potentially create and assign one or more threads to the queue. If existing threads are available in the pool, they can be reused; if not, then the OS will create them as needed.
 
-
-<!-- Creating a dispatch queue is pretty simple on your part, as you can see in the example below: -->
-
-<!-- Normally, you'd put the text of the label directly inside the initializer, but it's broken into separate statements for the sake of brevity. -->
+It's easy to create a `DispatchQueue`. This example creates a new `DispatchQueue` called `myQueue` with a *label* (identifier) of `"com.makeschool.mycoolapp.networking"`:
 
 ```Swift
   let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking")
@@ -309,14 +294,15 @@ The `label:` argument needs to be a unique identifier. The example above illustr
 
 And because the `label:` helps immensely when debugging, it is a good idea to assign it text that is meaningful to you (ie, the ".networking" token above).
 
+#### .sync() and .async()
 
-To define whether a task runs __*synchronously*__ or __*asynchronously*__, we call the `.sync` or the `.async` function on the newly-created queue:
+To define whether a task runs __*synchronously*__ or __*asynchronously*__, we call the `.sync` or the `.async` function on our newly-created queue:
 
 ```Swift  
   let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking")
 
   myQueue.sync {
-      // do something here...
+      // do something synchronous here...
   }
 ```
 
@@ -455,6 +441,10 @@ Serial queues only have a single thread associated with them and thus only allow
 <!-- TODO: insert graphic here -->
 
 
+<!-- TODO: insert code showing how to create a default (serial) queue -->
+
+
+<!-- TODO: insert code showing how to create a concurrent queue -->
 
 #### concurrent queues
 
