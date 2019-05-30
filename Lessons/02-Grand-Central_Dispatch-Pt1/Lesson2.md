@@ -533,7 +533,7 @@ Share/discuss diagrammed solutions...
 
 ## Additional Resources
 
-1. [Slides]()
+1. [Slides](https://docs.google.com/presentation/d/16TFhJiItD0xLRO2r9jBq7xpVRR7lo5ISdkQ-nSNlrlg/edit#slide=id.p)
 2. [Grand_Central_Dispatch - wikipedia](https://en.wikipedia.org/wiki/Grand_Central_Dispatch) <sup>1</sup>
 3. [Async/await - wikipedia](https://en.wikipedia.org/wiki/Async/await)
 4. [Coroutine - wikipedia](https://en.wikipedia.org/wiki/Coroutine)
