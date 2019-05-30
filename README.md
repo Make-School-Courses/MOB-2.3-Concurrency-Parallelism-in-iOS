@@ -33,18 +33,24 @@ Students by the end of the course will be able to ...
 |  1 |  Tu, May 28                        | [Introduction to Concurrency & Parallelism] |
 |  2 |  Th, May 30                       | [Grand Central Dispatch (Pt 1)] |
 |  3 |  Tu, June 4                        | [Grand Central Dispatch (Pt 2)]  |
-|  4 |  Th, June 6                      | [(NS)Operations](Lessons/operations) |
-|  5 |  Tu, June 11                       | [Xcode Project Management - Schemes, Targets & Build Settings](Lessons/xcode-project-management) |
-|  6 |  Th, June 13                      | [Behavior Driven Development](Lessons/bdd) <br/> **/** <br/> Lesson 8 (TODO) |
-|  7 |  Tu, June 18                       | Lesson 9 (TODO) |
-|  8 |  Th, June 20                      | Lesson 10 (TODO) / Lesson 11 (TODO) |
-|  9 |  Tu, June 25                       | Lesson 12 (TODO) |
+|  4 |  Th, June 6                      | [Dispatch Groups]|
+|  5 |  Tu, June 11                       | [Semaphores] |
+|  6 |  Th, June 13                      | [Operations (Pt 1)] |
+|  7 |  Tu, June 18                      | [Operations (Pt 2)] |
+|  8 |  Th, June 20                      | Background Tasks |
+|  9 |  Tu, June 25                       | Debugging Techniques|
 | 10 |  Th, June 27                        | Lesson 13 (TODO) |
 | 11 |  Tu, July 2                       | Final Exams/Presentations |  
 
 [Introduction to Concurrency & Parallelism]: Lessons/01-Intro-Concurrency-&-Parallelism/Lesson1.md
 [Grand Central Dispatch (Pt 1)]: Lessons/02-Grand-Central_Dispatch-Pt1/Lesson2.md
 [Grand Central Dispatch (Pt 2)]: Lessons/xxx/Lesson3.md
+[Dispatch Groups]: Lessons/xxx/LessonX.md
+[Semaphores]: Lessons/xxx/LessonX.md
+[Operations (Pt 1)]: Lessons/xxx/LessonX.md
+[Operations (Pt 2)]: Lessons/xxx/LessonX.md
+[Background Tasks]: Lessons/xxx/LessonX.md
+[Debugging Techniques]: Lessons/xxx/LessonX.md
 [xxxx]: Lessons/xxx/LessonX.md
 [xxxx]: Lessons/xxx/LessonX.md
 [xxxx]: Lessons/xxx/LessonX.md
