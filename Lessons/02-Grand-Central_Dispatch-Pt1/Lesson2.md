@@ -498,65 +498,6 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 
 
-#### Serial Queues
-
-
-A client to the library may also create any number of serial queues, which execute tasks in the order they are submitted, one at a time.
-
-Because a serial queue can only run one task at a time, each task submitted to the queue is critical with regard to the other tasks on the queue, and thus a serial queue can be used instead of a lock on a contended resource.
-
-
-
-Serial queues only have a single thread associated with them and thus only allow a single task to be executed at any given time.
-
-<!-- TODO: insert graphic here -->
-
-
-<!-- TODO: insert code showing how to create a default (serial) queue -->
-
-
-<!-- TODO: insert code showing how to create a concurrent queue -->
-
-#### concurrent queues
-
-	- requires QoS Priority
-
- A concurrent queue, on the other hand, is able to utilize as many threads as the system has resources for. Threads will be created and released as necessary on a concurrent queue.
-
-
-<!-- from Ray W --  Note: While you can tell iOS that you'd like to use a concurrent queue, remember that there is no guarantee that more than one task will run at a time. If your iOS device is completely bogged down and your app is competing for resources, it may only be capable of running a single task. -->
-
-<!-- TODO: insert graphic here -->
-
--- Asynchronous doesn't mean concurrent
-
-
-<!-- from Ray W --  
-While the difference seems subtle at first, just because your tasks are asynchronous doesn't mean they will run concurrently. You're actually able to submit asynchronous tasks to either a serial queue or a concurrent queue. Being synchronous or asynchronous simply identifies whether or not the queue on which you're running the task must wait for the task to complete before it can spawn the next task.
-
-On the other hand, categorizing something as serial versus concurrent identifies whether the queue has a single thread or multiple threads available to it. If you think about it, submitting three asynchronous tasks to a serial queue means that each task has to completely finish before the next task is able to start as there is only one thread available.
-
-In other words, a task being synchronous or not speaks to the source of the task.
-
-Being serial or concurrent speaks to the destination of the task.
--->
-
-##### QoS levels
-
-
-The library automatically creates several queues with different priority levels that execute several tasks concurrently, selecting the optimal number of tasks to run based on the operating environment.
-
-Concurrent queues are so common that Apple has provided six different global concurrent queues, depending on the Quality of service (QoS) the queue should have.
-
-<!-- TODO: insert table here -->
-
-
-
-#### Default Queues
-
-
-#### Custom Queues
-
 
 
 
