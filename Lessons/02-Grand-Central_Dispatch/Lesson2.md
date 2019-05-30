@@ -220,7 +220,7 @@ Thread creation and destruction are expensive processes.
 
 Instead of creating a new thread whenever a task is to be executed, then destroying it when the task finishes, available threads are taken from a pool of available threads created and managed by the operating system ([Thread Pool pattern](https://en.wikipedia.org/wiki/Thread_pool)).
 
-When you create a `DispatchQueue`, the OS will potentially create and assign one or more threads to the queue. If existing threads are available in the pool, they can be reused; if not, then the OS will create them as needed.
+<!-- When you create a `DispatchQueue`, the OS will potentially create and assign one or more threads to the queue. If existing threads are available in the pool, they can be reused; if not, then the OS will create them as needed. -->
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![thread_pool](assets/thread_pool.png) </br>
 
@@ -229,9 +229,12 @@ When you create a `DispatchQueue`, the OS will potentially create and assign one
 
 __*Tasks*__
 
-Tasks in GCD are encapsulate code and data into a single object. They are lightweight, easy to create, and easy to enqueue.
+Tasks in GCD:
+- encapsulate code and data into a single object.
+- are lightweight, easy to create, and easy to enqueue.
+- can be expressed either as a function or as an anonymous "block" of code (eg, a closure).
 
-A task can be expressed either as a function or as an anonymous "block" of code (eg, a closure).
+</br>
 
 
 <!-- Blocks are an extension to the syntax of C, C++, and Objective-C programming languages that encapsulate code and data into a single object in a way similar to a closure.[11] GCD can still be used in environments where blocks are not available.[15] -->
@@ -247,22 +250,19 @@ A task can be expressed either as a function or as an anonymous "block" of code 
 
 Tasks placed into a queue can either run __*synchronously*__ or __*asynchronously.*__
 
+**Synchronous** &mdash; Submits a task for execution on the current queue and __*returns*__ control to the calling function __*only after*__ that code block (task) finishes executing.
 
-You schedule work items synchronously or asynchronously. When you schedule a work item synchronously, your code waits until that item finishes execution. When you schedule a work item asynchronously, your code continues executing while the work item runs elsewhere.
-
-
-**Synchronous**
-Submits a work item (task) for execution on the current queue and __*returns*__ control to the calling function __*only after*__ that code block (task) finishes executing.
-
-Your app will __*wait*__ and __*block*__ the current thread's run loop until execution finishes before moving on to the next task.
+When you schedule a work item (task) __*synchronously,*__ your app will __*wait*__ and __*block*__ the current thread's run loop until execution of the current task finishes, before moving on to the next task.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![synchronous](assets/synchronous.png) </br>
 
-**Asynchronous**
+**Asynchronous** &mdash; Schedules a task for __*immediate execution,*__ and __*returns immediately.*__
 
-Schedules a work item for __*immediate execution,*_ and __*returns immediately.*__
 
 An asynchronous function returns immediately, ordering the task to be done but not waiting for it. Thus, an asynchronous function does not block the current thread of execution from proceeding on to the next function.
+
+When you schedule a work item __*asynchronously,*__ your code continues executing while the work item runs elsewhere.
+
 
 
  a task that is run asynchronously will start, but return execution to your app immediately. This way, the app is free to run other tasks while the first one is executing.
@@ -289,6 +289,9 @@ Asynchronous tasks are started by one thread but actually run on a different thr
 
 <!-- The way you work with threads is by creating a DispatchQueue. When you create a queue, the OS will potentially create and assign one or more threads to the queue. If existing threads are available, they can be reused; if not, then the OS will create them as necessary. -->
 
+When you create a `DispatchQueue`, the OS will potentially create and assign one or more threads to the queue. If existing threads are available in the pool, they can be reused; if not, then the OS will create them as needed.
+
+
 <!-- Creating a dispatch queue is pretty simple on your part, as you can see in the example below: -->
 
 <!-- Normally, you'd put the text of the label directly inside the initializer, but it's broken into separate statements for the sake of brevity. -->
@@ -297,11 +300,9 @@ Asynchronous tasks are started by one thread but actually run on a different thr
   let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking")
  ```
 
-The `label:` argument needs to be a unique identifier. The example above illustrates the preferred practice of using a reverse-DNS name (eg, com.your_company.your_app) to guarantee uniqueness (you could also use a UUID). And because the `label:` helps immensely when debugging, it is a good idea to assign it text that is meaningful to you (ie, the ".networking" token above).
+The `label:` argument needs to be a unique identifier. The example above illustrates the preferred practice of using a reverse-DNS name (eg, com.your_company.your_app) to guarantee uniqueness (you could also use a UUID).
 
-
-<!-- The label argument simply needs to be any unique value for identification purposes. While you could simply use a UUID to guarantee uniqueness, it's best to use a reverse- DNS style name, as shown above (e.g. com.company.app), since the label is what you'll see when debugging and it's helpful to assign it meaningful text. -->
-
+And because the `label:` helps immensely when debugging, it is a good idea to assign it text that is meaningful to you (ie, the ".networking" token above).
 
 ## In Class Activity I (10 min)
 
