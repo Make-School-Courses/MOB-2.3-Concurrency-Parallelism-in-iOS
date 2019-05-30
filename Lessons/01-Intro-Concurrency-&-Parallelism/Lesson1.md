@@ -315,7 +315,7 @@ Before we delve deeper into GCD in the next lesson, let's explore a simplified e
 
 ### Part 1 - Individually
 
-The code in the [Threads.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tree/master/Lessons/01-Intro-Concurrency-%26-Parallelism/assets/Threads.playground) below is incomplete. It is intended to create a second instance of the `Thread` class named "Background Thread" that executes the `calculation` function/closure.
+The code in the [Threads.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/blob/master/Lessons/01-Intro-Concurrency-%26-Parallelism/assets/Threads.playground.zip) below is incomplete. It is intended to create a second instance of the `Thread` class named "Background Thread" that executes the `calculation` function/closure.
 
 **TODO:** Complete the code to match the output listed below it:
 
