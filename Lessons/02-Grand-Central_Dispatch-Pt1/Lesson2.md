@@ -296,7 +296,7 @@ And because the `label:` helps immensely when debugging, it is a good idea to as
 
 #### .sync() and .async()
 
-To define whether a task runs __*synchronously*__ or __*asynchronously*__, we call the `.sync` or the `.async` function on our newly-created queue:
+To define whether a task runs __*synchronously*__ or __*asynchronously*__, you call the `.sync` or the `.async` function on your newly-created queue:
 
 ```Swift  
   let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking")
@@ -362,9 +362,86 @@ To define whether a task runs __*synchronously*__ or __*asynchronously*__, we ca
 
 ### The Main queue
 
+When your app starts, a `main` dispatch queue is automatically created for you.
 
+The `main queue`:
+- is a *serial queue* that's responsible for your UI. (We'll cover *serial* and *concurrent* queues in the next lesson.)
+- is closely associated with the `main thread` and its call stack. The `main queue` *only* executes code on the `main thread`.
 
-When your app starts, a main dispatch queue is automatically created for you. It's a serial queue that's responsible for your UI. Because it's used so often, Apple has made it available as a class variable, which you access via DispatchQueue.main. You never want to execute something synchronously against the main queue, unless it's related to actual UI work. Otherwise, you'll lock up your UI which could potentially degrade your app performance.
+> Note: You should __*never*__ perform UI updates on any queue other than the `main queue`.
+
+#### How the Main Queue Fits
+
+Our updated diagram of the structure inside the runtime process of an iOS app simply illustrates that the `main queue` is associated directly with the `main thread` and its call stack, and that the system also creates queues for non-UI tasks.
+
+(1) When an iOS app starts, the system automatically creates the app's:
+- `main queue`
+- `main thread`
+- and the corresponding call stack that the `main thread` manages.
+
+(2) The `main thread`, again, allocates your app's `Application` object in its stack frame, which in turn executes its delegate methods on its AppDelegate object in their respective stack frames, and so on...
+
+<!-- But unless specified otherwise, all non-UI code will also execute on the main thread (exceptions to this include frameworks such as URLSession in which some tasks run on non-UI threads by default). -->
+
+(3) Notice that, though the system also creates a pool of additional threads for potential non-UI tasks and their corresponding call stacks, what actually happens is here is that __*additional dispatch queues*__ are created (to which the system will assign a thread from the pool, as needed):
+
+![iOS_runtime_process_with-queues.png](assets/iOS_runtime_process_with-queues.png) </br>
+
+#### DispatchQueue.main (class variable)
+Because it's used so often, Apple has made it available as a class variable, which you access via `DispatchQueue.main`.
+
+Example showing `.async` called on the built-in `DispatchQueue.main` property:
+
+```Swift  
+  import Foundation
+
+  var value: Int = 2
+
+  DispatchQueue.main.async {
+      for i in 0...3 {
+          value = i
+          print("\(value) ✴️")
+      }
+  }
+
+  for i in 4...6 {
+      value = i
+      print("\(value) ✡️")
+  }
+
+  DispatchQueue.main.async {
+      value = 9
+      print(value)
+  }
+```
+
+#### Concurrency and the Main Queue
+
+In general, look for opportunities to take long-running, non-UI task and run them asynchronously on a queue other than the `main queue`.
+
+The **pseudocode example** below illustrates the typical steps to running a non-UI tasks asynchronously on a background queue/thread:
+1. create a queue
+2. submit a task to it to run asynchronously
+3. when it is complete, you redirect control flow back to the `main thread` to update the UI.
+
+```Swift  
+  // Somewhere inside a class...
+  let queue = DispatchQueue(label: "com.makeschool.queue") // 1. create a queue
+
+  // Somewhere in your function
+  queue.async { // 2. submit task to run asynchronously on the queue
+    // Call slow non-UI methods here
+    DispatchQueue.main.async { // 3. redirect control flow back to the `main thread`
+      // Update the UI here
+    }
+  }
+```
+
+<!-- Note: It's important to keep in mind that, while the queues are FIFO based, that does not ensure that tasks will finish in the order you submit them. The FIFO procedure applies to when the task starts, not when it finishes. -->
+
+#### Never Call .sync on Current Queue
+
+You never want to execute something synchronously against the main queue, unless it's related to actual UI work. Otherwise, you'll lock up your UI which could potentially degrade your app performance.
 
 
 
@@ -389,9 +466,6 @@ https://medium.com/swift-india/parallel-programming-with-swift-part-1-4-df7caac5
 
 
 <!-- from Ray W --  Note: You should never perform UI updates on any queue other than the main queue. If it's not documented what queue an API callback uses, dispatch it to the main queue! -->
-
-
-![iOS_runtime_process_with-queues.png](assets/iOS_runtime_process_with-queues.png) </br>
 
 
 
