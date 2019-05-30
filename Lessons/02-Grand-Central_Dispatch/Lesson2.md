@@ -13,9 +13,11 @@ https://docs.google.com/document/d/1679wsznKuafup32eV-ae5KQZ6jcx_aIkGY7CQ6ZGp_w/
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
 | 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:15      | Overview                  |
+| 0:05        | 0:25      | Initial Activity                |
+| 0:30        | 0:20      | Overview I                  |
 | 0:20        | 0:45      | In Class Activity I       |
 | 1:05        | 0:10      | BREAK                     |
+| 0:30        | 0:20      | Overview II                  |
 | 1:15        | 0:45      | In Class Activity II      |
 | TOTAL       | 2:00      |                           |
 
@@ -28,31 +30,93 @@ https://docs.google.com/document/d/1679wsznKuafup32eV-ae5KQZ6jcx_aIkGY7CQ6ZGp_w/
 1. Design
 1. Implement
 
-## Initial Exercise (15 min)
+## Initial Exercise (25 min)
+
+Discuss as a class...
+
+### Part 1
+
+In the Movie Theatre Game from Lesson 1:
+
+- What physical construct (ie., customer line, casher, etc.) represented:
+&nbsp;&nbsp; - A *process*?
+&nbsp;&nbsp; - A *thread*?
+&nbsp;&nbsp; - A *long-running task*?
+
+- Which aspect of your solution represented:
+&nbsp;&nbsp; - Concurrency?
+&nbsp;&nbsp; - Parallelism
 
 
+### Part 2
 
+Follow up for Lesson 1's Activity 2
 
-<!-- TODO: should this be a quiz? on research topics from last After Class? ...or use the playground exercise from prior lesson plans -->
+### Part 3
 
-<!-- TODO: quiz questions:
-- from last class material
-from assigned research
+1. Review of Concurrency & Parallelism concepts from Lesson 1...
 
-Review of Concurrency & Parallelism?
+2. **Questions from Last Lesson**:
 
+1) How is it possible to have __*parallelism without concurrency?*__
 
+Let's examine of few of the types of Parallelism...
 
- -->
+__*Bit-level Parallelism:*__ Can be thought of as *hardware-based* parallelism.
 
+Historically, 4-bit microprocessors were replaced with 8-bit, then 16-bit, then 32-bit microprocessors, and now 64-bit CPUs, each capable of processing *twice* the number of instructions per cycle as the one before.
 
+Because the number of instructions the system must run to execute a particular task on a 64-bit processor is significantly reduced (compared to previous processors), it can be said that the same number of instructions can now be *executed* in parallel.
 
-<!-- - Funny comic
-- Prime the Pump (e.g. think and jot, think pair share, etc)
-- Productivity Tip/Tool
-- Review of current event (e.g. tech news relevant to your track/topic)
-- Quiz on homework or topic(s) of past class
-- Concept Test -->
+However, there is __*no concurrency*__ in this case because it does not involve changes to the *structure* of the executed task.
+
+__*Data Parallelism:*__  &mdash; is parallelism inherent in program loops, which focuses on distributing the __*data*__ across *different computing nodes* to be processed in parallel.
+
+In Data Parallelism, *the same calculation* is performed on *the same* or *different* sets of data.
+
+Example:
+
+**Single instruction, multiple data (SIMD)** is a class of parallel computers... with multiple processing elements that perform the same operation on multiple data points simultaneously.
+
+Such machines exploit data level parallelism, but not concurrency: there are simultaneous (parallel) computations, but only a single process (instruction) at a given moment.
+
+SIMD is particularly applicable to common tasks such as adjusting the contrast in a digital image or adjusting the volume of digital audio. Most modern CPU designs include SIMD instructions to improve the performance of multimedia use.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![SIMD](assets/SIMD.png) </br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Source - wikipedia](https://en.wikipedia.org/wiki/SIMD)
+
+__*Task Parallelism:*__ &mdash; is the characteristic of a parallel program that *entirely different calculations* can be performed on either *the same* or *different* sets of data.
+
+This contrasts with Data Parallelism, where *the same calculation* is performed on *the same* or *different* sets of data.
+
+> Note that __*Concurrency*__ is a type of Task Parallelism.
+
+### Part 4
+
+And now...
+
+...a small **Quiz**...
+
+<!-- Answers to Quiz:
+1)
+- B) Concurrency
+- E) Thread
+- F) Parallelism
+- C) Amdahl’s Law
+- A) Context Switching (or Time-Slicing)
+2)
+- Grand_Central_Dispatch
+- operations
+3) Concurrency = structure
+Parallelism = execution
+4) (answer can be any 3 of these 5)
+- Deadlocks
+- Race Conditions
+- Readers-Writers Problem
+- Thread Explosions
+- Priority Inversion
+-->
 
 ## Overview/TT I (20 min)
 
