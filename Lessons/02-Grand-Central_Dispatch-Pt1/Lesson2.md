@@ -18,7 +18,7 @@ https://docs.google.com/document/d/1679wsznKuafup32eV-ae5KQZ6jcx_aIkGY7CQ6ZGp_w/
 | 0:55        | 0:10      | In Class Activity I       |
 | 1:05        | 0:10      | BREAK                     |
 | 1:15        | 0:15      | Overview II                  |
-| 1:30        | 0:xx      | In Class Activity II      |
+| 1:30        | 0:20      | In Class Activity II      |
 | TOTAL       | 1:50      |                           |
 
 
@@ -116,7 +116,7 @@ And now...
 - A) Context Switching (or Time-Slicing)
 2)
 - Grand_Central_Dispatch
-- operations
+- Operations
 3) Concurrency = structure
 Parallelism = execution
 4) (answer can be any 3 of these 5)
@@ -271,8 +271,7 @@ If the current queue is the `main queue`, then this will block any UI-related ta
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![synchronous2](assets/synchronous2.png) </br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:* https://medium.com/shakuro/introduction-to-ios-concurrency-a5db1cf18fa6 </br>
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:* https://medium.com/shakuro/introduction-to-ios-concurrency-a5db1cf18fa6 </br></br>
 
 **Asynchronous** &mdash; Schedules a task for __*immediate execution,*__ and __*immediately returns*__ control to the calling function.
 
@@ -432,12 +431,12 @@ The **pseudocode example** below illustrates the typical steps to running a non-
 
 ```Swift  
   // Somewhere inside a class...
-  let queue = DispatchQueue(label: "com.makeschool.queue") 
+  let queue = DispatchQueue(label: "com.makeschool.queue")
 
   // Somewhere in your function
-  queue.async { 
+  queue.async {
     // Call slow non-UI methods here
-    DispatchQueue.main.async { 
+    DispatchQueue.main.async {
       // Update the UI here
     }
   }
@@ -480,17 +479,32 @@ The key to understanding this is that `.sync` does not __*execute*__ tasks/block
 *Source:* https://medium.com/swift-india/parallel-programming-with-swift-part-1-4-df7caac564ae
 
 
-
-
-
-## In Class Activity II (optional) (30 min)
+## In Class Activity II (20 min)
 
 <!-- TODO: create this...is there a suitable playground from prior lesson?
 - set up a situation where students call sync on current queue
  -->
 
+### Diagramming Concurrent Task Execution
 
+#### Individually - Diagram
 
+**Scenario:**
+- Your app fetches images from the Internet, then processes them for display through a sepia tone filter.
+- Fetching and processing images is negatively impacting performance, especially scrolling in the table view.
+
+**TODO:**
+Diagram how you would use what you know so far about currency in iOS to improve your app's performance. In your diagram, be sure to point out:
+
+1. the point in time on the relevant queue(s) where an image is downloaded
+2. the point where the image is filtered
+3. the point at which the image is presented to the user, and the queue on which this would take place
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![activity_diag_template](assets/activity_diag_template.png) </br>
+
+#### As A Class
+
+Share/discuss diagrammed solutions...
 
 ## After Class
 1. Research:
@@ -498,8 +512,10 @@ The key to understanding this is that `.sync` does not __*execute*__ tasks/block
 - `DispatchWorkItem`
 - `dispatchMain()`
 
-2. Assignment:
--
+<!-- 2. Assignment:
+- -->
+
+
 <!-- TODO: have students to the Ray W tute on Concurrency -->
 
 
@@ -507,7 +523,6 @@ The key to understanding this is that `.sync` does not __*execute*__ tasks/block
 
 ## Wrap Up (5 min)
 
-- Continue working on your current tutorial
 - Complete reading
 - Complete challenges
 
@@ -518,17 +533,6 @@ The key to understanding this is that `.sync` does not __*execute*__ tasks/block
 3. [Async/await - wikipedia](https://en.wikipedia.org/wiki/Async/await)
 4. [Coroutine - wikipedia](https://en.wikipedia.org/wiki/Coroutine)
 5. [Deadlock - wikipedia](https://en.wikipedia.org/wiki/Deadlock)
-
-8.
-
-
-
-
-https://gist.github.com/lattner/429b9070918248274f25b714dcfc7619
-
-
-https://developer.apple.com/documentation/dispatch/dispatchqueue
-
-
-Rob Pike - 'Concurrency Is Not Parallelism'
-https://www.youtube.com/watch?v=cN_DpYBzKso
+6. [dispatchqueue - Apple](https://developer.apple.com/documentation/dispatch/dispatchqueue)
+7. [Concurrency Is Not Parallelism - a video by Rob Pike](https://www.youtube.com/watch?v=cN_DpYBzKso)
+8. [Async/Await for Swift - a proposed change to Swift by Chris Lattner, Joe Groff](https://gist.github.com/lattner/429b9070918248274f25b714dcfc7619)
