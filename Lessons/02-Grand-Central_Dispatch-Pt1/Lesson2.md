@@ -308,11 +308,10 @@ To define whether a task runs __*synchronously*__ or __*asynchronously*__, we ca
 
 ## In Class Activity I (10 min)
 
-GCDPlay.playground
+### Individually
 
-[GCDPlay.playground]()
-
-<!-- TODO: add link to GCDPlay.playground -->
+**Required Resources:**
+- The [GCDPlay.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tree/master/Lessons/02-Grand-Central_Dispatch-Pt1/assets/GCDPlay.playground) </br>
 
 **TODO:**
 1. run the `GCDPlay.playground` and observe its output
@@ -333,6 +332,8 @@ GCDPlay.playground
 
 **Q:** How has the output changed after changing `.sync` to `.async`? (ie, in what order do the `for loops` execute now?)
 
+**GCDPlay.playground code:**
+
 ```Swift
   import Foundation
 
@@ -350,7 +351,6 @@ GCDPlay.playground
  ```
 
 
-
  <!-- TODO: add another example exercise
 
   - see previous Lesson Plans for suitable playgrounds
@@ -358,10 +358,7 @@ GCDPlay.playground
  -->
 
 
-## Overview/TT II (optional) (20 min)
-
-
-
+## Overview/TT II (15 min)
 
 ### The Main queue
 
