@@ -75,11 +75,15 @@ In Data Parallelism, *the same calculation* is performed on *the same* or *diffe
 
 Example:
 
-**Single instruction, multiple data (SIMD)** is a class of parallel computers... with multiple processing elements that perform the same operation on multiple data points simultaneously.
+A **Single instruction, multiple data (SIMD)** is a class of parallel computers... with multiple processing elements that perform the same operation on multiple data points simultaneously.
 
 Such machines exploit data level parallelism, but not concurrency: there are simultaneous (parallel) computations, but only a single process (instruction) at a given moment.
 
 SIMD is particularly applicable to common tasks such as adjusting the contrast in a digital image or adjusting the volume of digital audio. Most modern CPU designs include SIMD instructions to improve the performance of multimedia use.
+
+In the diagram of a SIMD system below, the same instruction (task) from the Instruction Pool is sent via the four PUs (Processing Units) for execution on the same data object (the Data Pool).
+
+Again, because there is no manipulation of the structure of the task, there is *no concurrency* involved:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![SIMD](assets/SIMD.png) </br>
 
@@ -89,7 +93,7 @@ __*Task Parallelism:*__ &mdash; is the characteristic of a parallel program that
 
 This contrasts with Data Parallelism, where *the same calculation* is performed on *the same* or *different* sets of data.
 
-> Note that __*Concurrency*__ is a type of Task Parallelism.
+> Note that __*Concurrency*__ is a type of Task Parallelism where tasks are divided (decomposed) into smaller bits for parallel processing.
 
 ### Part 4
 
