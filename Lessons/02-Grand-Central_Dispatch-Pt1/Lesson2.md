@@ -426,12 +426,12 @@ The **pseudocode example** below illustrates the typical steps to running a non-
 
 ```Swift  
   // Somewhere inside a class...
-  let queue = DispatchQueue(label: "com.makeschool.queue") // 1. create a queue
+  let queue = DispatchQueue(label: "com.makeschool.queue") 
 
   // Somewhere in your function
-  queue.async { // 2. submit task to run asynchronously on the queue
+  queue.async { 
     // Call slow non-UI methods here
-    DispatchQueue.main.async { // 3. redirect control flow back to the `main thread`
+    DispatchQueue.main.async { 
       // Update the UI here
     }
   }
