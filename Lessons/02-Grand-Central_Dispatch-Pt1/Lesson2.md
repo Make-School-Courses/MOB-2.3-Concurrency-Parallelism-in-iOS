@@ -128,12 +128,12 @@ Parallelism = execution
 - GCD vs Operations
 - Dispatch Queues
 - FIFO
-- Serial vs Concurrent
+- Synchronous vs Asynchronous
+- The Main Queue
+<!-- - Serial vs Concurrent
 - QoS Priorities
 - Default Queues
-- Custom Queues
-- The Main Queue
-- Synchronous vs Asynchronous
+- Custom Queues -->
 
 ### GCD and Operations (cont'd)
 
@@ -258,17 +258,11 @@ When you schedule a work item (task) __*synchronously,*__ your app will __*wait*
 
 **Asynchronous** &mdash; Schedules a task for __*immediate execution,*__ and __*returns immediately.*__
 
+When you schedule a work item (task) __*asynchronously,*__ that task:
+- will be submitted to its queue immediately, but it will also return execution to your app immediately, ordering the submitted task to be executed but *not waiting for it.* This way, the app is free to run other tasks while the submitted task is executing.
+- can be *started* (submitted) by one thread but actually *run on a different thread,* taking advantage of additional processor resources to finish their work more quickly.
 
-An asynchronous function returns immediately, ordering the task to be done but not waiting for it. Thus, an asynchronous function does not block the current thread of execution from proceeding on to the next function.
-
-When you schedule a work item __*asynchronously,*__ your code continues executing while the work item runs elsewhere.
-
-
-
- a task that is run asynchronously will start, but return execution to your app immediately. This way, the app is free to run other tasks while the first one is executing.
-
-Asynchronous tasks are started by one thread but actually run on a different thread, taking advantage of additional processor resources to finish their work more quickly.
-
+An asynchronous task (a closure or function) __*does not block*__ the current thread of execution from proceeding on to the next function; your code on the current thread __*does not wait*__ for the submitted task to finish &mdash; it continues executing while the submitted task runs elsewhere.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![asynchronous](assets/asynchronous.png) </br>
 
