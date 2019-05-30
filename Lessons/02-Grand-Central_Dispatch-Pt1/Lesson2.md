@@ -457,7 +457,7 @@ If you need to dispatch to the current queue, __*do so asynchronously*__ using t
 
 *Source: Apple docs*
 
-A **deadlock.** occurs when two or more tasks are waiting on each other to finish and get stuck in a never-ending cycle. Neither can proceed until the other completes; but, since neither can proceed, neither will finish.
+A **deadlock** occurs when two or more tasks are waiting on each other to finish and get stuck in a never-ending cycle. Neither can proceed until the other completes; but, since neither can proceed, neither will finish.
 
 A **deadlock** can occur even when the perpetually-waiting tasks are on the same thread.
 
