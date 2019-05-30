@@ -229,33 +229,18 @@ When you create a `DispatchQueue`, the OS will potentially create and assign one
 
 __*Tasks*__
 
-Tasks encapsulate code and data into a single object.
+Tasks in GCD are encapsulate code and data into a single object. They are lightweight, easy to create, and easy to enqueue.
 
 A task can be expressed either as a function or as an anonymous "block" of code (eg, a closure).
 
 
 <!-- Blocks are an extension to the syntax of C, C++, and Objective-C programming languages that encapsulate code and data into a single object in a way similar to a closure.[11] GCD can still be used in environments where blocks are not available.[15] -->
 
-
-
-
-
 > <sup>3</sup> FIFO: First In, First Out &mdash; Tasks run in the order in which they are added to the queue — the first task in the queue will be the first to start. Though each block of code will be *started* in the order they were submitted, because more than one code block can be executed at the same time, the order in which tasks *finish* isn't guaranteed.
 
 
 
-
-
-Tasks in GCD are lightweight to create and queue;
-
-
-A task in Grand Central Dispatch can be used either to create a work item that is placed in a queue or assign it to an event source. If a task is assigned to an event source, then a work unit is made from the block or function when the event triggers, and the work unit is placed in an appropriate queue. This is described by Apple as more efficient than creating a thread whose sole purpose is to wait on a single event triggering.
-
-
-<!-- Tasks in GCD are lightweight to create and queue; Apple states that 15 instructions are required to queue up a work unit in GCD, while creating a traditional thread could easily require several hundred instructions. <sup>2</sup> -->
-
-
-<!-- TODO: insert iOS app process diagram with Main Queue here ?-->
+<!-- A task in Grand Central Dispatch can be used either to create a work item that is placed in a queue or assign it to an event source. If a task is assigned to an event source, then a work unit is made from the block or function when the event triggers, and the work unit is placed in an appropriate queue. This is described by Apple as more efficient than creating a thread whose sole purpose is to wait on a single event triggering. -->
 
 
 ### Synchronous & Asynchronous Tasks
@@ -298,21 +283,17 @@ Asynchronous tasks are started by one thread but actually run on a different thr
 
 <!-- TODO: insert code showing how to create a concurrent queue -->
 
+<!-- TODO: explain use of .sync and .async methods -->
+
 
 
 
 ## In Class Activity I (30 min)
 
-- I do, We do, You do
-- Reading & Discussion Questions in small groups
-- Draw a picture/diagram
-- Complete Challenges solo or in pair
-- Q&A about tutorials
-- Pair up and code review
-- Pair program
-- Formative assessment
-- Form into groups
-- etc (get creative :D)
+
+<!-- TODO: add simple sync/async example exercise -->
+
+
 
 ## Overview/TT II (optional) (20 min)
 
@@ -382,12 +363,18 @@ Concurrent queues are so common that Apple has provided six different global con
 When your app starts, a main dispatch queue is automatically created for you. It's a serial queue that's responsible for your UI. Because it's used so often, Apple has made it available as a class variable, which you access via DispatchQueue.main. You never want to execute something synchronously against the main queue, unless it's related to actual UI work. Otherwise, you'll lock up your UI which could potentially degrade your app performance.
 
 
-Important
-Attempting to synchronously execute a work item on the main queue results in deadlock.
 
 
 <!-- TODO: insert example of delegating back to main queue here -->
 
+
+
+<!-- Introduce Deadlock
+
+show diagram  -->
+
+Important
+Attempting to synchronously execute a work item on the main queue results in deadlock.
 
 
 <!-- from Ray W --  Note: You should never perform UI updates on any queue other than the main queue. If it's not documented what queue an API callback uses, dispatch it to the main queue! -->
