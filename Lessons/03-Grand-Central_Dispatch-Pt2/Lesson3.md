@@ -31,15 +31,12 @@ Explain why students should care to learn the material presented in this class.
 
 ## Initial Exercise (15 min)
 
-- Funny comic
-- Prime the Pump (e.g. think and jot, think pair share, etc)
-- Productivity Tip/Tool
-- Review of current event (e.g. tech news relevant to your track/topic)
-- Quiz on homework or topic(s) of past class
-- Concept Test
+
+<!-- REVIEW OF SYNC AND ASYNC FRM LAST CLASS?
+In synchronous execution by sync method the current thread waits until the task finished before the method call returns. In asynchronous execution by async method, the method call returns immediately. Never call sync method in the main queue which will cause deadlock of the app. -->
+
 
 ## Overview/TT I (20 min)
-
 
 
 #### Serial Queues
@@ -53,6 +50,13 @@ Because a serial queue can only run one task at a time, each task submitted to t
 
 Serial queues only have a single thread associated with them and thus only allow a single task to be executed at any given time.
 
+
+<!-- TODO: note that main queue is a serial queue  -->
+<!-- When your app launches, the system automatically creates a serial queue and binds it to the application’s main thread. All UI tasks have to be run on the main thread. -->
+<!-- When user runs app, the system automatically creates a serial dispatch queue which runs app’s main thread. This is called main queue, and task assigned in this queue works one at a time serially. To access in the code:
+
+let mainQueue   = DispatchQueue.main -->
+
 <!-- TODO: insert graphic here -->
 
 
@@ -61,11 +65,15 @@ Serial queues only have a single thread associated with them and thus only allow
 
 <!-- TODO: insert code showing how to create a concurrent queue -->
 
+
 #### concurrent queues
+
+ A concurrent queue, on the other hand, is able to utilize as many threads as the system has resources for. Threads will be created and released as necessary on a concurrent queue.
+
 
 	- requires QoS Priority
 
- A concurrent queue, on the other hand, is able to utilize as many threads as the system has resources for. Threads will be created and released as necessary on a concurrent queue.
+
 
 
 <!-- from Ray W --  Note: While you can tell iOS that you'd like to use a concurrent queue, remember that there is no guarantee that more than one task will run at a time. If your iOS device is completely bogged down and your app is competing for resources, it may only be capable of running a single task. -->
@@ -124,16 +132,8 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 ## In Class Activity I (30 min)
 
-- I do, We do, You do
-- Reading & Discussion Questions in small groups
-- Draw a picture/diagram
-- Complete Challenges solo or in pair
-- Q&A about tutorials
-- Pair up and code review
-- Pair program
-- Formative assessment
-- Form into groups
-- etc (get creative :D)
+
+
 
 ## Overview/TT II (optional) (20 min)
 
@@ -144,6 +144,10 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 -
 2. Assignment:
 -
+
+<!-- TODO: do Ray W tutorial? -->
+
+
 
 ## Wrap Up (5 min)
 
