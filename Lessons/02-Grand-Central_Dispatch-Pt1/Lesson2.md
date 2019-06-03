@@ -465,7 +465,7 @@ A **deadlock** can occur even when the perpetually-waiting tasks are on the same
 
 #### Calling .sync on the Main Queue
 
-You never want to execute something __*synchronously*__ against the `main queue`, unless it's related to actual UI work. Doing so could cause your app to crash or it might simply degrade your app's performance by locking your UI.
+You never want to execute something __*synchronously*__ against the `main queue`. Doing so could cause your app to crash or it might simply degrade your app's performance by locking your UI.
 
 For example, this statement:
 

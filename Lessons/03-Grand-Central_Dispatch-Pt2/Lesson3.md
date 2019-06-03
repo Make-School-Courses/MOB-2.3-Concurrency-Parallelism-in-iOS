@@ -36,13 +36,25 @@ Explain why students should care to learn the material presented in this class.
 In synchronous execution by sync method the current thread waits until the task finished before the method call returns. In asynchronous execution by async method, the method call returns immediately. Never call sync method in the main queue which will cause deadlock of the app. -->
 
 
+<!-- Asynchronous tasks are started by one thread but actually run on a different thread, taking advantage of additional processor resources to finish their work more quickly. (from Apple ) -->
+
+
+<!-- When NOT to use synchronous
+
+when to use sync  -->
+
+
+
+
 ## Overview/TT I (20 min)
 
 
 #### Serial Queues
 
 
-A client to the library may also create any number of serial queues, which execute tasks in the order they are submitted, one at a time.
+
+
+<!-- A client to the library may also create any number of serial queues, which execute tasks in the order they are submitted, one at a time. -->
 
 Because a serial queue can only run one task at a time, each task submitted to the queue is critical with regard to the other tasks on the queue, and thus a serial queue can be used instead of a lock on a contended resource.
 
@@ -129,6 +141,15 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 
 
+<!-- TODO: introduce Thread Explosion? -->
+ <!-- Many workitems submitted to global concurrent queue
+ If workitems block, more threads will be created
+ May lead to thread explosion -->
+
+
+<!-- TODO: Async does NOT mean concurrent -->
+
+
 
 ## In Class Activity I (30 min)
 
@@ -162,3 +183,6 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 3. []()
 4. []()
 5. []()
+
+
+https://developer.apple.com/videos/play/wwdc2017/706/
