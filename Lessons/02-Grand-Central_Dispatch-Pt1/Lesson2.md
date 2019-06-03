@@ -487,11 +487,17 @@ For example, this statement:
 2. `sync` blocks the thread of the `main queue` until the block finishes executing.
 3. but `sync` will wait forever because the thread where the block is intended to run is blocked. The submitted code block will not even start until the thread is unblocked, and the thread can't be unblocked until that same code block completes.
 
-The key to understanding this is that `.sync` does not __*execute*__ tasks/blocks, it only __*queues*__ them. Execution will happen on a future iteration of the run loop. If the thread is blocked until some condition occurs (i.e., some block of code completes), that future iteration of the run loop can only happen when that condition happens and the queue/thread are unblocked.  
+In the diagram below:
+- A code block identified as `Code Block A` was submitted __*synchronously*__ to the `Main Queue`.
+- At the point in which `DispatchQueue.main.sync` is called, the `Main Queue` is blocked awaiting the completion of the code block (`Code Block A`) which called `.sync`.
+- But `Code Block A` __*cannot even start*__ executing until the `Main Queue` is unblocked.
+
+![sync_deadlock_base](assets/sync_deadlock_base.png) </br>
+
+The key to understanding this is that `.sync` does not __*execute*__ tasks/blocks, it only __*queues*__ them. Execution will happen on a future iteration of the run loop. If the thread is blocked until some condition occurs (i.e., some block of code completes), no future iteration of the run loop can occur that condition is met and the queue and its thread are unblocked.  
 
 *Source:* https://medium.com/swift-india/parallel-programming-with-swift-part-1-4-df7caac564ae
 
-![sync_deadlock_base](assets/sync_deadlock_base.png) </br>
 
 ## In Class Activity II (20 min)
 
