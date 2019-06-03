@@ -370,6 +370,26 @@ To define whether a task runs __*synchronously*__ or __*asynchronously*__, you c
 
 ## Overview/TT II (15 min)
 
+### Sync and Deadlocks
+
+#### Never Call .sync on Current Queue
+
+__*Do not call*__ the `dispatch_sync` (aka, `.sync`) function from a task that is executing on the same queue that you pass to your function call. Doing so will **deadlock** the queue.
+
+If you need to dispatch to the current queue, __*do so asynchronously*__ using the `dispatch_async` (`.async`) function.
+
+*Source: Apple docs*
+
+#### Deadlock
+
+A **deadlock** occurs when two or more tasks are waiting on each other to finish and get stuck in a never-ending cycle. Neither can proceed until the other completes; but, since neither can proceed, neither will finish.
+
+A **deadlock** can occur even when the perpetually-waiting tasks are on the same thread.
+
+
+<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![deadlock](assets/deadlock.png) </br> -->
+
+
 ### The Main queue
 
 When your app starts, a `main` dispatch queue is automatically created for you.
@@ -449,21 +469,8 @@ The **pseudocode example** below illustrates the typical steps to running a non-
 
 <!-- Note: It's important to keep in mind that, while the queues are FIFO based, that does not ensure that tasks will finish in the order you submit them. The FIFO procedure applies to when the task starts, not when it finishes. -->
 
-#### Never Call .sync on Current Queue
 
-__*Do not call*__ the `dispatch_sync` (aka, `.sync`) function from a task that is executing on the same queue that you pass to your function call. Doing so will **deadlock** the queue.
-
-If you need to dispatch to the current queue, __*do so asynchronously*__ using the `dispatch_async` (`.async`) function.
-
-*Source: Apple docs*
-
-A **deadlock** occurs when two or more tasks are waiting on each other to finish and get stuck in a never-ending cycle. Neither can proceed until the other completes; but, since neither can proceed, neither will finish.
-
-A **deadlock** can occur even when the perpetually-waiting tasks are on the same thread.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![deadlock](assets/deadlock.png) </br>
-
-#### Calling .sync on the Main Queue
+#### Never Call .sync on the Main Queue
 
 You never want to execute something __*synchronously*__ against the `main queue`. Doing so could cause your app to crash or it might simply degrade your app's performance by locking your UI.
 
@@ -479,7 +486,6 @@ For example, this statement:
 3. `sync` will wait forever because the thread where the block is intended to run is blocked.
 
 The key to understanding this is that `.sync` does not __*execute*__ tasks/blocks, it only __*queues*__ them. Execution will happen on a future iteration of the run loop.
-
 
 *Source:* https://medium.com/swift-india/parallel-programming-with-swift-part-1-4-df7caac564ae
 
