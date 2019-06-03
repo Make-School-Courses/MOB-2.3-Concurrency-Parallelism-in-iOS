@@ -382,6 +382,8 @@ Use `.async` when your app does __*not*__ need to wait until the operation insid
 
 As mentioned, **long-running tasks** such as image/data processing, local or remote data fetching, and other network calls are typically good candidates for running tasks `.async`.
 
+If the `viewDidLoad()` method of your `View Controller` has too much work to do on the `main queue`, this can often result in long wait times before the view appears. If possible, it’s best to offload some work to be done in the background using `.async`, if it’s not absolutely essential at load time for the view.
+
 ### When to use Sync?
 
 In synchronous execution by `.sync` method, the current thread waits until the task is finished before the method call returns.
