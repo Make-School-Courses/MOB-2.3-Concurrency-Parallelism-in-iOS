@@ -386,6 +386,7 @@ A **deadlock** occurs when two or more tasks are waiting on each other to finish
 
 A **deadlock** can occur even when the perpetually-waiting tasks are on the same thread.
 
+> We'll see an example of a deadlock a bit later in this lesson....
 
 <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![deadlock](assets/deadlock.png) </br> -->
 
