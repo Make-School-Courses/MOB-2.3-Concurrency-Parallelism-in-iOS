@@ -477,18 +477,21 @@ You never want to execute something __*synchronously*__ against the `main queue`
 For example, this statement:
 
 ```Swift  
-  DispatchQueue.main.sync {}
+  DispatchQueue.main.sync {
+    // Some synchronous code block
+  }
 ```
 
 ...will cause the following events:
 1. `sync` queues the block in the `main queue`.
 2. `sync` blocks the thread of the `main queue` until the block finishes executing.
-3. `sync` will wait forever because the thread where the block is intended to run is blocked.
+3. but `sync` will wait forever because the thread where the block is intended to run is blocked. The submitted code block will not even start until the thread is unblocked, and the thread can't be unblocked until that same code block completes.
 
-The key to understanding this is that `.sync` does not __*execute*__ tasks/blocks, it only __*queues*__ them. Execution will happen on a future iteration of the run loop.
+The key to understanding this is that `.sync` does not __*execute*__ tasks/blocks, it only __*queues*__ them. Execution will happen on a future iteration of the run loop. If the thread is blocked until some condition occurs (i.e., some block of code completes), that future iteration of the run loop can only happen when that condition happens and the queue/thread are unblocked.  
 
 *Source:* https://medium.com/swift-india/parallel-programming-with-swift-part-1-4-df7caac564ae
 
+![sync_deadlock_base](assets/sync_deadlock_base.png) </br>
 
 ## In Class Activity II (20 min)
 
