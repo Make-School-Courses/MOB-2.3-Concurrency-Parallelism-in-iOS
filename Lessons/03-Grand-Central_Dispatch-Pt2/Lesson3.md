@@ -44,6 +44,11 @@ In synchronous execution by sync method the current thread waits until the task 
 when to use sync  -->
 
 
+<!-- A synchronous function returns control to the caller after the task is completed.
+An asynchronous function returns control to the caller immediately, ordering the task to be done but not waiting for it.
+Thus, an asynchronous function does not block the current thread of execution from proceeding on to the next function. -->
+
+
 
 
 ## Overview/TT I (20 min)

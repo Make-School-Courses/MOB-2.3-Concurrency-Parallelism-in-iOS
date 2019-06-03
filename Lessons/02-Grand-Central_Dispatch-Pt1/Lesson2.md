@@ -370,6 +370,50 @@ To define whether a task runs __*synchronously*__ or __*asynchronously*__, you c
 
 ## Overview/TT II (15 min)
 
+### When to use Async?
+
+In asynchronous execution by the `.async` method, the method call returns immediately, ordering the task to be done but not waiting for it to finish.
+
+Asynchronous tasks are started by one thread but actually run on a different thread, taking advantage of additional processor resources to finish their work more quickly.
+
+*from:* Apple docs
+
+Use `.async` when your app does __*not*__ need to wait until the operation inside the block is finished.
+
+As mentioned, **long-running tasks** such as network calls, image processing or data fetching (local or remote) are typically excellent candidate for `.async` tasks.
+
+### When to use Sync?
+
+In synchronous execution by `.sync` method, the current thread waits until the task is finished before the method call returns.
+
+Use `.sync` when your app needs to wait until a task is finished.
+
+Example scenarios include:
+- to ensure that some function is not called a second time before its first invocation is finished.
+- to wait for an operation inside a block to finish before you can use the data processed by the block.
+
+Let's examine the code in the snippet below:
+
+```Swift  
+  func someFunction() {
+    DispatchQueue.global().async {  // A) Run the following code block asynchronously on a non-UI thread
+          let url = URL(string: imageUrl)
+          do {
+              let data = try Data(contentsOf: url!)
+                  DispatchQueue.main.sync { // B) Run the code below synchronously on the main queue
+                      self.imageIcon.image = UIImage(data: data)
+                  }
+              }
+    }
+  ```
+
+**Q:** What exactly is happening here?
+
+At point `A)`, the code runs asynchronously on a background thread and, when done, it calls the `main queue` and tells it to run the code at `B)` *immediately* next (synchronously) &mdash; in other words, run it immediately after the current function (`someFunction()`) completes" (but after any system tasks already in the `main queue` have run).
+
+*Source:* https://www.reddit.com/r/iOSProgramming/comments/7n9e9f/what_is_the_difference_between/
+
+
 ### Sync and Deadlocks
 
 #### Never Call .sync on Current Queue
