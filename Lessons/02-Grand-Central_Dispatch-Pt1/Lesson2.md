@@ -386,7 +386,7 @@ A **deadlock** occurs when two or more tasks are waiting on each other to finish
 
 A **deadlock** can occur even when the perpetually-waiting tasks are on the same thread.
 
-> We'll see an example of a deadlock a bit later in this lesson....
+> *We'll see an example of a deadlock a bit later in this lesson....*
 
 <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![deadlock](assets/deadlock.png) </br> -->
 
@@ -473,7 +473,7 @@ The **pseudocode example** below illustrates the typical steps to running a non-
 
 #### Never Call .sync on the Main Queue
 
-You never want to execute something __*synchronously*__ against the `main queue`. Doing so could cause your app to crash or it might simply degrade your app's performance by locking your UI.
+Just as with the current queue, you never want to execute a code block __*synchronously*__ against the `main queue` either. Doing so could cause your app to crash or it might simply degrade your app's performance by locking your UI.
 
 For example, this statement:
 
