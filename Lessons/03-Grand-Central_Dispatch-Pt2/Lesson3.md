@@ -22,9 +22,6 @@
 | 1:25       | 0:25      | In Class Activity I      |
 | TOTAL       | 1:50     |                           |
 
-## Why you should know this or industry application (optional) (5 min)
-
-Explain why students should care to learn the material presented in this class.
 
 ## Learning Objectives (5 min)
 
@@ -452,19 +449,17 @@ https://developer.apple.com/documentation/dispatch/dispatchqos
 
 ## After Class
 1. Research:
-- Dining philosophers problem
-- the critical section problem
-- race conditions
-- .default and .unspecified
-
-<!-- TODO: look up the 2 outstanding QoS priorities -->
-
-
+- The Dining Philosophers Problem
+- The Critical Section Problem
+- Race Condition(s)
+- The two secondary GCD QoS priority classes:
+&nbsp;&nbsp;&nbsp; - `.default` </br>
+&nbsp;&nbsp;&nbsp; - `.unspecified`
 
 2. Assignment:
--
+- Execute the following tutorial (part 1 only):
 
-<!-- TODO: do Ray W tutorial? -->
+https://www.raywenderlich.com/5370-grand-central-dispatch-tutorial-for-swift-4-part-1-2
 
 
 
