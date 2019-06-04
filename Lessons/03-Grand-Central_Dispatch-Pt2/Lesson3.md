@@ -328,17 +328,13 @@ Example: A `Dictionary` or an `Array` declared as a `var` is __*not thread safe*
 
 ### DispatchQueues (cont'd)
 
+GCDs `DispatchQueues` possess several defining attributes:
+- Queues can be either **serial** or **concurrent**
+- **FIFO** &mdash; This guarantees that the first task __*added*__ to the queue is the first task __*started*__ in the queue, the second task added will be the second to start, and so on...
+- **Thread Safe** &mdash; All dispatch queues are themselves thread-safe: you can access them from multiple threads simultaneously. On of the key benefits of GCD is that `DispatchQueues` can provide thread-safety to parts of your own code.
 
-Queues can be either serial or concurrent.
-
-- FIFO
-- Thread Safe
-
-The decision of when to start a task is entirely up to GCD.
-If the execution time of one task overlaps with another, it’s up to GCD to determine if it should run on a different core, if one is available, or instead to perform a context switch to run a different task.
-
-
-
+**Remember**: The decision of when to start a task is entirely up to GCD.
+- If the execution time of one task overlaps with another, it’s up to GCD to determine if it should run on a different core, if one is available, or instead to perform a context switch to run a different task.
 
 #### Serial Queues
 
