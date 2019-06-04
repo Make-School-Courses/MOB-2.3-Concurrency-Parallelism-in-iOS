@@ -29,15 +29,14 @@ Explain why students should care to learn the material presented in this class.
 
 By the end of this lesson, you should be able to...
 
-<!-- 1. Identify and describe:
-- Apple's 2 APIs for managing Concurrency - __*Grand Central Dispatch*__ and __*Operations*__
-- __*queues*__ and __*dispatch queues*__
-- __*FIFO*__ Queues
-- __*Synchronous*__ and __*Asynchronous*__ tasks
-- the lifecycle and other attributes of the __*Main Queue*__
-2. How to implement:
-- basic examples of __*dispatch queues*__ running built-in `.sync` and `.async` functions -->
-
+1. Identify and describe:
+- when to use __*Synchronous*__ and __*Asynchronous*__
+- __*Sync*__ and __*Deadlocks*__
+- __*Critical Section*__
+- __*Thread Safety*__
+- GCD's provided __*serial*__ and __*concurrent*__ DispatchQueues
+- __*QoS Priority*__
+- how the __*Main Queue*__ fits in GCD
 
 ## Initial Exercise (20 min)
 
@@ -294,7 +293,7 @@ For example, a critical section might manipulate a particular variable that can 
 
 In the diagram below, if `Process 1` executes the code in the Critical Section to read a shared variable &mdash; while `Process 2` needs to write to the same variable &mdash;  `Process 1` might get either the old or new value of the variable:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Critical_section_fg](assets/Critical_section_fg.png) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Critical_section_fg](assets/Critical_section_fg.png)
 
 **Examples:**
 
@@ -422,7 +421,7 @@ GCD offers you four Quality of Service (Qos) classes:
 
 ## In Class Activity I (20 min)
 
-### In Groups of 3 &mdash; A Jigsaw Puzzle Exercise
+### Part 1 &mdash; In Groups of 3 &mdash; A Jigsaw Puzzle Exercise
 
 For the QoS class assigned to your team, fill in the following categories (columns) in the slide provided:
 - Type of work and focus of QoS
@@ -440,6 +439,22 @@ Team 4: **.background**
 **Resources:** </br>
 https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html
 https://developer.apple.com/documentation/dispatch/dispatchqos
+
+### Part 1 &mdash; Class Discussion
+
+**Q:** Does Asynchronous mean Concurrent?
+
+ <!-- TODO: Async does NOT mean concurrent -->
+
+ <!-- from Ray W --  
+ While the difference seems subtle at first, just because your tasks are asynchronous doesn't mean they will run concurrently. You're actually able to submit asynchronous tasks to either a serial queue or a concurrent queue. Being synchronous or asynchronous simply identifies whether or not the queue on which you're running the task must wait for the task to complete before it can spawn the next task.
+
+ On the other hand, categorizing something as serial versus concurrent identifies whether the queue has a single thread or multiple threads available to it. If you think about it, submitting three asynchronous tasks to a serial queue means that each task has to completely finish before the next task is able to start as there is only one thread available.
+
+ In other words, a task being synchronous or not speaks to the source of the task.
+
+ Being serial or concurrent speaks to the destination of the task.
+ -->
 
 
 
@@ -525,20 +540,6 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
  -->
 
 
-
- ##### Asynchronous doesn't mean concurrent
-
- <!-- TODO: Async does NOT mean concurrent -->
-
- <!-- from Ray W --  
- While the difference seems subtle at first, just because your tasks are asynchronous doesn't mean they will run concurrently. You're actually able to submit asynchronous tasks to either a serial queue or a concurrent queue. Being synchronous or asynchronous simply identifies whether or not the queue on which you're running the task must wait for the task to complete before it can spawn the next task.
-
- On the other hand, categorizing something as serial versus concurrent identifies whether the queue has a single thread or multiple threads available to it. If you think about it, submitting three asynchronous tasks to a serial queue means that each task has to completely finish before the next task is able to start as there is only one thread available.
-
- In other words, a task being synchronous or not speaks to the source of the task.
-
- Being serial or concurrent speaks to the destination of the task.
- -->
 
 
 
