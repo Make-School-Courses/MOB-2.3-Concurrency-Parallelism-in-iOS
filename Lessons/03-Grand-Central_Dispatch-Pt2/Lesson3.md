@@ -265,14 +265,14 @@ The key to understanding this is that `.sync` does not __*execute*__ tasks/block
 
 ## Overview/TT II (20 min)
 
+### Key Concepts
+
 #### Critical Section
 
 A Critical Section is a code block that accesses shared variables/resources and has to be executed as an atomic action.
 
 Critical Section
 This is a piece of code that must not be executed concurrently, that is, from two threads at once. This is usually because the code manipulates a shared resource such as a variable that can become corrupt if it’s accessed by concurrent processes.
-
-
 
 #### Thread Safety
 
@@ -282,6 +282,7 @@ Thread safe code can be safely called from multiple threads or concurrent tasks 
 Code that is not thread safe must only be run in one context at a time. An example of thread safe code is NSDictionary. You can use it from multiple threads at the same time without issue. On the other hand, NSMutableDictionary is not thread safe and should only be accessed from one thread at a time.
 
 
+### DispatchQueues (cont'd)
 
 #### Serial Queues
 
