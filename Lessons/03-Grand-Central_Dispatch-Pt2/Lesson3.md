@@ -294,8 +294,7 @@ For example, a critical section might manipulate a particular variable that can 
 
 In the diagram below, if `Process 1` executes the code in the Critical Section to read a shared variable &mdash; while `Process 2` needs to write to the same variable &mdash;  `Process 1` might get either the old or new value of the variable:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Critical_section_fg](assets/Critical_section_fg.png) </br>
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Critical_section_fg](assets/Critical_section_fg.png) 
 
 **Examples:**
 
