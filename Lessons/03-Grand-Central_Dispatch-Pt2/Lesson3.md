@@ -7,6 +7,7 @@
 2) xxxx
  -->
 
+
 ## Minute-by-Minute
 
 | **Elapsed** | **Time**  | **Activity**              |
@@ -135,7 +136,7 @@ The `main queue`:
 - is a *serial queue* that's responsible for your UI. (We'll cover *serial* and *concurrent* queues in the next lesson.)
 - is closely associated with the `main thread` and its call stack. The `main queue` *only* executes code on the `main thread`.
 
-> Note: You should __*never*__ perform UI updates on any queue other than the `main queue`.
+> REMEMBER: You should __*never*__ perform UI updates on any queue other than the `main queue`. And you must always access UI Kit classes on the `main thread`.
 
 #### How the Main Queue Fits
 
