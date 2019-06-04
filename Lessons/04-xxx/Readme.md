@@ -33,10 +33,9 @@ Explain why students should care to learn the material presented in this class.
 
 ## Overview/TT I (20 min)
 
-- Why learn this?
-- Industry examples of usage
-- Best practices
-- Personal anecdote
+
+
+
 
 ## In Class Activity I (30 min)
 

@@ -16,10 +16,10 @@
 | 0:00        | 0:05      | Objectives                |
 | 0:05        | 0:20      | Initial Exercise                  |
 | 0:25        | 0:25      | Overview I                 |
-| 0:50        | 0:45      | In Class Activity I       |
-| 1:05        | 0:10      | BREAK                     |
-| 1:15        | 0:45      | In Class Activity II      |
-| TOTAL       | 2:00      |                           |
+| 0:50       | 0:10      | BREAK                     |
+| 1:00       | 0:25      | Overview II      |
+| 1:25       | 0:25      | In Class Activity I      |
+| TOTAL       | 1:50     |                           |
 
 ## Why you should know this or industry application (optional) (5 min)
 
@@ -87,7 +87,7 @@ Let's examine the code in the snippet below:
 
 
 
-## Overview/TT I (20 min)
+## Overview/TT I (25 min)
 
 
 <!-- REVIEW OF SYNC AND ASYNC FRM LAST CLASS?
@@ -262,15 +262,7 @@ The key to understanding this is that `.sync` does not __*execute*__ tasks/block
 *Source:* https://medium.com/swift-india/parallel-programming-with-swift-part-1-4-df7caac564ae
 
 
-## Overview/TT II (20 min)
-
-<!-- OUTLINE:
-- Key Concepts
-- Serial & Concurrent Qs
-- 3 Types of queues
-- QoS
-- Inferring QoS
-- Async Does NOT mean concurrent -->
+## Overview/TT II (25 min)
 
 
 ### Key Concepts
@@ -419,7 +411,7 @@ GCD offers you four Quality of Service (Qos) classes:
 - **.background**
 
 
-## In Class Activity I (20 min)
+## In Class Activity I (25 min)
 
 ### Part 1 &mdash; In Groups of 3 &mdash; A Jigsaw Puzzle Exercise
 
@@ -533,11 +525,11 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 
 
-## In Class Activity II (20 min)
+<!-- ## In Class Activity II (20 min)
 
 <!-- TODO: create this...is there a suitable playground from prior lesson?
 - set up a situation where students call sync on current queue?
- -->
+ --> -->
 
 
 
