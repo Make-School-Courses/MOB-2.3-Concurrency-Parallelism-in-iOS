@@ -351,16 +351,17 @@ Since no two tasks in a serial queue can ever run concurrently, there is no risk
 &nbsp;&nbsp;&nbsp;&nbsp; *Source:* </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://www.raywenderlich.com/5370-grand-central-dispatch-tutorial-for-swift-4-part-1-2
 
-**The Main Queue is a Serial Queue**
-When an iOS app launches, the system automatically creates a __*serial queue*__ called the `main queue` and binds it to the application’s `main thread`.
+**The Main Queue is a Serial Queue** </br>
+As mentioned, when an iOS app launches, the system automatically creates a __*serial queue*__ called the `main queue` and binds it to the application’s `main thread`.
 
-Any tasks assigned in the `main queue` and are executued serially, one at a time, on the `main thread` in their turn.
+Any tasks assigned in the `main queue` and are executed serially, one at a time, on the `main thread` in their turn.
 
-Any time you write code, such as the following snippet, to access the `main queue` you are accessing the same system-created queue and any code you submit to that queue is executed serially on the `main thread`:
+Any time you write code, such as the following snippet, to access the `main queue` you are accessing the same, singular system-created queue, and any code you submit to that queue is executed serially on the `main thread`:
 
 ```Swift  
   let mainQueue   = DispatchQueue.main
 ```
+This `main queue` is the queue to use for sending messages to UIViews and and all other UI-related tasks.
 
 #### Concurrent Queues
 
@@ -371,12 +372,8 @@ For Concurrent Queues:
 - multiple tasks can run at the same time.
 - tasks are guaranteed to start in the order they were added.
 
-
+__*GCD and Concurrent Queues*__ <sup>1</sup>
 But tasks can finish in any order and you have no knowledge of the time it will take for the next block to start, nor the number of blocks that are running at any given time. (This is entirely up to GCD.)
-
-
-Tasks can finish in any order and
-you have no knowledge of the time it will take for the next task to start, nor the number of tasks that are running at any given time.
 
 The decision of when and where to start a block is entirely up to GCD, too. If the execution time of one block overlaps with another, it’s up to GCD to determine if it should run on a different core, if one is available, or instead to perform a __*context switch*__ to a different block of code.
 
@@ -393,23 +390,35 @@ If your iOS device is completely bogged down and your app is competing for resou
 <sup>1</sup> *GCD controls the execution timing. You won’t know the amount of time between one task ending and the next one beginning.*
 
 
-
-
-##### Types of Queues
-
-<!-- Provided by GCD
+#### Types of Queues
 
 The GCD library (`libdispatch`) automatically creates several queues with different priority levels that execute several tasks concurrently, selecting the optimal number of tasks to run based on the operating environment.
 
-- Main Queue
-- Global (Concurrent Queues)
-  - require QoS Priority
-- Custom Queues - Serial or Concurrent -->
+GCD provides three main types of queues:
 
+1. The **Main Queue** &mdash; a serial queue that runs on the `main thread`.
 
+2. **Global Dispatch Queues** &mdash; These a __*concurrent queues*__ provided by the system which the system shares with any processes requesting them. There are four Global Dispatch Queues with different priorities:
+- high
+- default
+- low
+- background
 
-	- requires QoS Priority
+3. **Custom Queues** &mdash; Queues you create. You can create them as either __*serial*__ or __*concurrent*__ queues.
+- In actuality, the system will assign one of the Global Queues to handle your custom queue's activities.
 
+##### QoS Priority
+When setting up **Global Dispatch Queues,** you do not specify the priority directly; instead, you are required to specify a Quality of Service (Qos) level (as a class property) which guides GCD into determining the priority level to give the task.
+
+GCD offers you four Quality of Service (Qos) classes:
+
+- **.userInteractive**
+
+- **.userInitiated**
+
+- **.utility**
+
+- **.background**
 
 
 ## In Class Activity I (20 min)
@@ -542,6 +551,7 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 - Dining philosophers problem
 - the critical section problem
 - race conditions
+- .default and .unspecified
 
 <!-- TODO: look up the 2 outstanding QoS priorities -->
 
