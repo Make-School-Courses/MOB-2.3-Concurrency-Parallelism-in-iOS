@@ -320,9 +320,9 @@ Thread safe code:
 - can be safely called from multiple threads or concurrent tasks without causing any problems (data corruption, crashing, etc).
 - is guaranteed to be free of race conditions when accessed by multiple threads simultaneously.
 
-An example of thread safe code: A `Dictionary` or an `Array` that is declared as a constant (with `let`) &mdash; Because it is *read-only,*, you can access it from multiple threads at the same time without issue.
+An example of thread safe code: A `Dictionary` or an `Array` that is declared as a constant (with `let`) &mdash; because it is *read-only,*, you can access it from multiple threads at the same time without issue.
 
-Code that is not thread safe must only be run in one context at a time.
+Code that is not thread safe must only be run in one context at a time &mdash; it must not be accessed from more than one thread at a time.
 
 Example: A `Dictionary` or an `Array` declared as a `var` is __*not thread safe*__ and should only be accessed from one thread at a time.
 
@@ -338,13 +338,13 @@ GCDs `DispatchQueues` possess several defining attributes:
 
 #### Serial Queues
 
-Serial queues guarantee that only one task runs at any given time.
+Serial queues guarantee that __*only one task runs*__ at any given time.
 
 Serial Queues:
 - only have a __*single thread*__ associated with them and thus only allow a single task to be executed at any given time.
 - execute tasks in the order they are submitted, one at a time. <sup>1</sup>
 
-Since no two tasks in a serial queue can ever run concurrently, there is no risk they might access the same critical section concurrently; that *protects the critical section* from race conditions with respect to those tasks only. So if the only way to access that critical section is via a task submitted to that dispatch queue, then you can be sure that the critical section is safe.
+Since no two tasks in a serial queue can ever run concurrently, there is no risk they might access the same critical section concurrently; that __*protects the critical section*__ from race conditions with respect to those tasks only. So if the only way to access that critical section is via a task submitted to that dispatch queue, then you can be sure that the critical section is safe.
 
 ![serial_queue](assets/serial_queue.png) </br>
 
