@@ -263,7 +263,7 @@ The key to understanding this is that `.sync` does not __*execute*__ tasks/block
 *Source:* https://medium.com/swift-india/parallel-programming-with-swift-part-1-4-df7caac564ae
 
 
-## In Class Activity II (20 min)
+## In Class Activity I (20 min)
 
 <!-- TODO: create this...is there a suitable playground from prior lesson?
 - set up a situation where students call sync on current queue?
