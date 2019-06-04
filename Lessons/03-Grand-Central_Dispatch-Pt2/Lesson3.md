@@ -284,7 +284,14 @@ Code that is not thread safe must only be run in one context at a time. An examp
 
 ### DispatchQueues (cont'd)
 
+
+Queues can be either serial or concurrent.
+
 #### Serial Queues
+
+<!-- Serial queues guarantee that only one task runs at any given time.
+GCD controls the execution timing.
+You won’t know the amount of time between one task ending and the next one beginnin -->
 
 
 
@@ -320,6 +327,13 @@ Since no two tasks in a serial queue can ever run concurrently, there is no risk
  A concurrent queue, on the other hand, is able to utilize as many threads as the system has resources for. Threads will be created and released as necessary on a concurrent queue.
 
 
+ <!-- Concurrent queues allow multiple tasks to run at the same time.
+ Tasks are guaranteed to start in the order they were added.
+ Tasks can finish in any order and
+ you have no knowledge of the time it will take for the next task to start, nor the number of tasks that are running at any given time. -->
+
+
+
 	- requires QoS Priority
 
 
@@ -329,8 +343,26 @@ Since no two tasks in a serial queue can ever run concurrently, there is no risk
 
 <!-- TODO: insert graphic here -->
 
--- Asynchronous doesn't mean concurrent
 
+##### QoS levels
+
+
+<!-- Concurrent queues are so common that Apple has provided six different global concurrent queues, depending on the Quality of service (QoS) the queue should have. -->
+
+The library automatically creates several queues with different priority levels that execute several tasks concurrently, selecting the optimal number of tasks to run based on the operating environment.
+
+
+
+<!-- TODO: insert table here -->
+
+
+
+##### Inferring QoS priority
+
+
+##### Asynchronous doesn't mean concurrent
+
+<!-- TODO: Async does NOT mean concurrent -->
 
 <!-- from Ray W --  
 While the difference seems subtle at first, just because your tasks are asynchronous doesn't mean they will run concurrently. You're actually able to submit asynchronous tasks to either a serial queue or a concurrent queue. Being synchronous or asynchronous simply identifies whether or not the queue on which you're running the task must wait for the task to complete before it can spawn the next task.
@@ -342,23 +374,57 @@ In other words, a task being synchronous or not speaks to the source of the task
 Being serial or concurrent speaks to the destination of the task.
 -->
 
-##### QoS levels
+
+## In Class Activity I (20 min)
 
 
-The library automatically creates several queues with different priority levels that execute several tasks concurrently, selecting the optimal number of tasks to run based on the operating environment.
+<!-- There are four predefined global concurrent queues
+< list them …that’s all >
+Activity - < send them to place to read about the queues>
+break into teams (4 teams of 3)
+< need 4 empty slides >
+each team would fill in their respective slide decks -->
 
-Concurrent queues are so common that Apple has provided six different global concurrent queues, depending on the Quality of service (QoS) the queue should have.
-
-<!-- TODO: insert table here -->
 
 
+## Overview/TT III (20 min)
 
-#### Default Queues
+### Creating Serial & Concurrent Queues
+
+
+< recall from previous lesson >
+It's easy to create a `DispatchQueue`. This example creates a new `DispatchQueue` called `myQueue` with a *label* (identifier) of `"com.makeschool.mycoolapp.networking"`:
+
+```Swift
+  let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking")
+ ```
+
+<!-- The default initializer, as shown in the code above, will create a serial queue wherein each task must complete before the next task is able to start. -->
+
+
+<!-- In order to create a concurrent queue, simply pass in the .concurrent attribute, like so: -->
+
+```Swift
+  let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking", attributes: .concurrent)
+ ```
 
 
 #### Custom Queues
 
 
+#### Default Queues
+
+
+
+
+
+#### Issues
+
+
+<!-- TODO: introduce Thread Explosion? -->
+ <!-- Many workitems submitted to global concurrent queue
+ If workitems block, more threads will be created
+ May lead to thread explosion -->
 
 
 Another way that apps consume too many threads is by creating too many private concurrent dispatch queues. Because each dispatch queue consumes thread resources, creating additional concurrent dispatch queues exacerbates the thread consumption problem. Instead of creating private concurrent queues, submit tasks to one of the global concurrent dispatch queues. For serial tasks, set the target of your serial queue to one of the global concurrent queues. That way, you can maintain the serialized behavior of the queue while minimizing the number of separate queues creating threads.
@@ -378,29 +444,12 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 
 
-<!-- TODO: introduce Thread Explosion? -->
- <!-- Many workitems submitted to global concurrent queue
- If workitems block, more threads will be created
- May lead to thread explosion -->
-
-
-<!-- TODO: Async does NOT mean concurrent -->
 
 
 
-## In Class Activity I (30 min)
 
 
-<!-- There are four predefined global concurrent queues
-< list them …that’s all >
-Activity - < send them to place to read about the queues>
-break into teams (4 teams of 3)
-< need 4 empty slides >
-each team would fill in their respective slide decks -->
-
-
-
-## In Class Activity I (20 min)
+## In Class Activity II (20 min)
 
 <!-- TODO: create this...is there a suitable playground from prior lesson?
 - set up a situation where students call sync on current queue?
