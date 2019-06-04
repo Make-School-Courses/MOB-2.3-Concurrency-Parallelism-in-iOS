@@ -425,43 +425,32 @@ GCD offers you four Quality of Service (Qos) classes:
 
 ### In Groups of 3 &mdash; A Jigsaw Puzzle Exercise
 
+For the QoS class assigned to your team, fill in the following categories (columns) in the slide provided:
+- Type of work and focus of QoS
+- Duration of work to be performed
+- Example Use Case
 
+Team 1: **.userInteractive**
 
-  <!-- There are four predefined global concurrent queues
-  < list them …that’s all >
-  Activity - < send them to place to read about the queues>
-  break into teams (4 teams of 3)
-  < need 4 empty slides >
-  each team would fill in their respective slide decks -->
+Team 2: **.userInitiated**
 
-<!--
+Team 3: **.utility**
 
-##### QoS levels
+Team 4: **.background**
 
- -->
-
-
-
+**Resources:** </br>
 https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html
-
 https://developer.apple.com/documentation/dispatch/dispatchqos
 
 
 
-
-
-
-<!-- Concurrent queues are so common that Apple has provided six different global concurrent queues, depending on the Quality of service (QoS) the queue should have. -->
-
-<!-- TODO: insert table here -->
+<!-- TODO: move below to Lesson 4 -->
 
 
 
 ##### Inferring QoS priority
 
 
-
-## Overview/TT III (20 min)
 
 ### Creating Serial & Concurrent Queues
 
@@ -582,7 +571,7 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 ## Additional Resources
 
-1. [Slides]()
+1. [Slides](https://docs.google.com/presentation/d/1dC_CFNPo4nGdw7OVMlLwNi6Dbmn0cX9ugCgVTiMzdj8/edit#slide=id.p)
 2. []()
 3. []()
 4. []()
