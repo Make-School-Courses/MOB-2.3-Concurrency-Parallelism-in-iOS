@@ -4,6 +4,10 @@ This term you'll work on a project in which you will put into practice the conce
 
 The *goal of the project* is to demonstrate your mastery in the course. To do so you can choose to include in your project as many concepts from the course as you feel comfortable with as long as they are applied in a correct manner. On the same note, you don't have to build something complex or with tons of features to pass this assignment. Think about the simplest way you can explain the material. (You can always build something more robust during an intensive)
 
+## Deliverables
+- [x] App on Github
+- [x] Written document - Google Doc (unless it's published)
+
 ## Requirements
 
 - [x] The app's functionality is up to you. Any domain is good.
@@ -15,7 +19,7 @@ The *goal of the project* is to demonstrate your mastery in the course. To do so
 
 Bonus Points:
 - [x] You publish your written assignment + working code in a blog post. (As learning material or tutorial)
-- [X] You include good graphics (made by you) to the written assignment.
+- [X] You include useful graphics (made by you) in the written assignment.
 
 ## Concepts
 
@@ -38,3 +42,7 @@ Below is a list of some of the concepts you can choose to demonstrate/explain:
     - https://github.com/raywenderlich/swift-style-guide
 - Write documentation within your code:
     - http://nshipster.com/swift-documentation/
+
+## Due date
+
+Last day of the term.
