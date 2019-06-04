@@ -288,34 +288,26 @@ The code in the **critical section**:
 - accesses shared variables/resources and has to be executed as an __*atomic*__ action.
 - should not be executed by more than one process at a time.
 
-Typically, the critical section accesses a shared resource, such as a data structure, a peripheral device, or a network connection that would not operate correctly in the context of multiple concurrent accesses.
+Typically, the critical section accesses a shared resource &mdash; such as a data structure, a peripheral device, or a network connection &mdash; that would not operate correctly in the context of multiple concurrent accesses.
 
 For example, a critical section might manipulate a particular variable that can become corrupt if it is accessed by concurrent processes.
 
+In the diagram below, if `Process 1` executes the code in the Critical Section to read a shared variable &mdash; while `Process 2` needs to write to the same variable &mdash;  `Process 1` might get either the old or new value of the variable:
 
-![Critical_section_fg](assets/Critical_section_fg.png) </br>
-
-
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Critical_section_fg](assets/Critical_section_fg.png) </br>
 
 
+**Examples:**
 
+1. Classic Example &mdash; A bank account shared by two people.
 
- For example, a critical section might manipulate a particular data structure or use some resource that supports at most one client at a time.
+If `Person 1` checks the account balance at the same time that `Person 2` executes some transaction (eg., withdraws money), that transaction may not be reflected in the balance that `Person 1` sees.
 
+To ensure the balance reported is always accurate, any code accessing the variable holding the balance can be protected from concurrent access.
 
+2. A shared document.
 
-A **Critical Section** is a piece of code that accesses shared variables/resources and has to be executed as an __*atomic*__ action.
-
-
-
-which is a segment of code that only one thread at a time is allowed access. For example, a critical section might manipulate a particular data structure or use some resource that supports at most one client at a time.
-
-Critical Section
-This is a piece of code that must not be executed concurrently, that is, from two threads at once. This is usually because the code manipulates a shared resource such as a variable that can become corrupt if it’s accessed by concurrent processes.
-
-<!-- TODO: give examples -->
-
+When two or more people are updating a shared document, access to the document can be temporarily limited to each active contributor &mdash; even if only for an instance &mdash; to prevent additional contributors from making changes before the doc is autosaved.
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Sources:* </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Apple </br>
