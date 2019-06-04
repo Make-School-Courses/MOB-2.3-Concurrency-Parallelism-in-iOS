@@ -426,6 +426,8 @@ Team 3: **.utility**
 
 Team 4: **.background**
 
+__*HINT:*__ *See Resources below for details*
+
 **Resources:** </br>
 https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html
 https://developer.apple.com/documentation/dispatch/dispatchqos
