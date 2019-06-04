@@ -346,13 +346,12 @@ Serial Queues:
 
 Since no two tasks in a serial queue can ever run concurrently, there is no risk they might access the same critical section concurrently; that *protects the critical section* from race conditions with respect to those tasks only. So if the only way to access that critical section is via a task submitted to that dispatch queue, then you can be sure that the critical section is safe.
 
-
 ![serial_queue](assets/serial_queue.png) </br>
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Source:* </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://www.raywenderlich.com/5370-grand-central-dispatch-tutorial-for-swift-4-part-1-2
 
-**The Main Queue**
+**The Main Queue is a Serial Queue**
 When an iOS app launches, the system automatically creates a __*serial queue*__ called the `main queue` and binds it to the application’s `main thread`.
 
 Any tasks assigned in the `main queue` and are executued serially, one at a time, on the `main thread` in their turn.
@@ -363,22 +362,49 @@ Any time you write code, such as the following snippet, to access the `main queu
   let mainQueue   = DispatchQueue.main
 ```
 
+#### Concurrent Queues
+
+On the other hand, a **concurrent queue** is able to utilize as many threads as the system has resources for.
+
+For Concurrent Queues:
+- threads will be created and released as needed for a concurrent queue.
+- multiple tasks can run at the same time.
+- tasks are guaranteed to start in the order they were added.
 
 
+But tasks can finish in any order and you have no knowledge of the time it will take for the next block to start, nor the number of blocks that are running at any given time. (This is entirely up to GCD.)
+
+
+Tasks can finish in any order and
+you have no knowledge of the time it will take for the next task to start, nor the number of tasks that are running at any given time.
+
+The decision of when and where to start a block is entirely up to GCD, too. If the execution time of one block overlaps with another, it’s up to GCD to determine if it should run on a different core, if one is available, or instead to perform a __*context switch*__ to a different block of code.
+
+If your iOS device is completely bogged down and your app is competing for resources, it may only be capable of running a single task.
+
+![concurrent_queue](assets/concurrent_queue.png) </br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Source:* </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://www.raywenderlich.com/148513/grand-central-dispatch-tutorial-swift-3-part-1
+
+</br>
 
 <sup>1</sup> *GCD controls the execution timing. You won’t know the amount of time between one task ending and the next one beginning.*
 
 
 
-#### concurrent queues
 
- A concurrent queue, on the other hand, is able to utilize as many threads as the system has resources for. Threads will be created and released as necessary on a concurrent queue.
+##### Types of Queues
 
+<!-- Provided by GCD
 
- <!-- Concurrent queues allow multiple tasks to run at the same time.
- Tasks are guaranteed to start in the order they were added.
- Tasks can finish in any order and
- you have no knowledge of the time it will take for the next task to start, nor the number of tasks that are running at any given time. -->
+The GCD library (`libdispatch`) automatically creates several queues with different priority levels that execute several tasks concurrently, selecting the optimal number of tasks to run based on the operating environment.
+
+- Main Queue
+- Global (Concurrent Queues)
+  - require QoS Priority
+- Custom Queues - Serial or Concurrent -->
 
 
 
@@ -386,37 +412,27 @@ Any time you write code, such as the following snippet, to access the `main queu
 
 
 
-
-<!-- from Ray W --  Note: While you can tell iOS that you'd like to use a concurrent queue, remember that there is no guarantee that more than one task will run at a time. If your iOS device is completely bogged down and your app is competing for resources, it may only be capable of running a single task. -->
-
-<!-- TODO: insert graphic here -->
+## In Class Activity I (20 min)
 
 
+  <!-- There are four predefined global concurrent queues
+  < list them …that’s all >
+  Activity - < send them to place to read about the queues>
+  break into teams (4 teams of 3)
+  < need 4 empty slides >
+  each team would fill in their respective slide decks -->
 
-
-<!-- TODO: insert code showing how to create a default (serial) queue -->
-
-
-<!-- TODO: insert code showing how to create a concurrent queue -->
-
-
-##### Types of Queues
-
-<!-- Provided by GCD
-
-- Main Queue
-- Global (Concurrent Queues)
-  - require QoS Priority
-- Custom Queues - Serial or Concurrent -->
+<!--
 
 ##### QoS levels
 
+ -->
+
+
+
+
 
 <!-- Concurrent queues are so common that Apple has provided six different global concurrent queues, depending on the Quality of service (QoS) the queue should have. -->
-
-The library automatically creates several queues with different priority levels that execute several tasks concurrently, selecting the optimal number of tasks to run based on the operating environment.
-
-
 
 <!-- TODO: insert table here -->
 
@@ -425,37 +441,18 @@ The library automatically creates several queues with different priority levels 
 ##### Inferring QoS priority
 
 
-##### Asynchronous doesn't mean concurrent
-
-<!-- TODO: Async does NOT mean concurrent -->
-
-<!-- from Ray W --  
-While the difference seems subtle at first, just because your tasks are asynchronous doesn't mean they will run concurrently. You're actually able to submit asynchronous tasks to either a serial queue or a concurrent queue. Being synchronous or asynchronous simply identifies whether or not the queue on which you're running the task must wait for the task to complete before it can spawn the next task.
-
-On the other hand, categorizing something as serial versus concurrent identifies whether the queue has a single thread or multiple threads available to it. If you think about it, submitting three asynchronous tasks to a serial queue means that each task has to completely finish before the next task is able to start as there is only one thread available.
-
-In other words, a task being synchronous or not speaks to the source of the task.
-
-Being serial or concurrent speaks to the destination of the task.
--->
-
-
-## In Class Activity I (20 min)
-
-
-<!-- There are four predefined global concurrent queues
-< list them …that’s all >
-Activity - < send them to place to read about the queues>
-break into teams (4 teams of 3)
-< need 4 empty slides >
-each team would fill in their respective slide decks -->
-
-
 
 ## Overview/TT III (20 min)
 
 ### Creating Serial & Concurrent Queues
 
+
+
+
+<!-- TODO: insert code showing how to create a default (serial) queue -->
+
+
+<!-- TODO: insert code showing how to create a concurrent queue -->
 
 < recall from previous lesson >
 It's easy to create a `DispatchQueue`. This example creates a new `DispatchQueue` called `myQueue` with a *label* (identifier) of `"com.makeschool.mycoolapp.networking"`:
@@ -518,6 +515,22 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 <!-- TODO: create this...is there a suitable playground from prior lesson?
 - set up a situation where students call sync on current queue?
+ -->
+
+
+
+ ##### Asynchronous doesn't mean concurrent
+
+ <!-- TODO: Async does NOT mean concurrent -->
+
+ <!-- from Ray W --  
+ While the difference seems subtle at first, just because your tasks are asynchronous doesn't mean they will run concurrently. You're actually able to submit asynchronous tasks to either a serial queue or a concurrent queue. Being synchronous or asynchronous simply identifies whether or not the queue on which you're running the task must wait for the task to complete before it can spawn the next task.
+
+ On the other hand, categorizing something as serial versus concurrent identifies whether the queue has a single thread or multiple threads available to it. If you think about it, submitting three asynchronous tasks to a serial queue means that each task has to completely finish before the next task is able to start as there is only one thread available.
+
+ In other words, a task being synchronous or not speaks to the source of the task.
+
+ Being serial or concurrent speaks to the destination of the task.
  -->
 
 
