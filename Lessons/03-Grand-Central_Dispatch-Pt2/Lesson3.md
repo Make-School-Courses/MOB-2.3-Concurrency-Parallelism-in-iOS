@@ -263,18 +263,27 @@ The key to understanding this is that `.sync` does not __*execute*__ tasks/block
 *Source:* https://medium.com/swift-india/parallel-programming-with-swift-part-1-4-df7caac564ae
 
 
-## In Class Activity I (20 min)
-
-<!-- TODO: create this...is there a suitable playground from prior lesson?
-- set up a situation where students call sync on current queue?
- -->
-
-
 ## Overview/TT II (20 min)
+
+#### Critical Section
+
+A Critical Section is a code block that accesses shared variables/resources and has to be executed as an atomic action.
+
+Critical Section
+This is a piece of code that must not be executed concurrently, that is, from two threads at once. This is usually because the code manipulates a shared resource such as a variable that can become corrupt if it’s accessed by concurrent processes.
+
+
+
+#### Thread Safety
+
+Thread Safe
+Thread safe code can be safely called from multiple threads or concurrent tasks without causing any problems (data corruption, crashing, etc).
+
+Code that is not thread safe must only be run in one context at a time. An example of thread safe code is NSDictionary. You can use it from multiple threads at the same time without issue. On the other hand, NSMutableDictionary is not thread safe and should only be accessed from one thread at a time.
+
 
 
 #### Serial Queues
-
 
 
 
@@ -300,6 +309,9 @@ let mainQueue   = DispatchQueue.main -->
 
 
 <!-- TODO: insert code showing how to create a concurrent queue -->
+
+
+Since no two tasks in a serial queue can ever run concurrently, there is no risk they might access the same critical section concurrently; that protects the critical section from race conditions with respect to those tasks only. So if the only way to access that critical section is via a task submitted to that dispatch queue, then you can be sure that the critical section is safe.
 
 
 #### concurrent queues
@@ -378,11 +390,24 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 ## In Class Activity I (30 min)
 
 
+<!-- There are four predefined global concurrent queues
+< list them …that’s all >
+Activity - < send them to place to read about the queues>
+break into teams (4 teams of 3)
+< need 4 empty slides >
+each team would fill in their respective slide decks -->
 
 
-## Overview/TT II (optional) (20 min)
 
-## In Class Activity II (optional) (30 min)
+## In Class Activity I (20 min)
+
+<!-- TODO: create this...is there a suitable playground from prior lesson?
+- set up a situation where students call sync on current queue?
+ -->
+
+
+
+
 
 ## After Class
 1. Research:
