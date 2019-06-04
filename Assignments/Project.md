@@ -43,6 +43,11 @@ Below is a list of some of the concepts you can choose to demonstrate/explain:
 - Write documentation within your code:
     - http://nshipster.com/swift-documentation/
 
+## Need some inspiration:
+
+Check out the [latest WWDC Scholarship winners and their apps](https://itunes.apple.com/us/story/id1463610907)
+
+
 ## Due date
 
 Last day of the term.
