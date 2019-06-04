@@ -33,7 +33,17 @@ Explain why students should care to learn the material presented in this class.
 
 ## Overview/TT I (20 min)
 
+<!-- OUTLINE:
 
+Inferring QoS
+Creating Serial & Concurrent Queues
+Custom queues
+Default Queues
+Issues
+
+Delaying Work with dispatch_after?
+Handling Background Tasks with dispatch_sync?
+Making Your Singletons Thread-Safe? -->
 
 
 ##### Inferring QoS priority
