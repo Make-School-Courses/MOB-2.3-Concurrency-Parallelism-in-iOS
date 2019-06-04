@@ -276,14 +276,50 @@ The key to understanding this is that `.sync` does not __*execute*__ tasks/block
 
 ### Key Concepts
 
+Before we delve deeper into GCD's `DispatchQueues`, let's explore a couple of related concepts...
+
 #### Critical Section
 
-A **Critical Section** is a code block that accesses shared variables/resources and has to be executed as an __*atomic*__ action.
+Multiple, concurrent accesses to shared resources can lead to unexpected or erroneous behavior. So, parts of the program where the shared resource is accessed are protected from concurrent access.
+
+This protected section is called the **critical section** (or **critical region**).
+
+The code in the **critical section**:
+- accesses shared variables/resources and has to be executed as an __*atomic*__ action.
+- should not be executed by more than one process at a time.
+
+Typically, the critical section accesses a shared resource, such as a data structure, a peripheral device, or a network connection that would not operate correctly in the context of multiple concurrent accesses.
+
+For example, a critical section might manipulate a particular variable that can become corrupt if it is accessed by concurrent processes.
+
+
+![Critical_section_fg](assets/Critical_section_fg.png) </br>
+
+
+
+
+
+
+
+ For example, a critical section might manipulate a particular data structure or use some resource that supports at most one client at a time.
+
+
+
+A **Critical Section** is a piece of code that accesses shared variables/resources and has to be executed as an __*atomic*__ action.
+
+
+
+which is a segment of code that only one thread at a time is allowed access. For example, a critical section might manipulate a particular data structure or use some resource that supports at most one client at a time.
 
 Critical Section
 This is a piece of code that must not be executed concurrently, that is, from two threads at once. This is usually because the code manipulates a shared resource such as a variable that can become corrupt if it’s accessed by concurrent processes.
 
 <!-- TODO: give examples -->
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Sources:* </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Apple </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - wikipedia
 
 
 #### Thread Safety
@@ -491,7 +527,9 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 ## After Class
 1. Research:
--
+- Dining philosophers problem
+- the critical section problem
+
 2. Assignment:
 -
 
@@ -515,3 +553,10 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 
 https://developer.apple.com/videos/play/wwdc2017/706/
+
+https://en.wikipedia.org/wiki/Critical_section
+
+https://developer.apple.com/documentation/foundation/nslocking/1416318-lock
+
+
+https://en.wikipedia.org/wiki/Peterson%27s_algorithm
