@@ -44,7 +44,7 @@ Students by the end of the course will be able to ...
 
 [Introduction to Concurrency & Parallelism]: Lessons/01-Intro-Concurrency-&-Parallelism/Lesson1.md
 [Grand Central Dispatch (Pt 1)]: Lessons/02-Grand-Central_Dispatch-Pt1/Lesson2.md
-[Grand Central Dispatch (Pt 2)]: Lessons/xxx/Lesson3.md
+[Grand Central Dispatch (Pt 2)]: Lessons/03-Grand-Central_Dispatch-Pt2/Lesson3.md
 [Dispatch Groups]: Lessons/xxx/LessonX.md
 [Semaphores]: Lessons/xxx/LessonX.md
 [Operations (Pt 1)]: Lessons/xxx/LessonX.md

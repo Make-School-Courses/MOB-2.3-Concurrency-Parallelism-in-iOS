@@ -372,7 +372,7 @@ For Concurrent Queues:
 - multiple tasks can run at the same time.
 - tasks are guaranteed to start in the order they were added.
 
-__*GCD and Concurrent Queues*__ <sup>1</sup>
+__*GCD and Concurrent Queues*__ <sup>1</sup> </br>
 But tasks can finish in any order and you have no knowledge of the time it will take for the next block to start, nor the number of blocks that are running at any given time. (This is entirely up to GCD.)
 
 The decision of when and where to start a block is entirely up to GCD, too. If the execution time of one block overlaps with another, it’s up to GCD to determine if it should run on a different core, if one is available, or instead to perform a __*context switch*__ to a different block of code.
@@ -423,6 +423,9 @@ GCD offers you four Quality of Service (Qos) classes:
 
 ## In Class Activity I (20 min)
 
+### In Groups of 3 &mdash; A Jigsaw Puzzle Exercise
+
+
 
   <!-- There are four predefined global concurrent queues
   < list them …that’s all >
@@ -436,6 +439,13 @@ GCD offers you four Quality of Service (Qos) classes:
 ##### QoS levels
 
  -->
+
+
+
+https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html
+
+https://developer.apple.com/documentation/dispatch/dispatchqos
+
 
 
 
