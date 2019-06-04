@@ -316,11 +316,15 @@ When two or more people are updating a shared document, access to the document c
 
 #### Thread Safety
 
-Thread Safe
-Thread safe code can be safely called from multiple threads or concurrent tasks without causing any problems (data corruption, crashing, etc).
+Thread safe code:
+- can be safely called from multiple threads or concurrent tasks without causing any problems (data corruption, crashing, etc).
+- is guaranteed to be free of race conditions when accessed by multiple threads simultaneously.
 
-Code that is not thread safe must only be run in one context at a time. An example of thread safe code is NSDictionary. You can use it from multiple threads at the same time without issue. On the other hand, NSMutableDictionary is not thread safe and should only be accessed from one thread at a time.
+An example of thread safe code: A `Dictionary` or an `Array` that is declared as a constant (with `let`) &mdash; Because it is *read-only,*, you can access it from multiple threads at the same time without issue.
 
+Code that is not thread safe must only be run in one context at a time.
+
+Example: A `Dictionary` or an `Array` declared as a `var` is __*not thread safe*__ and should only be accessed from one thread at a time.
 
 ### DispatchQueues (cont'd)
 
@@ -521,6 +525,11 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 1. Research:
 - Dining philosophers problem
 - the critical section problem
+- race conditions
+
+<!-- TODO: look up the 2 outstanding QoS priorities -->
+
+
 
 2. Assignment:
 -
@@ -552,3 +561,5 @@ https://developer.apple.com/documentation/foundation/nslocking/1416318-lock
 
 
 https://en.wikipedia.org/wiki/Peterson%27s_algorithm
+
+https://en.wikipedia.org/wiki/Thread_safety
