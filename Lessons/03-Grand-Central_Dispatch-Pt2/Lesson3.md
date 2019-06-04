@@ -3,6 +3,7 @@
 <!-- INSTRUCTOR Notes:
 
 1) for initial exercise...
+- answers to Part 2 are below each question...
 
 2) xxxx
  -->
@@ -13,8 +14,9 @@
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
 | 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:15      | Overview                  |
-| 0:20        | 0:45      | In Class Activity I       |
+| 0:05        | 0:20      | Initial Exercise                  |
+| 0:25        | 0:25      | Overview I                 |
+| 0:50        | 0:45      | In Class Activity I       |
 | 1:05        | 0:10      | BREAK                     |
 | 1:15        | 0:45      | In Class Activity II      |
 | TOTAL       | 2:00      |                           |
@@ -37,7 +39,56 @@ By the end of this lesson, you should be able to...
 - basic examples of __*dispatch queues*__ running built-in `.sync` and `.async` functions -->
 
 
-## Initial Exercise (15 min)
+## Initial Exercise (20 min)
+
+### Part 1 &mdash; Diagramming Concurrent Task Execution
+
+#### Individually - Diagram
+
+**Scenario:**
+- Your app fetches images from the Internet, then processes them for display through a sepia tone filter.
+- Fetching and processing images is negatively impacting performance, especially scrolling in the table view.
+
+**TODO:**
+Diagram how you would use what you know so far about currency in iOS to improve your app's performance. In your diagram, be sure to point out:
+
+1. the point in time on the relevant queue(s) where an image is downloaded
+2. the point where the image is filtered
+3. the point at which the image is presented to the user, and the queue on which this would take place
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![activity_diag_template](assets/activity_diag_template.png) </br>
+
+### Part 2 &mdash; Calling main.sync from Background Thread
+
+Let's examine the code in the snippet below:
+
+```Swift  
+  func someFunction() {
+    DispatchQueue.global().async {  // A) Run the following code block asynchronously on a non-UI thread
+          let url = URL(string: imageUrl)
+          do {
+              let data = try Data(contentsOf: url!)
+                  DispatchQueue.main.sync { // B) Run the code below synchronously on the main queue
+                      self.imageIcon.image = UIImage(data: data)
+                  }
+              }
+    }
+  ```
+
+**Q:** What exactly is happening in this code?
+
+<!-- At point `A)`, the code runs asynchronously on a background thread and &mdash; when done &mdash; it calls the `main queue` and tells it to run the code at `B)` *immediately* next (synchronously); in other words, it submits the block to the `main queue` and `.sync` tells the `main queue` to run the block immediately after the current function (`someFunction()`) completes (but after any system tasks already in the `main queue` have run). -->
+
+**Q:** When might this be useful?
+
+<!-- in `viewDidLoad()`, for example - updating the image immediately after the `viewDidLoad()` function runs, rather than allowing some other function in the ViewController to execute, might enhance the user experience... -->
+
+
+*Source:* https://www.reddit.com/r/iOSProgramming/comments/7n9e9f/what_is_the_difference_between/
+
+
+
+## Overview/TT I (20 min)
 
 
 <!-- REVIEW OF SYNC AND ASYNC FRM LAST CLASS?
@@ -56,10 +107,6 @@ when to use sync  -->
 An asynchronous function returns control to the caller immediately, ordering the task to be done but not waiting for it.
 Thus, an asynchronous function does not block the current thread of execution from proceeding on to the next function. -->
 
-
-
-
-## Overview/TT I (20 min)
 
 ### When to use Async?
 
@@ -84,27 +131,6 @@ Use `.sync` when your app needs to wait until a task is finished.
 Example scenarios include:
 - to ensure a particular function is not called a second time before its first invocation is finished.
 - to wait for an operation inside a block to finish before you can use the data processed by the block.
-
-Let's examine the code in the snippet below:
-
-```Swift  
-  func someFunction() {
-    DispatchQueue.global().async {  // A) Run the following code block asynchronously on a non-UI thread
-          let url = URL(string: imageUrl)
-          do {
-              let data = try Data(contentsOf: url!)
-                  DispatchQueue.main.sync { // B) Run the code below synchronously on the main queue
-                      self.imageIcon.image = UIImage(data: data)
-                  }
-              }
-    }
-  ```
-
-**Q:** What exactly is happening here?
-
-At point `A)`, the code runs asynchronously on a background thread and &mdash; when done &mdash; it calls the `main queue` and tells it to run the code at `B)` *immediately* next (synchronously); in other words, it submits the block to the `main queue` and `.sync` tells the `main queue` to run the block immediately after the current function (`someFunction()`) completes (but after any system tasks already in the `main queue` have run).
-
-*Source:* https://www.reddit.com/r/iOSProgramming/comments/7n9e9f/what_is_the_difference_between/
 
 
 ### Sync and Deadlocks
@@ -240,25 +266,9 @@ The key to understanding this is that `.sync` does not __*execute*__ tasks/block
 ## In Class Activity II (20 min)
 
 <!-- TODO: create this...is there a suitable playground from prior lesson?
-- set up a situation where students call sync on current queue
+- set up a situation where students call sync on current queue?
  -->
 
-### Diagramming Concurrent Task Execution
-
-#### Individually - Diagram
-
-**Scenario:**
-- Your app fetches images from the Internet, then processes them for display through a sepia tone filter.
-- Fetching and processing images is negatively impacting performance, especially scrolling in the table view.
-
-**TODO:**
-Diagram how you would use what you know so far about currency in iOS to improve your app's performance. In your diagram, be sure to point out:
-
-1. the point in time on the relevant queue(s) where an image is downloaded
-2. the point where the image is filtered
-3. the point at which the image is presented to the user, and the queue on which this would take place
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![activity_diag_template](assets/activity_diag_template.png) </br>
 
 ## Overview/TT II (20 min)
 
