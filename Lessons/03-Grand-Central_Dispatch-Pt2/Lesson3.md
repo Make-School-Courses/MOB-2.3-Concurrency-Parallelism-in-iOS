@@ -462,29 +462,16 @@ https://developer.apple.com/documentation/dispatch/dispatchqos
 https://www.raywenderlich.com/5370-grand-central-dispatch-tutorial-for-swift-4-part-1-2
 
 
-
 ## Wrap Up (5 min)
 
-- Continue working on your current tutorial
+- Start working on assigned current tutorial
 - Complete reading
-- Complete challenges
 
 ## Additional Resources
 
 1. [Slides](https://docs.google.com/presentation/d/1dC_CFNPo4nGdw7OVMlLwNi6Dbmn0cX9ugCgVTiMzdj8/edit#slide=id.p)
-2. []()
-3. []()
-4. []()
-5. []()
-
-
-https://developer.apple.com/videos/play/wwdc2017/706/
-
-https://en.wikipedia.org/wiki/Critical_section
-
-https://developer.apple.com/documentation/foundation/nslocking/1416318-lock
-
-
-https://en.wikipedia.org/wiki/Peterson%27s_algorithm
-
-https://en.wikipedia.org/wiki/Thread_safety
+2. [Modernizing Grand Central Dispatch Usage - a vide from Apple](https://developer.apple.com/videos/play/wwdc2017/706/)
+3. [Critical_section - wikipedia](https://en.wikipedia.org/wiki/Critical_section)
+4. [lock() - from Apple docs](https://developer.apple.com/documentation/foundation/nslocking/1416318-lock)
+5. [Peterson Algorithm - wikipedia](https://en.wikipedia.org/wiki/Peterson%27s_algorithm)
+5. [Thread_safety - wikipedia](https://en.wikipedia.org/wiki/Thread_safety)
