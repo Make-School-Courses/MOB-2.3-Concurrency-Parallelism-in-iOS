@@ -338,37 +338,36 @@ GCDs `DispatchQueues` possess several defining attributes:
 
 #### Serial Queues
 
-<!-- Serial queues guarantee that only one task runs at any given time.
-GCD controls the execution timing.
-You won’t know the amount of time between one task ending and the next one beginnin -->
+Serial queues guarantee that only one task runs at any given time.
+
+Serial Queues:
+- only have a __*single thread*__ associated with them and thus only allow a single task to be executed at any given time.
+- execute tasks in the order they are submitted, one at a time. <sup>1</sup>
+
+Since no two tasks in a serial queue can ever run concurrently, there is no risk they might access the same critical section concurrently; that *protects the critical section* from race conditions with respect to those tasks only. So if the only way to access that critical section is via a task submitted to that dispatch queue, then you can be sure that the critical section is safe.
+
+
+![serial_queue](assets/serial_queue.png) </br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Source:* </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://www.raywenderlich.com/5370-grand-central-dispatch-tutorial-for-swift-4-part-1-2
+
+**The Main Queue**
+When an iOS app launches, the system automatically creates a __*serial queue*__ called the `main queue` and binds it to the application’s `main thread`.
+
+Any tasks assigned in the `main queue` and are executued serially, one at a time, on the `main thread` in their turn.
+
+Any time you write code, such as the following snippet, to access the `main queue` you are accessing the same system-created queue and any code you submit to that queue is executed serially on the `main thread`:
+
+```Swift  
+  let mainQueue   = DispatchQueue.main
+```
 
 
 
-<!-- A client to the library may also create any number of serial queues, which execute tasks in the order they are submitted, one at a time. -->
 
-Because a serial queue can only run one task at a time, each task submitted to the queue is critical with regard to the other tasks on the queue, and thus a serial queue can be used instead of a lock on a contended resource.
+<sup>1</sup> *GCD controls the execution timing. You won’t know the amount of time between one task ending and the next one beginning.*
 
-
-
-Serial queues only have a single thread associated with them and thus only allow a single task to be executed at any given time.
-
-
-<!-- TODO: note that main queue is a serial queue  -->
-<!-- When your app launches, the system automatically creates a serial queue and binds it to the application’s main thread. All UI tasks have to be run on the main thread. -->
-<!-- When user runs app, the system automatically creates a serial dispatch queue which runs app’s main thread. This is called main queue, and task assigned in this queue works one at a time serially. To access in the code:
-
-let mainQueue   = DispatchQueue.main -->
-
-<!-- TODO: insert graphic here -->
-
-
-<!-- TODO: insert code showing how to create a default (serial) queue -->
-
-
-<!-- TODO: insert code showing how to create a concurrent queue -->
-
-
-Since no two tasks in a serial queue can ever run concurrently, there is no risk they might access the same critical section concurrently; that protects the critical section from race conditions with respect to those tasks only. So if the only way to access that critical section is via a task submitted to that dispatch queue, then you can be sure that the critical section is safe.
 
 
 #### concurrent queues
@@ -391,6 +390,14 @@ Since no two tasks in a serial queue can ever run concurrently, there is no risk
 <!-- from Ray W --  Note: While you can tell iOS that you'd like to use a concurrent queue, remember that there is no guarantee that more than one task will run at a time. If your iOS device is completely bogged down and your app is competing for resources, it may only be capable of running a single task. -->
 
 <!-- TODO: insert graphic here -->
+
+
+
+
+<!-- TODO: insert code showing how to create a default (serial) queue -->
+
+
+<!-- TODO: insert code showing how to create a concurrent queue -->
 
 
 ##### Types of Queues
