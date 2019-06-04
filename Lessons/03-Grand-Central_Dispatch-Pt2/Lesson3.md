@@ -265,14 +265,26 @@ The key to understanding this is that `.sync` does not __*execute*__ tasks/block
 
 ## Overview/TT II (20 min)
 
+<!-- OUTLINE:
+- Key Concepts
+- Serial & Concurrent Qs
+- 3 Types of queues
+- QoS
+- Inferring QoS
+- Async Does NOT mean concurrent -->
+
+
 ### Key Concepts
 
 #### Critical Section
 
-A Critical Section is a code block that accesses shared variables/resources and has to be executed as an atomic action.
+A **Critical Section** is a code block that accesses shared variables/resources and has to be executed as an __*atomic*__ action.
 
 Critical Section
 This is a piece of code that must not be executed concurrently, that is, from two threads at once. This is usually because the code manipulates a shared resource such as a variable that can become corrupt if it’s accessed by concurrent processes.
+
+<!-- TODO: give examples -->
+
 
 #### Thread Safety
 
@@ -286,6 +298,15 @@ Code that is not thread safe must only be run in one context at a time. An examp
 
 
 Queues can be either serial or concurrent.
+
+- FIFO
+- Thread Safe
+
+The decision of when to start a task is entirely up to GCD.
+If the execution time of one task overlaps with another, it’s up to GCD to determine if it should run on a different core, if one is available, or instead to perform a context switch to run a different task.
+
+
+
 
 #### Serial Queues
 
@@ -343,6 +364,15 @@ Since no two tasks in a serial queue can ever run concurrently, there is no risk
 
 <!-- TODO: insert graphic here -->
 
+
+##### Types of Queues
+
+<!-- Provided by GCD
+
+- Main Queue
+- Global (Concurrent Queues)
+  - require QoS Priority
+- Custom Queues - Serial or Concurrent -->
 
 ##### QoS levels
 
