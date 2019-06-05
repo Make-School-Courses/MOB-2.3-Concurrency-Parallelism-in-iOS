@@ -16,18 +16,11 @@
 Explain why students should care to learn the material presented in this class.
 
 ## Learning Objectives (5 min)
-By the end of this lesson, you should be able to...
 
-1. Identify and describe:
-<!-- - when to use __*Synchronous*__ and __*Asynchronous*__
-- __*Sync*__ and __*Deadlocks*__
-- __*Critical Section*__
-- __*Thread Safety*__
-- GCD's provided __*serial*__ and __*concurrent*__ DispatchQueues
-- __*QoS Priority*__
-- how the __*Main Queue*__ fits in GCD -->
-
-2. Implement
+1. Identify and describe
+1. Define
+1. Design
+1. Implement
 
 ## Initial Exercise (15 min)
 
@@ -53,44 +46,11 @@ Handling Background Tasks with dispatch_sync?
 Making Your Singletons Thread-Safe? -->
 
 
-##### QoS Priority (quick review / revisited )
-
-<!-- TODO: insert QoS levels enum here -->
-
-
-<!-- TODO: insert table here, with the 2 add'l QoS levels from Ray W bk -->
-
-
-
-<!-- IDEAS FROM RAY W: - TODO: 1) check these against prior lesson for redundancy 2) boil down
-Concurrent queues are so common that Apple has provided six different global concurrent queues, depending on the Quality of service (QoS) the queue should have.
-
-When using a concurrent dispatch queue, you'll need to tell iOS how important the tasks are that get sent to the queue so that it can properly prioritize the work that needs to be done against all the other tasks that are clamoring for resources. Remember that higher-priority work has to be performed faster, likely taking more system resources to complete and requiring more energy than lower-priority work.
-If you just need a concurrent queue but don't want to manage your own, you can use the global class method on DispatchQueue to get one of the pre-defined global queues:
-
-let queue = DispatchQueue.global(qos: .userInteractive)
-
-As mentioned above, Apple offers six quality of service classes:
-
-Note: Global queues are always concurrent and first-in, first-out. -->
-
-<!-- TODO: insert code showing how to create a queue with QoS levels -->
-
-
 ##### Inferring QoS priority
-
-<!-- TODO:
-
-- review Ray W bk for clues
-
-- google Apple, etc., for more details
- -->
 
 
 
 ### Creating Serial & Concurrent Queues
-
-<!-- TODO: Insert big graphic from old slide deck showing how Serial, Concurrent and QoS stacks up -->
 
 
 <!-- TODO: insert code showing how to create a default (serial) queue -->
@@ -150,9 +110,7 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 
 
-<!-- explain Thread Explosion? here?
-- see my notes in "Problems with Concurrency & Shared Memory" doc
-- google more examples -->
+
 
 
 
