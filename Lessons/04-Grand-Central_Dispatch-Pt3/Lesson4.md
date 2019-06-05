@@ -217,9 +217,9 @@ let queue = DispatchQueue(label: label,
  - set up a situation where students call sync on current queue?
   -->
 
-NOTES: Use the playgrounds from old class
+<!-- NOTES: Use the playgrounds from old class
 - review how they work
-- write instructions
+- write instructions -->
 
 
 
