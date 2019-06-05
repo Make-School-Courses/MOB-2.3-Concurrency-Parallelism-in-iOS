@@ -41,6 +41,8 @@ By the end of this lesson, you should be able to...
 - how the __*Main Queue*__ fits in GCD -->
 
 2. Implement
+<!-- - create queues
+- default initialer -->
 
 ## Initial Exercise (10 min)
 
@@ -51,6 +53,8 @@ By the end of this lesson, you should be able to...
 ### Part 2 - As A Class
 
 - Review of GCD subtopics and questions from previous class...
+
+</br>
 
 &nbsp;&nbsp;&nbsp;&nbsp; ![gcd_queues](assets/gcd_queues.png) </br>
 
@@ -72,34 +76,26 @@ Handling Background Tasks with dispatch_sync?
 Making Your Singletons Thread-Safe? -->
 
 
-### Creating Serial & Concurrent Queues
+### Creating Serial Queues
 
+From our previous lesson, the example below illustrates how easy it is to create `DispatchQueues`.
 
-<!-- TODO: Insert big graphic from old slide deck showing how Serial, Concurrent and QoS stacks up -->
-
-
-<!-- TODO: insert code showing how to create a default (serial) queue -->
-
-
-<!-- TODO: insert code showing how to create a concurrent queue -->
-
-< recall from previous lesson >
-It's easy to create a `DispatchQueue`. This example creates a new `DispatchQueue` called `myQueue` with a *label* (identifier) of `"com.makeschool.mycoolapp.networking"`:
+Here, we create a new `DispatchQueue` called `myQueue` with a *label* (identifier) of `"com.makeschool.mycoolapp.networking"`:
 
 ```Swift
   let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking")
  ```
+This example invokes the __*default initializer*__ for a `DispatchQueue`. If you do not expressly define your `DispatchQueue` with the `.concurrent` attribute, GCD will by default create a __*serial*__ queue (wherein each task must complete before the next task is able to start).
 
-<!-- The default initializer, as shown in the code above, will create a serial queue wherein each task must complete before the next task is able to start. -->
+### Creating Concurrent Queues
 
+It's just as easy to create a *concurrent* `DispatchQueue`.
 
-<!-- In order to create a concurrent queue, simply pass in the .concurrent attribute, like so: -->
+To create a concurrent queue, pass the `.concurrent` attribute to your new queue:
 
 ```Swift
   let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking", attributes: .concurrent)
  ```
-
-
 
 ##### QoS Priority (quick review / revisited )
 
@@ -122,7 +118,13 @@ As mentioned above, Apple offers six quality of service classes:
 
 Note: Global queues are always concurrent and first-in, first-out. -->
 
+
+
+
+
 <!-- TODO: insert code showing how to create a queue with QoS levels -->
+
+
 
 
 ##### Inferring QoS priority
