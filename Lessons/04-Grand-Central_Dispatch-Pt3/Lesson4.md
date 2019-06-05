@@ -14,12 +14,11 @@
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
 | 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:10      | Initial Exercise           |
-
-| 0:15        | 0:20      | Overview / TT I                 |
-| 0:20        | 0:45      | In Class Activity I       |
-| 1:05        | 0:10      | BREAK                     |
-| 0:05        | 0:15      | Overview / TT II              |
+| 0:05        | 0:15      | Initial Exercise           |
+| 0:20        | 0:15      | Overview / TT I                 |
+| 0:35        | 0:20      | In Class Activity I       |
+| 0:55        | 0:10      | BREAK                     |
+| 1:05        | 0:15      | Overview / TT II              |
 
 | 1:15        | 0:45      | In Class Activity II      |
 | TOTAL       | 2:00      |                           |
@@ -85,11 +84,13 @@ Here, we create a new `DispatchQueue` called `myQueue` with a *label* (identifie
 ```Swift
   let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking")
  ```
-This example invokes the __*default initializer*__ for a `DispatchQueue`. If you do not expressly define your `DispatchQueue` with the `.concurrent` attribute, GCD will by default create a __*serial*__ queue (wherein each task must complete before the next task is able to start).
+This example invokes the __*default initializer*__ for a `DispatchQueue`.
+
+If you do not expressly define your `DispatchQueue` with the `.concurrent` attribute, GCD will __*by default*__ create a __*serial*__ queue (wherein each task must complete before the next task is able to start).
 
 ### Creating Concurrent Queues
 
-It's just as easy to create a *concurrent* `DispatchQueue`.
+It's just as easy to create a **concurrent**`DispatchQueue`.
 
 To create a concurrent queue, pass the `.concurrent` attribute to your new queue:
 
@@ -99,7 +100,21 @@ To create a concurrent queue, pass the `.concurrent` attribute to your new queue
 
 ##### QoS Priority (quick review / revisited )
 
+
+A quality of service (QoS) class categorizes work to be performed on a DispatchQueue.
+
+By specifying a QoS to work, you indicate its importance, and the system prioritizes it and schedules it accordingly.
+
+Because higher priority work is performed more quickly and with more resources than lower priority work, it typically requires more energy than lower priority work.
+
+Accurately specifying appropriate QoS classes for the work your app performs ensures that your app is responsive and energy efficient.
+
+
+![QoSClass_enum](assets/QoSClass_enum.png) </br>
+
 <!-- TODO: insert QoS levels enum here -->
+
+
 
 
 <!-- TODO: insert table here, with the 2 add'l QoS levels from Ray W bk -->
@@ -109,7 +124,10 @@ To create a concurrent queue, pass the `.concurrent` attribute to your new queue
 <!-- IDEAS FROM RAY W: - TODO: 1) check these against prior lesson for redundancy 2) boil down
 Concurrent queues are so common that Apple has provided six different global concurrent queues, depending on the Quality of service (QoS) the queue should have.
 
-When using a concurrent dispatch queue, you'll need to tell iOS how important the tasks are that get sent to the queue so that it can properly prioritize the work that needs to be done against all the other tasks that are clamoring for resources. Remember that higher-priority work has to be performed faster, likely taking more system resources to complete and requiring more energy than lower-priority work.
+When using a concurrent dispatch queue, you'll need to tell iOS how important the tasks are that get sent to the queue so that it can properly prioritize the work that needs to be done against all the other tasks that are clamoring for resources.
+
+Remember that higher-priority work has to be performed faster, likely taking more system resources to complete and requiring more energy than lower-priority work.
+
 If you just need a concurrent queue but don't want to manage your own, you can use the global class method on DispatchQueue to get one of the pre-defined global queues:
 
 let queue = DispatchQueue.global(qos: .userInteractive)
@@ -124,7 +142,18 @@ Note: Global queues are always concurrent and first-in, first-out. -->
 
 <!-- TODO: insert code showing how to create a queue with QoS levels -->
 
+![QoS_classes](assets/QoS_classes.png) </br>
 
+
+Special Quality of Service Classes
+
+In addition to the primary QoS classes, there are two special types of QoS (described in Table 4-2). In most cases, you won’t be exposed to these classes, but there is still value in knowing they exist.
+
+
+![special_QoS_classes](assets/special_QoS_classes.png) </br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html
 
 
 ##### Inferring QoS priority
