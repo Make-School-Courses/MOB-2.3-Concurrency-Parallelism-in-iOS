@@ -98,21 +98,33 @@ To create a concurrent queue, pass the `.concurrent` attribute to your new queue
   let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking", attributes: .concurrent)
  ```
 
-##### QoS Priority (quick review / revisited )
+### QoS Priority Levels (Quick Review)
 
+A `Quality of Service (QoS)` class categorizes work to be performed on a `DispatchQueue`.
 
-A quality of service (QoS) class categorizes work to be performed on a DispatchQueue.
+Concurrent queues are so common that Apple has provided six different global concurrent queues, depending on the `Quality of Service (QoS)` the queue should have &mdash; four primary QoS classes and two special QoS classes.
 
-By specifying a QoS to work, you indicate its importance, and the system prioritizes it and schedules it accordingly.
-
-Because higher priority work is performed more quickly and with more resources than lower priority work, it typically requires more energy than lower priority work.
-
-Accurately specifying appropriate QoS classes for the work your app performs ensures that your app is responsive and energy efficient.
-
+If we look "under the hood", we can see all six QoS classes defined in the `QoSClass enum`:
 
 ![QoSClass_enum](assets/QoSClass_enum.png) </br>
 
-<!-- TODO: insert QoS levels enum here -->
+
+When using a __*concurrent*__ dispatch queue, you'll need to tell GCD how important the tasks are that get sent to the queue so that it can properly prioritize execution of your task against all other tasks competing for resources.
+
+By specifying a QoS to work, you indicate its importance, and the system prioritizes it and schedules it accordingly.
+
+Remember that higher-priority work has to be performed faster, takes more system resources to complete, and requires more energy than lower-priority work.
+
+
+
+Note: Global queues are always concurrent and first-in, first-out.
+
+
+If you just need a concurrent queue but don't want to manage your own, you can use the global class method on DispatchQueue to get one of the pre-defined global queues:
+
+let queue = DispatchQueue.global(qos: .userInteractive)
+
+As mentioned above, Apple offers six quality of service classes:
 
 
 
@@ -156,7 +168,37 @@ In addition to the primary QoS classes, there are two special types of QoS (desc
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html
 
 
-##### Inferring QoS priority
+### Creating QoS priority
+
+Need a concurrent queue but don't want to have to manage your own? Then just *use the global class method* on `DispatchQueue` to use one of the __*pre-defined global queues:*__
+
+```Swift
+  let queue = DispatchQueue.global(qos: .userInteractive)
+ ```
+But if you wish to create your own concurrent `DispatchQueue`, you can specify to the system your *target* QoS level is via its initializer:
+
+```Swift
+  let queue = DispatchQueue(label: "com.makeschool.mycoolapp.networking",
+                          qos: .userInitiated,
+                          attributes: .concurrent)
+ ```
+
+### Inferring QoS priority
+
+
+Accurately specifying appropriate QoS classes for the work your app performs ensures that your app is responsive and energy efficient.
+
+
+
+<!-- If you create your own concurrent dispatch queue, you can tell the system what the QoS is via its initializer:
+However, this is like arguing with your spouse/kids/dogs/pet rock: Just because you say it doesn't make it so! The OS will pay attention to what type of tasks are being submitted to the queue and make changes as necessary.
+If you submit a task with a higher quality of service than the queue has, the queue's level will increase. Not only that, but all the operations enqueued will also have their priority raised as well.
+
+If the current context is the main thread, the inferred QoS is .userInitiated. You can specify a QoS yourself, but as soon as you'll add a task with a higher QoS, your queue's QoS service will be increased to match it.
+let queue = DispatchQueue(label: label,
+                          qos: .userInitiated,
+                          attributes: .concurrent) -->
+
 
 <!-- TODO:
 
