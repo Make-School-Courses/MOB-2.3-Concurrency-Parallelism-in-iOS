@@ -210,6 +210,19 @@ let queue = DispatchQueue(label: label,
 
 
 
+
+## In Class Activity I (20 min)
+
+ <!-- TODO: create this...is there a suitable playground from prior lesson?
+ - set up a situation where students call sync on current queue?
+  -->
+
+NOTES: Use the playgrounds from old class
+- review how they work
+- write instructions
+
+
+
 #### Custom Queues
 
 
@@ -249,14 +262,6 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 - see my notes in "Problems with Concurrency & Shared Memory" doc
 - google more examples -->
 
-
-
-
-## In Class Activity I (20 min)
-
-<!-- TODO: create this...is there a suitable playground from prior lesson?
-- set up a situation where students call sync on current queue?
- -->
 
 
 
