@@ -1,13 +1,26 @@
-# Lesson Title
+# Grand Central Dispatch (Part 3)
 
-## Minute-by-Minute [OPTIONAL]
+<!-- INSTRUCTOR Notes:
+
+1) for initial exercise...
+- answers to Part 2 are below each question...
+
+2) for Activity 1:
+- instructor notes are below exercise...
+ -->
+
+## Minute-by-Minute
 
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
 | 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:15      | Overview                  |
+| 0:05        | 0:10      | Initial Exercise           |
+
+| 0:15        | 0:20      | Overview / TT I                 |
 | 0:20        | 0:45      | In Class Activity I       |
 | 1:05        | 0:10      | BREAK                     |
+| 0:05        | 0:15      | Overview / TT II              |
+
 | 1:15        | 0:45      | In Class Activity II      |
 | TOTAL       | 2:00      |                           |
 
@@ -29,14 +42,20 @@ By the end of this lesson, you should be able to...
 
 2. Implement
 
-## Initial Exercise (15 min)
+## Initial Exercise (10 min)
 
-- Funny comic
-- Prime the Pump (e.g. think and jot, think pair share, etc)
-- Productivity Tip/Tool
-- Review of current event (e.g. tech news relevant to your track/topic)
-- Quiz on homework or topic(s) of past class
-- Concept Test
+### Part 1 - As A Class
+
+- Highlights of WWDC 2019 so far...
+
+### Part 2 - As A Class
+
+- Review of GCD subtopics and questions from previous class...
+
+&nbsp;&nbsp;&nbsp;&nbsp; ![gcd_queues](assets/gcd_queues.png) </br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://www.objc.io/issues/2-concurrency/concurrency-apis-and-pitfalls/
 
 ## Overview/TT I (20 min)
 
@@ -51,6 +70,35 @@ Issues
 Delaying Work with dispatch_after?
 Handling Background Tasks with dispatch_sync?
 Making Your Singletons Thread-Safe? -->
+
+
+### Creating Serial & Concurrent Queues
+
+
+<!-- TODO: Insert big graphic from old slide deck showing how Serial, Concurrent and QoS stacks up -->
+
+
+<!-- TODO: insert code showing how to create a default (serial) queue -->
+
+
+<!-- TODO: insert code showing how to create a concurrent queue -->
+
+< recall from previous lesson >
+It's easy to create a `DispatchQueue`. This example creates a new `DispatchQueue` called `myQueue` with a *label* (identifier) of `"com.makeschool.mycoolapp.networking"`:
+
+```Swift
+  let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking")
+ ```
+
+<!-- The default initializer, as shown in the code above, will create a serial queue wherein each task must complete before the next task is able to start. -->
+
+
+<!-- In order to create a concurrent queue, simply pass in the .concurrent attribute, like so: -->
+
+```Swift
+  let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking", attributes: .concurrent)
+ ```
+
 
 
 ##### QoS Priority (quick review / revisited )
@@ -87,32 +135,6 @@ Note: Global queues are always concurrent and first-in, first-out. -->
  -->
 
 
-
-### Creating Serial & Concurrent Queues
-
-<!-- TODO: Insert big graphic from old slide deck showing how Serial, Concurrent and QoS stacks up -->
-
-
-<!-- TODO: insert code showing how to create a default (serial) queue -->
-
-
-<!-- TODO: insert code showing how to create a concurrent queue -->
-
-< recall from previous lesson >
-It's easy to create a `DispatchQueue`. This example creates a new `DispatchQueue` called `myQueue` with a *label* (identifier) of `"com.makeschool.mycoolapp.networking"`:
-
-```Swift
-  let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking")
- ```
-
-<!-- The default initializer, as shown in the code above, will create a serial queue wherein each task must complete before the next task is able to start. -->
-
-
-<!-- In order to create a concurrent queue, simply pass in the .concurrent attribute, like so: -->
-
-```Swift
-  let myQueue = DispatchQueue(label: "com.makeschool.mycoolapp.networking", attributes: .concurrent)
- ```
 
 
 #### Custom Queues
@@ -185,6 +207,7 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 ## After Class
 1. Research:
+- Thunk
 -
 2. Assignment:
 -
