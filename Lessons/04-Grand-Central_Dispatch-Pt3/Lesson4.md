@@ -253,6 +253,8 @@ In other words, if you make a network request from a view controller that has be
 
 1. Run the following code in a playground and observe its output:
 
+[QoS_exercise1.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/blob/master/Lessons/04-Grand-Central_Dispatch-Pt3/assets/QoS_exercise1.playground.zip) </br>
+
 ```Swift  
   import Foundation
 
@@ -286,8 +288,8 @@ In other words, if you make a network request from a view controller that has be
 
  1. Run the following code in a playground and observe its output:
 
-[QoS_exercise1.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/blob/master/Lessons/02-Grand-Central_Dispatch-Pt1/assets/GCDPlay.playground.zip) </br>
- QoS_exercise1.playground
+[QoS_exercise1.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/blob/master/Lessons/04-Grand-Central_Dispatch-Pt3/assets/QoS_exercise1.playground.zip) </br>
+
 
 
  ```Swift
@@ -413,7 +415,7 @@ Scenarios might include:
 
 1. The following playground code assigns two tasks to a `DispatchGroup` and invokes `.wait()` function on the `DispatchGroup`:
 
-[DispatchGroups_ex1.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/blob/master/Lessons/02-Grand-Central_Dispatch-Pt1/assets/GCDPlay.playground.zip) </br>
+[DispatchGroups_ex1.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/blob/master/Lessons/04-Grand-Central_Dispatch-Pt3/assets/DispatchGroups_ex1.playground.zip) </br>
 
 - Run the code in a playground and observe its output...
 
