@@ -459,34 +459,34 @@ Scenarios might include:
 
  2. Make changes so that its output is now `"All tasks completed"`
 
-
-
 ## After Class
 1. Research:
 - Thunk
-- Review the section "Quality of Service Inference and Promotion" in this reference:
-&nbsp;&nbsp;&nbsp; [Prioritize Work with Quality of Service Classes](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html)
-
-Listing 4-3Retrieving the QoS of a GCD dispatch queue
-
-- other DispatchGroup methods
-  - manual
-
-asyncAfter, et
+- Private Concurrent Queues
+- `concurrentPerform()`
+- `dispatch_apply`
+- `dispatch_once`
+- `dispatch_after`
+- `DispatchWorkItem.notify `
+- `DispatchQueue.concurrentPerform `
+- other DispatchGroup methods:
+&nbsp;&nbsp;&nbsp; - `.enter()` </br>
+&nbsp;&nbsp;&nbsp; - `.leave()` </br>
+- Review (a) the section "Quality of Service Inference and Promotion" and (b) "Listing 4-3 Retrieving the QoS of a GCD dispatch queue" in this reference:
+&nbsp;&nbsp;&nbsp; [Prioritize Work with Quality of Service Classes](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html) </br>
 
 2. Assignment:
 -
 
 ## Wrap Up (5 min)
 
-- Continue working on your current tutorial
 - Complete reading
 - Complete challenges
 
 ## Additional Resources
 
-1. [Slides]()
-2. []()
+1. [Slides](https://docs.google.com/presentation/d/1A6lVkfykm6X5e5-0ejXifb4be5TSeHS8sKQi6MFcytw/edit#slide=id.g5b232d33ef_0_160)
+2. [Prioritize Work with Quality of Service Classes - from Apple](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html)
 3. []()
 4. []()
 5. []()
