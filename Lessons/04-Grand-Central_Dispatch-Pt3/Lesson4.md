@@ -476,7 +476,32 @@ Scenarios might include:
 &nbsp;&nbsp;&nbsp; [Prioritize Work with Quality of Service Classes](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html) </br>
 
 2. Assignment:
--
+
+To illustrate a scenario that would benefit from concurrency, we created an app intentionally designed as a really, *really* bad example of poor table view cell configuration and scrolling performance.
+
+Our JankyTable app:
+- fetches image URLs from a plist
+- then fetches AND processes each image *before* presentation to the user
+
+To accentuate how badly its UI performs, we made it worse: to simulate a network delay, we added a 1-second sleep interval on the thread so that each cell will pause for 1 second just before it is configured for presentation by the table view.
+
+**TODO:**
+1) Download and run the [iOS-JankyTable_starter](https://github.com/Make-School-Labs/iOS-JankyTable_starter) app
+
+2) While running, examine the 2 points in the UI flow in which performance currently is most noticeably horrible:
+- on initial table view presentation
+- whenever the user scrolls the table view
+
+
+
+
+
+
+**Required Resources:** </br>
+- The [iOS-JankyTable_starter](https://github.com/Make-School-Labs/iOS-JankyTable_starter) app
+- Xcode 10.2.1+
+
+
 
 ## Wrap Up (5 min)
 
@@ -487,6 +512,4 @@ Scenarios might include:
 
 1. [Slides](https://docs.google.com/presentation/d/1A6lVkfykm6X5e5-0ejXifb4be5TSeHS8sKQi6MFcytw/edit#slide=id.g5b232d33ef_0_160)
 2. [Prioritize Work with Quality of Service Classes - from Apple](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html)
-3. []()
-4. []()
-5. []()
+3. [DispatchQueue - from Apple](https://developer.apple.com/documentation/dispatch/dispatchqueue)
