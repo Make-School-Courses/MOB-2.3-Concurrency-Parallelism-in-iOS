@@ -1,7 +1,7 @@
 import Foundation
 
 let queue1 = DispatchQueue(label: "com.makeschool.queue1", qos: DispatchQoS.userInitiated)
-let queue2 = DispatchQueue(label: "com.makeschool.queue2", qos: DispatchQoS.utility)
+let queue2 = DispatchQueue(label: "com.makeschool.queue2", qos: DispatchQoS.userInitiated)
 
 queue1.async {
     for i in 0..<10 {
