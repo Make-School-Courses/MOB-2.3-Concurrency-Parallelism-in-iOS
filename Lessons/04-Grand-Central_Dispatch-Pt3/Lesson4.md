@@ -19,9 +19,8 @@
 | 0:35        | 0:20      | In Class Activity I       |
 | 0:55        | 0:10      | BREAK                     |
 | 1:05        | 0:15      | Overview / TT II              |
-
-| 1:15        | 0:45      | In Class Activity II      |
-| TOTAL       | 2:00      |                           |
+| 1:15        | 0:35      | In Class Activity II      |
+| TOTAL       | 1:50      |                           |
 
 ## Why you should know this or industry application (optional) (5 min)
 
@@ -175,7 +174,7 @@ Need a concurrent queue but don't want to have to manage your own? Then just *us
 ```Swift
   let queue = DispatchQueue.global(qos: .userInteractive)
  ```
-But if you wish to create your own concurrent `DispatchQueue`, you can specify to the system your *target* QoS level is via its initializer:
+But if you wish to create your own concurrent `DispatchQueue`, you can specify to the system your *target* QoS level in its initializer:
 
 ```Swift
   let queue = DispatchQueue(label: "com.makeschool.mycoolapp.networking",
@@ -183,30 +182,26 @@ But if you wish to create your own concurrent `DispatchQueue`, you can specify t
                           attributes: .concurrent)
  ```
 
-### Inferring QoS priority
+### QoS Inference and Promotion
+
+Accurately specifying appropriate QoS classes for the work your app performs &mdash; as in the example above &mdash; ensures that your app is responsive and energy efficient.
+
+But behavior that QoS levels are __*not static*__ &mdash; GCD pays attention to the types of tasks being submitted to a queue and will adjust the QoS level as it deems necessary.
+
+If you submit a task with a higher QoS than the queue has, GCD will increase the queue's QoS level to match the higher level of the task you submitted.
+
+In addition, all tasks enqueued will also have their priorities raised.
+
+Though there is a vast number of scenarios in which QoS inference and promotion might occur, common examples are:
+- where the QoS of a task (or operation) and the QoS of a queue do not match
+- the QoS of an operation and that of its dependent operation do not match
+- an task (or operation) has no QoS assigned
+
+> NOTE: Apple applies numerous rules governing how QoS inference and promotion occurs with regard to queues and operations. For more info, review the source material.
 
 
-Accurately specifying appropriate QoS classes for the work your app performs ensures that your app is responsive and energy efficient.
-
-
-
-<!-- If you create your own concurrent dispatch queue, you can tell the system what the QoS is via its initializer:
-However, this is like arguing with your spouse/kids/dogs/pet rock: Just because you say it doesn't make it so! The OS will pay attention to what type of tasks are being submitted to the queue and make changes as necessary.
-If you submit a task with a higher quality of service than the queue has, the queue's level will increase. Not only that, but all the operations enqueued will also have their priority raised as well.
-
-If the current context is the main thread, the inferred QoS is .userInitiated. You can specify a QoS yourself, but as soon as you'll add a task with a higher QoS, your queue's QoS service will be increased to match it.
-let queue = DispatchQueue(label: label,
-                          qos: .userInitiated,
-                          attributes: .concurrent) -->
-
-
-<!-- TODO:
-
-- review Ray W bk for clues
-
-- google Apple, etc., for more details
- -->
-
+&nbsp;&nbsp;&nbsp; *Source:* </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Prioritize Work with Quality of Service Classes](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html)
 
 
 ### Weak Refs
@@ -323,7 +318,7 @@ group.notify(queue: DispatchQueue.main) { [weak self] in
 
 
 
-## In Class Activity II (optional) (30 min)
+## In Class Activity II (optional) (35 min)
 
 
 <!-- TODO:  use the dispatchGroup playground  -->
@@ -332,7 +327,12 @@ group.notify(queue: DispatchQueue.main) { [weak self] in
 ## After Class
 1. Research:
 - Thunk
--
+- Review the section "Quality of Service Inference and Promotion" in this reference:
+&nbsp;&nbsp;&nbsp; [Prioritize Work with Quality of Service Classes](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html)
+
+Listing 4-3Retrieving the QoS of a GCD dispatch queue
+
+
 2. Assignment:
 -
 
