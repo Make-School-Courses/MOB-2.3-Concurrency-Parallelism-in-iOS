@@ -361,15 +361,6 @@ Next, we invoke the `.notify()` function on the group, and tell it to update a t
   }
 ```
 
-
-
-
-<!-- TODO: example scenarios? -->
-
-
-
-
-
 #### Synchronous waiting
 
 You can also wait __*synchronously*__ for all tasks in the group to finish executing.
@@ -387,6 +378,32 @@ The following code snippet builds on the dispatch group and queues created for t
 ```
 
 > Important Note: Remember that with the `.wait()` function tasks will still run even after the timeout has elapsed.
+
+
+#### When to Use Dispatch Groups
+
+In general, `DispatchGroups` are useful when you need to complete a group of tasks before executing some operation which is dependent on the results from the completion of all of the tasks in the group.
+
+You can also use `DispatchGroups` to resolve race conditions where UI tasks are dependent on slow- or long-running data-related tasks.
+
+Scenarios might include:
+
+1. You need to load data from a group of data sources before you can create a model.
+
+- Maybe your app needs to fetch documents from local storage, from iCloud Drive, and from some backend system, before combining the results of all fetches into a single document collection for user presentation.
+
+- You need to run two distinct network calls and process their results together. Only after they’ve both returned do you have the necessary data to parse their URLSession responses.
+
+2. An animation is running, parallel to a long database call. Once both of those have finished, you’d like to hide the loading spinner.
+
+3. Creating a *false* delay using `.wait()` on a group of tasks to solve race conditions between UI and data fetches:
+
+- You need to fetch data that needs to be updated in your UI — UICollectionView, UITableView, etc — but the data doesn't ever get updated in your UI because your views are reloading before the fetch has completed.
+
+- An API call returns so quickly that the refresh control dismisses itself as soon as it has finished animating its appearance - this makes it seem like it is not refreshing.
+
+...both might be solved by using the `.wait()` function to create an artificial delay for the UI task, while binding completion of one dependent task to completion of its dependency.
+
 
 ## In Class Activity II (30 min)
 
@@ -446,6 +463,8 @@ Listing 4-3Retrieving the QoS of a GCD dispatch queue
 
 - other DispatchGroup methods
   - manual
+
+asyncAfter, et
 
 2. Assignment:
 -
