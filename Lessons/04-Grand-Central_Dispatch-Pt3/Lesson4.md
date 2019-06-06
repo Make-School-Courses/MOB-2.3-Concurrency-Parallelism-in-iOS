@@ -17,9 +17,6 @@
 | 1:15        | 0:35      | In Class Activity II      |
 | TOTAL       | 1:50      |                           |
 
-## Why you should know this or industry application (optional) (5 min)
-
-Explain why students should care to learn the material presented in this class.
 
 ## Learning Objectives (5 min)
 By the end of this lesson, you should be able to...
@@ -271,7 +268,7 @@ In other words, if you make a network request from a view controller that has be
   **Q:** What can you learn from the output here?
 
 
-## Overview/TT II (optional) (20 min)
+## Overview/TT II (20 min)
 
 ### Dispatch Groups
 
