@@ -492,10 +492,27 @@ To accentuate how badly its UI performs, we made it worse: to simulate a network
 - on initial table view presentation
 - whenever the user scrolls the table view
 
+3) Set a breakpoint somewhere in the `cellForRowAt(_:)` function (at ` return cell` on line 56 is a good place):
 
+- when Xcode stops on your breakpoint, examine the Threads and Queues listed in the Debug Navigator in the Navigation Pane. (i.e., find the button for toggling between "View Process by Thread" and "View Process by Queue" and practice viewing each in turn.)
 
+For next class, be prepared to answer these questions:
 
+**Q:** How many threads are active at the breakpoint?
 
+**Q:** How many queues?
+
+**Q:** What is the thread number of the `main queue`?
+
+**Q:** What is the last function executed prior to the breakpoint?
+
+**Q:** What is the first function executed on the `main queue` (`main thread`)?
+
+**Q:** Why do you think it take so long to present the images to the user?
+
+**Q:** Why is scrolling so slow?
+
+**Q:** What could you do to resolve these 2 egregious UI issues?
 
 **Required Resources:** </br>
 - The [iOS-JankyTable_starter](https://github.com/Make-School-Labs/iOS-JankyTable_starter) app
