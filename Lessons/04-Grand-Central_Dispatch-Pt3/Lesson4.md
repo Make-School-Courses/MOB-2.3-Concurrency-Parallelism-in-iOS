@@ -479,7 +479,7 @@ Scenarios might include:
 
 To illustrate a scenario that would benefit from concurrency, we created an app intentionally designed as a really, *really* bad example of poor table view cell configuration and scrolling performance.
 
-Our JankyTable app:
+Our [iOS-JankyTable_starter](https://github.com/Make-School-Labs/iOS-JankyTable_starter) app:
 - fetches image URLs from a plist
 - then fetches AND processes each image *before* presentation to the user
 
@@ -517,7 +517,6 @@ For next class, be prepared to answer these questions:
 **Required Resources:** </br>
 - The [iOS-JankyTable_starter](https://github.com/Make-School-Labs/iOS-JankyTable_starter) app
 - Xcode 10.2.1+
-
 
 
 ## Wrap Up (5 min)
