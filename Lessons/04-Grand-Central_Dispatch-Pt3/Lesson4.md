@@ -204,14 +204,47 @@ Though there is a vast number of scenarios in which QoS inference and promotion 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Prioritize Work with Quality of Service Classes](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html)
 
 
-### Weak Refs
+### Tasks & Captured Closure Variables
 
-<!-- TODO:  see Ray W bk for ideas -->
+Tasks sent to `DispatchQueues` are most often closures.
 
+But the rules of closures do not change when used with `DispatchQueues` &mdash; you must still must properly handle a closure's captured variables if you plan to use them later.
 
+However, how GCD manages `DispatchQueues` effects the timing of events, especially the order in which the lifecycle of dependent references ends.
 
+Remember: When using `DispatchQueues`, capturing references *weakly* or *strongly* should be based on your needs &mdash; especially with regard to using `self`.
 
+#### Example Scenario:
 
+Consider that when your app starts, it must contact a remote resource to update the app's state (ex: for In-App Purchase, Email updates, news feeds).
+
+This task:
+- is not user-initiated
+- does not need to happen immediately
+- depends on networking I/O
+
+Thus, it would be a good candidate to be sent to the global utility queue.
+
+```Swift  
+  DispatchQueue.global(qos: .utility).async { [weak self] in
+    guard let self = self else { return }
+    // Perform some work here
+    // ...
+    // Switch back to the main queue to
+    // update your UI
+    DispatchQueue.main.async {
+      self.textLabel.text = "Data up to date"
+    }
+  }
+```
+
+Note that *strongly* capturing self in a GCD async closure will not cause a retain cycle because the entire closure will be deallocated as soon as it completes.
+
+But it *will* extend the lifetime of `self`.
+
+In other words, if you make a network request from a view controller that has been dismissed in the meantime, the closure will still get called:
+- if you capture the view controller __*weakly*__ it will be `nil`.
+- but if you capture it __*strongly*__ the view controller will remain alive until the closure finishes its work.
 
 
 ## In Class Activity I (20 min)
