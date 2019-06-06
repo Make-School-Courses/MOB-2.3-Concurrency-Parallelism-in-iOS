@@ -314,8 +314,101 @@ In other words, if you make a network request from a view controller that has be
   **Q:** What can you learn from the output here?
 
 
+## Overview/TT II (optional) (20 min)
 
-## In Class Activity I (30 min)
+### Dispatch Groups
+
+What if you need to process a group of tasks?
+
+And what if, on completion of that task group, you want to execute some other code that is dependent on the group's completion?
+
+
+For just such a scenario, Apple provides the `DispatchGroup` class, which allows you to:
+- group tasks
+- track the completion of a group of tasks
+
+A `DispatchGroup` is a group of tasks that you monitor as a single unit. It allos you to group together multiple tasks and either wait for them to complete or to receive a notification once they complete.
+
+Key points about dispatch group tasks:
+- tasks do not all have to run at the same time.
+- they can even run on __*different queues.*__
+- they can be __*asynchronous*__ or __*synchronous.*__
+
+
+Using `DispatchGroup` is simple. Steps include:
+1. create the group
+2. provide the group as an argument
+3. invoke desired `DispatchGroup` functions/behaviors
+
+#### Simple Example:
+
+In this code snippet, we (1) create a dispatch group called `myDispatchGroup` and (2) assign `myDispatchGroup` as the group argument to three tasks.
+- Note that one of the three tasks is on a separate queue.
+
+```Swift  
+  let myDispatchGroup = DispatchGroup()
+  myQueue.async(group: myDispatchGroup) { ... fetch data, images, etc. ... }
+  myQueue.async(group: myDispatchGroup) { ... process data .... }
+  myOtherQueue.async(group: myDispatchGroup) { ... other work ... }
+```
+
+Next, we invoke the `.notify()` function on the group, and tell it to update a textLabel on the `main queue` when all group tasks have completed:
+
+```Swift  
+  myDispatchGroup.notify(queue: DispatchQueue.main) { [weak self] in
+     self?.textLabel.text = "All myDispatchGroup tasks have completed"
+  }
+```
+
+
+
+
+<!-- TODO: example scenarios? -->
+
+
+
+- As seen in the example code above, groups are not hardwired to a single dispatch queue. You can use a single group, yet submit jobs to multiple queues, depending on the priority of the task that needs to be run. DispatchGroups provide a notify(queue:) method, which you can use to be notified as soon as every job submitted has finished.
+
+<!-- TODO: see Apple docs for more text -->
+
+
+
+
+
+<!-- TODO: insert example here -->
+
+
+<!--
+let group = DispatchGroup()
+someQueue.async(group: group) { ... your work ... }
+someQueue.async(group: group) { ... more work .... }
+someOtherQueue.async(group: group) { ... other work ... }
+
+
+group.notify(queue: DispatchQueue.main) { [weak self] in
+   self?.textLabel.text = "All jobs have completed"
+} -->
+
+
+#### Synchronous waiting
+...or "group.wait()"
+
+ You can also wait synchronously for all tasks in the group to finish executing.
+
+blocks your current thread until all the group’s enqueued tasks finish.
+
+
+can use wait(timeout:) to specify a timeout and bail out on waiting after a specified time.
+
+
+#### Wrapping asynchronous methods
+...or "  group.enter()"
+
+Call enter() to manually notify the group that a task has started.
+
+
+
+## In Class Activity II (30 min)
 
 1. The following playground code assigns two tasks to a `DispatchGroup` and invokes `.wait()` function on the `DispatchGroup`:
 
@@ -361,85 +454,6 @@ In other words, if you make a network request from a view controller that has be
 
  2. Make changes so that its output is now `"All tasks completed"`
 
-
-## Overview/TT II (optional) (20 min)
-
-
-### Dispatch Groups
-
-What if you need to process a group of tasks?
-
-And what if, on completion of that task group, you want to execute some other code that is dependent on the group's completion?
-
-<!-- TODO: example scenarios? -->
-
-
-
-For just such a scenario, Apple provides the `DispatchGroup` class, which allows you to:
-- group tasks
-- track the completion of a group of tasks
-
-
-Steps:
-1. create group
-2. provide the group as an argument
-
-
-<!-- TODO: insert an example here similar to example in Ref -->
-
-
-
-
-
-Key Points:
-- They don't all have to run at the same time,
-- As seen in the example code above, groups are not hardwired to a single dispatch queue. You can use a single group, yet submit jobs to multiple queues, depending on the priority of the task that needs to be run. DispatchGroups provide a notify(queue:) method, which you can use to be notified as soon as every job submitted has finished.
-
-<!-- TODO: see Apple docs for more text -->
-
-
-
-
-
-<!-- TODO: insert example here -->
-
-
-let myDispatchGroup = DispatchGroup()
-myQueue.async(group: myDispatchGroup) { ... fetch data, images, etc. ... }
-myQueue.async(group: myDispatchGroup) { ... process data .... }
-myOtherQueue.async(group: myDispatchGroup) { ... other work ... }
-
-
-myDispatchGroup.notify(queue: DispatchQueue.main) { [weak self] in
-   self?.textLabel.text = "All myDispatchGroup tasks have completed"
-}
-
-
-<!--
-let group = DispatchGroup()
-someQueue.async(group: group) { ... your work ... }
-someQueue.async(group: group) { ... more work .... }
-someOtherQueue.async(group: group) { ... other work ... }
-
-
-group.notify(queue: DispatchQueue.main) { [weak self] in
-   self?.textLabel.text = "All jobs have completed"
-} -->
-
-
-#### Synchronous waiting
-...or "group.wait()"
-
-
-#### Wrapping asynchronous methods
-...or "  group.enter()"
-
-
-
-## In Class Activity II (optional) (35 min)
-
-
-<!-- TODO:  use the dispatchGroup playground  -->
 
 
 ## After Class
