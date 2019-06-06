@@ -34,7 +34,7 @@ Students by the end of the course will be able to ...
 |  2 |  Th, May 30                       | [Grand Central Dispatch (Pt 1)] |
 |  3 |  Tu, June 4                        | [Grand Central Dispatch (Pt 2)]  |
 |  4 |  Th, June 6                      | [Grand Central Dispatch (Pt 3)]  |
-|  5 |  Tu, June 11                       | [Dispatch Groups] [Semaphores] |
+|  5 |  Tu, June 11                       | [Semaphores] |
 |  6 |  Th, June 13                      | [Operations (Pt 1)] |
 |  7 |  Tu, June 18                      | [Operations (Pt 2)] |
 |  8 |  Th, June 20                      | [Background Tasks] |
@@ -45,7 +45,7 @@ Students by the end of the course will be able to ...
 [Introduction to Concurrency & Parallelism]: Lessons/01-Intro-Concurrency-&-Parallelism/Lesson1.md
 [Grand Central Dispatch (Pt 1)]: Lessons/02-Grand-Central_Dispatch-Pt1/Lesson2.md
 [Grand Central Dispatch (Pt 2)]: Lessons/03-Grand-Central_Dispatch-Pt2/Lesson3.md
-[Grand Central Dispatch (Pt 3)]: Lessons/xxx/Lesson4.md
+[Grand Central Dispatch (Pt 3)]: Lessons/04-Grand-Central_Dispatch-Pt3/Lesson4.md
 [Semaphores]: Lessons/xxx/LessonX.md
 [Operations (Pt 1)]: Lessons/xxx/LessonX.md
 [Operations (Pt 2)]: Lessons/xxx/LessonX.md
