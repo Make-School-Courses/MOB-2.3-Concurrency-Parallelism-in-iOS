@@ -10,15 +10,13 @@ This course covers concurrency and parallelism in iOS to optimize programming pe
 
 ## Learning Outcomes
 
-Students by the end of the course will be able to ...
+By the end of this course, you will be able to ...
 
 1. Define and distinguish concurrency from parallelism
-1. Create serial and concurrent queues
-1. Create delayed tasks
+1. Create delayed tasks, serial and concurrent queues
 1. Identify deadlocks, race conditions and priority inversion in multi-threaded code
 1. Practice common iOS interview projects & questions
 1. Apply concepts in Grand Central Dispatch to use in projects
-1. Build organized projects through Xcode's project management tools
 
 ## Schedule
 
