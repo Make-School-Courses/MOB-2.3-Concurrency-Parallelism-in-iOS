@@ -322,12 +322,11 @@ What if you need to process a group of tasks?
 
 And what if, on completion of that task group, you want to execute some other code that is dependent on the group's completion?
 
-
 For just such a scenario, Apple provides the `DispatchGroup` class, which allows you to:
 - group tasks
 - track the completion of a group of tasks
 
-A `DispatchGroup` is a group of tasks that you monitor as a single unit. It allos you to group together multiple tasks and either wait for them to complete or to receive a notification once they complete.
+A `DispatchGroup` is a group of tasks that you monitor as a single unit. It allows you to group together multiple tasks and either __*wait*__ for them to complete or to __*receive a notification*__ once they complete.
 
 Key points about dispatch group tasks:
 - tasks do not all have to run at the same time.
@@ -335,7 +334,7 @@ Key points about dispatch group tasks:
 - they can be __*asynchronous*__ or __*synchronous.*__
 
 
-Using `DispatchGroup` is simple. Steps include:
+Implementing a `DispatchGroup` is easy. It just takes three simple steps:
 1. create the group
 2. provide the group as an argument
 3. invoke desired `DispatchGroup` functions/behaviors
@@ -343,10 +342,12 @@ Using `DispatchGroup` is simple. Steps include:
 #### Simple Example:
 
 In this code snippet, we (1) create a dispatch group called `myDispatchGroup` and (2) assign `myDispatchGroup` as the group argument to three tasks.
-- Note that one of the three tasks is on a separate queue.
+
+- Note that one of the three tasks is on a separate queue. `DispatchGroups` are not assigned to a single dispatch queue. You can use a single group, yet submit jobs to multiple queues.
 
 ```Swift  
   let myDispatchGroup = DispatchGroup()
+
   myQueue.async(group: myDispatchGroup) { ... fetch data, images, etc. ... }
   myQueue.async(group: myDispatchGroup) { ... process data .... }
   myOtherQueue.async(group: myDispatchGroup) { ... other work ... }
@@ -367,46 +368,25 @@ Next, we invoke the `.notify()` function on the group, and tell it to update a t
 
 
 
-- As seen in the example code above, groups are not hardwired to a single dispatch queue. You can use a single group, yet submit jobs to multiple queues, depending on the priority of the task that needs to be run. DispatchGroups provide a notify(queue:) method, which you can use to be notified as soon as every job submitted has finished.
-
-<!-- TODO: see Apple docs for more text -->
-
-
-
-
-
-<!-- TODO: insert example here -->
-
-
-<!--
-let group = DispatchGroup()
-someQueue.async(group: group) { ... your work ... }
-someQueue.async(group: group) { ... more work .... }
-someOtherQueue.async(group: group) { ... other work ... }
-
-
-group.notify(queue: DispatchQueue.main) { [weak self] in
-   self?.textLabel.text = "All jobs have completed"
-} -->
 
 
 #### Synchronous waiting
-...or "group.wait()"
 
- You can also wait synchronously for all tasks in the group to finish executing.
+You can also wait __*synchronously*__ for all tasks in the group to finish executing.
 
-blocks your current thread until all the group’s enqueued tasks finish.
+DispatchGroup's `.wait()` function waits synchronously for the previously submitted work to finish, but it __*blocks the current thread*__ until all the group’s enqueued tasks finish.
 
+There is also `.wait(timeout:)`, which you can use to specify a timeout. This waits synchronously for the previously submitted work to complete and returns if the work is not completed before the specified timeout period has elapsed.
 
-can use wait(timeout:) to specify a timeout and bail out on waiting after a specified time.
+The following code snippet builds on the dispatch group and queues created for the Simple Example above and adds a `.wait()` function which executes if all the tasks do not complete withing 30 seconds after the start of the first task:
 
+```Swift  
+  if myDispatchGroup.wait(timeout: .now() + 30) == .timedOut {
+    print("Tasks didn't finish in 60 seconds")
+  }
+```
 
-#### Wrapping asynchronous methods
-...or "  group.enter()"
-
-Call enter() to manually notify the group that a task has started.
-
-
+> Important Note: Remember that with the `.wait()` function tasks will still run even after the timeout has elapsed.
 
 ## In Class Activity II (30 min)
 
@@ -464,6 +444,8 @@ Call enter() to manually notify the group that a task has started.
 
 Listing 4-3Retrieving the QoS of a GCD dispatch queue
 
+- other DispatchGroup methods
+  - manual
 
 2. Assignment:
 -
