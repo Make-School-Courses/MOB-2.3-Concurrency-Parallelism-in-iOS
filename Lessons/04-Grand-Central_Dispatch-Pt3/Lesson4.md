@@ -2,11 +2,6 @@
 
 <!-- INSTRUCTOR Notes:
 
-1) for initial exercise...
-- answers to Part 2 are below each question...
-
-2) for Activity 1:
-- instructor notes are below exercise...
  -->
 
 ## Minute-by-Minute
@@ -30,17 +25,14 @@ Explain why students should care to learn the material presented in this class.
 By the end of this lesson, you should be able to...
 
 1. Identify and describe:
-<!-- - when to use __*Synchronous*__ and __*Asynchronous*__
-- __*Sync*__ and __*Deadlocks*__
-- __*Critical Section*__
-- __*Thread Safety*__
-- GCD's provided __*serial*__ and __*concurrent*__ DispatchQueues
-- __*QoS Priority*__
-- how the __*Main Queue*__ fits in GCD -->
+- how to create Serial and Concurrent DispatchQueues
+- how to create and use queues of various QoS levels
+- how QoS levels are inferred and promoted by GCD
+- how Captured Closure Variables behave with enqueued tasks
+2. Implement basic examples of:
+- Serial Queues and Concurrent Queues with various Qos levels
+- DispatchGroups
 
-2. Implement
-<!-- - create queues
-- default initialer -->
 
 ## Initial Exercise (10 min)
 
@@ -60,19 +52,6 @@ By the end of this lesson, you should be able to...
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://www.objc.io/issues/2-concurrency/concurrency-apis-and-pitfalls/
 
 ## Overview/TT I (20 min)
-
-<!-- OUTLINE:
-
-Inferring QoS
-Creating Serial & Concurrent Queues
-Custom queues
-Default Queues
-Issues
-
-Delaying Work with dispatch_after?
-Handling Background Tasks with dispatch_sync?
-Making Your Singletons Thread-Safe? -->
-
 
 ### Creating Serial Queues
 
@@ -114,52 +93,24 @@ By specifying a QoS to work, you indicate its importance, and the system priorit
 
 Remember that higher-priority work has to be performed faster, takes more system resources to complete, and requires more energy than lower-priority work.
 
-
-
-Note: Global queues are always concurrent and first-in, first-out.
-
+> Note: Global queues are always concurrent and first-in, first-out.
 
 If you just need a concurrent queue but don't want to manage your own, you can use the global class method on DispatchQueue to get one of the pre-defined global queues:
 
-let queue = DispatchQueue.global(qos: .userInteractive)
+```Swift
+ let queue = DispatchQueue.global(qos: .userInteractive)
+```
 
 As mentioned above, Apple offers six quality of service classes:
-
-
-
-
-<!-- TODO: insert table here, with the 2 add'l QoS levels from Ray W bk -->
-
-
-
-<!-- IDEAS FROM RAY W: - TODO: 1) check these against prior lesson for redundancy 2) boil down
-Concurrent queues are so common that Apple has provided six different global concurrent queues, depending on the Quality of service (QoS) the queue should have.
-
-When using a concurrent dispatch queue, you'll need to tell iOS how important the tasks are that get sent to the queue so that it can properly prioritize the work that needs to be done against all the other tasks that are clamoring for resources.
-
-Remember that higher-priority work has to be performed faster, likely taking more system resources to complete and requiring more energy than lower-priority work.
-
-If you just need a concurrent queue but don't want to manage your own, you can use the global class method on DispatchQueue to get one of the pre-defined global queues:
-
-let queue = DispatchQueue.global(qos: .userInteractive)
-
-As mentioned above, Apple offers six quality of service classes:
-
-Note: Global queues are always concurrent and first-in, first-out. -->
-
-
-
-
 
 <!-- TODO: insert code showing how to create a queue with QoS levels -->
 
 ![QoS_classes](assets/QoS_classes.png) </br>
 
 
-Special Quality of Service Classes
+**Special Quality of Service Classes**
 
 In addition to the primary QoS classes, there are two special types of QoS (described in Table 4-2). In most cases, you won’t be exposed to these classes, but there is still value in knowing they exist.
-
 
 ![special_QoS_classes](assets/special_QoS_classes.png) </br>
 
@@ -472,7 +423,7 @@ Scenarios might include:
 - other DispatchGroup methods:
 &nbsp;&nbsp;&nbsp; - `.enter()` </br>
 &nbsp;&nbsp;&nbsp; - `.leave()` </br>
-- Review (a) the section "Quality of Service Inference and Promotion" and (b) "Listing 4-3 Retrieving the QoS of a GCD dispatch queue" in this reference:
+- Review (a) the section "Quality of Service Inference and Promotion" and (b) "Listing 4-3 Retrieving the QoS of a GCD dispatch queue" in this reference: </br>
 &nbsp;&nbsp;&nbsp; [Prioritize Work with Quality of Service Classes](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html) </br>
 
 2. Assignment:
