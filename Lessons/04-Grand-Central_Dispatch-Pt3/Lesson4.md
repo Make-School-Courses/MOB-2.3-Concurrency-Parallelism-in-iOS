@@ -209,6 +209,14 @@ let queue = DispatchQueue(label: label,
 
 
 
+### Weak Refs
+
+<!-- TODO:  see Ray W bk for ideas -->
+
+
+
+
+
 
 
 ## In Class Activity I (20 min)
@@ -223,44 +231,6 @@ let queue = DispatchQueue(label: label,
 
 
 
-#### Custom Queues
-
-
-#### Default Queues
-
-
-
-
-
-#### Issues
-
-
-<!-- TODO: introduce Thread Explosion? -->
- <!-- Many workitems submitted to global concurrent queue
- If workitems block, more threads will be created
- May lead to thread explosion -->
-
-
-Another way that apps consume too many threads is by creating too many private concurrent dispatch queues. Because each dispatch queue consumes thread resources, creating additional concurrent dispatch queues exacerbates the thread consumption problem. Instead of creating private concurrent queues, submit tasks to one of the global concurrent dispatch queues. For serial tasks, set the target of your serial queue to one of the global concurrent queues. That way, you can maintain the serialized behavior of the queue while minimizing the number of separate queues creating threads.
-
-https://developer.apple.com/documentation/dispatch/dispatchqueue
-
-
-<!-- TODO: Ask questions:
-- what would happen if the system (a) runs out of threads, and/or (b) creating too many queues? (hint: are queues limited by cores?)
- -->
-
-
- > Note &mdash; When designing tasks for concurrent execution, do not call methods that block the current thread of execution. When a task scheduled by a concurrent dispatch queue blocks a thread, the system creates additional threads to run other queued concurrent tasks. If too many tasks block, the system may run out of threads for your app.
-
- https://developer.apple.com/documentation/dispatch/dispatchqueue
-
-
-
-
-<!-- explain Thread Explosion? here?
-- see my notes in "Problems with Concurrency & Shared Memory" doc
-- google more examples -->
 
 
 
@@ -281,7 +251,83 @@ https://developer.apple.com/documentation/dispatch/dispatchqueue
 
 ## Overview/TT II (optional) (20 min)
 
+
+### Dispatch Groups
+
+What if you need to process a group of tasks?
+
+And what if, on completion of that task group, you want to execute some other code that is dependent on the group's completion?
+
+<!-- TODO: example scenarios? -->
+
+
+
+For just such a scenario, Apple provides the `DispatchGroup` class, which allows you to:
+- group tasks
+- track the completion of a group of tasks
+
+
+Steps:
+1. create group
+2. provide the group as an argument
+
+
+<!-- TODO: insert an example here similar to example in Ref -->
+
+
+
+
+
+Key Points:
+- They don't all have to run at the same time,
+- As seen in the example code above, groups are not hardwired to a single dispatch queue. You can use a single group, yet submit jobs to multiple queues, depending on the priority of the task that needs to be run. DispatchGroups provide a notify(queue:) method, which you can use to be notified as soon as every job submitted has finished.
+
+<!-- TODO: see Apple docs for more text -->
+
+
+
+
+
+<!-- TODO: insert example here -->
+
+
+let myDispatchGroup = DispatchGroup()
+myQueue.async(group: myDispatchGroup) { ... fetch data, images, etc. ... }
+myQueue.async(group: myDispatchGroup) { ... process data .... }
+myOtherQueue.async(group: myDispatchGroup) { ... other work ... }
+
+
+myDispatchGroup.notify(queue: DispatchQueue.main) { [weak self] in
+   self?.textLabel.text = "All myDispatchGroup tasks have completed"
+}
+
+
+<!--
+let group = DispatchGroup()
+someQueue.async(group: group) { ... your work ... }
+someQueue.async(group: group) { ... more work .... }
+someOtherQueue.async(group: group) { ... other work ... }
+
+
+group.notify(queue: DispatchQueue.main) { [weak self] in
+   self?.textLabel.text = "All jobs have completed"
+} -->
+
+
+#### Synchronous waiting
+...or "group.wait()"
+
+
+#### Wrapping asynchronous methods
+...or "  group.enter()"
+
+
+
 ## In Class Activity II (optional) (30 min)
+
+
+<!-- TODO:  use the dispatchGroup playground  -->
+
 
 ## After Class
 1. Research:
