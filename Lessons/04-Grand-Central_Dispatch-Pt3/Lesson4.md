@@ -312,21 +312,55 @@ In other words, if you make a network request from a view controller that has be
   ```
 
   **Q:** What can you learn from the output here?
- 
+
 
 
 ## In Class Activity I (30 min)
 
-- I do, We do, You do
-- Reading & Discussion Questions in small groups
-- Draw a picture/diagram
-- Complete Challenges solo or in pair
-- Q&A about tutorials
-- Pair up and code review
-- Pair program
-- Formative assessment
-- Form into groups
-- etc (get creative :D)
+1. The following playground code assigns two tasks to a `DispatchGroup` and invokes `.wait()` function on the `DispatchGroup`:
+
+- Run the code in a playground and observe its output...
+
+```Swift  
+  import UIKit
+  import PlaygroundSupport
+
+  /*: Tell the playground to continue running, even after it thinks execution has ended.
+  You need to do this when working with background tasks. */
+
+  PlaygroundPage.current.needsIndefiniteExecution = true
+
+  let group = DispatchGroup()
+  let myGlobalQueue = DispatchQueue.global(qos: .userInitiated)
+
+  myGlobalQueue.async(group: group) {
+    print("Start task 1")
+    Thread.sleep(until: Date().addingTimeInterval(10))
+    print("End task 1")
+  }
+
+  myGlobalQueue.async(group: group) {
+    print("Start task 2")
+    Thread.sleep(until: Date().addingTimeInterval(2))
+    print("End task 2")
+  }
+
+  if group.wait(timeout: .now() + 5) == .timedOut {
+    print("Hey, I've been waiting too long!")
+  } else {
+    print("All tasks completed")
+  }
+
+  /*: Instruct Xcode that the playground page has finished execution. */
+  PlaygroundPage.current.finishExecution()
+```
+
+ **Q:** Why does it output `"Hey, I've been waiting too long!"` instead of `"All tasks completed"`?
+
+  **Q:** How would you change it to get `"All tasks completed"` as its output?
+
+ 2. Make changes so that its output is now `"All tasks completed"`
+
 
 ## Overview/TT II (optional) (20 min)
 
