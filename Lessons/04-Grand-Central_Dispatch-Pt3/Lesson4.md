@@ -247,21 +247,72 @@ In other words, if you make a network request from a view controller that has be
 - but if you capture it __*strongly*__ the view controller will remain alive until the closure finishes its work.
 
 
-## In Class Activity I (20 min)
+## In Class Activity I (25 min)
 
- <!-- TODO: create this...is there a suitable playground from prior lesson?
- - set up a situation where students call sync on current queue?
-  -->
+### Part 1 - Observing QoS on Two Queues
 
-<!-- NOTES: Use the playgrounds from old class
-- review how they work
-- write instructions -->
+1. Run the following code in a playground and observe its output:
 
+```Swift  
+  import Foundation
 
+  let queue1 = DispatchQueue(label: "com.makeschool.queue1", qos: DispatchQoS.userInitiated)
+  let queue2 = DispatchQueue(label: "com.makeschool.queue2", qos: DispatchQoS.userInitiated)
 
+  queue1.async {
+      for i in 0..<10 {
+          print("🍎 ", i)
+      }
+  }
 
+  queue2.async {
+      for i in 100..<110 {
+          print("🐳 ", i)
+      }
+  }
+```
 
+2. Change the QoS levels of the queues to match the following:
 
+```Swift
+  let queue1 = DispatchQueue(label: "com.makeschool.queue1", qos: DispatchQoS.userInitiated)
+  let queue2 = DispatchQueue(label: "com.makeschool.queue2", qos: DispatchQoS.utility)
+ ```
+ **Q:** How has the output changed and why?
+
+ 3. Change the QoS levels of the queues in various ways and observe the results
+
+### Part 2 - Observing QoS on Two Queues plus Main Queue
+
+ 1. Run the following code in a playground and observe its output:
+
+ ```Swift
+
+   import Foundation
+
+   let queue1 = DispatchQueue(label: "com.makeschool.queue1", qos: DispatchQoS.userInitiated)
+   let queue2 = DispatchQueue(label: "com.makeschool.queue2", qos: DispatchQoS.utility)
+
+   queue1.async {
+       for i in 0..<10 {
+           print("🍎 ", i)
+       }
+   }
+
+   queue2.async {
+       for i in 100..<110 {
+           print("🐳 ", i)
+       }
+   }
+
+   for i in 100..<110 {
+       print("😬 ", i)
+   }
+
+  ```
+
+  **Q:** What can you learn from the output here?
+ 
 
 
 ## In Class Activity I (30 min)
