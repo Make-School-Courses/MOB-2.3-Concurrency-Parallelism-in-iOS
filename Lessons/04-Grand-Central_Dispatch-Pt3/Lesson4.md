@@ -288,7 +288,7 @@ In other words, if you make a network request from a view controller that has be
 
  1. Run the following code in a playground and observe its output:
 
-[QoS_exercise1.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/blob/master/Lessons/04-Grand-Central_Dispatch-Pt3/assets/QoS_exercise1.playground.zip) </br>
+[QoS_ex2.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/blob/master/Lessons/04-Grand-Central_Dispatch-Pt3/assets/QoS_ex2.zip) </br>
 
 
 
