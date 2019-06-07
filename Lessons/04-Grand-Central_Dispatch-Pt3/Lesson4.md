@@ -92,12 +92,6 @@ Remember that higher-priority work has to be performed faster, takes more system
 
 > Note: Global queues are always concurrent and first-in, first-out.
 
-If you just need a concurrent queue but don't want to manage your own, you can use the global class method on DispatchQueue to get one of the pre-defined global queues:
-
-```Swift
- let queue = DispatchQueue.global(qos: .userInteractive)
-```
-
 This table describes the four primary QoS classes Apple offers:
 
 ![QoS_classes](assets/QoS_classes.png) </br>
