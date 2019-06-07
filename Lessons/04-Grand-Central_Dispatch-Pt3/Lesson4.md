@@ -446,7 +446,7 @@ For next class, be prepared to answer these questions:
 
 **Q:** What is the *last function* executed prior to the breakpoint?
 
-**Q:** What is the *first function* executed on the `main queue` (`main thread`)?
+**Q:** What is the *first function* executed on the `main queue`/`main thread`?
 
 **Q:** Why do you think it takes so long to present the images to the user?
 
