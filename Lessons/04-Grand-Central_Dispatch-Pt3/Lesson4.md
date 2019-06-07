@@ -409,11 +409,11 @@ Scenarios might include:
 - `dispatch_after`
 - `DispatchWorkItem.notify `
 - `DispatchQueue.concurrentPerform `
-- other DispatchGroup methods:
+- other DispatchGroup methods: </br>
 &nbsp;&nbsp;&nbsp; - `.enter()` </br>
 &nbsp;&nbsp;&nbsp; - `.leave()` </br>
 - Review (a) the section "Quality of Service Inference and Promotion" and (b) "Listing 4-3 Retrieving the QoS of a GCD dispatch queue" in this reference: </br>
-&nbsp;&nbsp;&nbsp; [Prioritize Work with Quality of Service Classes](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html) </br>
+&nbsp;&nbsp; - [Prioritize Work with Quality of Service Classes](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html) </br>
 
 2. Assignment:
 
