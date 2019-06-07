@@ -98,9 +98,7 @@ If you just need a concurrent queue but don't want to manage your own, you can u
  let queue = DispatchQueue.global(qos: .userInteractive)
 ```
 
-As mentioned above, Apple offers six quality of service classes:
-
-<!-- TODO: insert code showing how to create a queue with QoS levels -->
+This table describes the four primary QoS classes Apple offers:
 
 ![QoS_classes](assets/QoS_classes.png) </br>
 
