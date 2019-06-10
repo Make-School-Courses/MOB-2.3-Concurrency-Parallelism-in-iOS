@@ -69,25 +69,22 @@ Key attributes of Operations:
 - A higher level of abstraction over GCD
 - Object-oriented (vs functions/closures in GCD)
 - Execute concurrently &mdash; but can be serial by using dependencies
-- Offer more developer control (than GCD): </br>
-&nbsp;&nbsp;&nbsp;&nbsp; - Can be cancelled  </br>
-&nbsp;&nbsp;&nbsp;&nbsp; - Have priorities (veryLow, Low, normal, high, veryHigh)  </br>
-
+- Offer more developer control (than GCD)
 
 ### Why use them?
 The Operation class offers a number of compelling benefits over GCD:
 
-**Dependencies**
+**Dependencies** </br>
 Dependencies enables developers to execute tasks in a specific order.
 
 By default, an operation object with dependencies is not considered ready until all of its dependent operation objects have finished executing. Once the last dependent operation finishes, the operation object becomes ready and able to execute.
 
-**KVO-Compliant**
+**KVO-Compliant** </br>
 `Operation` and `OperationQueue` classes have a number of properties that can be observed using KVO (Key Value Observing).
 
 This allows you to monitor the *state* <sup>1</sup> of an operation or operation queue.
 
-**Developer Control**
+**Developer Control** </br>
 Using GCD, once you dispatch a task, you no longer have control or insight into the execution of that task.
 
 The `Operation` and `OperationQueue` classes are more flexible in that respect, giving the developer control over the operation's life cycle:
@@ -105,7 +102,7 @@ Because the Operation class is an abstract class, you do not use it directly. In
 
 There are two ways to execute operations:
 
-**Operation Queues** &mdash; Typically, you execute operations by adding them to an operation queue &mdash; an instance of the `OperationQueue` class).
+**Operation Queues** &mdash; Typically, you execute operations by submitting them to an operation queue &mdash; an instance of the `OperationQueue` class &mdash; to be processed based on the priority of each operation submitted.
 
 An operation queue executes its operations either __*directly*__ &mdash; by running them on secondary threads &mdash; or __*indirectly*__ using the `libdispatch` library (aka, GCD).
 
@@ -119,11 +116,16 @@ Because starting an operation that is not in the ready state triggers an excepti
 
 **Some things to note**
 
-- Despite being abstract, the base implementation of `Operation` does include significant logic to coordinate the safe execution of your task. The presence of this built-in logic allows you to focus on the actual implementation of your task, rather than on the glue code needed to ensure it works correctly with other system objects.
-
-- An operation object is a "single-shot object" &mdash; that is, it executes its task once and cannot be used to execute it again.
+1. An operation object is a "single-shot object" &mdash; that is, it executes its task once and cannot be used to execute it again.
+2. Despite being abstract, the base implementation of `Operation` includes significant logic to coordinate the safe execution of your task.
+- This allows you to focus on the actual implementation of your task, rather than on the glue code needed to ensure it works correctly with other system objects.
 
 ### How to use them?
+
+
+
+Operations are designed to be subclassed
+System defined subclasses (NSBlockOperation and  NSInvocationOperation)
 
 
 
