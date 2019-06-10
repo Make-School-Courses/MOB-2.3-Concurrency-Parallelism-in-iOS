@@ -99,13 +99,17 @@ Because the Operation class is an abstract class, you do not use it directly. In
 
 There are two ways to execute operations:
 
-**Operation Queues** &mdash; Typically, you execute operations by submitting them to an operation queue &mdash; an instance of the `OperationQueue` class &mdash; to be processed based on the priority of each operation submitted.
+1. **Operation Queues** &mdash; Typically, you execute operations by submitting them to an operation queue &mdash; an instance of the `OperationQueue` class &mdash; to be processed based on the priority of each operation submitted.
 
 An operation queue executes its operations either __*directly*__ &mdash; by running them on secondary threads &mdash; or __*indirectly*__ using the `libdispatch` library (aka, GCD).
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Operation-Queue](assets/Operation-Queue.png) </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Diagram showing an OperationQueue with three operations enqueued.* </br>
+
+
 > *More on OperationQueues coming up...*
 
-**Start method** &mdash; You can also choose *not* to use an `OperationQueue` and execute an operation yourself by calling its `start()` method directly from your code.
+2. **The start() Method** &mdash; You can also choose *not* to use an `OperationQueue` and execute an operation yourself by calling its `start()` method directly from your code.
 
 Because starting an operation that is not in the ready state triggers an exception, executing operations manually puts additional burden on your code to handle state changes if you choose to call an operation's `start()` method directly yourself.
 
@@ -161,6 +165,26 @@ Your custom subclasses of the `Operation` class inherit these lifecycle (state) 
 - There are only two you can directly manipulate: </br>
 &nbsp;&nbsp;&nbsp; - `isExecuting` state &mdash; Can *influence* this condition by starting the operation. </br>
 &nbsp;&nbsp;&nbsp; - `isCancelled` state &mdash; By calling the `cancel()` method on the object.
+
+
+
+### BlockOperation
+
+888
+If you just want to execute a small piece of code or call a method you can use BlockOperation and NSInvocationOperation instead of subclassing Operation.
+
+
+concrete subclass of Operation that manages the concurrent execution of one or more blocks. You can use this object to execute several blocks at once without having to create separate operation objects for each. When executing more than one block, the operation itself is considered finished only when all blocks have finished executing.
+Blocks added to a block operation are dispatched with default priority to an appropriate work queue. The blocks themselves should not make any assumptions about the configuration of their execution environment.
+
+
+<!-- BlockOperation
+Sometimes, you find yourself working on an app that heavily uses operations, but find that you have a need for a simpler, GCD-like, closure. If you don't want to also create a DispatchQueue, then you can instead utilize the BlockOperation class.
+BlockOperation subclasses Operation for you and manages the concurrent execution of one or more closures on the default global queue. However, being an actual Operation subclass lets you take advantage of all the other features of an operation. -->
+
+
+<!-- Note: Block operations run concurrently. If you need them to run serially, you'll need to setup a dispatch queue instead. -->
+
 
 
 
@@ -288,6 +312,8 @@ Compared to GCD... when to use them
 - `NSInvocationOperation` object
 - Passing Data Between Operations
 - [KVO-Compliant Properties: (of the `Operation` class) - Apple docs](https://developer.apple.com/documentation/foundation/operation)
+- [completionBlock - Apple docs](https://developer.apple.com/documentation/foundation/operation/1408085-completionblock)
+
 2. Assignment:
 -
 
@@ -304,6 +330,7 @@ Compared to GCD... when to use them
 3. [OperationQueue - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue)
 4. [Queue Priority - Apple docs](https://developer.apple.com/documentation/foundation/operation/1411204-queuepriority)
 5. [4 Ways To Pass Data Between Operations With Swift - an article](https://marcosantadev.com/4-ways-pass-data-operations-swift/)
+6. [BlockOperation - Apple docs](https://developer.apple.com/documentation/foundation/blockoperation)
 x. []()
 x. []()
 x. []()
