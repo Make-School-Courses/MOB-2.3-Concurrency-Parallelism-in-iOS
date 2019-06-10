@@ -44,7 +44,7 @@ By the end of this course, you will be able to ...
 [Grand Central Dispatch (Pt 1)]: Lessons/02-Grand-Central_Dispatch-Pt1/Lesson2.md
 [Grand Central Dispatch (Pt 2)]: Lessons/03-Grand-Central_Dispatch-Pt2/Lesson3.md
 [Grand Central Dispatch (Pt 3)]: Lessons/04-Grand-Central_Dispatch-Pt3/Lesson4.md
-[Semaphores]: Lessons/xxx/LessonX.md
+[Semaphores]: Lessons/05-Semaphores/Readme.md
 [Operations (Pt 1)]: Lessons/xxx/LessonX.md
 [Operations (Pt 2)]: Lessons/xxx/LessonX.md
 [Background Tasks]: Lessons/xxx/LessonX.md
