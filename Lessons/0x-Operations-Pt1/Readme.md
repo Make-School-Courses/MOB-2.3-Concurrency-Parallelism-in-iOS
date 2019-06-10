@@ -97,17 +97,8 @@ Once you dispatch a task using Grand Central Dispatch, you no longer have contro
 
 &nbsp;&nbsp;&nbsp; <sup>1</sup> *Details on operation state, KVO properties, and priority levels coming up later...*
 
-
-
-
-
-
-
-
-
-
-
 ### How `Operations` work
+
 
 
 Because the Operation class is an abstract class, you do not use it directly but instead subclass or use one of the system-defined subclasses (NSInvocationOperation or BlockOperation) to perform the actual task.
