@@ -43,6 +43,7 @@ As a developer, you need to know:
 - Benefits and Challenges of using Operations and Operation Queues
 - the difference between GCD and Operations and Operation Queues
 - when to use GCD vs Operations vs Operation Queues
+- Subclassing
 - Block Operations -->
 
 
@@ -61,14 +62,92 @@ As a developer, you need to know:
 
 `Operation` (formerly called `NSOperation`) is a class that allows you to encapsulate (wrap) a unit of work into a package you can execute at some time in the future.
 
+`Operation` is an *abstract* class that represents the code and data associated with a single task.
+
+Key attributes of Operations:
+- Higher level of abstraction over GCD
+- Object-oriented (vs functions/closures in GCD)
+- Execute concurrently &mdash; but can be serial by using dependencies
+- An Operation describes a single unit of work
+- Offer more developer control (than GCD): </br>
+&nbsp;&nbsp;&nbsp;&nbsp; - Can be cancelled  </br>
+&nbsp;&nbsp;&nbsp;&nbsp; - Have priorities (veryLow, Low, normal, high, veryHigh)  </br>
 
 
-Higher lever abstraction over GCD
-Object oriented vs functions (GCD)
-Operate concurrently but can be serial by using dependencies
-An Operation describes a single unit of work
-Can be cancelled
-Have priorities (veryLow, Low, normal, high, veryHigh)
+### Why use them?
+The Operation class offers a number of compelling benefits over GCD:
+
+**Dependencies** &mdash; Dependencies enables developers to execute tasks in a specific order. An operation is ready when every dependency has finished executing.
+
+By default, an operation object with dependencies is not considered ready until all of its dependent operation objects have finished executing. Once the last dependent operation finishes, the operation object becomes ready and able to execute.
+
+**KVO-Compliant** &mdash; `Operation` and `OperationQueue` classes have a number of properties that can be observed using KVO (Key Value Observing).
+
+This allows you to monitor the *state* <sup>1</sup> of an operation or operation queue.
+
+**Pause, Cancel, Resume** &mdash; Operations can be paused, resumed, and cancelled.
+
+Once you dispatch a task using Grand Central Dispatch, you no longer have control or insight into the execution of that task. The NSOperation API is more flexible in that respect, giving the developer control over the operation's life cycle.
+
+**Developer Control** &mdash; `Operation` and `OperationQueue` classes also give you, as a developer, more control:
+
+- For an `OperationQueue`, you can specify the __*maximum number of queued operations*__ that can run simultaneously. This makes it easy to (a) control how many operations run at the same time or (b) to create a serial operation queue.
+
+- For subclasses of `Operation`, you can configure the __*execution priority*__ level of an operation in an operation queue. <sup>1</sup>
+
+&nbsp;&nbsp;&nbsp; <sup>1</sup> *Details on operation state, KVO properties, and priority levels coming up later...*
+
+
+
+
+
+
+
+
+
+
+
+### How `Operations` work
+
+
+Because the Operation class is an abstract class, you do not use it directly but instead subclass or use one of the system-defined subclasses (NSInvocationOperation or BlockOperation) to perform the actual task.
+
+1) Operation Queues
+You typically execute operations by adding them to an operation queue (an instance of the OperationQueue class). An operation queue executes its operations either directly, by running them on secondary threads, or indirectly using the libdispatch library (also known as Grand Central Dispatch). For more information about how queues execute operations, see OperationQueue.
+
+2) Start method:
+
+If you do not want to use an operation queue, you can execute an operation yourself by calling its start() method directly from your code. Executing operations manually does put more of a burden on your code, because starting an operation that is not in the ready state triggers an exception. The isReady property reports on the operation’s readiness.
+
+
+
+
+
+<!-- < from Apple docs > -->
+An operation object is a single-shot object—that is, it executes its task once and cannot be used to execute it again. You typically execute operations by adding them to an operation queue (an instance of the OperationQueue class). An operation queue executes its operations either directly, by running them on secondary threads, or indirectly using the libdispatch library (also known as Grand Central Dispatch). For more information about how queues execute operations, see OperationQueue.
+If you do not want to use an operation queue, you can execute an operation yourself by calling its start() method directly from your code. Executing operations manually does put more of a burden on your code, because starting an operation that is not in the ready state triggers an exception. The isReady property reports on the operation’s readiness.
+
+
+
+
+**Some things to note**
+
+- Because the Operation class is an abstract class, you do not use it directly but instead subclass or use one of the system-defined subclasses (NSInvocationOperation or BlockOperation) to perform the actual task. Despite being abstract, the base implementation of Operation does include significant logic to coordinate the safe execution of your task. The presence of this built-in logic allows you to focus on the actual implementation of your task, rather than on the glue code needed to ensure it works correctly with other system objects.
+
+- An operation object is a single-shot object—that is, it executes its task once and cannot be used to execute it again.
+
+
+### How to use them?
+
+
+
+
+
+<!-- TODO:  
+- list states
+- list priority levels
+ -->
+
 
 
 
@@ -79,8 +158,18 @@ Why use them? benefits
 
 How they work
 
+White board
 
-Compared to GCD... -->
+Syntax examples
+
+dependencies
+
+BlockOperation
+
+Compared to GCD... when to use them
+
+
+-->
 
 
 
@@ -97,16 +186,28 @@ Compared to GCD... -->
 - Form into groups
 - etc (get creative :D)
 
-## Overview/TT II (optional) (20 min)
+## Overview/TT II (20 min)
 
-## In Class Activity II (optional) (30 min)
+## In Class Activity II (30 min)
+
+
+
+## After Class
+1. Research:
+-
+2. Assignment:
+-
 
 ## Wrap Up (5 min)
 
-- Continue working on your current tutorial
+<!-- - Continue working on your current tutorial -->
 - Complete reading
 - Complete challenges
 
 ## Additional Resources
 
-1. Links to additional readings and videos
+1. [Slides]()
+2. [Operation - Apple docs](https://developer.apple.com/documentation/foundation/operation)
+3. [OperationQueue - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue)
+4. [Queue Priority - Apple docs](https://developer.apple.com/documentation/foundation/operation/1411204-queuepriority)
+5. []()
