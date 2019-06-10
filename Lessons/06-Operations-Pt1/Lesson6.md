@@ -92,11 +92,11 @@ Using GCD, once you dispatch a task, you no longer have control or insight into 
 
 The `Operation` and `OperationQueue` classes are more flexible in that respect, giving the developer control over the operation's life cycle:
 
-- For an `OperationQueue`, you can specify the __*maximum number of queued operations*__ that can run simultaneously. This makes it easy to (a) control how many operations run at the same time or (b) to create a serial operation queue.
+- **Max Number of Operations** &mdash; For an `OperationQueue`, you can specify the __*maximum number of queued operations*__ that can run simultaneously. This makes it easy to (a) control how many operations run at the same time or (b) to create a serial operation queue.
 
-- For subclasses of `Operation`, you can configure the __*execution priority*__ level of an operation in an operation queue. <sup>1</sup>
+- **Execution Priority Levels** &mdash; For subclasses of `Operation`, you can configure the __*execution priority*__ level of an operation in an operation queue. <sup>1</sup>
 
-- `Operations` can also be __*paused, resumed, and cancelled.*__
+- **Pause, Resume, Cancel** &mdash; `Operations` can also be __*paused, resumed, and cancelled.*__
 
 <sup>1</sup> *Details on operation state, KVO properties, and priority levels coming up later...*
 
