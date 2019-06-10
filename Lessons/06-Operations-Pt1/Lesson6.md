@@ -57,7 +57,6 @@ https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosop
 ## Intro to Operations (20 min)
 
 ### What are they?
-
 `Operation` (formerly called `NSOperation`) is a class that allows you to encapsulate (wrap) a unit of work into a package you can execute at some time in the future.
 
 `Operation` is an __*abstract*__ class that represents the code and data associated with a single task.
@@ -108,29 +107,88 @@ An operation queue executes its operations either __*directly*__ &mdash; by runn
 
 **Start method** &mdash; You can also choose *not* to use an `OperationQueue` and execute an operation yourself by calling its `start()` method directly from your code.
 
-Because starting an operation that is not in the ready state triggers an exception, executing operations manually puts additional burden on your code to handle state changes if you choose to call an operation's `start()` method directly.
+Because starting an operation that is not in the ready state triggers an exception, executing operations manually puts additional burden on your code to handle state changes if you choose to call an operation's `start()` method directly yourself.
 
 > *Note that later we'll see that the `isReady` property reports on the operation’s readiness.*
 
 **Some things to note**
 
 1. An operation object is a "single-shot object" &mdash; that is, it executes its task once and cannot be used to execute it again.
-2. Unlike GCD, operations run __*synchronously*__ by default. You can get them to run asynchronously, but this requires much more work.
+2. Unlike GCD, operations run __*synchronously*__ by default &mdash; that is, they perform their task in the thread that calls their `start()` method. (You can get them to run asynchronously, but this requires much more work.)
 3. Despite being abstract, the base implementation of `Operation` includes significant logic to coordinate the safe execution of your task.
 - This allows you to focus on the actual implementation of your task, rather than on the glue code needed to ensure it works correctly with other system objects.
 
-### How to use them?
-The `Operation` class and its related system-defined subclasses (`BlockOperation` and `NSInvocationOperation`) provide the *basic* logic to track the execution state of your operation, but for all else, they were designed to be subclassed before they can do any real work for you.
+### Lifecyle of an Operation
+An `Operation` object has a *state machine* that represents its lifecycle.
+
+`Operation` objects maintain state information internally to:
+- determine when it is safe to execute
+- notify external clients of the progression through the operation’s life cycle
+
+Your custom subclasses of the `Operation` class inherit these lifecycle (state) properties and can use them to ensure the correct execution of operations in your code.
+
+
+The key paths associated with an operation's states are:
+
+Operations can exist in any of the following states:
+
+• isReady
+• isExecuting
+
+isCancelled
+• isFinished
+Unlike GCD, an op
+
+
+ Because they're classes and can contain variables, you gain the ability to know what state the operation is in at any given point.
+
+
+
+
+### How to implement Operation objects
+The `Operation` class &mdash; and its related system-defined subclasses (`BlockOperation` and `NSInvocationOperation`) &mdash; provide the *basic* logic to track the execution state of your operation.
+
+But they were designed to be subclassed before they can do any useful work for you.
+
+
+Just as you'd submit a closure of work to a `DispatchQueue` for GCD, instance of the `Operation` class can be submitted to an `OperationQueue` for execution.
+
+
+<!-- Each subclass represents a specific task  -->
+
+
+
+<!-- from ray w:
+
+Operations are fully-functional classes that can be submitted to an OperationQueue, just like you'd submit a closure of work to a DispatchQueue for GCD. Because they're classes and can contain variables, you gain the ability to know what state the operation is in at any given point.
+ -->
+
+
+
 
 How you create your subclass depends on whether your operation is designed to execute concurrently or non-concurrently.
 
-888
+**Non-Concurrent Operations** </br>
+For non-concurrent operations, you typically override only one method:
+&nbsp;&nbsp;&nbsp;&nbsp; `main()`
+
+Into this method, you place the code needed to perform the given task.
+
+Of course, you should also define a custom initialization method to make it easier to create instances of your custom class. You might also want to define getter and setter methods to access the data from the operation. However, if you do define custom getter and setter methods, you must make sure those methods can be called safely from multiple threads.
+
+
+
+**Concurrent Operations** </br>
+
+The `isAsynchronous` method of the `Operation` class tells you whether an operation runs synchronously or asynchronously with respect to the thread in which its start method was called. By default, this method returns `false`, which means the operation runs synchronously in the calling thread.
+
+
+
+> REMEMBER: As discussed earlier,
 
 
 
 
-Subclassing Notes
-The NSOperation class provides the basic logic to track the execution state of your operation but otherwise must be subclassed to do any real work. How you create your subclass depends on whether your operation is designed to execute concurrently or non-concurrently.
 
 
 
@@ -147,10 +205,6 @@ Finished completion block is called when operation is done
 
 
 
-<!-- from ray w:
-
-Operations are fully-functional classes that can be submitted to an OperationQueue, just like you'd submit a closure of work to a DispatchQueue for GCD. Because they're classes and can contain variables, you gain the ability to know what state the operation is in at any given point.
- -->
 
 
 
@@ -213,6 +267,7 @@ Compared to GCD... when to use them
 - [Concurrent Versus Non-concurrent Operations - Apple docs](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW1)
 - `NSInvocationOperation` object
 - Passing Data Between Operations
+- [KVO-Compliant Properties: (of the `Operation` class) - Apple docs](https://developer.apple.com/documentation/foundation/operation)
 2. Assignment:
 -
 
