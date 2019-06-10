@@ -127,20 +127,43 @@ An `Operation` object has a *state machine* that represents its lifecycle.
 
 Your custom subclasses of the `Operation` class inherit these lifecycle (state) properties and can use them to ensure the correct execution of operations in your code.
 
+The key paths associated with an operation's state at various stages of its lifecycle are:
+- **isReady** &mdash; Lets clients know when an operation is ready to execute. When it has been instantiated and is ready to run, it will transition to the `isReady` state. `true` when the operation is ready to execute now or `false` if there are still unfinished operations on which it is dependent.
+- **isExecuting** &mdash; Once the `start()` method is invoked, your operation moves to the `isExecuting` state. This property must report `true` if the operation is actively working on its assigned task or `false` if it is not.
+- **isCancelled** &mdash; Informs clients that the cancellation of an operation was requested. If `true`, the app calls the cancel method, then it will transition to the `isCancelled` state, before moving onto the `isFinished` state.
+- **isFinished** &mdash; Lets clients know that an operation `finished` its task successfully or was `cancelled` and is exiting. If it was not canceled, then it will move directly from `isExecuting` to `isFinished`. Marking operations as `finished` is critical to keeping queues from backing up with `in-progress` or `cancelled` operations.
 
-The key paths associated with an operation's states are:
+
+
+Each of the aforementioned states are read-only Boolean properties on the Operation class. You can query them at any point during the execution of the task to see whether or not the task is executing.
+
+
+The Operation class handles all of these state transitions for you. The only two you can directly influence are the isExecuting state, by starting the operation, and the isCancelled state, if you call the cancel method on the object.
+
+
 
 Operations can exist in any of the following states:
+key paths associated with an operation's state listed below are illustrate that
 
-• isReady
-• isExecuting
 
-isCancelled
-• isFinished
+
+During its lifetime an Operation runs through different stages. When being added to a queue it is in Pending state. In this state, it waits for its conditions. As soon as all of them are fulfilled it enters the Ready state and in case there is an open slot it will start executing. Having done all its work, it will enter the Finished state and will be removed from the OperationQueue. In each state (except Finished) an Operation can be cancelled.
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Operation_states](assets/Operation_states.png) </br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:* https://medium.com/flawless-app-stories/parallel-programming-with-swift-operations-54cbefaf3cb0
+
+
 Unlike GCD, an op
 
 
  Because they're classes and can contain variables, you gain the ability to know what state the operation is in at any given point.
+
+
+
+During its lifetime an Operation runs through different stages. When being added to a queue it is in Pending state. In this state, it waits for its conditions. As soon as all of them are fulfilled it enters the Ready state and in case there is an open slot it will start executing. Having done all its work, it will enter the Finished state and will be removed from the OperationQueue. In each state (except Finished) an Operation can be cancelled.
 
 
 
