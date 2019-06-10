@@ -24,7 +24,7 @@ Semaphores are a well known topic in every Operating Systems class. They help so
 
 ## Initial Exercise (15 min)
 
-Review solution to __*JankyTable*__ app assignment from last lesson.
+Review solution to **JankyTable app** assignment from last lesson.
 
 - One or more volunteers present their solutions. Opens a class discussion.
 
