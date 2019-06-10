@@ -138,19 +138,21 @@ During its lifetime, an `Operation` object can exist in any of the following sta
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:* </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://medium.com/flawless-app-stories/parallel-programming-with-swift-operations-54cbefaf3cb0
 
+#### Operation state properties
+
 `Operation` objects maintain state information internally to:
 - determine when it is safe to execute
 - notify external clients of the progression through the operation’s life cycle
 
-Your custom subclasses of the `Operation` class inherit these lifecycle (state) properties and can use them to ensure the correct execution of operations in your code.
-
-These properties give you the ability to know what state your operation is in at any given point in its lifecycle.
-
-The key paths associated with an operation's state at various stages of its lifecycle are:
+The KVO key paths (properties) associated with an operation's state at various stages of its lifecycle are:
 - **isReady** &mdash; Lets clients know when an operation is ready to execute. When it has been instantiated and is ready to run, it will transition to the `isReady` state. `true` when the operation is ready to execute now or `false` if there are still unfinished operations on which it is dependent.
 - **isExecuting** &mdash; Once the `start()` method is invoked, your operation moves to the `isExecuting` state. This property must report `true` if the operation is actively working on its assigned task or `false` if it is not.
 - **isCancelled** &mdash; Informs clients that the cancellation of an operation was requested. If `true`, the app calls the cancel method, then it will transition to the `isCancelled` state, before moving onto the `isFinished` state.
 - **isFinished** &mdash; Lets clients know that an operation `finished` its task successfully or was `cancelled` and is exiting. If it was not canceled, then it will move directly from `isExecuting` to `isFinished`. Marking operations as `finished` is critical to keeping queues from backing up with `in-progress` or `cancelled` operations.
+
+These properties give you the ability to know what state your operation is in at any given point in its lifecycle.
+
+Your custom subclasses of the `Operation` class inherit these lifecycle (state) properties and can use them to ensure the correct execution of operations in your code.
 
 **Some things to note**
 1. Each of the state key paths (properties) listed above are *read-only* Boolean properties of the `Operation` class.
