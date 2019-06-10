@@ -49,12 +49,10 @@ As a developer, you need to know:
 
 ## Initial Exercise (15 min)
 
-<!-- - Funny comic
-- Prime the Pump (e.g. think and jot, think pair share, etc)
-- Productivity Tip/Tool
-- Review of current event (e.g. tech news relevant to your track/topic)
-- Quiz on homework or topic(s) of past class
-- Concept Test -->
+Review solutions to *Assignment 2: Solve the Dining Philosophers Problem (challenge)* from previous class:
+https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosophers
+
+- One or more volunteers present their solutions. Opens a class discussion.
 
 ## Intro to Operations (20 min)
 
@@ -117,16 +115,42 @@ Because starting an operation that is not in the ready state triggers an excepti
 **Some things to note**
 
 1. An operation object is a "single-shot object" &mdash; that is, it executes its task once and cannot be used to execute it again.
-2. Despite being abstract, the base implementation of `Operation` includes significant logic to coordinate the safe execution of your task.
+2. Unlike GCD, operations run __*synchronously*__ by default. You can get them to run asynchronously, but this requires much more work.
+3. Despite being abstract, the base implementation of `Operation` includes significant logic to coordinate the safe execution of your task.
 - This allows you to focus on the actual implementation of your task, rather than on the glue code needed to ensure it works correctly with other system objects.
 
 ### How to use them?
+The `Operation` class and its related system-defined subclasses (`BlockOperation` and `NSInvocationOperation`) provide the *basic* logic to track the execution state of your operation, but for all else, they were designed to be subclassed before they can do any real work for you.
+
+How you create your subclass depends on whether your operation is designed to execute concurrently or non-concurrently.
+
+888
 
 
 
-Operations are designed to be subclassed
-System defined subclasses (NSBlockOperation and  NSInvocationOperation)
 
+Subclassing Notes
+The NSOperation class provides the basic logic to track the execution state of your operation but otherwise must be subclassed to do any real work. How you create your subclass depends on whether your operation is designed to execute concurrently or non-concurrently.
+
+
+
+<!-- TODO:  describe PROPERTIES and - methods to override
+
+You can override main or start method, main is less flexible but manages state of the operation for you (e.g assumes when main returns its finished), with start you have to do that manually.
+
+3 Booleans, Finished, Cancelled, Ready
+
+Finished completion block is called when operation is done
+
+ -->
+
+
+
+
+<!-- from ray w:
+
+Operations are fully-functional classes that can be submitted to an OperationQueue, just like you'd submit a closure of work to a DispatchQueue for GCD. Because they're classes and can contain variables, you gain the ability to know what state the operation is in at any given point.
+ -->
 
 
 
@@ -156,6 +180,10 @@ BlockOperation
 
 Compared to GCD... when to use them
 
+  examples from Ray W:
+  operations allow for the handling of more complex scenarios such as reusable code to be run on a background thread, having one thread depend on another, and even canceling an operation before it's started or completed.
+
+  GCD is great for common tasks that need to be run a single time in the background. When you find yourself building functionality that should be reusable — such as image editing operations — you will likely want to encapsulate that functionality into a class. By subclassing Operation, you can accomplish that goal!
 
 -->
 
@@ -182,7 +210,9 @@ Compared to GCD... when to use them
 
 ## After Class
 1. Research:
--
+- [Concurrent Versus Non-concurrent Operations - Apple docs](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW1)
+- `NSInvocationOperation` object
+- Passing Data Between Operations
 2. Assignment:
 -
 
@@ -198,4 +228,7 @@ Compared to GCD... when to use them
 2. [Operation - Apple docs](https://developer.apple.com/documentation/foundation/operation)
 3. [OperationQueue - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue)
 4. [Queue Priority - Apple docs](https://developer.apple.com/documentation/foundation/operation/1411204-queuepriority)
-5. []()
+5. [4 Ways To Pass Data Between Operations With Swift - an article](https://marcosantadev.com/4-ways-pass-data-operations-swift/)
+x. []()
+x. []()
+x. []()
