@@ -49,16 +49,16 @@ As a developer, you need to know:
 
 ## Initial Exercise (15 min)
 
-<!-- - Funny comic
+- Funny comic
 - Prime the Pump (e.g. think and jot, think pair share, etc)
 - Productivity Tip/Tool
 - Review of current event (e.g. tech news relevant to your track/topic)
 - Quiz on homework or topic(s) of past class
-- Concept Test -->
+- Concept Test
 
 ## Intro to Operations (20 min)
 
-### What are they?
+### What are `Operations`?
 
 `Operation` (formerly called `NSOperation`) is a class that allows you to encapsulate (wrap) a unit of work into a package you can execute at some time in the future.
 
@@ -97,28 +97,36 @@ Once you dispatch a task using Grand Central Dispatch, you no longer have contro
 
 &nbsp;&nbsp;&nbsp; <sup>1</sup> *Details on operation state, KVO properties, and priority levels coming up later...*
 
-### How do Operations work?
-Because the Operation class is an abstract class, you do not use it directly. Instead, you subclass it or use one of the system-defined subclasses (`NSInvocationOperation` or `BlockOperation`) to perform the actual task.
+### How `Operations` work
 
-There are two ways to execute operations:
 
-**Operation Queues** &mdash; Typically, you execute operations by adding them to an operation queue &mdash; an instance of the `OperationQueue` class).
 
-An operation queue executes its operations either __*directly*__ &mdash; by running them on secondary threads &mdash; or __*indirectly*__ using the `libdispatch` library (aka, GCD).
+Because the Operation class is an abstract class, you do not use it directly but instead subclass or use one of the system-defined subclasses (NSInvocationOperation or BlockOperation) to perform the actual task.
 
-> *More on OperationQueues coming up...*
+1) Operation Queues
+You typically execute operations by adding them to an operation queue (an instance of the OperationQueue class). An operation queue executes its operations either directly, by running them on secondary threads, or indirectly using the libdispatch library (also known as Grand Central Dispatch). For more information about how queues execute operations, see OperationQueue.
 
-**Start method** &mdash; You can also choose *not* to use an `OperationQueue` and execute an operation yourself by calling its `start()` method directly from your code.
+2) Start method:
 
-Because starting an operation that is not in the ready state triggers an exception, executing operations manually puts additional burden on your code to handle state changes if you choose to call an operation's `start()` method directly.
+If you do not want to use an operation queue, you can execute an operation yourself by calling its start() method directly from your code. Executing operations manually does put more of a burden on your code, because starting an operation that is not in the ready state triggers an exception. The isReady property reports on the operation’s readiness.
 
-> *Note that later we'll see that the `isReady` property reports on the operation’s readiness.*
+
+
+
+
+<!-- < from Apple docs > -->
+An operation object is a single-shot object—that is, it executes its task once and cannot be used to execute it again. You typically execute operations by adding them to an operation queue (an instance of the OperationQueue class). An operation queue executes its operations either directly, by running them on secondary threads, or indirectly using the libdispatch library (also known as Grand Central Dispatch). For more information about how queues execute operations, see OperationQueue.
+If you do not want to use an operation queue, you can execute an operation yourself by calling its start() method directly from your code. Executing operations manually does put more of a burden on your code, because starting an operation that is not in the ready state triggers an exception. The isReady property reports on the operation’s readiness.
+
+
+
 
 **Some things to note**
 
-- Despite being abstract, the base implementation of `Operation` does include significant logic to coordinate the safe execution of your task. The presence of this built-in logic allows you to focus on the actual implementation of your task, rather than on the glue code needed to ensure it works correctly with other system objects.
+- Because the Operation class is an abstract class, you do not use it directly but instead subclass or use one of the system-defined subclasses (NSInvocationOperation or BlockOperation) to perform the actual task. Despite being abstract, the base implementation of Operation does include significant logic to coordinate the safe execution of your task. The presence of this built-in logic allows you to focus on the actual implementation of your task, rather than on the glue code needed to ensure it works correctly with other system objects.
 
-- An operation object is a "single-shot object" &mdash; that is, it executes its task once and cannot be used to execute it again.
+- An operation object is a single-shot object—that is, it executes its task once and cannot be used to execute it again.
+
 
 ### How to use them?
 
