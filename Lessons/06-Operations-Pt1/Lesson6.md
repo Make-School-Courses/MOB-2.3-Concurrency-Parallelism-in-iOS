@@ -62,13 +62,13 @@ As a developer, you need to know:
 
 `Operation` (formerly called `NSOperation`) is a class that allows you to encapsulate (wrap) a unit of work into a package you can execute at some time in the future.
 
-`Operation` is an *abstract* class that represents the code and data associated with a single task.
+`Operation` is an __*abstract*__ class that represents the code and data associated with a single task.
 
 Key attributes of Operations:
-- Higher level of abstraction over GCD
+- An Operation describes a single unit of work
+- A higher level of abstraction over GCD
 - Object-oriented (vs functions/closures in GCD)
 - Execute concurrently &mdash; but can be serial by using dependencies
-- An Operation describes a single unit of work
 - Offer more developer control (than GCD): </br>
 &nbsp;&nbsp;&nbsp;&nbsp; - Can be cancelled  </br>
 &nbsp;&nbsp;&nbsp;&nbsp; - Have priorities (veryLow, Low, normal, high, veryHigh)  </br>
@@ -77,25 +77,28 @@ Key attributes of Operations:
 ### Why use them?
 The Operation class offers a number of compelling benefits over GCD:
 
-**Dependencies** &mdash; Dependencies enables developers to execute tasks in a specific order. An operation is ready when every dependency has finished executing.
+**Dependencies**
+Dependencies enables developers to execute tasks in a specific order.
 
 By default, an operation object with dependencies is not considered ready until all of its dependent operation objects have finished executing. Once the last dependent operation finishes, the operation object becomes ready and able to execute.
 
-**KVO-Compliant** &mdash; `Operation` and `OperationQueue` classes have a number of properties that can be observed using KVO (Key Value Observing).
+**KVO-Compliant**
+`Operation` and `OperationQueue` classes have a number of properties that can be observed using KVO (Key Value Observing).
 
 This allows you to monitor the *state* <sup>1</sup> of an operation or operation queue.
 
-**Pause, Cancel, Resume** &mdash; Operations can be paused, resumed, and cancelled.
+**Developer Control**
+Using GCD, once you dispatch a task, you no longer have control or insight into the execution of that task.
 
-Once you dispatch a task using Grand Central Dispatch, you no longer have control or insight into the execution of that task. The NSOperation API is more flexible in that respect, giving the developer control over the operation's life cycle.
-
-**Developer Control** &mdash; `Operation` and `OperationQueue` classes also give you, as a developer, more control:
+The `Operation` and `OperationQueue` classes are more flexible in that respect, giving the developer control over the operation's life cycle:
 
 - For an `OperationQueue`, you can specify the __*maximum number of queued operations*__ that can run simultaneously. This makes it easy to (a) control how many operations run at the same time or (b) to create a serial operation queue.
 
 - For subclasses of `Operation`, you can configure the __*execution priority*__ level of an operation in an operation queue. <sup>1</sup>
 
-&nbsp;&nbsp;&nbsp; <sup>1</sup> *Details on operation state, KVO properties, and priority levels coming up later...*
+- `Operations` can also be __*paused, resumed, and cancelled.*__
+
+<sup>1</sup> *Details on operation state, KVO properties, and priority levels coming up later...*
 
 ### How do Operations work?
 Because the Operation class is an abstract class, you do not use it directly. Instead, you subclass it or use one of the system-defined subclasses (`NSInvocationOperation` or `BlockOperation`) to perform the actual task.
