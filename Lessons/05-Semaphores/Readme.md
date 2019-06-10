@@ -26,7 +26,7 @@ Semaphores are a well known topic in every Operating Systems class. They help so
 
 Review solution to __*JankyTable*__ app assignment from last lesson.
 
-&nbsp;&nbsp;&nbsp;&nbsp; - Volunteer(s) present their solution(s). Opens a class discussion.
+&nbsp;&nbsp; - Volunteer(s) present their solution(s). Opens a class discussion.
 
 ## An intro to semaphores (15 min)
 
