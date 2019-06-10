@@ -24,8 +24,9 @@ Semaphores are a well known topic in every Operating Systems class. They help so
 
 ## Initial Exercise (15 min)
 
+- Review solution to __*JankyTable*__ app assignment from last lesson...
 
-
+**TODO: &mdash;** Volunteer(s) present their solution(s). Opens a class discussion.
 
 ## An intro to semaphores (15 min)
 
@@ -239,8 +240,12 @@ Swift playground
   - Difference between Dispatch Groups and Semaphores?
 
 
-2. Assignment:
+2. Assignment 1:
   - Multiplex (challenge)
+
+3. Assignment 2: Solve the **Dining Philosophers Problem** (challenge):
+  - https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosophers
+
 
 ## Wrap Up (5 min)
 
