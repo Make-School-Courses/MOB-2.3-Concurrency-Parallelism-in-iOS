@@ -101,13 +101,13 @@ There are two ways to execute operations:
 
 1) **Operation Queues** &mdash; Typically, you execute operations by submitting them to an operation queue &mdash; an instance of the `OperationQueue` class &mdash; to be processed based on the priority of each operation submitted.
 
-- An operation queue executes its operations either __*directly*__ &mdash; by running them on secondary threads &mdash; or __*indirectly*__ using the `libdispatch` library (aka, GCD). </br>
+- An operation queue executes its operations either __*directly*__ &mdash; by running them on secondary threads &mdash; or __*indirectly*__ using the `libdispatch` library (aka, GCD). </br></br>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Operation-Queue](assets/Operation-Queue.png) </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Diagram showing an OperationQueue with three operations enqueued.* </br>
+</br>
 
-
-> *More on OperationQueues in later lessons...*  
+&nbsp;&nbsp;&nbsp;> *More on OperationQueues in later lessons...*  
 
 </br>
 
@@ -115,7 +115,7 @@ There are two ways to execute operations:
 
 - Because starting an operation that is not in the ready state triggers an exception, executing operations manually puts additional burden on your code to handle state changes if you choose to call an operation's `start()` method directly.
 
-> *Note that later we'll see that the `isReady` property reports on the operation’s readiness state.*
+&nbsp;&nbsp;&nbsp; > *Note that later we'll see that the `isReady` property reports on the operation’s readiness state.*
 
 **Some things to note**
 
