@@ -118,8 +118,6 @@ Serial versus Concurrent is about the __*number of threads*__ available to a que
 
 
 ### Subclassing the Operation class
-
-
 The `BlockOperation` class we explored in the previous lesson is handy for simple tasks.  
 
 But for more complex tasks, or to create reusable components, you will need to create your own custom subclasses of the `Operation` class where each subclass instance represents a specific task.
@@ -127,8 +125,6 @@ But for more complex tasks, or to create reusable components, you will need to c
 And though the `Operation` class &mdash; and its related pre-defined subclasses (`BlockOperation` and `NSInvocationOperation`) &mdash; provide the *basic* logic to track the execution state of your operation and other Operations benefits, they were designed to be subclassed before they can do any useful work for you.
 
 How you create your subclass depends on whether your operation is designed to execute concurrently or non-concurrently.<sup>1</sup>
-
-
 
 **Non-Concurrent Operations** </br>
 For non-concurrent<sup>1</sup> operations, you typically override only one method:
@@ -142,46 +138,33 @@ The `main()` function performs the receiver’s __*non-concurrent*__ task.
 
 The default implementation of this method does nothing; You must override method and place in it the code needed to perform the given task.
 
-#### Things to note
+__*Things to note*__
 - In your implementation, do not invoke `super`.
 - Of course, you should also define a custom initialization method to make it easier to create instances of your custom class.
 - Optionally, if you do define custom getter and setter methods, you must make sure those methods can be called safely from multiple threads.
 
 **Concurrent Operations** </br>
+If you are creating a concurrent operation, you need to override the following methods and properties at a minimum:
+- `start()`
+- `isAsynchronous`
+- `isExecuting`
+- `isFinished`
 
-The `isAsynchronous` method of the `Operation` class tells you whether an operation runs synchronously or asynchronously with respect to the thread in which its start method was called. By default, this method returns `false`, which means the operation runs synchronously in the calling thread.
+__*The `start()` method*__ <sup>2</sup>
+In a concurrent operation, your `start()` method:
+- is responsible for starting the operation in an asynchronous manner. Whether you spawn a thread or call an asynchronous function, you do it from this method.
 
+__*The `isAsynchronous` property*__
+The `isAsynchronous` property of the `Operation` class tells you whether an operation runs synchronously or asynchronously with respect to the thread in which its `start()` method was called.
 
-If you are implementing a concurrent operation, you are not required to override the `main()` method but may do so if you plan to call it from your custom `start() `method.
+By default, this method returns `false`, which means the operation runs synchronously in the calling thread.
 
+__*Note:*__ If you are implementing a concurrent operation, you are not required to override the `main()` method but may do so if you plan to call it from your custom `start() `method.
+
+> <sup>2</sup> The `start()` method has additional responsibilities in a concurrent operation, which we will explore further in the Asynchronous Operations lesson. Same for the `isAsynchronous` property. For further details of both, also see the Apple source referenced below
 
 *Source:* </br>
 https://developer.apple.com/documentation/foundation/operation/1407732-main
-
-
-
-
-<!-- from ray w:
-
-Operations are fully-functional classes that can be submitted to an OperationQueue, just like you'd submit a closure of work to a DispatchQueue for GCD. Because they're classes and can contain variables, you gain the ability to know what state the operation is in at any given point.
- -->
-
-
-
-
- <!-- TODO:  describe PROPERTIES and - methods to override
-
- You can override main or start method, main is less flexible but manages state of the operation for you (e.g assumes when main returns its finished), with start you have to do that manually.
-
- 3 Booleans, Finished, Cancelled, Ready
-
- Finished completion block is called when operation is done
-
-  -->
-
-
-
-
 
 
 ## In Class Activity I (30 min)
@@ -195,6 +178,11 @@ Operation queues are instances of the `OperationQueue` class, and its tasks are 
 
 Just as you'd submit a closure of work to a `DispatchQueue` for GCD, instances of the `Operation` class can be submitted to an `OperationQueue` for execution.
 
+
+<!-- from ray w:
+
+Operations are fully-functional classes that can be submitted to an OperationQueue, just like you'd submit a closure of work to a DispatchQueue for GCD. Because they're classes and can contain variables, you gain the ability to know what state the operation is in at any given point.
+ -->
 
 <!--
 the OperationQueue class is what you use to manage the scheduling of an Operation and the maximum number of operations that can run simultaneously.
