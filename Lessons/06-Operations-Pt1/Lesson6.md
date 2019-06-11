@@ -202,7 +202,7 @@ At **4)** &mdash; we add our `printerOperation` object the queue
 
   let printerOperation = BlockOperation() // 1) create printerOperation as BlockOperation
 
-  // adds code blocks to operation
+  // 2) add code blocks to the operation
   printerOperation.addExecutionBlock { print("I") }
   printerOperation.addExecutionBlock { print("am") }
   printerOperation.addExecutionBlock { print("printing") }
