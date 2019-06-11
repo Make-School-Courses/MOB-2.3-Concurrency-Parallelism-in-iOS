@@ -1,5 +1,10 @@
 # Operations (Part 1)
 
+<!-- INSTRUCTOR NOTES:
+1) Activity 1:
+- Solution to Part 2 is below the Exercise -->
+
+
 ## Minute-by-Minute
 
 | **Elapsed** | **Time**  | **Activity**              |
@@ -183,19 +188,29 @@ At **2)** &mdash; `myBlockOperation` is added to an `OperationQueue` for executi
 > Not shown here: (1) Creation of the OperationQueue (2) execution details.
 
 
-**Example with Multiple Blocks**
 
-Let's look at what is going on in this example...
 
-At **1)** &mdash; we create a `printerOperation` as our `BlockOperation` object.
 
-At **2)** &mdash; then we add blocks of code to the `printerOperation` that will be part of the operation.
 
-At **3)** &mdash; after adding all of blocks, we set a `completionBlock` on the operation, which will be executed after the operation finishes.
+## In Class Activity I (30 min)
 
-At **4)** &mdash; we create an `OperationQueue` object that will call `start()` on our operation object
+### Part 1 - BlockOperation started by an OperationQueue
 
-At **4)** &mdash; we add our `printerOperation` object the queue
+Here is a simple example of a `BlockOperation` that:
+- is made up of multiple code blocks
+- is started by the OperationQueue
+
+Let's look at what is going on here...
+
+At 1), we create a `printerOperation` as our `BlockOperation` object.
+
+At 2), then we add blocks of code to the `printerOperation` that will be part of the operation.
+
+At 3), after adding all of blocks, we set a `completionBlock` on the operation, which will be executed after the operation finishes.
+
+At 4) we create an `OperationQueue` object that will call `start()` on our operation object
+
+...and at 5) we add our `printerOperation` object to the queue
 
 ```Swift  
   import Foundation
@@ -220,28 +235,73 @@ At **4)** &mdash; we add our `printerOperation` object the queue
 *Source:* https://blog.infullmobile.com/basics-of-operations-and-operation-queues-in-ios-a8e7b02950c3
 
 
-**TODO:** Run the code as a playground a few times and observe the results.
+**TODO:** Run the code as a playground a few times and observe results...
 
-**Q:** What did you notice about the order in which the submitted blocks executed?
-
+**Q:** What did you notice about the order in which the submitted blocks execute?
 **Q:** How about the completionBlock's execution order?
 
+### Part 2 - BlockOperation with manual start()
+
+![BlockOperation_ex2.playground](assets/BlockOperation_ex2.playground.zip) </br>
+
+```Swift  
+  import Foundation
+
+  let phrase = "Mobile is the greatest!"
+  let tokenOperation = BlockOperation()
+
+  for token in phrase.split(separator: " ") {
+      tokenOperation.addExecutionBlock {
+          print(token)
+          sleep(2)
+      }
+  }
+
+  // TODO: create completionBlock
+
+  duration {
+      //TODO: start the operation
+  }
+```
+
+```Swift  
+  Mobile
+  the
+  greatest!
+  is
+  All operations completed!
+```
+
+```Swift  
+  All operations completed!
+```
 
 
 
 
-## In Class Activity I (30 min)
+<!-- SOLUTION TO PART 2: -->
+<!-- ```Swift  
+  import Foundation
 
-- I do, We do, You do
-- Reading & Discussion Questions in small groups
-- Draw a picture/diagram
-- Complete Challenges solo or in pair
-- Q&A about tutorials
-- Pair up and code review
-- Pair program
-- Formative assessment
-- Form into groups
-- etc (get creative :D)
+  let phrase = "Mobile is the greatest!"
+  let tokenOperation = BlockOperation()
+
+  for token in phrase.split(separator: " ") {
+      tokenOperation.addExecutionBlock {
+          print(token)
+          sleep(2)
+      }
+  }
+
+  tokenOperation.completionBlock = {
+      print("All operations completed!")
+  }
+
+  duration {
+      tokenOperation.start()
+  }
+``` -->
+
 
 ## Overview/TT II (20 min)
 
