@@ -38,10 +38,10 @@ As a developer, you need to know:
 ## Learning Objectives (5 min)
 
 1. Identify and describe:
- - The benefits of using __*Operations*__
- - The Operation class and its two pre-defined sublclasses: `NSInvocationOperation` and `BlockOperation`
+ - The **benefits** of using Swift Operations for concurrency
+ - The `Operation` class and its two pre-defined subclasses: `NSInvocationOperation` and `BlockOperation`
  - Block Operations
- - Operation Lifecyle Events
+ - Operation Lifecycle Events
 2. Implement:
 - basic `BlockOperation` examples
 
