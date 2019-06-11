@@ -101,13 +101,15 @@ There are two ways to execute operations:
 
 1) **Operation Queues** &mdash; Typically, you execute operations by submitting them to an operation queue &mdash; an instance of the `OperationQueue` class &mdash; to be processed based on the priority of each operation submitted.
 
-- An operation queue executes its operations either __*directly*__ &mdash; by running them on secondary threads &mdash; or __*indirectly*__ using the `libdispatch` library (aka, GCD).
+- An operation queue executes its operations either __*directly*__ &mdash; by running them on secondary threads &mdash; or __*indirectly*__ using the `libdispatch` library (aka, GCD). </br>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Operation-Queue](assets/Operation-Queue.png) </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Diagram showing an OperationQueue with three operations enqueued.* </br>
 
 
-> *More on OperationQueues in later lessons...*
+> *More on OperationQueues in later lessons...*  
+
+</br>
 
 2. **The start() Method** &mdash; You can also choose *not* to use an `OperationQueue` and execute an operation yourself by calling its `start()` method directly from your code.
 
