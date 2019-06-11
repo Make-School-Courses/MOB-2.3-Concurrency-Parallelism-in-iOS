@@ -37,19 +37,14 @@ As a developer, you need to know:
 
 ## Learning Objectives (5 min)
 
-1. Identify and describe
-1. Define
-1. Design
-1. Implement
+1. Identify and describe:
+ - The benefits of using __*Operations*__
+ - The Operation class and its two pre-defined sublclasses: `NSInvocationOperation` and `BlockOperation`
+ - Block Operations
+ - Operation Lifecyle Events
+2. Implement:
+- basic `BlockOperation` examples
 
-<!-- Define and describe:
-- Operation
-- Operation Queues
-- Benefits and Challenges of using Operations and Operation Queues
-- the difference between GCD and Operations and Operation Queues
-- when to use GCD vs Operations vs Operation Queues
-- Subclassing
-- Block Operations -->
 
 
 ## Initial Exercise (15 min)

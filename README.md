@@ -35,8 +35,8 @@ By the end of this course, you will be able to ...
 |  5 |  Tu, June 11                       | [Semaphores] |
 |  6 |  Th, June 13                      | [Operations (Pt 1)] |
 |  7 |  Tu, June 18                      | [Operations (Pt 2)] |
-|  8 |  Th, June 20                      | [Background Tasks] |
-|  9 |  Tu, June 25                       | [Debugging Techniques] |
+|  8 |  Th, June 20                      |  [Operations (Pt 3)] |
+|  9 |  Tu, June 25                       | [Debugging Techniques] [Background Tasks]|
 | 10 |  Th, June 27                        | Lesson 13 (TODO) |
 | 11 |  Tu, July 2                       | Final Exams/Presentations |  
 
@@ -45,9 +45,9 @@ By the end of this course, you will be able to ...
 [Grand Central Dispatch (Pt 2)]: Lessons/03-Grand-Central_Dispatch-Pt2/Lesson3.md
 [Grand Central Dispatch (Pt 3)]: Lessons/04-Grand-Central_Dispatch-Pt3/Lesson4.md
 [Semaphores]: Lessons/05-Semaphores/Readme.md
-[Operations (Pt 1)]: Lessons/xxx/LessonX.md
-[Operations (Pt 2)]: Lessons/xxx/LessonX.md
-[Background Tasks]: Lessons/xxx/LessonX.md
+[Operations (Pt 1)]: Lessons/06-Operations-Pt1/Lesson6.md
+[Operations (Pt 2)]: Lessons/07-Operations-Pt2/LessonX.md
+[Operations (Pt 3)]:Lessons/08-Operations-Pt3/LessonX.md
 [Debugging Techniques]: Lessons/xxx/LessonX.md
 [xxxx]: Lessons/xxx/LessonX.md
 [xxxx]: Lessons/xxx/LessonX.md

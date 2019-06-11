@@ -18,6 +18,16 @@
 1. Design
 1. Implement -->
 
+<!-- Define and describe:
+- Operation
+- Operation Queues
+- Benefits and Challenges of using Operations and Operation Queues
+- the difference between GCD and Operations and Operation Queues
+- when to use GCD vs Operations vs Operation Queues
+- Subclassing
+- Block Operations -->
+
+
 ## Initial Exercise (15 min)
 
 - Funny comic
@@ -39,12 +49,10 @@ Dependencies
 
   -->
 
-
 ## How to implement Operation objects
 The `Operation` class &mdash; and its related system-defined subclasses (`BlockOperation` and `NSInvocationOperation`) &mdash; provide the *basic* logic to track the execution state of your operation.
 
 But they were designed to be subclassed before they can do any useful work for you.
-
 
 Just as you'd submit a closure of work to a `DispatchQueue` for GCD, instance of the `Operation` class can be submitted to an `OperationQueue` for execution.
 
@@ -124,8 +132,6 @@ White board
 Syntax examples
 
 dependencies
-
-BlockOperation
 
 Compared to GCD... when to use them
 
