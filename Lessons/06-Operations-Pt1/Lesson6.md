@@ -107,7 +107,7 @@ There are two ways to execute operations:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Diagram showing an OperationQueue with three operations enqueued.* </br>
 </br>
 
-&nbsp;&nbsp;&nbsp;> *More on OperationQueues in later lessons...*  
+> &nbsp;&nbsp;&nbsp; *More on OperationQueues in later lessons...*  
 
 </br>
 
@@ -115,7 +115,7 @@ There are two ways to execute operations:
 
 - Because starting an operation that is not in the ready state triggers an exception, executing operations manually puts additional burden on your code to handle state changes if you choose to call an operation's `start()` method directly.
 
-&nbsp;&nbsp;&nbsp; > *Note that later we'll see that the `isReady` property reports on the operation’s readiness state.*
+> &nbsp;&nbsp;&nbsp; *Note that later we'll see that the `isReady` property reports on the operation’s readiness state.* </br>
 
 **Some things to note**
 
