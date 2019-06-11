@@ -57,9 +57,11 @@ https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosop
 ## Intro to Operations (20 min)
 
 ### What are they?
-`Operation` (formerly called `NSOperation`) is a class that allows you to encapsulate (wrap) a unit of work into a package you can execute at some time in the future.
+What if &mdash; instead of sending simple, individual tasks for execution on a queue &mdash; you could send a more complex and *reusable* "package"?
 
-`Operation` is an __*abstract*__ class that represents the code and data associated with a single task.
+`Operation` (formerly called `NSOperation`) is an __*abstract*__ class that allows you to encapsulate (wrap) a unit of work into such a package that you can submit for execution at some time in the future.
+
+Subclasses of `Operation` can represent the code *and* data associated with a single task.
 
 Key attributes of Operations:
 - An Operation describes a single unit of work
@@ -68,8 +70,15 @@ Key attributes of Operations:
 - Execute concurrently &mdash; but can be serial by using dependencies
 - Offer more developer control (than GCD)
 
+Instead of sending a task as a closure or function (as in GCD), operations allow you to create and submit tasks as pre-defined, reusable objects &mdash; objects in which you can implement helper methods, dynamically pass input parameters to set up the task, and much more...
+
 ### Why use them?
 The Operation class offers a number of compelling benefits over GCD:
+
+**Reusability** </br>
+Instances of concrete `Operation` subclasses are "once and done" tasks. This means that once an `Operation` object is added to an `OperationQueue`, the same object cannot be added to any other `OperationQueue`; the specific task represented by that particular object cannot be executed twice.
+
+But, because an instance of `Operation` is an actual Swift object representing a unit of work, you can easily submit that unit of work multiple times by creating and sending new objects of that same `Operation` subclass, if needed.
 
 **Dependencies** </br>
 Dependencies enables developers to execute tasks in a specific order.
