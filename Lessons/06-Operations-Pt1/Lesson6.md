@@ -113,9 +113,9 @@ There are two ways to execute operations:
 
 2. **The start() Method** &mdash; You can also choose *not* to use an `OperationQueue` and execute an operation yourself by calling its `start()` method directly from your code.
 
-Because starting an operation that is not in the ready state triggers an exception, executing operations manually puts additional burden on your code to handle state changes if you choose to call an operation's `start()` method directly yourself.
+- Because starting an operation that is not in the ready state triggers an exception, executing operations manually puts additional burden on your code to handle state changes if you choose to call an operation's `start()` method directly.
 
-> *Note that later we'll see that the `isReady` property reports on the operation’s readiness.*
+> *Note that later we'll see that the `isReady` property reports on the operation’s readiness state.*
 
 **Some things to note**
 
