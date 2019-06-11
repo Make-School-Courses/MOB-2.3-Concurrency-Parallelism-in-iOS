@@ -95,8 +95,14 @@ The `Operation` and `OperationQueue` classes are more flexible in that respect, 
 <sup>1</sup> *Details on operation state, KVO properties, and priority levels coming up later...*
 
 ### How do Operations work?
-Because the Operation class is an abstract class, you do not use it directly. Instead, you subclass it or use one of the system-defined subclasses (`NSInvocationOperation` or `BlockOperation`) to perform the actual task.
 
+#### Creating Operations
+Because the `Operation` class is an abstract class, you do not use it directly. Instead, you subclass `Operation` or use one of the system-defined subclasses (`NSInvocationOperation` or `BlockOperation`) to perform the actual task.
+
+- `NSBlockOperation` &mdash; Use this class to initiate operation with one or more blocks. The operation itself can contain more than one block and the operation will be considered *finished* when all blocks have completed execution.
+- `NSInvocationOperation` &mdash; Use this class to initiate an operation that consists of invoking a selector on a specified object.
+
+#### Executing Operations
 There are two ways to execute operations:
 
 1) **Operation Queues** &mdash; Typically, you execute operations by submitting them to an operation queue &mdash; an instance of the `OperationQueue` class &mdash; to be processed based on the priority of each operation submitted.
@@ -124,7 +130,7 @@ There are two ways to execute operations:
 3. Despite being abstract, the base implementation of `Operation` includes significant logic to coordinate the safe execution of your task.
 - This allows you to focus on the actual implementation of your task, rather than on the glue code needed to ensure it works correctly with other system objects.
 
-### Lifecyle of an Operation
+### Operation Lifecyle Events
 An `Operation` object has a *state machine* that represents its lifecycle.
 
 During its lifetime, an `Operation` object can exist in any of the following states depicted here:

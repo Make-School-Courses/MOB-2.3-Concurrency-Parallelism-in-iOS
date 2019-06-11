@@ -29,9 +29,18 @@
 
 ## Overview/TT I (20 min)
 
+<!-- POTENTIAL OUTLINE:
+How to implement (subclassing)
+OperationQueues
+Async Operations
+
+Cancelling
+Dependencies
+
+  -->
 
 
-### How to implement Operation objects
+## How to implement Operation objects
 The `Operation` class &mdash; and its related system-defined subclasses (`BlockOperation` and `NSInvocationOperation`) &mdash; provide the *basic* logic to track the execution state of your operation.
 
 But they were designed to be subclassed before they can do any useful work for you.
@@ -131,18 +140,23 @@ Compared to GCD... when to use them
 
 ## In Class Activity I (30 min)
 
-- I do, We do, You do
-- Reading & Discussion Questions in small groups
-- Draw a picture/diagram
-- Complete Challenges solo or in pair
-- Q&A about tutorials
-- Pair up and code review
-- Pair program
-- Formative assessment
-- Form into groups
-- etc (get creative :D)
+TODO: create this ...
 
-## Overview/TT II (optional) (20 min)
+
+## Overview/TT II &mdash; OperationQueues (20 min)
+
+Operation queues are instances of the `OperationQueue` class, and its tasks are encapsulated in instances of `Operation`.
+
+<!--
+the OperationQueue class is what you use to manage the scheduling of an Operation and the maximum number of operations that can run simultaneously.
+
+
+OperationQueue allows you to add work in three separate ways:
+• Pass an Operation.
+• Pass a closure.
+• Pass an array of Operations. -->
+
+
 
 ## In Class Activity II (optional) (30 min)
 
