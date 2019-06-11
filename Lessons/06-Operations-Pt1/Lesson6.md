@@ -168,11 +168,20 @@ Your custom subclasses of the `Operation` class inherit these lifecycle (state) 
 &nbsp;&nbsp;&nbsp; - `isExecuting` state &mdash; Can *influence* this condition by starting the operation. </br>
 &nbsp;&nbsp;&nbsp; - `isCancelled` state &mdash; By calling the `cancel()` method on the object.
 
-
-
 ### BlockOperation
 
+
+If you simply want to execute a small bit of code or to call a method, you can use BlockOperation and NSInvocationOperation
+
+
+`BlockOperation` is a concrete subclass of
+
+
 888
+```Swift  
+  class BlockOperation : Operation
+```
+
 If you just want to execute a small piece of code or call a method you can use BlockOperation and NSInvocationOperation instead of subclassing Operation.
 
 
@@ -180,8 +189,11 @@ concrete subclass of Operation that manages the concurrent execution of one or m
 Blocks added to a block operation are dispatched with default priority to an appropriate work queue. The blocks themselves should not make any assumptions about the configuration of their execution environment.
 
 
+<!-- Operations provide greater control over your tasks as you can now handle such common needs as cancelling the task, reporting the state of the task, wrapping asynchronous tasks into an operation and specifying dependences between various tasks. -->
+
 <!-- BlockOperation
 Sometimes, you find yourself working on an app that heavily uses operations, but find that you have a need for a simpler, GCD-like, closure. If you don't want to also create a DispatchQueue, then you can instead utilize the BlockOperation class.
+
 BlockOperation subclasses Operation for you and manages the concurrent execution of one or more closures on the default global queue. However, being an actual Operation subclass lets you take advantage of all the other features of an operation. -->
 
 
@@ -333,6 +345,6 @@ Compared to GCD... when to use them
 4. [Queue Priority - Apple docs](https://developer.apple.com/documentation/foundation/operation/1411204-queuepriority)
 5. [4 Ways To Pass Data Between Operations With Swift - an article](https://marcosantadev.com/4-ways-pass-data-operations-swift/)
 6. [BlockOperation - Apple docs](https://developer.apple.com/documentation/foundation/blockoperation)
-x. []()
+7. [Blocks Programming Topics - Apple docs](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Blocks/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40007502)
 x. []()
 x. []()
