@@ -59,11 +59,16 @@ https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosop
 ### What are they?
 What if &mdash; instead of sending simple, individual tasks for execution on a queue &mdash; you could send a more complex and *reusable* "package"?
 
+**The `Operation` Class**
 `Operation` (formerly called `NSOperation`) is an __*abstract*__ class that allows you to encapsulate (wrap) a unit of work into such a package that you can submit for execution at some time in the future.
+
+```Swift  
+  class Operation : NSObject
+```
 
 Subclasses of `Operation` can represent the code *and* data associated with a single task.
 
-Key attributes of Operations:
+**Key attributes** of Operations:
 - An Operation describes a single unit of work
 - A higher level of abstraction over GCD
 - Object-oriented (vs functions/closures in GCD)
