@@ -4,17 +4,17 @@
 1) Activity 1:
 - Solution to Part 2 is below the Exercise -->
 
-
 ## Minute-by-Minute
 
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
 | 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:20      | Intro to Operations (TT I)                  |
-| 0:20        | 0:45      | In Class Activity I       |
-| 1:05        | 0:10      | BREAK                     |
-| 1:15        | 0:45      | In Class Activity II      |
-| TOTAL       | 2:00      |                           |
+| 0:05        | 0:25      | Initial Exercise                |
+| 0:30        | 0:20      | Intro to Operations (TT I)                  |
+| 0:50        | 0:10      |   BREAK  |
+| 1:00        | 0:30      |  In Class Activity I        |
+| 1:30       | 0:20      | Operation Lifecyle Events (TT II)               |
+| TOTAL       | 1:50     |                           |
 
 ## Why you should know this
 
@@ -45,16 +45,14 @@ As a developer, you need to know:
 2. Implement:
 - basic `BlockOperation` examples
 
-
-
-## Initial Exercise (15 min)
+## Initial Exercise (25 min)
 
 ### Part 1:
 Review solutions to **JankyTable app** from Lesson 4...
 
 - One or more volunteers present their solutions. Opens a class discussion.
 
-### Part 2:
+### Part 2: [Optional]
 Review solutions to *Assignment 2: Solve the Dining Philosophers Problem (challenge)* from previous class:
 https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosophers
 
@@ -306,10 +304,8 @@ Unlike Part 1, the `BlockOperation` object will not be sent to an `OperationQueu
 ``` -->
 
 
-## Overview/TT II (20 min)
+## Operation Lifecyle Events (Overview/TT II) (20 min)
 
-
-### Operation Lifecyle Events
 An `Operation` object has a *state machine* that represents its lifecycle.
 
 During its lifetime, an `Operation` object can exist in any of the following states depicted here:
@@ -356,15 +352,6 @@ Your custom subclasses of the `Operation` class inherit these lifecycle (state) 
 - There are only two you can directly manipulate: </br>
 &nbsp;&nbsp;&nbsp; - `isExecuting` state &mdash; Can *influence* this condition by starting the operation. </br>
 &nbsp;&nbsp;&nbsp; - `isCancelled` state &mdash; By calling the `cancel()` method on the object.
-
-
-
-
-
-
-
-## In Class Activity II (30 min)
-
 
 
 ## After Class
