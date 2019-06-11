@@ -31,8 +31,6 @@
 
 
 
-
-
 ### How to implement Operation objects
 The `Operation` class &mdash; and its related system-defined subclasses (`BlockOperation` and `NSInvocationOperation`) &mdash; provide the *basic* logic to track the execution state of your operation.
 

@@ -169,24 +169,25 @@ Your custom subclasses of the `Operation` class inherit these lifecycle (state) 
 &nbsp;&nbsp;&nbsp; - `isCancelled` state &mdash; By calling the `cancel()` method on the object.
 
 ### BlockOperation
+Before implementing your own custom subclasses of the `Operation` class, let's examine the behavior of the built-in `BlockOperation` subclass provided by Apple.
 
-
-If you simply want to execute a small bit of code or to call a method, you can use BlockOperation and NSInvocationOperation
-
-
-`BlockOperation` is a concrete subclass of
-
-
-888
 ```Swift  
   class BlockOperation : Operation
 ```
 
-If you just want to execute a small piece of code or call a method you can use BlockOperation and NSInvocationOperation instead of subclassing Operation.
+`BlockOperation` can be thought of as a *hybrid* between GCD `DispatchQueues` and `Operations`. `BlockOperation` subclasses `Operation` for you and:
+- manages the concurrent execution of one or more closures on the default global queue.
+- as actual `Operation` subclass, it lets you take advantage of all the other features of an operation: cancelling a task, reporting task state, specifying dependences between tasks, etc.
+
+A `BlockOperation` object can be used to execute several blocks at once without having to create separate operation objects for each. When executing more than one block, the operation itself is considered finished only when all blocks have finished executing.
+
+Thus,  a `BlockOperation` also behaves like a GCD `DispatchGroup`.
+
+If you simply need to execute a small bit of code or to call a method &mdash; if find that you have a need for a simpler, GCD-like closure &mdash; you can use `BlockOperation` (or `NSInvocationOperation`) instead of subclassing `Operation`.
+
+> Note: Block operations run concurrently. If you need them to run serially, you'll need to setup a dispatch queue instead.
 
 
-concrete subclass of Operation that manages the concurrent execution of one or more blocks. You can use this object to execute several blocks at once without having to create separate operation objects for each. When executing more than one block, the operation itself is considered finished only when all blocks have finished executing.
-Blocks added to a block operation are dispatched with default priority to an appropriate work queue. The blocks themselves should not make any assumptions about the configuration of their execution environment.
 
 
 <!-- Operations provide greater control over your tasks as you can now handle such common needs as cancelling the task, reporting the state of the task, wrapping asynchronous tasks into an operation and specifying dependences between various tasks. -->
@@ -197,107 +198,8 @@ Sometimes, you find yourself working on an app that heavily uses operations, but
 BlockOperation subclasses Operation for you and manages the concurrent execution of one or more closures on the default global queue. However, being an actual Operation subclass lets you take advantage of all the other features of an operation. -->
 
 
-<!-- Note: Block operations run concurrently. If you need them to run serially, you'll need to setup a dispatch queue instead. -->
 
 
-
-
-
-### How to implement Operation objects
-The `Operation` class &mdash; and its related system-defined subclasses (`BlockOperation` and `NSInvocationOperation`) &mdash; provide the *basic* logic to track the execution state of your operation.
-
-But they were designed to be subclassed before they can do any useful work for you.
-
-
-Just as you'd submit a closure of work to a `DispatchQueue` for GCD, instance of the `Operation` class can be submitted to an `OperationQueue` for execution.
-
-
-<!-- Each subclass represents a specific task  -->
-
-
-
-<!-- from ray w:
-
-Operations are fully-functional classes that can be submitted to an OperationQueue, just like you'd submit a closure of work to a DispatchQueue for GCD. Because they're classes and can contain variables, you gain the ability to know what state the operation is in at any given point.
- -->
-
-
-
-
-How you create your subclass depends on whether your operation is designed to execute concurrently or non-concurrently.
-
-**Non-Concurrent Operations** </br>
-For non-concurrent operations, you typically override only one method:
-&nbsp;&nbsp;&nbsp;&nbsp; `main()`
-
-Into this method, you place the code needed to perform the given task.
-
-Of course, you should also define a custom initialization method to make it easier to create instances of your custom class. You might also want to define getter and setter methods to access the data from the operation. However, if you do define custom getter and setter methods, you must make sure those methods can be called safely from multiple threads.
-
-
-
-**Concurrent Operations** </br>
-
-The `isAsynchronous` method of the `Operation` class tells you whether an operation runs synchronously or asynchronously with respect to the thread in which its start method was called. By default, this method returns `false`, which means the operation runs synchronously in the calling thread.
-
-
-
-> REMEMBER: As discussed earlier,
-
-
-
-
-
-
-
-<!-- TODO:  describe PROPERTIES and - methods to override
-
-You can override main or start method, main is less flexible but manages state of the operation for you (e.g assumes when main returns its finished), with start you have to do that manually.
-
-3 Booleans, Finished, Cancelled, Ready
-
-Finished completion block is called when operation is done
-
- -->
-
-
-
-
-
-
-
-
-<!-- TODO:  
-- list states
-- list priority levels
- -->
-
-
-
-
-<!-- OUTLINE?
-What are they?
-
-Why use them? benefits
-
-How they work
-
-White board
-
-Syntax examples
-
-dependencies
-
-BlockOperation
-
-Compared to GCD... when to use them
-
-  examples from Ray W:
-  operations allow for the handling of more complex scenarios such as reusable code to be run on a background thread, having one thread depend on another, and even canceling an operation before it's started or completed.
-
-  GCD is great for common tasks that need to be run a single time in the background. When you find yourself building functionality that should be reusable — such as image editing operations — you will likely want to encapsulate that functionality into a class. By subclassing Operation, you can accomplish that goal!
-
--->
 
 
 
