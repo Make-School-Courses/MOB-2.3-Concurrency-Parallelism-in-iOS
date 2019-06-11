@@ -114,7 +114,7 @@ https://developer.apple.com/documentation/foundation/operation/1407732-main
 Serial versus Concurrent is about the __*number of threads*__ available to a queue: </br>
 > - __*Serial queues*__ only have a __*single thread*__ associated with them and thus *only allow a single task* to be executed at any given time.
 > - __*Concurrent queues*__ can utilize as many threads as the system has available resources for. On a concurrent queue, threads will be created and released as needed. </br></br>
-Being Synchronous or Asynchronous is about __*waiting*__ &mdash; whether or not the queue on which you run your task has to __*wait*__ for your task to complete before it executes other tasks.
+> Synchronous or Asynchronous is about __*waiting*__ &mdash; whether or not the queue on which you run your task has to __*wait*__ for your task to complete before it executes other tasks.
 > - you can submit asynchronous (or synchronous) tasks to either a serial queue or a concurrent queue.
 
 
