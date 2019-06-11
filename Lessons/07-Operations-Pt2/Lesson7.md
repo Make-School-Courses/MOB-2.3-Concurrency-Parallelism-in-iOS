@@ -78,7 +78,7 @@ Dependencies
 ### Asynchronous Versus Synchronous Operations
 
 
-### Subclassing `Operation`
+### Subclassing the Operation class
 
 
 The `BlockOperation` class we explored in the previous lesson is handy for simple tasks.  
