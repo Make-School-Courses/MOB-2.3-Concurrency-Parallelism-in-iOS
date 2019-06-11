@@ -231,19 +231,49 @@ A counter value - used by the semaphore to decide if a thread should get access 
 
 ## In Class Activity III (20 min)
 
-Swift playground
+```Swift
+let semaphore = DispatchSemaphore(value: 1)
+DispatchQueue.global().async {
+    print("Person 1 - wait")
+    semaphore.wait()
+    print("Person 1 - wait finished")
+    sleep(1) // Person 1 playing with Switch
+    print("Person 1 - done with Switch")
+    semaphore.signal()
+}
+DispatchQueue.global().async {
+    print("Person 2 - wait")
+    semaphore.wait()
+    print("Person 2 - wait finished")
+    sleep(1) // Person 2 playing with Switch
+    print("Person 2 - done with Switch")
+    semaphore.signal()
+}
+```
+
+```Swift
+func downloadMovies(numberOfMovies: Int) {
+
+    // Create a semaphore
+
+    // Launch 8 tasks
+    // Each task should wait (pretend downloading takes 2 seconds) and inform the console once it's done.
+    // Run the tasks on a background thread.
+    // Let the semaphore know when you release the resource
+
+}
+
+downloadMovies(numberOfMovies:2)
+```
 
 ## After Class
 1. Research:
   - Meaning of symmetric vs asymmetric solutions.
   - What is meant by "critical section" in a program.
   - Difference between Dispatch Groups and Semaphores?
-
-
-2. Assignment 1:
   - Multiplex (challenge)
 
-3. Assignment 2: Solve the **Dining Philosophers Problem** (challenge):
+2. Assignment: Solve the **Dining Philosophers Problem** (challenge):
   - https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosophers
 
 
