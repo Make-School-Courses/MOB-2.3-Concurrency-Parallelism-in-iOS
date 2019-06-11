@@ -150,6 +150,10 @@ During its lifetime, an `Operation` object can exist in any of the following sta
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Source:* </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://medium.com/flawless-app-stories/parallel-programming-with-swift-operations-54cbefaf3cb0
 
+
+<!-- TODO: need to show example of creating an Operation and adding it to a Queue here: -->
+
+
 #### Operation state properties
 
 `Operation` objects maintain state information internally to:
@@ -175,23 +179,23 @@ Your custom subclasses of the `Operation` class inherit these lifecycle (state) 
 &nbsp;&nbsp;&nbsp; - `isCancelled` state &mdash; By calling the `cancel()` method on the object.
 
 ### BlockOperation
-Before implementing your own custom subclasses of the `Operation` class, let's examine the behavior of the built-in `BlockOperation` subclass provided by Apple.
+Before implementing your own custom subclasses of the `Operation` class, let's examine the behavior of one of the two built-in subclasses of `Operation` provided by Apple: `BlockOperation`
 
 ```Swift  
   class BlockOperation : Operation
 ```
 
-`BlockOperation` can be thought of as a *hybrid* between GCD `DispatchQueues` and `Operations`. `BlockOperation` subclasses `Operation` for you and:
-- manages the concurrent execution of one or more closures on the default global queue.
-- as actual `Operation` subclass, it lets you take advantage of all the other features of an operation: cancelling a task, reporting task state, specifying dependences between tasks, KVO notifications, etc.
+`BlockOperation` can be thought of as a *bridge* between GCD `DispatchQueues` and `Operations` because:
+- it manages the __*concurrent*__ execution of one or more closures on the default global queue.
+- as an actual `Operation` subclass, it lets you take advantage of all the other features of an operation: cancelling a task, reporting task state, specifying dependences between tasks, using KVO notifications, etc.
 
 A `BlockOperation` object can be used to execute several blocks at once without having to create separate operation objects for each. When executing more than one block, the operation itself is considered finished only when all blocks have finished executing.
 
-Thus,  a `BlockOperation` also behaves like a GCD `DispatchGroup`.
+In that way, a `BlockOperation` can also behave like a GCD `DispatchGroup`.
 
-If you simply need to execute a small bit of code or to call a method &mdash; if find that you have a need for a simpler, GCD-like closure &mdash; you can use `BlockOperation` (or `NSInvocationOperation`) instead of subclassing `Operation`.
+If you simply need to execute a small bit of code or to call a method &mdash; if you find that you have a need for a simpler, GCD-like closure &mdash; you can use `BlockOperation` (or `NSInvocationOperation`) instead of subclassing `Operation`.
 
-> Note: Block operations run concurrently. If you need them to run serially, you'll need to setup a dispatch queue instead.
+> Note that Block operations execute concurrently. To run them serially, you must submit them to a private dispatch queue or set up dependencies instead.
 
 
 **Simple Example**
