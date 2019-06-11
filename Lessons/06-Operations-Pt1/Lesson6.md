@@ -68,8 +68,6 @@ Subclasses of `Operation` can represent the code *and* data associated with a si
   class Operation : NSObject
 ```
 
-Instead of sending a task as a closure or function (as in GCD), operations allow you to create and submit tasks as pre-defined, reusable objects &mdash; objects in which you can implement helper methods, dynamically pass input parameters to set up the task, and much more...
-
 **Key Attributes** </br>
 - An Operation describes a single unit of work
 - A higher level of abstraction over GCD
@@ -78,7 +76,9 @@ Instead of sending a task as a closure or function (as in GCD), operations allow
 - Offer more developer control (than GCD)
 
 ### Why use them?
-The Operation class offers a number of compelling benefits over GCD:
+Instead of sending a task as a closure or function (as in GCD), operations allow you to create and submit tasks as pre-defined, reusable objects &mdash; objects in which you can implement helper methods, dynamically pass input parameters to set up the task, and much more...
+
+In addiont, the `Operation` class offers a number of compelling benefits over GCD:
 
 **Reusability** </br>
 Instances of concrete `Operation` subclasses are "once and done" tasks. This means that once an `Operation` object is added to an `OperationQueue`, the same object cannot be added to any other `OperationQueue`; the specific task represented by that particular object cannot be executed twice.
