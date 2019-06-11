@@ -155,22 +155,21 @@ Before implementing your own custom subclasses of the `Operation` class, let's e
 - it manages the __*concurrent*__ execution of one or more closures on the default global queue.
 - as an actual `Operation` subclass, it lets you take advantage of all the other features of an operation: cancelling a task, reporting task state, specifying dependences between tasks, using KVO notifications, etc.
 
-A `BlockOperation` object can be used to execute several blocks at once without having to create separate operation objects for each. When executing more than one block, the operation itself is considered finished only when all blocks have finished executing.
-
-In that way, a `BlockOperation` can also behave like a GCD `DispatchGroup`.
-
 If you simply need to execute a small bit of code or to call a method &mdash; if you find that you have a need for a simpler, GCD-like closure &mdash; you can use `BlockOperation` (or `NSInvocationOperation`) instead of subclassing `Operation`.
 
-> Note that Block operations execute concurrently. To run them serially, you must submit them to a private dispatch queue or set up dependencies instead.
+In addition, a `BlockOperation` object can be used to execute several blocks at once without having to create separate operation objects for each. When executing more than one block, the operation itself is considered finished only when all blocks have finished executing.
+
+In this way, a `BlockOperation` can also behave like a GCD `DispatchGroup`.
+
+> Note that Block operations __*execute concurrently*__. To run them serially, you must submit them to a private dispatch queue or set up dependencies instead.
 
 **Simple Example**
 
 Here is an extremely simplified example of how to create and submit an instance of an `Operation` subclass &mdash; in this class, an instance of `BlockOperation` &mdash; to an `OperationQueue` for execution:
 
-At 1), an instance of `BlockOperation` called `myBlockOperation` is created.
+At **1)** &mdash; an instance of `BlockOperation` called `myBlockOperation` is created.
 
-At 2), `myBlockOperation` is added to an `OperationQueue` for execution by the queue.
-
+At **2)** &mdash; `myBlockOperation` is added to an `OperationQueue` for execution by the queue.
 
 ```Swift  
   // An instance of an Operation subclass
@@ -186,42 +185,48 @@ At 2), `myBlockOperation` is added to an `OperationQueue` for execution by the q
 
 **Example with Multiple Blocks**
 
-**TODO:** Run the following code snippet as a playground and observe the results:
+Let's look at what is going on in this example...
+
+At **1)** &mdash; we create a `printerOperation` as our `BlockOperation` object.
+
+At **2)** &mdash; then we add blocks of code to the `printerOperation` that will be part of the operation.
+
+At **3)** &mdash; after adding all of blocks, we set a `completionBlock` on the operation, which will be executed after the operation finishes.
+
+At **4)** &mdash; we create an `OperationQueue` object that will call `start()` on our operation object
+
+At **4)** &mdash; we add our `printerOperation` object the queue
 
 ```Swift  
   import Foundation
 
-  let printerOperation = BlockOperation()
+  let printerOperation = BlockOperation() // 1) create printerOperation as BlockOperation
 
+  // adds code blocks to operation
   printerOperation.addExecutionBlock { print("I") }
   printerOperation.addExecutionBlock { print("am") }
   printerOperation.addExecutionBlock { print("printing") }
   printerOperation.addExecutionBlock { print("block") }
   printerOperation.addExecutionBlock { print("operation") }
 
-  printerOperation.completionBlock = {
+  printerOperation.completionBlock = { // 3) set completion block
       print("I'm done printing")
   }
 
-  let operationQueue = OperationQueue()
-  operationQueue.addOperation(printerOperation)
+  let operationQueue = OperationQueue() // 4) Create an OperationQueue
+  operationQueue.addOperation(printerOperation) // 5) add operation to queue
 ```
 
-In this playground example we create a printerOperation as our BlockOperation object, then we add to it blocks of code that will be part of this operation. After adding all of the blocks we set completion block that will be executed after operation finishes.
-
-Now the only thing missing is starting our operation and to do so we create an Operation Queue object. We will go into details of what exactly the Operation Queue is but for now think about it as a queue that waits for operations to get added to it and then executes them on a separate thread. If we were to run this example a few times in a row we would get a different order of printed words because order isn’t guaranteed here. We will later see how to control order of task execution inside an Operation Queue.
+*Source:* https://blog.infullmobile.com/basics-of-operations-and-operation-queues-in-ios-a8e7b02950c3
 
 
-**Q:**
+**TODO:** Run the code as a playground a few times and observe the results.
+
+**Q:** What did you notice about the order in which the submitted blocks executed?
+
+**Q:** How about the completionBlock's execution order?
 
 
-TODO
-<!-- Operations provide greater control over your tasks as you can now handle such common needs as cancelling the task, reporting the state of the task, wrapping asynchronous tasks into an operation and specifying dependences between various tasks. -->
-
-<!-- BlockOperation
-Sometimes, you find yourself working on an app that heavily uses operations, but find that you have a need for a simpler, GCD-like, closure. If you don't want to also create a DispatchQueue, then you can instead utilize the BlockOperation class.
-
-BlockOperation subclasses Operation for you and manages the concurrent execution of one or more closures on the default global queue. However, being an actual Operation subclass lets you take advantage of all the other features of an operation. -->
 
 
 
