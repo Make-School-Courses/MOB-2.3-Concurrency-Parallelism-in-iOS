@@ -78,6 +78,8 @@ Dependencies
 
 Before we explore subclassing `Operation` objects, it will help to understand how Apple has defined the behavior of Synchronous and Asynchronous operations...
 
+*Source:* https://developer.apple.com/documentation/foundation/operation/1407732-main </br>
+
 #### Synchronous Operations
 
 Unlike GCD, `Operation` objects run __*synchronously<sup>1</sup> by default.*__
@@ -105,8 +107,6 @@ Defining an asynchronous operation requires more work because you have to monito
 
 **TIP:** When you add an operation to an operation queue, the queue ignores the value of the `isAsynchronous` property and __*always*__ calls the `start()` method from a separate thread.
 - thus, if you always run operations by adding them to an operation queue, there is no reason to make them asynchronous.
-
-*Source:* https://developer.apple.com/documentation/foundation/operation/1407732-main </br>
 
 > <sup>1</sup> REMEMBER &mdash; Asynchronous and Concurrent do *not* mean the same thing: </br></br>
 Serial versus Concurrent is about the __*number of threads*__ available to a queue: </br>
