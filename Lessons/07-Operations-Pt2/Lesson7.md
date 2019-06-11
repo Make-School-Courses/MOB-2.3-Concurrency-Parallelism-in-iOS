@@ -74,8 +74,54 @@ Dependencies
 
 ## How to implement Operation objects (TT I) (20 min)
 
+### Synchronous Versus Asynchronous Operations
 
-### Asynchronous Versus Synchronous Operations
+Before we explore subclassing `Operation` objects, it will help to understand how Apple has defined the behavior of Synchronous and Asynchronous operations...
+
+#### Synchronous Operations
+
+`Operation` objects are __*synchronous<sup>1</sup> by default.*__
+
+In a synchronous operation:
+- The operation object does not create a separate thread on which to run its task.
+- When you call the `start()` method of a synchronous operation directly from your code, the operation executes __*immediately*__ in the __*current*__ thread.
+- By the time the` start()` method of such an object returns control to the caller, the task itself is complete.
+
+If you always plan to use queues to execute your operations, it is simpler to define them as synchronous.
+
+#### Asynchronous Operations
+If you execute operations manually, though, you might want to define your operation objects as asynchronous.<sup>1</sup>
+
+Defining asynchronous operations is useful in cases where you want to ensure that a manually executed operation does not block the calling thread.
+
+An asynchronous operation object:
+- Is responsible for scheduling its task on a __*separate*__ thread. The operation could do that by: </br>
+&nbsp;&nbsp;&nbsp; - starting a new thread directly </br>
+&nbsp;&nbsp;&nbsp; - calling an asynchronous method </br>
+&nbsp;&nbsp;&nbsp; - submitting a block to a dispatch queue for execution </br>
+- When you call the `start()` method of an asynchronous operation, that method may return before the corresponding task is completed. It does not actually matter if the operation is ongoing when control returns to the caller, only that it could be ongoing.
+
+Defining an asynchronous operation requires more work because you have to monitor the ongoing state of your task and report changes in that state using KVO notifications.
+
+When you add an operation to an operation queue, the queue ignores the value of the `isAsynchronous` property and __*always*__ calls the `start()` method from a separate thread.
+- thus, if you always run operations by adding them to an operation queue, there is no reason to make them asynchronous.
+
+*Source:* </br>
+https://developer.apple.com/documentation/foundation/operation/1407732-main
+
+
+> <sup>1</sup> REMEMBER That Asynchronous does *not* mean concurrent:
+Serial versus concurrent is about the __*number of threads*__ available to a queue:
+- __*Serial queues*__ only have a __*single thread*__ associated with them and thus *only allow a single task* to be executed at any given time.
+- __*Concurrent queues*__ can utilize as many threads as the system has available resources for. On a concurrent queue, threads will be created and released as needed.
+
+Being synchronous or asynchronous is about __*waiting*__ &mdash; whether or not the queue on which you run your task has to __*wait*__ for your task to complete before it executes other tasks.
+- you can submit asynchronous (or synchronous) tasks to either a serial queue or a concurrent queue.
+
+
+
+
+
 
 
 ### Subclassing the Operation class
@@ -106,7 +152,6 @@ The `main()` function performs the receiver’s __*non-concurrent*__ task.
 
 The default implementation of this method does nothing; You must override method and place in it the code needed to perform the given task.
 
-
 ### Things to note
 - In your implementation, do not invoke `super`.
 - Of course, you should also define a custom initialization method to make it easier to create instances of your custom class.
@@ -119,14 +164,6 @@ The `isAsynchronous` method of the `Operation` class tells you whether an operat
 
 If you are implementing a concurrent operation, you are not required to override the `main()` method but may do so if you plan to call it from your custom `start() `method.
 
-
-<sup>1</sup> REMEMBER: As discussed earlier, asynchronous does not mean concurrent:
-
-
-<!--
-just because your tasks are asynchronous doesn't mean they will run concurrently. You're actually able to submit asynchronous tasks to either a serial queue or a concurrent queue. Being synchronous or asynchronous simply identifies whether or not the queue on which you're running the task must wait for the task to complete before it can spawn the next task.
-On the other hand, categorizing something as serial versus concurrent identifies whether the queue has a single thread or multiple threads available to it. If you think about it, submitting three asynchronous tasks to a serial queue means that each task has to completely finish before the next task is able to start as there is only one thread available.
-In other words, a task being synchronous or not speaks to the source of the task. Being serial or concurrent speaks to the destination of the task. -->
 
 *Source:* </br>
 https://developer.apple.com/documentation/foundation/operation/1407732-main
