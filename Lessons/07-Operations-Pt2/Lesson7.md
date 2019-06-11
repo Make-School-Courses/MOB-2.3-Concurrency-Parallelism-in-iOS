@@ -116,7 +116,7 @@ Serial versus Concurrent is about the __*number of threads*__ available to a que
 > - __*Concurrent queues*__ can utilize as many threads as the system has available resources for. On a concurrent queue, threads will be created and released as needed. </br>
 >
 >Synchronous or Asynchronous is about __*waiting*__ &mdash; whether or not the queue on which you run your task has to __*wait*__ for your task to complete before it executes other tasks.
-- you can submit asynchronous (or synchronous) tasks to either a serial queue or a concurrent queue.
+> - you can submit asynchronous (or synchronous) tasks to either a serial queue or a concurrent queue.
 
 
 ### Subclassing the Operation class
