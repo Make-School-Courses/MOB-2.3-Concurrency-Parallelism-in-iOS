@@ -37,7 +37,6 @@
 - Quiz on homework or topic(s) of past class
 - Concept Test
 
-## Overview/TT I (20 min)
 
 <!-- POTENTIAL OUTLINE:
 How to implement (subclassing)
@@ -49,15 +48,89 @@ Dependencies
 
   -->
 
-## How to implement Operation objects
-The `Operation` class &mdash; and its related system-defined subclasses (`BlockOperation` and `NSInvocationOperation`) &mdash; provide the *basic* logic to track the execution state of your operation.
 
-But they were designed to be subclassed before they can do any useful work for you.
+  <!-- OUTLINE?
+  What are they?
 
-Just as you'd submit a closure of work to a `DispatchQueue` for GCD, instance of the `Operation` class can be submitted to an `OperationQueue` for execution.
+  Why use them? benefits
+
+  How they work
+
+  White board
+
+  Syntax examples
+
+  dependencies
+
+  Compared to GCD... when to use them
+
+    examples from Ray W:
+    operations allow for the handling of more complex scenarios such as reusable code to be run on a background thread, having one thread depend on another, and even canceling an operation before it's started or completed.
+
+    GCD is great for common tasks that need to be run a single time in the background. When you find yourself building functionality that should be reusable — such as image editing operations — you will likely want to encapsulate that functionality into a class. By subclassing Operation, you can accomplish that goal!
+
+  -->
 
 
-<!-- Each subclass represents a specific task  -->
+## How to implement Operation objects (TT I) (20 min)
+
+
+### Asynchronous Versus Synchronous Operations
+
+
+### Subclassing `Operation`
+
+
+The `BlockOperation` class we explored in the previous lesson is handy for simple tasks.  
+
+But for more complex tasks, or to create reusable components, you will need to create your own custom subclasses of the `Operation` class where each subclass instance represents a specific task.
+
+And though the `Operation` class &mdash; and its related pre-defined subclasses (`BlockOperation` and `NSInvocationOperation`) &mdash; provide the *basic* logic to track the execution state of your operation and other Operations benefits, they were designed to be subclassed before they can do any useful work for you.
+
+How you create your subclass depends on whether your operation is designed to execute concurrently or non-concurrently.<sup>1</sup>
+
+
+<!-- Unlike GCD, an operation is run synchronously by default, and getting it to run asynchronously requires more work.  -->
+
+
+
+**Non-Concurrent Operations** </br>
+For non-concurrent<sup>1</sup> operations, you typically override only one method:
+
+```Swift  
+  func main()
+```
+<!-- &nbsp;&nbsp;&nbsp;&nbsp; `main()` -->
+
+The `main()` function performs the receiver’s __*non-concurrent*__ task.
+
+The default implementation of this method does nothing; You must override method and place in it the code needed to perform the given task.
+
+
+### Things to note
+- In your implementation, do not invoke `super`.
+- Of course, you should also define a custom initialization method to make it easier to create instances of your custom class.
+- Optionally, if you do define custom getter and setter methods, you must make sure those methods can be called safely from multiple threads.
+
+**Concurrent Operations** </br>
+
+The `isAsynchronous` method of the `Operation` class tells you whether an operation runs synchronously or asynchronously with respect to the thread in which its start method was called. By default, this method returns `false`, which means the operation runs synchronously in the calling thread.
+
+
+If you are implementing a concurrent operation, you are not required to override the `main()` method but may do so if you plan to call it from your custom `start() `method.
+
+
+<sup>1</sup> REMEMBER: As discussed earlier, asynchronous does not mean concurrent:
+
+
+<!--
+just because your tasks are asynchronous doesn't mean they will run concurrently. You're actually able to submit asynchronous tasks to either a serial queue or a concurrent queue. Being synchronous or asynchronous simply identifies whether or not the queue on which you're running the task must wait for the task to complete before it can spawn the next task.
+On the other hand, categorizing something as serial versus concurrent identifies whether the queue has a single thread or multiple threads available to it. If you think about it, submitting three asynchronous tasks to a serial queue means that each task has to completely finish before the next task is able to start as there is only one thread available.
+In other words, a task being synchronous or not speaks to the source of the task. Being serial or concurrent speaks to the destination of the task. -->
+
+*Source:* </br>
+https://developer.apple.com/documentation/foundation/operation/1407732-main
+
 
 
 
@@ -69,78 +142,18 @@ Operations are fully-functional classes that can be submitted to an OperationQue
 
 
 
-How you create your subclass depends on whether your operation is designed to execute concurrently or non-concurrently.
+ <!-- TODO:  describe PROPERTIES and - methods to override
 
-**Non-Concurrent Operations** </br>
-For non-concurrent operations, you typically override only one method:
-&nbsp;&nbsp;&nbsp;&nbsp; `main()`
+ You can override main or start method, main is less flexible but manages state of the operation for you (e.g assumes when main returns its finished), with start you have to do that manually.
 
-Into this method, you place the code needed to perform the given task.
+ 3 Booleans, Finished, Cancelled, Ready
 
-Of course, you should also define a custom initialization method to make it easier to create instances of your custom class. You might also want to define getter and setter methods to access the data from the operation. However, if you do define custom getter and setter methods, you must make sure those methods can be called safely from multiple threads.
+ Finished completion block is called when operation is done
 
-
-
-**Concurrent Operations** </br>
-
-The `isAsynchronous` method of the `Operation` class tells you whether an operation runs synchronously or asynchronously with respect to the thread in which its start method was called. By default, this method returns `false`, which means the operation runs synchronously in the calling thread.
+  -->
 
 
 
-> REMEMBER: As discussed earlier,
-
-
-
-
-
-
-
-<!-- TODO:  describe PROPERTIES and - methods to override
-
-You can override main or start method, main is less flexible but manages state of the operation for you (e.g assumes when main returns its finished), with start you have to do that manually.
-
-3 Booleans, Finished, Cancelled, Ready
-
-Finished completion block is called when operation is done
-
- -->
-
-
-
-
-
-
-
-
-<!-- TODO:  
-- list states
-- list priority levels
- -->
-
-
-
-
-<!-- OUTLINE?
-What are they?
-
-Why use them? benefits
-
-How they work
-
-White board
-
-Syntax examples
-
-dependencies
-
-Compared to GCD... when to use them
-
-  examples from Ray W:
-  operations allow for the handling of more complex scenarios such as reusable code to be run on a background thread, having one thread depend on another, and even canceling an operation before it's started or completed.
-
-  GCD is great for common tasks that need to be run a single time in the background. When you find yourself building functionality that should be reusable — such as image editing operations — you will likely want to encapsulate that functionality into a class. By subclassing Operation, you can accomplish that goal!
-
--->
 
 
 
@@ -153,6 +166,9 @@ TODO: create this ...
 
 Operation queues are instances of the `OperationQueue` class, and its tasks are encapsulated in instances of `Operation`.
 
+Just as you'd submit a closure of work to a `DispatchQueue` for GCD, instances of the `Operation` class can be submitted to an `OperationQueue` for execution.
+
+
 <!--
 the OperationQueue class is what you use to manage the scheduling of an Operation and the maximum number of operations that can run simultaneously.
 
@@ -162,6 +178,18 @@ OperationQueue allows you to add work in three separate ways:
 • Pass a closure.
 • Pass an array of Operations. -->
 
+
+
+<!-- TODO:  
+
+- list priority levels
+ -->
+
+## After Class
+
+1. Research:
+- [`start()` - Apple docs](https://developer.apple.com/documentation/foundation/operation/1416837-start)
+-
 
 
 ## In Class Activity II (optional) (30 min)
