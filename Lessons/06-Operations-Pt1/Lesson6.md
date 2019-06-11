@@ -172,9 +172,9 @@ In this way, a `BlockOperation` can also behave like a GCD `DispatchGroup`.
 
 Here is an extremely simplified example of how to create and submit an instance of an `Operation` subclass &mdash; in this class, an instance of `BlockOperation` &mdash; to an `OperationQueue` for execution:
 
-At **1)** &mdash; an instance of `BlockOperation` called `myBlockOperation` is created.
+At 1) &mdash; an instance of `BlockOperation` called `myBlockOperation` is created.
 
-At **2)** &mdash; `myBlockOperation` is added to an `OperationQueue` for execution by the queue.
+At 2) &mdash; `myBlockOperation` is added to an `OperationQueue` for execution by the queue.
 
 ```Swift  
   // An instance of an Operation subclass
@@ -188,10 +188,6 @@ At **2)** &mdash; `myBlockOperation` is added to an `OperationQueue` for executi
 > Not shown here: (1) Creation of the OperationQueue (2) execution details.
 
 
-
-
-
-
 ## In Class Activity I (30 min)
 
 ### Part 1 - BlockOperation started by an OperationQueue
@@ -202,11 +198,9 @@ Here is a simple example of a `BlockOperation` that:
 
 Let's look at what is going on here...
 
-At 1), we create a `printerOperation` as our `BlockOperation` object.
-
-At 2), then we add blocks of code to the `printerOperation` that will be part of the operation.
-
-At 3), after adding all of blocks, we set a `completionBlock` on the operation, which will be executed after the operation finishes.
+- At 1), we create a `printerOperation` as our `BlockOperation` object.
+- At 2), then we add blocks of code to the `printerOperation` that will be part of the operation.
+- At 3), after adding all of blocks, we set a `completionBlock` on the operation, which will be executed after the operation finishes.
 
 At 4) we create an `OperationQueue` object that will call `start()` on our operation object
 
@@ -242,7 +236,15 @@ At 4) we create an `OperationQueue` object that will call `start()` on our opera
 
 ### Part 2 - BlockOperation with manual start()
 
-[BlockOperation_ex2.playground](assets/BlockOperation_ex2.playground.zip) </br>
+**Required Resources** </br>
+1. The [BlockOperation_ex2.playground](assets/BlockOperation_ex2.playground.zip) </br> is required. You __*must download*__ this playground as it is dependent on a playground Source file contained within it.
+
+**Assignment Notes** </br>
+The following code is incomplete. It is intended to break a phrase into separate words (aka, "tokens"), and send each token as a separate block to a simple `BlockOperation` object called `tokenOperation`.
+
+Like Part 1 above, this `BlockOperation` object will consisted of multiple blocks when executed.
+
+Unlike Part 1, the `BlockOperation` object will not be sent to an `OperationQueue` &mdash; you will need to execute the operation's `start()` function manually.
 
 ```Swift  
   import Foundation
@@ -264,6 +266,14 @@ At 4) we create an `OperationQueue` object that will call `start()` on our opera
   }
 ```
 
+**TODO:** Complete the code so that it executes without error and, when all operations are done, it prints out the following from its `completionBlock`:
+
+```Swift  
+  All operations completed!
+```
+
+> Note that the full output should resemble that which is listed below. Though the order in which the tokens are executed will vary, the `completionBlock` will always print last.
+
 ```Swift  
   Mobile
   the
@@ -271,12 +281,6 @@ At 4) we create an `OperationQueue` object that will call `start()` on our opera
   is
   All operations completed!
 ```
-
-```Swift  
-  All operations completed!
-```
-
-
 
 
 <!-- SOLUTION TO PART 2: -->
