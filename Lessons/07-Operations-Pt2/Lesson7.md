@@ -80,14 +80,14 @@ Before we explore subclassing `Operation` objects, it will help to understand ho
 
 #### Synchronous Operations
 
-`Operation` objects are __*synchronous<sup>1</sup> by default.*__
+Unlike GCD, `Operation` objects run __*synchronously<sup>1</sup> by default.*__
 
 In a synchronous operation:
 - The operation object does not create a separate thread on which to run its task.
-- When you call the `start()` method of a synchronous operation directly from your code, the operation executes __*immediately*__ in the __*current*__ thread.
+- When you call the `start()` method of a synchronous operation directly from your code, the operation executes __*immediately*__ in the __*current thread.*__
 - By the time the` start()` method of such an object returns control to the caller, the task itself is complete.
 
-If you always plan to use queues to execute your operations, it is simpler to define them as synchronous.
+**TIP:** If you always plan to use queues to execute your operations, it is simpler to define them as synchronous.
 
 #### Asynchronous Operations
 If you execute operations manually, though, you might want to define your operation objects as asynchronous.<sup>1</sup>
@@ -103,25 +103,20 @@ An asynchronous operation object:
 
 Defining an asynchronous operation requires more work because you have to monitor the ongoing state of your task and report changes in that state using KVO notifications.
 
-When you add an operation to an operation queue, the queue ignores the value of the `isAsynchronous` property and __*always*__ calls the `start()` method from a separate thread.
+**TIP:** When you add an operation to an operation queue, the queue ignores the value of the `isAsynchronous` property and __*always*__ calls the `start()` method from a separate thread.
 - thus, if you always run operations by adding them to an operation queue, there is no reason to make them asynchronous.
 
 *Source:* </br>
 https://developer.apple.com/documentation/foundation/operation/1407732-main
 
 
-> <sup>1</sup> REMEMBER That Asynchronous does *not* mean concurrent:
-Serial versus concurrent is about the __*number of threads*__ available to a queue:
+> <sup>1</sup> REMEMBER &mdash; Asynchronous and Concurrent do *not* mean the same thing: </br>
+Serial versus Concurrent is about the __*number of threads*__ available to a queue: </br>
 - __*Serial queues*__ only have a __*single thread*__ associated with them and thus *only allow a single task* to be executed at any given time.
 - __*Concurrent queues*__ can utilize as many threads as the system has available resources for. On a concurrent queue, threads will be created and released as needed.
 
-Being synchronous or asynchronous is about __*waiting*__ &mdash; whether or not the queue on which you run your task has to __*wait*__ for your task to complete before it executes other tasks.
+Being Synchronous or Asynchronous is about __*waiting*__ &mdash; whether or not the queue on which you run your task has to __*wait*__ for your task to complete before it executes other tasks.
 - you can submit asynchronous (or synchronous) tasks to either a serial queue or a concurrent queue.
-
-
-
-
-
 
 
 ### Subclassing the Operation class
@@ -134,9 +129,6 @@ But for more complex tasks, or to create reusable components, you will need to c
 And though the `Operation` class &mdash; and its related pre-defined subclasses (`BlockOperation` and `NSInvocationOperation`) &mdash; provide the *basic* logic to track the execution state of your operation and other Operations benefits, they were designed to be subclassed before they can do any useful work for you.
 
 How you create your subclass depends on whether your operation is designed to execute concurrently or non-concurrently.<sup>1</sup>
-
-
-<!-- Unlike GCD, an operation is run synchronously by default, and getting it to run asynchronously requires more work.  -->
 
 
 
@@ -152,7 +144,7 @@ The `main()` function performs the receiver’s __*non-concurrent*__ task.
 
 The default implementation of this method does nothing; You must override method and place in it the code needed to perform the given task.
 
-### Things to note
+#### Things to note
 - In your implementation, do not invoke `super`.
 - Of course, you should also define a custom initialization method to make it easier to create instances of your custom class.
 - Optionally, if you do define custom getter and setter methods, you must make sure those methods can be called safely from multiple threads.
