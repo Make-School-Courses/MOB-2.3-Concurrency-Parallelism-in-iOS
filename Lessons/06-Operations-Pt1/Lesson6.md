@@ -177,7 +177,7 @@ Before implementing your own custom subclasses of the `Operation` class, let's e
 
 `BlockOperation` can be thought of as a *hybrid* between GCD `DispatchQueues` and `Operations`. `BlockOperation` subclasses `Operation` for you and:
 - manages the concurrent execution of one or more closures on the default global queue.
-- as actual `Operation` subclass, it lets you take advantage of all the other features of an operation: cancelling a task, reporting task state, specifying dependences between tasks, etc.
+- as actual `Operation` subclass, it lets you take advantage of all the other features of an operation: cancelling a task, reporting task state, specifying dependences between tasks, KVO notifications, etc.
 
 A `BlockOperation` object can be used to execute several blocks at once without having to create separate operation objects for each. When executing more than one block, the operation itself is considered finished only when all blocks have finished executing.
 
@@ -188,7 +188,17 @@ If you simply need to execute a small bit of code or to call a method &mdash; if
 > Note: Block operations run concurrently. If you need them to run serially, you'll need to setup a dispatch queue instead.
 
 
+**Simple Example**
 
+```Swift  
+
+```
+
+**Example with Multiple Blocks**
+
+```Swift  
+
+```
 
 <!-- Operations provide greater control over your tasks as you can now handle such common needs as cancelling the task, reporting the state of the task, wrapping asynchronous tasks into an operation and specifying dependences between various tasks. -->
 
