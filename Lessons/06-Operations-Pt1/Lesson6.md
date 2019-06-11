@@ -54,6 +54,12 @@ As a developer, you need to know:
 
 ## Initial Exercise (15 min)
 
+### Part 1:
+Review solutions to **JankyTable app** from Lesson 4...
+
+- One or more volunteers present their solutions. Opens a class discussion.
+
+### Part 2:
 Review solutions to *Assignment 2: Solve the Dining Philosophers Problem (challenge)* from previous class:
 https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosophers
 
@@ -201,10 +207,8 @@ Let's look at what is going on here...
 - At 1), we create a `printerOperation` as our `BlockOperation` object.
 - At 2), then we add blocks of code to the `printerOperation` that will be part of the operation.
 - At 3), after adding all of blocks, we set a `completionBlock` on the operation, which will be executed after the operation finishes.
-
-At 4) we create an `OperationQueue` object that will call `start()` on our operation object
-
-...and at 5) we add our `printerOperation` object to the queue
+- At 4) we create an `OperationQueue` object that will call `start()` on our operation object
+- ...and at 5) we add our `printerOperation` object to the queue
 
 ```Swift  
   import Foundation
@@ -231,7 +235,7 @@ At 4) we create an `OperationQueue` object that will call `start()` on our opera
 
 **TODO:** Run the code as a playground a few times and observe results...
 
-**Q:** What did you notice about the order in which the submitted blocks execute?
+**Q:** What did you notice about the order in which the submitted blocks execute? </br>
 **Q:** How about the completionBlock's execution order?
 
 ### Part 2 - BlockOperation with manual start()
@@ -242,7 +246,7 @@ At 4) we create an `OperationQueue` object that will call `start()` on our opera
 **Assignment Notes** </br>
 The following code is incomplete. It is intended to break a phrase into separate words (aka, "tokens"), and send each token as a separate block to a simple `BlockOperation` object called `tokenOperation`.
 
-Like Part 1 above, this `BlockOperation` object will consisted of multiple blocks when executed.
+Like Part 1 above, this `BlockOperation` object will consist of multiple blocks when executed.
 
 Unlike Part 1, the `BlockOperation` object will not be sent to an `OperationQueue` &mdash; you will need to execute the operation's `start()` function manually.
 
@@ -272,7 +276,7 @@ Unlike Part 1, the `BlockOperation` object will not be sent to an `OperationQueu
   All operations completed!
 ```
 
-> Note that the full output should resemble that which is listed below. Though the order in which the tokens are executed will vary, the `completionBlock` will always print last.
+**Note:** The full output should resemble that which is listed below. Though the order in which the tokens are executed will vary, the `completionBlock` will always print last.
 
 ```Swift  
   Mobile
@@ -377,11 +381,13 @@ Your custom subclasses of the `Operation` class inherit these lifecycle (state) 
 - [completionBlock - Apple docs](https://developer.apple.com/documentation/foundation/operation/1408085-completionblock)
 
 2. Assignment:
--
+- Resume your solution to the issues with **JankyTable app** from Lesson 4.
+- Resume/start the *Assignment 2: Solve the Dining Philosophers Problem (challenge)* from previous class:
+https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosophers
+
 
 ## Wrap Up (5 min)
 
-<!-- - Continue working on your current tutorial -->
 - Complete reading
 - Complete challenges
 
