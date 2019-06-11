@@ -242,7 +242,7 @@ At 4) we create an `OperationQueue` object that will call `start()` on our opera
 
 ### Part 2 - BlockOperation with manual start()
 
-![BlockOperation_ex2.playground](assets/BlockOperation_ex2.playground.zip) </br>
+[BlockOperation_ex2.playground](assets/BlockOperation_ex2.playground.zip) </br>
 
 ```Swift  
   import Foundation
