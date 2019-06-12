@@ -284,7 +284,7 @@ downloadMovies(numberOfMovies:2)
 
 ## Additional Resources
 
-1. [Slides]()
+1. [Slides](https://docs.google.com/presentation/d/1Q3YKFpPtePLoi2uEDt-z5hl7ct6qn3lMX380rUHg39I/edit?usp=sharing)
 2. "The Little Book of Semaphores" by Allen B. Downey
 3. [Dispatch Semaphore from Apple Docs](https://developer.apple.com/documentation/dispatch/dispatchsemaphore)
 4. [An article on semaphores](https://medium.com/swiftly-swift/a-quick-look-at-semaphores-6b7b85233ddb)
