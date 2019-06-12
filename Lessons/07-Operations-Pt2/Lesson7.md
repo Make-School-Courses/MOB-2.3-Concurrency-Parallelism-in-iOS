@@ -277,6 +277,9 @@ OperationQueue allows you to add work in three separate ways:
 
 ## Additional Resources
 
-1. Links to additional readings and videos
+1. []()
+2. []()
+3. []()
+4. []()
 
 https://www.raywenderlich.com/5293-operation-and-operationqueue-tutorial-in-swift

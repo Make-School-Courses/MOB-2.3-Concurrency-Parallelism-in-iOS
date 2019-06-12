@@ -1,4 +1,8 @@
-# Lesson Title
+# Concurrency Pitfalls & Challenges
+
+<!-- INSTRUCTOR NOTES:
+1)  -->
+
 
 ## Minute-by-Minute [OPTIONAL]
 
@@ -55,6 +59,17 @@ Explain why students should care to learn the material presented in this class.
 
 ## In Class Activity II (optional) (30 min)
 
+## After Class
+
+1. Research:
+-
+
+2. Assignment(s):
+-
+
+
+## In Class Activity II (optional) (30 min)
+
 ## Wrap Up (5 min)
 
 - Continue working on your current tutorial
@@ -63,4 +78,7 @@ Explain why students should care to learn the material presented in this class.
 
 ## Additional Resources
 
-1. Links to additional readings and videos
+1. []()
+2. []()
+3. []()
+4. []()
