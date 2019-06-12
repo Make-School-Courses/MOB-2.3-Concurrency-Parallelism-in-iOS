@@ -78,7 +78,7 @@ Dependencies
 
 Before we explore subclassing `Operation` objects, it will help to understand how Apple has defined the behavior of Synchronous and Asynchronous operations...
 
-*Source:* https://developer.apple.com/documentation/foundation/operation/1407732-main </br>
+*Source:* https://developer.apple.com/documentation/foundation/operation </br>
 
 #### Synchronous Operations
 
@@ -127,6 +127,8 @@ And though the `Operation` class &mdash; and its related pre-defined subclasses 
 How you create your subclass depends on whether your operation is designed to execute concurrently or non-concurrently.<sup>1</sup>
 
 **Non-Concurrent Operations** </br>
+Non-Concurrent operations perform all of their work on the __*same thread*__, and when the `main()` method returns the operation is moved into the `Finished` state. The queue is then notified of this operation's state and removes the operation from its active pool of operations, freeing resources for the next operation to be executed.
+
 For non-concurrent<sup>1</sup> operations, you typically override only one method:
 
 ```Swift  
@@ -134,16 +136,48 @@ For non-concurrent<sup>1</sup> operations, you typically override only one metho
 ```
 <!-- &nbsp;&nbsp;&nbsp;&nbsp; `main()` -->
 
-The `main()` function performs the receiver’s __*non-concurrent*__ task.
+The `main()` method performs the receiver’s __*non-concurrent*__ task.
 
 The default implementation of this method does nothing; You must override method and place in it the code needed to perform the given task.
+
+*Source:* </br>
+https://developer.apple.com/documentation/foundation/operation/1407732-main
 
 __*Things to note*__
 - In your implementation, do not invoke `super`.
 - Of course, you should also define a custom initialization method to make it easier to create instances of your custom class.
 - Optionally, if you do define custom getter and setter methods, you must make sure those methods can be called safely from multiple threads.
 
+__*Example: Non-Concurrent Operation*__
+
+The simple example below shows subclassing `Operation` to create concurrent operation objects and the requirement to override the `main()` method:
+
+```Swift  
+  class FilterOperation: Operation {
+      let flatigram: Flatigram
+      let filter: String
+
+      init(flatigram: Flatigram, filter: String) {
+          self.flatigram = flatigram
+          self.filter = filter
+      }
+
+      override func main() {
+          if let filteredImage = self.flatigram.image?.filter(with: filter) {
+              self.flatigram.image = filteredImage
+          }
+      }
+  }
+```
+
+*Source:* </br>
+https://learn.co/lessons/swift-multithreading-lab
+
 **Concurrent Operations** </br>
+Concurrent operations can perform some work on a different thread. Thus, returning from the `main()` method can not be used to move the operation into its `Finished` state.
+
+Because of this, when you create a concurrent operation, you are responsible for moving the operation between the `Ready`, `Executing` and `Finished` states.
+
 If you are creating a concurrent operation, you need to override the following methods and properties at a minimum:
 - `start()`
 - `isAsynchronous`
@@ -161,11 +195,40 @@ By default, this method returns `false`, which means the operation runs synchron
 
 __*Note:*__ If you are implementing a concurrent operation, you are not required to override the `main()` method but may do so if you plan to call it from your custom `start() `method.
 
-> <sup>2</sup> The `start()` method has additional responsibilities in a concurrent operation, which we will explore further in the Asynchronous Operations lesson. Same for the `isAsynchronous` property. For further details of both, also see the Apple source referenced below
+> <sup>2</sup> The `start()` method has additional responsibilities in a concurrent operation, which we will explore further in upcoming lessons. Same for the `isAsynchronous` property. For further details of both, also see the Apple source referenced below:
 
 *Source:* </br>
-https://developer.apple.com/documentation/foundation/operation/1407732-main
+https://developer.apple.com/documentation/foundation/operation
 
+__*Example: Concurrent Operation*__
+
+The (elided, non-functioning) code below illustrates the most basic steps needed to subclass `Operation` to create concurrent operation objects:
+
+```Swift  
+  class MyConcurrentOperation: Operation {
+  override var isAsynchronous: Bool { return true }
+  override var isExecuting: Bool { return state == .executing }
+  override var isFinished: Bool { return state == .finished }
+
+  ...
+
+  override func start() {
+  if self.isCancelled {
+  			state = .finished
+  		} else {
+  			state = .ready
+  main()
+  		}
+  	}
+  override func main() {
+  if self.isCancelled {
+  			state = .finished
+  		} else {
+  			state = .executing
+  		}
+  	}
+  }
+```
 
 ## In Class Activity I (30 min)
 
@@ -204,6 +267,7 @@ OperationQueue allows you to add work in three separate ways:
 
 1. Research:
 - [`start()` - Apple docs](https://developer.apple.com/documentation/foundation/operation/1416837-start)
+- [Dependencies - Apple docs](https://developer.apple.com/documentation/foundation/operation/1416668-dependencies)
 -
 
 
@@ -218,3 +282,5 @@ OperationQueue allows you to add work in three separate ways:
 ## Additional Resources
 
 1. Links to additional readings and videos
+
+https://www.raywenderlich.com/5293-operation-and-operationqueue-tutorial-in-swift
