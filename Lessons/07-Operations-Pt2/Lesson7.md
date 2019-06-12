@@ -30,13 +30,9 @@
 
 ## Initial Exercise (15 min)
 
-- Funny comic
-- Prime the Pump (e.g. think and jot, think pair share, etc)
-- Productivity Tip/Tool
-- Review of current event (e.g. tech news relevant to your track/topic)
-- Quiz on homework or topic(s) of past class
-- Concept Test
+1. Review solutions to "Assignment 2: Solve the Dining Philosophers Problem" (challenge) from previous class: https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosophers
 
+- One or more volunteers present their solutions. Opens a class discussion.
 
 <!-- POTENTIAL OUTLINE:
 How to implement (subclassing)
