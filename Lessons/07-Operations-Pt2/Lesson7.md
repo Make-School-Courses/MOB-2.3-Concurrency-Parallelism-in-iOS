@@ -238,6 +238,9 @@ Operation queues are instances of the `OperationQueue` class, and its tasks are 
 Just as you'd submit a closure of work to a `DispatchQueue` for GCD, instances of the `Operation` class can be submitted to an `OperationQueue` for execution.
 
 
+
+888
+
 <!-- from ray w:
 
 Operations are fully-functional classes that can be submitted to an OperationQueue, just like you'd submit a closure of work to a DispatchQueue for GCD. Because they're classes and can contain variables, you gain the ability to know what state the operation is in at any given point.
@@ -278,8 +281,8 @@ OperationQueue allows you to add work in three separate ways:
 ## Additional Resources
 
 1. []()
-2. []()
-3. []()
+2. [OperationQueue - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue)
+3. [maxConcurrentOperationCount - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue/1414982-maxconcurrentoperationcount)
 4. []()
 
 https://www.raywenderlich.com/5293-operation-and-operationqueue-tutorial-in-swift

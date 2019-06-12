@@ -361,6 +361,7 @@ Your custom subclasses of the `Operation` class inherit these lifecycle (state) 
 - Passing Data Between Operations
 - [KVO-Compliant Properties: (of the `Operation` class) - Apple docs](https://developer.apple.com/documentation/foundation/operation)
 - [completionBlock - Apple docs](https://developer.apple.com/documentation/foundation/operation/1408085-completionblock)
+- [Tips for Implementing Operation Objects - Apple docs](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW35)
 
 2. Assignment:
 - Resume your solution to the issues with **JankyTable app** from Lesson 4.
