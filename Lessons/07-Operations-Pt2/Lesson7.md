@@ -235,7 +235,7 @@ The (elided, non-functioning) code below illustrates the most basic steps needed
 
 ## In Class Activity I (30 min)
 
-TODO: create this ...
+<!-- TODO: create this ... -->
 
 
 ## Overview/TT II &mdash; OperationQueues (20 min)
@@ -243,35 +243,19 @@ The easiest way to execute operations is to use an **operation queue.**
 
 Operation queues are instances of the `OperationQueue` class, and their tasks are encapsulated in concrete instances of the `Operation` class.
 
-You use instances of the `OperationQueue` class to (1) manage the scheduling and execution of an Operation and (2) to set the maximum number of operations that can run simultaneously on a given queue.
-
 ```Swift
   class OperationQueue : NSObject
  ```
+You use instances of the `OperationQueue` class to (1) manage the scheduling and execution of an Operation and (2) to set the maximum number of operations that can run simultaneously on a given queue.
 
 ### How they work
-
 Just as you'd submit a closure of work to a `DispatchQueue` for GCD, instances of the `Operation` class can be submitted to an `OperationQueue` for execution.
 
-This means you can execute tasks concurrently, just like with GCD and `DispatchQueues`, but in an object-oriented fashion.
+This means you can execute tasks concurrently, just like with GCD and `DispatchQueues`, but in an __*object-oriented*__ fashion.
 
-Though both `OperationQueues` and `DispatchQueues` are high-level abstractions of the queue model built on top of GCD (a low-level C API), `OperationQueues` behave differently from `DispatchQueues` in distinct ways, most notably:
+Though both `OperationQueues` and `DispatchQueues` are high-level abstractions of the queue model built on top of GCD (a low-level C API), `OperationQueues` behave differently from `DispatchQueues` in distinct ways. Most notably:
 
-1. **Determining Execution Order** &mdash; Unlike GCD and `DispatchQueues`, `OperationQueues` do *not* strictly conform to First-In-First-Out execution order.
-
-An operation queue acts like a *prioritized FIFO queue*:
-
-- Operations within an operation queue are organized according to their readiness, priority level, and dependencies, and are executed accordingly.
-
-- You can set priority on individual operations. Those with the highest priority get pushed ahead, but not necessarily to the front of the queue &mdash; iOS determines when to actually execute an operation.
-
-- Operations with the *same priority* get executed in the order they were added to the queue &mdash; unless an operation has dependencies, which means you can define that some operations will only be executed after the completion of other operations. *(We'll cover Operation Dependencies in the next class.)*
-
-If all of the queued operations have the same `queuePriority` and are ready to execute when they are put in the queue &mdash; that is, their `isReady` property returns `true` &mdash; they are executed in the order in which they were submitted to the queue. Otherwise, the operation queue always executes the one with the highest priority relative to the other ready operations.
-
-> __*Important Note:*__ Because changes in the readiness of an operation can change the resulting execution order, your code should never rely on the 'queue semantics" to ensure a specific execution order of operations.
-
-2. **No Serial Queues** &mdash; By default, all `OperationQueues` operate concurrently; you *cannot* change their type to *serial* (thought there is a way to execute tasks in operation queues sequentially: by using dependencies between operations).
+1. **No Serial Queues** &mdash; By default, all `OperationQueues` operate concurrently; you *cannot* change their type to *serial* (thought there is a way to execute tasks in operation queues sequentially: by using dependencies<sup>2</br> between operations).
 
 3. **Developer Control** &mdash; As a developer, you can:
 
@@ -283,9 +267,29 @@ If all of the queued operations have the same `queuePriority` and are ready to e
 
 - set the priority of your operations by setting your `queuePriority` property of the operation.
 
+2. **Determining Execution Order** &mdash; Unlike GCD and `DispatchQueues`, `OperationQueues` do *not* strictly conform to First-In-First-Out execution order.
+
+An operation queue acts like a *prioritized FIFO queue*:
+
+- Operations within an operation queue are organized according to their readiness, priority level, and dependencies,<sup>2</sup> and are executed accordingly.
+
+- You can set priority on individual operations. Those with the highest priority get pushed ahead, but not necessarily to the front of the queue &mdash; iOS determines when to actually execute an operation.
+
+- Operations with the *same priority* get executed in the order they were added to the queue &mdash; unless an operation has dependencies,<sup>2</sup> which means you can define that some operations will only be executed after the completion of other operations.
+
+If all of the queued operations have the same `queuePriority` and are ready to execute when they are put in the queue &mdash; that is, their `isReady` property returns `true` &mdash; they are executed in the order in which they were submitted to the queue. Otherwise, the operation queue always executes the one with the highest priority relative to the other ready operations.
+
+> __*Important Note:*__ Because changes in the readiness of an operation can change the resulting execution order, your code should never rely on the 'queue semantics" to ensure a specific execution order of operations.
 
 
 
+
+
+<sup>2</sup> *(We'll cover Operation Dependencies in the next class.)*
+
+> <sup>2</sup> *(We'll cover Operation Dependencies in the next class.)*
+
+> <sup>2</sup> We'll cover Operation Dependencies in the next class.
 
 
 
@@ -357,7 +361,8 @@ OperationQueue allows you to add work in three separate ways:
 1. Research:
 - [`start()` - Apple docs](https://developer.apple.com/documentation/foundation/operation/1416837-start)
 - [Dependencies - Apple docs](https://developer.apple.com/documentation/foundation/operation/1416668-dependencies)
--
+- Cancelling (operations)
+- Asynchronous Operations
 
 
 ## In Class Activity II (optional) (30 min)
