@@ -238,8 +238,8 @@ The (elided, non-functioning) code below illustrates the most basic steps needed
 <!-- TODO: create this ... -->
 
 
-## Overview/TT II &mdash; OperationQueues (20 min)
-The easiest way to execute operations is to use an **operation queue.**
+## OperationQueues (20 min)
+The easiest way to execute operations is to use an **operation queue,** which is particularly __*powerful*__ because it lets you control QoS levels, how many operations can execute simultaneously, and more...
 
 Operation queues are instances of the `OperationQueue` class, and their tasks are encapsulated in concrete instances of the `Operation` class.
 
@@ -263,6 +263,7 @@ Though both `OperationQueues` and `DispatchQueues` are high-level abstractions o
 - pause (suspend) an operation queue
 - set the priority of an operation by setting the `queuePriority` property
 - set the `qualityOfService` property to control how much of the system resources will be given to your operation
+- specify an existing `DispatchQueue` as the `underlyingQueue`
 
 2. **Determining Execution Order** &mdash; Unlike GCD and `DispatchQueues`, `OperationQueues` do *not* strictly conform to First-In-First-Out execution order.
 
@@ -276,33 +277,72 @@ Though both `OperationQueues` and `DispatchQueues` are high-level abstractions o
 #### Readiness
 If all of the queued operations have the same `queuePriority` and are ready to execute when they are put in the queue &mdash; that is, their `isReady` property returns `true` &mdash; they are executed in the order in which they were submitted to the queue. Otherwise, the operation queue *always* executes the one with the highest priority relative to the other ready operations.
 
-> __*Important Note:*__ Because changes in the readiness of an operation can change the resulting execution order, your code should never rely on these "queue semantics" to ensure a specific execution order; ultimately, the system will decide on execution order. Implementing dependent operations<sup>2</sup> is the most reliable way to guarantee execution order.
+> __*Important Note:*__ *Because changes in the readiness of an operation can change the resulting execution order, your code should never rely on these "queue semantics" to ensure a specific execution order; ultimately, the system will decide on execution order. Implementing dependent operations<sup>2</sup> is the most reliable way to guarantee execution order.*
 
-### Lifecycle Notes
+#### Lifecycle Notes
 After being added to an operation queue, an operation remains in its queue until it reports that it is finished with its task. You can’t directly remove an operation from a queue after it has been added.
 
 Operation queues retain operations until they're finished, and queues themselves are retained until all operations are finished.
 
 > Note that suspending an operation queue with operations that aren't finished can result in a memory leak.
 
-### Thread Safety
+#### Thread Safety
 Operation queues use the `Dispatch` framework to initiate the execution of their operations. As a result, operations are always executed on a separate thread, regardless of whether they are designated as synchronous or asynchronous.
 
 This means Operation queues are inherently thread safe: You can safely access a single `OperationQueue` object from multiple threads without creating additional locks to synchronize access to it.
 
 ### Creating OperationQueues
+Creating an operation queue is simple; you declare it in your application as you would any other variable.
 
-`OperationQueue` allows you to add work in three separate ways:
-• Pass an Operation.
-• Pass a closure.
-• Pass an array of Operations.
+Here are three different examples of syntax used to create custom operation queues:
 
+1. Formal, long-form approach:
 
-<!-- To create a queue, you allocate it in your application as you would any other object: -->
+```Swift
+  let operationQueue: OperationQueue = OperationQueue()
+```
 
+2. Specifying a name and QoS level:
 
+```Swift
+  let myDefaultQueue = OperationQueue()
+  myDefaultQueue.name = "My Default QoS Queue"
+  myDefaultQueue.qualityOfService = .default
+```
+
+3. Creating a `private` queue:
+
+```Swift
+  private let myQueue = OperationQueue()
+```
+
+#### Things to note
+- Your application is responsible for creating and maintaining any operation queues it intends to use.
+- An application can have any number of queues, but there are practical limits to how many operations may be executing at a given point in time. Operation queues work with the system to restrict the number of concurrent operations to a value that is appropriate for the available cores and system load. Therefore, creating additional queues does not mean that you can execute additional operations.
+
+### The main queue as OperationQueue
+In addition to any custom `OperationQueues` you create, you can also access the `main queue` as an `OperationQueue`.
+
+```Swift  
+  let mainQueue = OperationQueue.main
+```
+
+This does not create a new `main queue` nor a new `main thread` &mdash; but it does allow you similar developer control advantages with the `main queue` as you would have with any other `OperationQueue` (some limitations do apply).
 
 ### Adding Operations to OperationQueues
+
+`OperationQueue` allows you to add work in three separate ways:
+- Pass an Operation
+- Pass a closure
+- Pass an array of Operations
+
+
+Once you’ve added an Operation to the queue, it will run until it has completed or has been canceled.
+
+After being added to a queue, an operation remains in that queue until it is explicitly canceled or finishes executing its task.
+
+
+> Once you’ve added an `Operation` to an `OperationQueue`, you can't add that *same* `Operation` to any other `OperationQueue`. But, because they are objects, you *can* execute multiple new instances of that same `Operation` subclass on other queues, as often as needed.
 
 
 <!-- TODO: method 1 addOperation: method -->
@@ -317,19 +357,8 @@ This means Operation queues are inherently thread safe: You can safely access a 
 
 
 
-<!-- from ray w:
-
-Operations are fully-functional classes that can be submitted to an OperationQueue, just like you'd submit a closure of work to a DispatchQueue for GCD. Because they're classes and can contain variables, you gain the ability to know what state the operation is in at any given point.
- -->
-
-<!--
-the OperationQueue class is what you use to manage the scheduling of an Operation and the maximum number of operations that can run simultaneously.
 
 
-OperationQueue allows you to add work in three separate ways:
-• Pass an Operation.
-• Pass a closure.
-• Pass an array of Operations. -->
 
 
 
@@ -345,6 +374,7 @@ OperationQueue allows you to add work in three separate ways:
 - [Dependencies - Apple docs](https://developer.apple.com/documentation/foundation/operation/1416668-dependencies)
 - Cancelling (operations)
 - Asynchronous Operations
+- When and why would you use `OperationQueue.main` instead of `DispatchQueue.main`?
 
 
 ## In Class Activity II (optional) (30 min)
