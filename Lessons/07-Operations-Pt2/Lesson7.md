@@ -13,10 +13,17 @@
 
 ## Learning Objectives (5 min)
 
+By the end of this lesson, you should be able to...
+
+1. Identify and describe:
+- how to use `OperationQueues` to handle the scheduling and execution of `Operations`.
+
+
 <!-- 1. Identify and describe
 1. Define
 1. Design
 1. Implement -->
+
 
 <!-- Define and describe:
 - Operation
@@ -232,14 +239,97 @@ TODO: create this ...
 
 
 ## Overview/TT II &mdash; OperationQueues (20 min)
+The easiest way to execute operations is to use an **operation queue.**
 
-Operation queues are instances of the `OperationQueue` class, and its tasks are encapsulated in instances of `Operation`.
+Operation queues are instances of the `OperationQueue` class, and their tasks are encapsulated in concrete instances of the `Operation` class.
+
+You use instances of the `OperationQueue` class to (1) manage the scheduling and execution of an Operation and (2) to set the maximum number of operations that can run simultaneously on a given queue.
+
+```Swift
+  class OperationQueue : NSObject
+ ```
+
+### How they work
 
 Just as you'd submit a closure of work to a `DispatchQueue` for GCD, instances of the `Operation` class can be submitted to an `OperationQueue` for execution.
 
+This means you can execute tasks concurrently, just like with GCD and `DispatchQueues`, but in an object-oriented fashion.
+
+Though both `OperationQueues` and `DispatchQueues` are high-level abstractions of the queue model built on top of GCD (a low-level C API), `OperationQueues` behave differently from `DispatchQueues` in distinct ways, most notably:
+
+1. **Determining Execution Order** &mdash; Unlike GCD and `DispatchQueues`, `OperationQueues` do *not* strictly conform to First-In-First-Out execution order.
+
+An operation queue acts like a *prioritized FIFO queue*:
+
+- Operations within an operation queue are organized according to their readiness, priority level, and dependencies, and are executed accordingly.
+
+- You can set priority on individual operations. Those with the highest priority get pushed ahead, but not necessarily to the front of the queue &mdash; iOS determines when to actually execute an operation.
+
+- Operations with the *same priority* get executed in the order they were added to the queue &mdash; unless an operation has dependencies, which means you can define that some operations will only be executed after the completion of other operations. *(We'll cover Operation Dependencies in the next class.)*
+
+If all of the queued operations have the same `queuePriority` and are ready to execute when they are put in the queue &mdash; that is, their `isReady` property returns `true` &mdash; they are executed in the order in which they were submitted to the queue. Otherwise, the operation queue always executes the one with the highest priority relative to the other ready operations.
+
+> __*Important Note:*__ Because changes in the readiness of an operation can change the resulting execution order, your code should never rely on the 'queue semantics" to ensure a specific execution order of operations.
+
+2. **No Serial Queues** &mdash; By default, all `OperationQueues` operate concurrently; you *cannot* change their type to *serial* (thought there is a way to execute tasks in operation queues sequentially: by using dependencies between operations).
+
+3. **Developer Control** &mdash; As a developer, you can:
+
+- set the `maxConcurrentOperationCount` for an operation queue
+
+- `cancel` an operation, even if the operation is currently executing
+
+- control how much of the system resources will be given to your operation by setting `qualityOfService` property
+
+- set the priority of your operations by setting your `queuePriority` property of the operation.
 
 
-888
+
+
+
+
+
+
+
+An operation queue executes its queued Operation objects based on their priority and readiness. After being added to an operation queue, an operation remains in its queue until it reports that it is finished with its task. You can’t directly remove an operation from a queue after it has been added.
+
+
+Operation queues retain operations until they're finished, and queues themselves are retained until all operations are finished.
+
+> Suspending an operation queue with operations that aren't finished can result in a memory leak.
+
+
+Operation queues use the `Dispatch` framework to initiate the execution of their operations. As a result, operations are always executed on a separate thread, regardless of whether they are designated as synchronous or asynchronous. (Thread safe)
+
+
+
+
+
+### Creating OperationQueues
+
+
+OperationQueue allows you to add work in three separate ways:
+• Pass an Operation.
+• Pass a closure.
+• Pass an array of Operations.
+<!-- To create a queue, you allocate it in your application as you would any other object: -->
+
+
+
+### Adding Operations to OperationQueues
+
+
+<!-- TODO: method 1 addOperation: method -->
+
+
+<!-- TODO: method 2 -- addOperations:waitUntilFinished: method -->
+
+
+<!-- TODO: method 3 -- addOperationWithBlock: method -->
+
+
+
+
 
 <!-- from ray w:
 
@@ -280,7 +370,7 @@ OperationQueue allows you to add work in three separate ways:
 
 ## Additional Resources
 
-1. []()
+1. [Operation - Apple docs](https://developer.apple.com/documentation/foundation/operation)
 2. [OperationQueue - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue)
 3. [maxConcurrentOperationCount - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue/1414982-maxconcurrentoperationcount)
 4. []()
