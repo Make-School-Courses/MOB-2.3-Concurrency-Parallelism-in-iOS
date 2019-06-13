@@ -240,6 +240,8 @@ The (elided, non-functioning) code below illustrates the most basic steps needed
 Discuss, draw, and brainstorm this topic:
 - What scenarios can you think of in which your code might benefit from submitting tasks to queues as objects (instead of closures)?
 
+Volunteers to share with class.
+
 ### Part 2- Individually (10 min)
 
 The code below is an incomplete effort to create a Non-Concurrent `Operation` subclass.
@@ -429,52 +431,69 @@ Each example illustrates one of the three ways to add a task mentioned above:
   myQueue.addOperation(operationsArray)  
 ```
 
+### Managing OperationQueues
+
+An operation queue executes operations that are ready, according to quality of service levels, and with respect to any dependencies<sup>2</sup>.
+
 After being added to a queue, an operation remains in that queue until it is explicitly canceled or finishes executing its task.
 
-> Once you’ve added an `Operation` to an `OperationQueue`, you can't add that *same* `Operation` to any other `OperationQueue`. But, because they are objects, you *can* execute multiple new instances of that same `Operation` subclass on other queues, as often as needed.
+Once you’ve added an `Operation` to an `OperationQueue`, you can't add that *same* `Operation` to any other `OperationQueue`. (But, because they are objects, you *can* execute multiple new instances of that same `Operation` subclass on other queues, as often as needed.)
 
+But there are a number of ways you can influence how an operation queue executes operations.
 
-### Managing OperationQueues
+In addition to those listed below, you can also:
+
+- pause the queue
+- choose which `DispatchQueue` to set as the `underlyingQueue` property
 
 #### Waiting for completion: Two Ways
 
-<!--
-waitUntilAllOperationsAreFinished.
+1. `waitUntilAllOperationsAreFinished` &mdash; Blocks the current thread until all of the receiver’s queued and executing operations finish executing.
 
+If you find yourself needing this method, it is best to set up a private serial `DispatchQueue` in which you can safely call this blocking method.
 
-addOperations(_:waitUntilFinished:)  -->
+> **TIP:** You must never call this method on the main UI thread.
 
+2. `func addOperations([Operation], waitUntilFinished: Bool)` &mdash; Adds the specified operations to the queue.
 
-
+Use this method if you don't need to wait for all operations to complete, but just a set (an array) of operations.
 
 #### Quality of service
 
+An `OperationQueue` behaves like a `DispatchGroup` in that you can add operations with different quality of service values and they'll run according to the corresponding priority.
 
+The __**default*__ QoS level of an operation queue is `.background`.
 
-Pausing the queue
+If you set the `qualityOfService` property on the operation queue, keep in mind that it might be overridden by the QoS that you’ve set on individual operations managed by the queue.
 
+#### Cancelling Operations
 
+You do this by calling the `cancel()` method of the `operation` object itself or by calling the `cancelAllOperations()` method of the `OperationQueue` class.
 
-Maximum number of operations
-<!-- TODO: method 2 -- addOperations:waitUntilFinished: method -->
+- `.cancel()` &mdash; Advises the operation object that it should stop executing its task.
+- `.cancelAllOperations()` &mdash; Cancels all queued and executing operations.
 
+*See this source for more details:* </br>
+https://www.hackingwithswift.com/example-code/system/how-to-use-multithreaded-operations-with-operationqueue
 
-maxConcurrentOperationCount
+#### Maximum number of operations
+
+By default, the dispatch queue will run as many jobs as your device is capable of handling at once.
+
+But you can limit that number by setting the `maxConcurrentOperationCount` property on the dispatch queue.
+
+The `maxConcurrentOperationCount` property sets the maximum number of queued operations that can execute at the same time.
 
 ```Swift
   var maxConcurrentOperationCount: Int { get set }
  ```
 
+*Source:* </br>
 https://developer.apple.com/documentation/foundation/operationqueue/1414982-maxconcurrentoperationcount
 
+##### Example:
 
-
-
-```Swift
-  let operationQueue: OperationQueue = OperationQueue()
-  operationQueue.maxConcurrentOperationCount = 1
- ```
-
+After setting this property to 2, you will only have at most two operations running at any given time in the queue.
 
 ```Swift  
   let queue = OperationQueue()
@@ -506,21 +525,24 @@ https://developer.apple.com/documentation/foundation/operationqueue/1414982-maxc
 https://medium.com/shakuro/nsoperation-and-nsoperationqueue-to-improve-concurrency-in-ios-e31ee79c98ef
 
 
+**Q:**
+The snippet below sets the `maxConcurrentOperationCount` property to 1.
+
+- What would happen if you set the `maxConcurrentOperationCount` to 1?
+
+```Swift
+  let operationQueue: OperationQueue = OperationQueue()
+  operationQueue.maxConcurrentOperationCount = 1
+ ```
+
+<!-- ANSWER:
+If you set the maxConcurrentOperationCount to 1, then you’ve effectively created a serial queue.
+
+After setting this property, you will only have at most one operation running at a time in the queue, which is more or less the definition of a serial queue, where one task only follows after another is complete. -->
+
+## In Class Activity II (30 min)
 
 
-CANCEL
-
-queue.cancelAllOperations()
-
-https://www.hackingwithswift.com/example-code/system/how-to-use-multithreaded-operations-with-operationqueue
-
-
-
-
-<!-- TODO:  
-
-- list priority levels
- -->
 
 ## After Class
 
@@ -538,7 +560,6 @@ https://developer.apple.com/documentation/foundation/operation
 - The "KVO-Compliant Properties" section in:
 https://developer.apple.com/documentation/foundation/operationqueue
 
-## In Class Activity II (optional) (30 min)
 
 ## Wrap Up (5 min)
 
