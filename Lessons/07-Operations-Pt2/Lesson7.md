@@ -260,46 +260,44 @@ Though both `OperationQueues` and `DispatchQueues` are high-level abstractions o
 3. **Developer Control** &mdash; As a developer, you can:
 - set the `maxConcurrentOperationCount` for an operation queue
 - `cancel` an operation, even if the operation is currently executing
+- pause (suspend) an operation queue
 - set the priority of an operation by setting the `queuePriority` property
 - set the `qualityOfService` property to control how much of the system resources will be given to your operation
 
 2. **Determining Execution Order** &mdash; Unlike GCD and `DispatchQueues`, `OperationQueues` do *not* strictly conform to First-In-First-Out execution order.
 
-&nbsp;&nbsp;&nbsp;&nbsp; An operation queue acts like a *prioritized FIFO queue*:
-- Operations within an operation queue are organized according to their readiness, priority level, and dependencies,<sup>2</sup> and are executed accordingly.
-- You can set priority on individual operations. Those with the highest priority get pushed ahead, but not necessarily to the front of the queue &mdash; iOS determines when to actually execute an operation.
-- Operations with the *same priority* get executed in the order they were added to the queue &mdash; unless an operation has dependencies,<sup>2</sup> which means you can define that some operations will only be executed after the completion of other operations.
+&nbsp;&nbsp;&nbsp;&nbsp; An `OperationQueue` acts like a __*prioritized FIFO queue:*__
+- Operations within an operation queue are organized according to their __*readiness, priority level,*__ and __*dependencies,*__<sup>2</sup> and are executed based on those criteria.
+- You can set priority on individual operations. Those with the highest priority get pushed ahead, but not necessarily to the front of the queue &mdash; the iOS system determines when to actually execute an operation.
+- Operations with the *same priority* get executed in the order they were added to the queue &mdash; unless an operation has dependencies,<sup>2</sup> which allow you to define that some operations will only be executed after the completion of the other operations they are dependent on.
 
+> <sup>2</sup> *We'll cover Operation Dependencies in the next class.*
+
+#### Readiness
 If all of the queued operations have the same `queuePriority` and are ready to execute when they are put in the queue &mdash; that is, their `isReady` property returns `true` &mdash; they are executed in the order in which they were submitted to the queue. Otherwise, the operation queue *always* executes the one with the highest priority relative to the other ready operations.
 
 > __*Important Note:*__ Because changes in the readiness of an operation can change the resulting execution order, your code should never rely on these "queue semantics" to ensure a specific execution order; ultimately, the system will decide on execution order. Implementing dependent operations<sup>2</sup> is the most reliable way to guarantee execution order.
 
-> <sup>2</sup> *We'll cover Operation Dependencies in the next class.*
-
-
-
-
-
+### Lifecycle Notes
 After being added to an operation queue, an operation remains in its queue until it reports that it is finished with its task. You can’t directly remove an operation from a queue after it has been added.
 
 Operation queues retain operations until they're finished, and queues themselves are retained until all operations are finished.
 
-> Suspending an operation queue with operations that aren't finished can result in a memory leak.
+> Note that suspending an operation queue with operations that aren't finished can result in a memory leak.
 
+### Thread Safety
+Operation queues use the `Dispatch` framework to initiate the execution of their operations. As a result, operations are always executed on a separate thread, regardless of whether they are designated as synchronous or asynchronous.
 
-Operation queues use the `Dispatch` framework to initiate the execution of their operations. As a result, operations are always executed on a separate thread, regardless of whether they are designated as synchronous or asynchronous. (Thread safe)
-
-
-
-
+This means Operation queues are inherently thread safe: You can safely access a single `OperationQueue` object from multiple threads without creating additional locks to synchronize access to it.
 
 ### Creating OperationQueues
 
-
-OperationQueue allows you to add work in three separate ways:
+`OperationQueue` allows you to add work in three separate ways:
 • Pass an Operation.
 • Pass a closure.
 • Pass an array of Operations.
+
+
 <!-- To create a queue, you allocate it in your application as you would any other object: -->
 
 
