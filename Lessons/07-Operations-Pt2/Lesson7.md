@@ -141,7 +141,7 @@ For non-concurrent<sup>1</sup> operations, you typically override only one metho
 
 The `main()` method performs the receiver’s __*non-concurrent*__ task.
 
-The default implementation of this method does nothing; You must override method and place in it the code needed to perform the given task.
+The default implementation of the `main()` method does nothing; You must override `main()` and place in it the code needed to perform the intended task.
 
 *Source:* </br>
 https://developer.apple.com/documentation/foundation/operation/1407732-main
@@ -153,7 +153,7 @@ __*Things to note*__
 
 __*Example: Non-Concurrent Operation*__
 
-The simple example below shows subclassing `Operation` to create concurrent operation objects and the requirement to override the `main()` method:
+This simple (nonfunctioning) example illustrates subclassing the `Operation` class to create non-concurrent operation objects, including the requirement to override its `main()` method:
 
 ```Swift  
   class FilterOperation: Operation {
@@ -187,11 +187,11 @@ If you are creating a concurrent operation, you need to override the following m
 - `isExecuting`
 - `isFinished`
 
-__*The `start()` method*__ <sup>2</sup>
+__*The `start()` method*__ <sup>2</sup> </br>
 In a concurrent operation, your `start()` method:
 - is responsible for starting the operation in an asynchronous manner. Whether you spawn a thread or call an asynchronous function, you do it from this method.
 
-__*The `isAsynchronous` property*__
+__*The `isAsynchronous` property*__ </br>
 The `isAsynchronous` property of the `Operation` class tells you whether an operation runs synchronously or asynchronously with respect to the thread in which its `start()` method was called.
 
 By default, this method returns `false`, which means the operation runs synchronously in the calling thread.
