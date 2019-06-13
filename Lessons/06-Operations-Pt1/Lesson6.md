@@ -376,7 +376,7 @@ https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosop
 
 ## Additional Resources
 
-1. [Slides]()
+1. [Slides](https://docs.google.com/presentation/d/1Pyiey3qo-y8ZUUgv4Peh_xFT0FBQcWGKRLg6cjNrSSI/edit?usp=sharing)
 2. [Operation - Apple docs](https://developer.apple.com/documentation/foundation/operation)
 3. [OperationQueue - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue)
 4. [Queue Priority - Apple docs](https://developer.apple.com/documentation/foundation/operation/1411204-queuepriority)
