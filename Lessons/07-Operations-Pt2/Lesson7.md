@@ -255,48 +255,32 @@ This means you can execute tasks concurrently, just like with GCD and `DispatchQ
 
 Though both `OperationQueues` and `DispatchQueues` are high-level abstractions of the queue model built on top of GCD (a low-level C API), `OperationQueues` behave differently from `DispatchQueues` in distinct ways. Most notably:
 
-1. **No Serial Queues** &mdash; By default, all `OperationQueues` operate concurrently; you *cannot* change their type to *serial* (thought there is a way to execute tasks in operation queues sequentially: by using dependencies<sup>2</br> between operations).
+1. **No Serial Queues** &mdash; By default, all `OperationQueues` operate concurrently; you *cannot* change their type to *serial* (thought there is a way to execute tasks in operation queues sequentially: by using dependencies<sup>2</sup> between operations).
 
 3. **Developer Control** &mdash; As a developer, you can:
-
 - set the `maxConcurrentOperationCount` for an operation queue
-
 - `cancel` an operation, even if the operation is currently executing
-
-- control how much of the system resources will be given to your operation by setting `qualityOfService` property
-
-- set the priority of your operations by setting your `queuePriority` property of the operation.
+- set the priority of an operation by setting the `queuePriority` property
+- set the `qualityOfService` property to control how much of the system resources will be given to your operation
 
 2. **Determining Execution Order** &mdash; Unlike GCD and `DispatchQueues`, `OperationQueues` do *not* strictly conform to First-In-First-Out execution order.
 
-An operation queue acts like a *prioritized FIFO queue*:
-
+&nbsp;&nbsp;&nbsp;&nbsp; An operation queue acts like a *prioritized FIFO queue*:
 - Operations within an operation queue are organized according to their readiness, priority level, and dependencies,<sup>2</sup> and are executed accordingly.
-
 - You can set priority on individual operations. Those with the highest priority get pushed ahead, but not necessarily to the front of the queue &mdash; iOS determines when to actually execute an operation.
-
 - Operations with the *same priority* get executed in the order they were added to the queue &mdash; unless an operation has dependencies,<sup>2</sup> which means you can define that some operations will only be executed after the completion of other operations.
 
-If all of the queued operations have the same `queuePriority` and are ready to execute when they are put in the queue &mdash; that is, their `isReady` property returns `true` &mdash; they are executed in the order in which they were submitted to the queue. Otherwise, the operation queue always executes the one with the highest priority relative to the other ready operations.
+If all of the queued operations have the same `queuePriority` and are ready to execute when they are put in the queue &mdash; that is, their `isReady` property returns `true` &mdash; they are executed in the order in which they were submitted to the queue. Otherwise, the operation queue *always* executes the one with the highest priority relative to the other ready operations.
 
-> __*Important Note:*__ Because changes in the readiness of an operation can change the resulting execution order, your code should never rely on the 'queue semantics" to ensure a specific execution order of operations.
+> __*Important Note:*__ Because changes in the readiness of an operation can change the resulting execution order, your code should never rely on these "queue semantics" to ensure a specific execution order; ultimately, the system will decide on execution order. Implementing dependent operations<sup>2</sup> is the most reliable way to guarantee execution order.
 
-
-
-
-
-<sup>2</sup> *(We'll cover Operation Dependencies in the next class.)*
-
-> <sup>2</sup> *(We'll cover Operation Dependencies in the next class.)*
-
-> <sup>2</sup> We'll cover Operation Dependencies in the next class.
+> <sup>2</sup> *We'll cover Operation Dependencies in the next class.*
 
 
 
 
 
-An operation queue executes its queued Operation objects based on their priority and readiness. After being added to an operation queue, an operation remains in its queue until it reports that it is finished with its task. You can’t directly remove an operation from a queue after it has been added.
-
+After being added to an operation queue, an operation remains in its queue until it reports that it is finished with its task. You can’t directly remove an operation from a queue after it has been added.
 
 Operation queues retain operations until they're finished, and queues themselves are retained until all operations are finished.
 
