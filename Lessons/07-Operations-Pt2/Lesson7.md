@@ -233,11 +233,52 @@ The (elided, non-functioning) code below illustrates the most basic steps needed
   }
 ```
 
-## In Class Activity I (30 min)
+## In Class Activity I (15 min)
 
-<!-- TODO: create this ... -->
+### Part 1 - In Pairs (5 min)
 
-888
+Discuss, draw, and brainstorm this topic:
+- What scenarios can you think of in which your code might benefit from submitting tasks to queues as objects (instead of closures)?
+
+### Part 2- Individually (10 min)
+
+The code below is an incomplete effort to create a Non-Concurrent `Operation` subclass.
+
+When successfully working, its output should be:
+
+```Swift  
+  MyOp Started
+  MyOp Completed
+```
+
+**TODO**
+1. Copy the code into a new playground.
+2. Implement a `main()` method which simply prints "MyOp Started
+3. In its `completionBlock`, print "MyOp Completed"
+
+```Swift
+  import UIKit
+  import PlaygroundSupport
+
+  PlaygroundPage.current.needsIndefiniteExecution = true
+
+  // Queue
+  let operationQueue = OperationQueue()
+  operationQueue.qualityOfService = .userInitiated
+
+  class MyOperation: Operation {
+
+      //TODO: Create main()
+  }
+
+  let myOp = MyOperation()
+
+  myOp.completionBlock = {
+      //TODO: print "MyOp Completed"
+  }
+
+  operationQueue.addOperation(myOp)
+```
 
 ## OperationQueues (20 min)
 The easiest way to execute operations is to use an **operation queue,** which is particularly __*powerful*__ because it lets you control QoS levels, how many operations can execute simultaneously, and more...
@@ -492,6 +533,10 @@ https://www.hackingwithswift.com/example-code/system/how-to-use-multithreaded-op
 - `defaultMaxConcurrentOperationCount`
 - `current` (queue) property
 - `underlyingQueue` property (how to set it; what are implications and risks?)
+- The "Maintaining Operation Object States" and the "Responding to the Cancel Command" sections in:
+https://developer.apple.com/documentation/foundation/operation
+- The "KVO-Compliant Properties" section in:
+https://developer.apple.com/documentation/foundation/operationqueue
 
 ## In Class Activity II (optional) (30 min)
 
