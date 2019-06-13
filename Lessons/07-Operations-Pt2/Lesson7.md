@@ -237,6 +237,7 @@ The (elided, non-functioning) code below illustrates the most basic steps needed
 
 <!-- TODO: create this ... -->
 
+888
 
 ## OperationQueues (20 min)
 The easiest way to execute operations is to use an **operation queue,** which is particularly __*powerful*__ because it lets you control QoS levels, how many operations can execute simultaneously, and more...
@@ -506,4 +507,5 @@ https://www.hackingwithswift.com/example-code/system/how-to-use-multithreaded-op
 2. [OperationQueue - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue)
 3. [maxConcurrentOperationCount - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue/1414982-maxconcurrentoperationcount)
 4. [main - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue/1409193-main)
-4. [Operation and OperationQueue - A Ray Wenderlich tutorial](https://www.raywenderlich.com/5293-operation-and-operationqueue-tutorial-in-swift)
+5. [Operation and OperationQueue - A Ray Wenderlich tutorial](https://www.raywenderlich.com/5293-operation-and-operationqueue-tutorial-in-swift)
+6. [Basics of Operations and Operation Queues in iOS - an article](https://blog.infullmobile.com/basics-of-operations-and-operation-queues-in-ios-a8e7b02950c3)
