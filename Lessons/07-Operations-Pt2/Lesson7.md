@@ -318,10 +318,26 @@ Here are three different examples of syntax used to create custom operation queu
 
 #### Things to note
 - Your application is responsible for creating and maintaining any operation queues it intends to use.
-- An application can have any number of queues, but there are practical limits to how many operations may be executing at a given point in time. Operation queues work with the system to restrict the number of concurrent operations to a value that is appropriate for the available cores and system load. Therefore, creating additional queues does not mean that you can execute additional operations.
+- An application can have any number of queues, but there are practical limits to how many operations may be executing at a given point in time. Operation queues work with the system to restrict the number of concurrent operations to a value that is appropriate for the available cores and system load. Therefore, *creating additional queues does not mean that you can execute additional operations.*
 
 ### The main queue as OperationQueue
 In addition to any custom `OperationQueues` you create, you can also access the `main queue` as an `OperationQueue`.
+
+```Swift  
+Type Property
+**main**
+Returns the operation queue associated with the main thread.
+
+Declaration
+  class var main: OperationQueue { get }
+
+Return Value
+The default operation queue bound to the main thread.
+```
+*Source:* </br>
+https://developer.apple.com/documentation/foundation/operationqueue/1409193-main
+
+Syntax:
 
 ```Swift  
   let mainQueue = OperationQueue.main
@@ -330,34 +346,116 @@ In addition to any custom `OperationQueues` you create, you can also access the 
 This does not create a new `main queue` nor a new `main thread` &mdash; but it does allow you similar developer control advantages with the `main queue` as you would have with any other `OperationQueue` (some limitations do apply).
 
 ### Adding Operations to OperationQueues
-
-`OperationQueue` allows you to add work in three separate ways:
+Operation Queues allows you to add work in three separate ways:
 - Pass an Operation
 - Pass a closure
 - Pass an array of Operations
 
+All three use the `addOperation(_:)` function from the `OperationQueue` class, which takes two forms:
 
-Once you’ve added an Operation to the queue, it will run until it has completed or has been canceled.
+```Swift
+  func addOperation(_ op: Operation)
+```
+```Swift  
+  func addOperation(_ block: @escaping () -> Void)
+```
+
+
+1. Adding an `Operation` to an `OperationQueue`:
+
+```Swift  
+  // An instance of some Operation subclass
+  let myBlockOperation = BlockOperation {
+      // perform task here
+  }
+
+  someCustomQueue.addOperation(myBlockOperation)
+```
+
+2. Adding a task to an `OperationQueue` as a **code block**:
+
+```Swift  
+  myQueue.addOperation {
+      // some code block/task
+  }
+```
+
+3. Adding multiple `Operations` to an `OperationQueue`:
+
+```Swift  
+  let operationsArray = [Operation]()
+  // Fill array with Operations
+
+  myQueue.addOperation(operationsArray)  
+```
 
 After being added to a queue, an operation remains in that queue until it is explicitly canceled or finishes executing its task.
-
 
 > Once you’ve added an `Operation` to an `OperationQueue`, you can't add that *same* `Operation` to any other `OperationQueue`. But, because they are objects, you *can* execute multiple new instances of that same `Operation` subclass on other queues, as often as needed.
 
 
-<!-- TODO: method 1 addOperation: method -->
+
+888
+
 
 
 <!-- TODO: method 2 -- addOperations:waitUntilFinished: method -->
 
 
-<!-- TODO: method 3 -- addOperationWithBlock: method -->
+maxConcurrentOperationCount
+
+```Swift
+  var maxConcurrentOperationCount: Int { get set }
+ ```
+
+https://developer.apple.com/documentation/foundation/operationqueue/1414982-maxconcurrentoperationcount
 
 
 
 
+```Swift
+  let operationQueue: OperationQueue = OperationQueue()
+  operationQueue.maxConcurrentOperationCount = 1
+ ```
 
 
+```Swift  
+  let queue = OperationQueue()
+  queue.maxConcurrentOperationCount = 2
+
+  let operation1 = BlockOperation(block: {
+    ...
+  })
+  operation1.qualityOfService = .userInitiated
+
+  let operation2 = BlockOperation(block: {
+    ...
+  })
+
+  operation1.completionBlock = {
+      ...
+  }
+  operation2.completionBlock = {
+      ...
+  }
+
+  operation2.addDependency(operation1)
+
+  queue.addOperation(operation1)
+  queue.addOperation(operation2)
+```
+
+*Source:* </br>
+https://medium.com/shakuro/nsoperation-and-nsoperationqueue-to-improve-concurrency-in-ios-e31ee79c98ef
+
+
+
+
+CANCEL
+
+queue.cancelAllOperations()
+
+https://www.hackingwithswift.com/example-code/system/how-to-use-multithreaded-operations-with-operationqueue
 
 
 
@@ -375,6 +473,8 @@ After being added to a queue, an operation remains in that queue until it is exp
 - Cancelling (operations)
 - Asynchronous Operations
 - When and why would you use `OperationQueue.main` instead of `DispatchQueue.main`?
+- `defaultMaxConcurrentOperationCount`
+- `current` (queue) property
 
 
 ## In Class Activity II (optional) (30 min)
@@ -390,6 +490,5 @@ After being added to a queue, an operation remains in that queue until it is exp
 1. [Operation - Apple docs](https://developer.apple.com/documentation/foundation/operation)
 2. [OperationQueue - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue)
 3. [maxConcurrentOperationCount - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue/1414982-maxconcurrentoperationcount)
-4. []()
-
-https://www.raywenderlich.com/5293-operation-and-operationqueue-tutorial-in-swift
+4. [main - Apple docs](https://developer.apple.com/documentation/foundation/operationqueue/1409193-main)
+4. [Operation and OperationQueue - A Ray Wenderlich tutorial](https://www.raywenderlich.com/5293-operation-and-operationqueue-tutorial-in-swift)
