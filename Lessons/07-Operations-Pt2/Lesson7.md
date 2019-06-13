@@ -324,32 +324,27 @@ Here are three different examples of syntax used to create custom operation queu
 In addition to any custom `OperationQueues` you create, you can also access the `main queue` as an `OperationQueue`.
 
 ```Swift  
-Type Property
-**main**
-Returns the operation queue associated with the main thread.
-
-Declaration
+  Declaration
   class var main: OperationQueue { get }
-
-Return Value
-The default operation queue bound to the main thread.
 ```
 *Source:* </br>
 https://developer.apple.com/documentation/foundation/operationqueue/1409193-main
 
-Syntax:
+Syntax to access:
 
 ```Swift  
   let mainQueue = OperationQueue.main
 ```
 
+This returns the default operation queue bound to the `main thread`.
+
 This does not create a new `main queue` nor a new `main thread` &mdash; but it does allow you similar developer control advantages with the `main queue` as you would have with any other `OperationQueue` (some limitations do apply).
 
 ### Adding Operations to OperationQueues
 Operation Queues allows you to add work in three separate ways:
-- Pass an Operation
-- Pass a closure
-- Pass an array of Operations
+1. Pass an Operation
+2. Pass a closure
+3. Pass an array of Operations
 
 All three use the `addOperation(_:)` function from the `OperationQueue` class, which takes two forms:
 
@@ -360,6 +355,9 @@ All three use the `addOperation(_:)` function from the `OperationQueue` class, w
   func addOperation(_ block: @escaping () -> Void)
 ```
 
+#### Examples:
+
+Each example illustrates one of the three ways to add a task mentioned above:
 
 1. Adding an `Operation` to an `OperationQueue`:
 
@@ -394,11 +392,28 @@ After being added to a queue, an operation remains in that queue until it is exp
 > Once you’ve added an `Operation` to an `OperationQueue`, you can't add that *same* `Operation` to any other `OperationQueue`. But, because they are objects, you *can* execute multiple new instances of that same `Operation` subclass on other queues, as often as needed.
 
 
+### Managing OperationQueues
 
-888
+#### Waiting for completion: Two Ways
+
+<!--
+waitUntilAllOperationsAreFinished.
+
+
+addOperations(_:waitUntilFinished:)  -->
 
 
 
+
+#### Quality of service
+
+
+
+Pausing the queue
+
+
+
+Maximum number of operations
 <!-- TODO: method 2 -- addOperations:waitUntilFinished: method -->
 
 
@@ -475,7 +490,7 @@ https://www.hackingwithswift.com/example-code/system/how-to-use-multithreaded-op
 - When and why would you use `OperationQueue.main` instead of `DispatchQueue.main`?
 - `defaultMaxConcurrentOperationCount`
 - `current` (queue) property
-
+- `underlyingQueue` property (how to set it; what are implications and risks?)
 
 ## In Class Activity II (optional) (30 min)
 
