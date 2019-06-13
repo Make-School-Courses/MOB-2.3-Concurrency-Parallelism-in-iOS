@@ -1,79 +1,39 @@
 # Operations (Part 2)
 
+<!-- INSTRUCTOR NOTES:
+- the Answer to question about maxConcurrentOperationCount is hidden below the question -->
+
 ## Minute-by-Minute
 
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
 | 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:15      | Overview                  |
-| 0:20        | 0:45      | In Class Activity I       |
-| 1:05        | 0:10      | BREAK                     |
-| 1:15        | 0:45      | In Class Activity II      |
-| TOTAL       | 2:00      |                           |
+| 0:05        | 0:15      | Initial Exercise                  |
+| 0:20        | 0:20     | Overview  I -  How to implement Operation objects              |
+| 0:40        | 0:15      | In Class Activity I       |
+| 0:55      | 0:10      | BREAK                     |
+| 1:05       | 0:25     | Overview  I -  OperationQueues              |
+| 1:30        | 0:25      | In Class Activity II      |
+| TOTAL       | 1:55      |                           |
 
 ## Learning Objectives (5 min)
 
 By the end of this lesson, you should be able to...
 
 1. Identify and describe:
-- how to use `OperationQueues` to handle the scheduling and execution of `Operations`.
+- the difference between Synchronous and Asynchronous Operations
+- how to subclass `Operation` to create custom concurrent and non-concurrent operations
+- how to use `OperationQueues` to handle the scheduling and execution of `Operations`
+- how to add operations to `OperationQueues` and how to manage their behavior
 
-
-<!-- 1. Identify and describe
-1. Define
-1. Design
-1. Implement -->
-
-
-<!-- Define and describe:
-- Operation
-- Operation Queues
-- Benefits and Challenges of using Operations and Operation Queues
-- the difference between GCD and Operations and Operation Queues
-- when to use GCD vs Operations vs Operation Queues
-- Subclassing
-- Block Operations -->
-
+2. Implement basic examples of:
+- non-current subclasses of the `Operation` class
 
 ## Initial Exercise (15 min)
 
 1. Review solutions to "Assignment 2: Solve the Dining Philosophers Problem" (challenge) from previous class: https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosophers
 
 - One or more volunteers present their solutions. Opens a class discussion.
-
-<!-- POTENTIAL OUTLINE:
-How to implement (subclassing)
-OperationQueues
-Async Operations
-
-Cancelling
-Dependencies
-
-  -->
-
-
-  <!-- OUTLINE?
-  What are they?
-
-  Why use them? benefits
-
-  How they work
-
-  White board
-
-  Syntax examples
-
-  dependencies
-
-  Compared to GCD... when to use them
-
-    examples from Ray W:
-    operations allow for the handling of more complex scenarios such as reusable code to be run on a background thread, having one thread depend on another, and even canceling an operation before it's started or completed.
-
-    GCD is great for common tasks that need to be run a single time in the background. When you find yourself building functionality that should be reusable — such as image editing operations — you will likely want to encapsulate that functionality into a class. By subclassing Operation, you can accomplish that goal!
-
-  -->
-
 
 ## How to implement Operation objects (TT I) (20 min)
 
@@ -540,7 +500,7 @@ If you set the maxConcurrentOperationCount to 1, then you’ve effectively creat
 
 After setting this property, you will only have at most one operation running at a time in the queue, which is more or less the definition of a serial queue, where one task only follows after another is complete. -->
 
-## In Class Activity II (30 min)
+## In Class Activity II (25 min)
 
 
 
@@ -563,7 +523,7 @@ https://developer.apple.com/documentation/foundation/operationqueue
 
 ## Wrap Up (5 min)
 
-- Continue working on your current tutorial
+- Continue working on your Course Project
 - Complete reading
 - Complete challenges
 
