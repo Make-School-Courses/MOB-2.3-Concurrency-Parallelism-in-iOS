@@ -502,7 +502,7 @@ After setting this property, you will only have at most one operation running at
 
 ## In Class Activity II (25 min)
 
-
+Finding the answers to all the questions [in here](https://docs.google.com/document/d/1wpsHJTMJnTL_Qhcb5y3fFAfEfARt3YrtlWRPQB9JNzs/edit?usp=sharing) using this repo.
 
 ## After Class
 
