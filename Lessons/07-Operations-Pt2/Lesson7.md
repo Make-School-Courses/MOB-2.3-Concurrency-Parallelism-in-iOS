@@ -176,15 +176,15 @@ The (elided, non-functioning) code below illustrates the most basic steps needed
   ...
 
   override func start() {
-  if self.isCancelled {
+    if self.isCancelled {
   			state = .finished
   		} else {
   			state = .ready
-  main()
+        main()
   		}
-  	}
+  }
   override func main() {
-  if self.isCancelled {
+    if self.isCancelled {
   			state = .finished
   		} else {
   			state = .executing
