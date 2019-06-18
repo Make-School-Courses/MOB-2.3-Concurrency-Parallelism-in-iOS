@@ -177,20 +177,20 @@ The (elided, non-functioning) code below illustrates the most basic steps needed
 
   override func start() {
     if self.isCancelled {
-  			state = .finished
-  		} else {
-  			state = .ready
-        main()
-  		}
+      state = .finished
+    } else {
+      state = .ready
+      main()
+    }
   }
   override func main() {
     if self.isCancelled {
-  			state = .finished
-  		} else {
-  			state = .executing
-  		}
-  	}
+      state = .finished
+    } else {
+      state = .executing
+    }
   }
+ }
 ```
 
 ## In Class Activity I (15 min)
