@@ -250,7 +250,7 @@ Both `NetworkImageOperation` and `TiltShiftOperation` should conform to this pro
 
 We know `TiltShiftOperation` needs an image as input. Let’s also make it check if any of its dependencies give the image as output.
 
-Change the guard statement in `main()` to this:
+Add this in `main()`:
 
 ```Swift
 let dependencyImage = dependencies
