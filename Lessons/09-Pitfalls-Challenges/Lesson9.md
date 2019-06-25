@@ -28,6 +28,7 @@ Concurrency gives us many benefits when it comes to solving performance issues. 
 
 ## Initial Exercise (15 min)
 
+Review each other's solution for the homework.
 
 ## Race conditions (10 min)
 
@@ -79,7 +80,7 @@ public var count: Int {
 }
 ```
 
-Here we are controlling the access to the variable an making sure that only a single thread a t a time can access the variable.
+Here we are controlling the access to the variable an making sure that only a single thread at a time can access the variable.
 
 ### Thread barrier
 Our previous solution is effective for simple situations. But there are times when the shared resource needs more complex logic in its getters and setters. One thing you might try us using locks and semaphores which is sometimes hard to implement without getting more errors. To make up for that we can use a solution from GCD, called **dispatch barrier**.
@@ -152,7 +153,7 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 1. Explain the relationship between a process, a thread and a task.
 1. Are there any threads running by default? Which ones?
 1. How does iOS support multithreading?
-1. What is NSOperation? and NSOPerationQueue?
+1. What is NSOperation? and NSOperationQueue?
 1. What is QoS?
 1. Explain priority inversion.
 1. Explain dependencies in Operations.
@@ -160,27 +161,23 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 1. How do we know if we have a race condition?
 1. What is deadlock?
 1. What is context switching in multithreading?
-1. What are the ways we can execute an Operation? Why are they different?
+1. What are the ways we can execute an Operation? How are they different?
+1. What is DispatchSemaphore and when can we use it?
 
 
 ## After Class
 
-1. Research:
--
-
-2. Assignment(s):
--
+1. Assignment(s):
+-  Keep working on your final project.
 
 
 ## Wrap Up (5 min)
 
-- Continue working on your current tutorial
-- Complete reading
-- Complete challenges
+- Complete answering the questions as a way to study for the final exam.
 
 ## Additional Resources
 
 1. [Priority inversion - wikipedia](https://en.wikipedia.org/wiki/Priority_inversion)
-2. []()
-3. []()
+2. Book - Concurrency by Tutorials
+3. [Slides]()
 4. []()
