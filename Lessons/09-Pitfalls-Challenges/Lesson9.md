@@ -8,7 +8,7 @@
 
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
-| 0:00        | 0:10      | Objectives                |
+| 0:00        | 0:10      | Why Learn & Objectives                |
 | 0:10        | 0:15      | Initial Exercise                  |
 | 0:25        | 0:10      | Overview  I               |
 | 0:35        | 0:10     | In Class Activity I       |
