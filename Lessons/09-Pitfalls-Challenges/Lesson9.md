@@ -17,14 +17,14 @@
 
 ## Why you should know this or industry application (optional) (5 min)
 
-Concurrency gives us many benefits when it comes to solving performance issues. Today we'll learn about three well known problems we can encounter if we are not being careful with our apps.
+Concurrency gives us many benefits when it comes to solving performance issues. Today we'll learn about the most well-known problems we can encounter if we are not being careful with our apps.
 
 ## Learning Objectives (5 min)
 
-1. Identify and describe
-1. Define
-1. Design
-1. Implement
+1. Identify, describe, and propose solutions to the following iOS concurrency challenges:
+- **Race Conditions**
+- **Priority Inversion**
+2. Identify and describe how to use __*dispatch barriers*__ to alleviate issues caused by locks and semaphores
 
 ## Initial Exercise (15 min)
 
@@ -174,13 +174,7 @@ Priority inversion is easy to avoid:
 
 *Sources:* </br>
 - https://www.objc.io/issues/2-concurrency/concurrency-apis-and-pitfalls/
-- Resource 2 below<sup>1</sup>
-
-
-## Deadlock (10 min)
-
-...
-
+- Resource 2<sup>1</sup> below
 
 ## In Class-Activity II
 
@@ -230,4 +224,13 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 1. [Priority inversion - wikipedia](https://en.wikipedia.org/wiki/Priority_inversion)
 2. [Prioritize Work with Quality of Service Classes - from Apple](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html) <sup>1</sup>
 3. [Threading Programming Guide - from Apple](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html#//apple_ref/doc/uid/10000057i-CH8-SW1)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+4. [What really happened on Mars? - and article by Glenn Reeves](https://users.cs.duke.edu/~carla/mars.html)
+5. [iOS Concurrency — Underlying Truth - an article](https://medium.com/@chetan15aga/ios-concurrency-underlying-truth-1021a0bb2a98)
+=======
+>>>>>>> e86a147efadf6d8351fb28271b491d8e1bb5befd
+>>>>>>> 2d6a7293ede9bd0b95230950c6406c588a5bef1e
 4. []()
+>>>>>>> 378fa90511aa7f325747c8f97669ee0aefb34278
