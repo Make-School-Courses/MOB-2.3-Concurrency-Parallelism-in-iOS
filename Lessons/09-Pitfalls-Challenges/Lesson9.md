@@ -160,7 +160,12 @@ Priority inversion most commonly occurs in iOS when a queue with a lower quality
 
 You may recall that the QoS of a Dispatch or an Operation Queue can be changed based on the QoS of the tasks which you, the developer, submit to it.
 
-If you submit multiple tasks to a `.utility` queue with the higher-priority `.userInteractive` QoS, the system could upgrade the QoS of that queue with a priority *higher* than that of a `.userInitiated` queue. Suddenly, all the tasks in the queue &mdash; most of which are really of the `.utility` QoS &mdash; will end up running before the tasks from the `.userInitiated` queue.
+If you submit multiple tasks to a `.utility` queue with the higher-priority `.userInteractive` QoS,<sup>2</sup> the system could upgrade the QoS of that queue with a priority *higher* than that of a `.userInitiated` queue. Suddenly, all the tasks in the queue &mdash; most of which are really of the `.utility` QoS &mdash; will end up running before the tasks from the `.userInitiated` queue.
+
+> <sup>2</sup> Remember your QoS levels:
+- `.userInteractive` &mdash; Tasks submitted to this queue should complete virtually instantaneously.
+- `.userInitiated` &mdash; Tasks performed in this queue should take a few seconds or less to complete.
+- `.utility` &mdash; Tasks can take a few seconds to a few minutes in this queue.
 
 ### How to avoid it
 In the case of *synchronous* work, the system will try to resolve the priority inversion automatically by raising the QoS of the lower priority work for the duration of the inversion.<sup>1</sup>
