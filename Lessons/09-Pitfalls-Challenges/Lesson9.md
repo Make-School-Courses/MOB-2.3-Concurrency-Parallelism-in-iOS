@@ -108,15 +108,16 @@ public var count: Int {
 ```
 (explanation of code snippet)
 
-## Deadlock (10 min)
-
-...
-
 ## Priority Inversion (10 min)
 
 Priority inversion happens when a queue with a lower quality of service is given a higher system priority than a queue with a higher QoS.
 
 ...
+
+## Deadlock (10 min)
+
+...
+
 
 ## In Class-Activity
 
