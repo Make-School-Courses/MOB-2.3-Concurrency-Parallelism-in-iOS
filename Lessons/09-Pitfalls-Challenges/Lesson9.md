@@ -113,13 +113,13 @@ public var count: Int {
 ### General Example
 In 1995, NASA sent the Pathfinder mission to Mars.
 
-![Sojourner_on_Mars_PIA01122](assets/Sojourner_on_Mars_PIA01122.png) </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Sojourner_on_Mars_PIA01122](assets/Sojourner_on_Mars_PIA01122.png) </br>
 
 Not too long after a successful landing on our red neighboring planet, the mission almost came to an abrupt end.
 
 The Mars rover (Sojourner) kept rebooting for unknown reasons – it suffered from a phenomenon called __*priority inversion*__ where a low-priority thread kept blocking a high-priority one.
 
-![priority_inversion](assets/priority_inversion.png) </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![priority_inversion](assets/priority_inversion.png) </br>
 
 *Source:* </br>
 https://www.objc.io/issues/2-concurrency/concurrency-apis-and-pitfalls/
