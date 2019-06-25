@@ -133,11 +133,12 @@ The problem can occur when you have a high-priority and a low-priority task shar
 ### Priority Inversion in iOS
 Since GCD exposes background queues with different priorities, including one which even is I/O throttled, it’s good to know about this possibility.
 
-Priority inversion most commonly occurs in iOS when a queue with a lower quality of service is given a higher system priority than a queue with a higher QoS. As a result, blocking, spinning, and polling may occur.
+Priority inversion most commonly occurs in iOS when a queue with a lower quality of service is given a higher system priority than a queue with a higher QoS.
+- As a result, blocking, spinning, and polling may occur.
 
 You may recall that the QoS of a Dispatch or an Operation Queue can be changed based on the QoS of the tasks which you, the developer, submit to it.
 
-If you submit multiple tasks to a `.utility` queue with the higher-priority `.userInteractive` QoS, the system could upgrade the QoS of that queue with a priority higher than your UI queue (e.g., .`userInitiated` queue). Suddenly, all the tasks in the queue &mdash; most of which are really of the `.utility` QoS -&mdash; will end up running before the tasks from the `.userInitiated` (UI) queue.
+If you submit multiple tasks to a `.utility` queue with the higher-priority `.userInteractive` QoS, the system could upgrade the QoS of that queue with a priority *higher* than that of a `.userInitiated` queue (i.e., your UI queue). Suddenly, all the tasks in the queue &mdash; most of which are really of the `.utility` QoS &mdash; will end up running before the tasks from the `.userInitiated` (UI) queue.
 
 ### How to avoid it
 In the case of *synchronous* work, the system will try to resolve the priority inversion automatically by raising the QoS of the lower priority work for the duration of the inversion.<sup>1</sup>
@@ -148,7 +149,7 @@ Thus, it is highly recommended (by Apple) that Developers should try to ensure t
 
 Priority inversion is easy to avoid:
  - In general, don’t use different priorities.
- - If you need a higher quality of service, use a different queue
+ - If you need a higher QoS, use a different queue that with the desired QoS.
  - When you’re using GCD, always use the default priority queue (directly, or as a target queue)
 
 *Sources:* </br>
