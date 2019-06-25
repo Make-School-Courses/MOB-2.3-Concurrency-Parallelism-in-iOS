@@ -28,6 +28,7 @@ Concurrency gives us many benefits when it comes to solving performance issues. 
 
 ## Initial Exercise (15 min)
 
+Review each other's solution for the homework.
 
 ## Race conditions (10 min)
 
@@ -79,7 +80,7 @@ public var count: Int {
 }
 ```
 
-Here we are controlling the access to the variable an making sure that only a single thread a t a time can access the variable.
+Here we are controlling the access to the variable an making sure that only a single thread at a time can access the variable.
 
 ### Thread barrier
 Our previous solution is effective for simple situations. But there are times when the shared resource needs more complex logic in its getters and setters. One thing you might try us using locks and semaphores which is sometimes hard to implement without getting more errors. To make up for that we can use a solution from GCD, called **dispatch barrier**.
@@ -173,7 +174,7 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 1. Explain the relationship between a process, a thread and a task.
 1. Are there any threads running by default? Which ones?
 1. How does iOS support multithreading?
-1. What is NSOperation? and NSOPerationQueue?
+1. What is NSOperation? and NSOperationQueue?
 1. What is QoS?
 1. Explain priority inversion.
 1. Explain dependencies in Operations.
@@ -181,28 +182,41 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 1. How do we know if we have a race condition?
 1. What is deadlock?
 1. What is context switching in multithreading?
-1. What are the ways we can execute an Operation? Why are they different?
+1. What are the ways we can execute an Operation? How are they different?
+1. What is DispatchSemaphore and when can we use it?
 
 
 ## After Class
 
+<<<<<<< HEAD
+1. Assignment(s):
+-  Keep working on your final project.
+=======
 1. Research:
 - study **Priority Inversions** section in Resource 2<sup>1</sup> below
 
 2. Assignment(s):
 -
+>>>>>>> e86a147efadf6d8351fb28271b491d8e1bb5befd
 
 
 ## Wrap Up (5 min)
 
-- Continue working on your current tutorial
-- Complete reading
-- Complete challenges
+- Complete answering the questions as a way to study for the final exam.
 
 ## Additional Resources
 
 1. [Priority inversion - wikipedia](https://en.wikipedia.org/wiki/Priority_inversion)
+<<<<<<< HEAD
+2. Book - Concurrency by Tutorials
+3. [Slides]()
+=======
 2. [Prioritize Work with Quality of Service Classes - from Apple](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html) <sup>1</sup>
 3. [Threading Programming Guide - from Apple](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html#//apple_ref/doc/uid/10000057i-CH8-SW1)
+<<<<<<< HEAD
 4. [What really happened on Mars? - and article by Glenn Reeves](https://users.cs.duke.edu/~carla/mars.html)
 5. [iOS Concurrency — Underlying Truth - an article](https://medium.com/@chetan15aga/ios-concurrency-underlying-truth-1021a0bb2a98)
+=======
+>>>>>>> e86a147efadf6d8351fb28271b491d8e1bb5befd
+4. []()
+>>>>>>> 378fa90511aa7f325747c8f97669ee0aefb34278
