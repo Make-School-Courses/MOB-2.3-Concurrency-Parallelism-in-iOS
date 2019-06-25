@@ -127,18 +127,25 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 
 1. What is Concurrency?
 1. What is Parallelism?
+1. What are most commonly used APIs to implement concurrency in iOS?
+1. What is a queue? What is their relationship with FIFO?
+1. What are all the different types of queues and their priorities?
 1. What is the difference between an asynchronous and a synchronous task?
 1. What is the difference between a serial and a concurrent queue?
 1. How does GCD work?
 1. Explain the relationship between a process, a thread and a task.
+1. Are there any threads running by default? Which ones?
 1. How does iOS support multithreading?
 1. What is NSOperation? and NSOPerationQueue?
-1. what is QoS?
+1. What is QoS?
 1. Explain priority inversion.
 1. Explain dependencies in Operations.
 1. When do you use GCD vs Operations?
 1. How do we know if we have a race condition?
-1. ...
+1. What is deadlock?
+1. What is context switching in multithreading?
+1. What are the ways we can execute an Operation? Why are they different?
+
 
 ## After Class
 
