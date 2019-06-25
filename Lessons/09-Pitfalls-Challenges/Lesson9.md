@@ -109,6 +109,25 @@ public var count: Int {
 ```
 (explanation of code snippet)
 
+## NSLock
+
+An NSLock object implements a basic mutex for Cocoa applications. The interface for all locks is actually defined by the NSLocking protocol, which defines the **lock** and **unlock** methods. You use these methods to acquire and release the lock just as you would any mutex.
+
+## In Class-Activity I
+
+Take this code snippet into a playground and see what it does. What's wrong with it? What is the concurrency problem?
+
+```Swift
+var array = [Int]()
+
+DispatchQueue.concurrentPerform(iterations: 100){ index in
+    let last = array.last ?? 0
+    array.append(last + 1)
+    print(array)
+}
+```
+Using NSLock, try to fix it.
+
 ## Priority Inversion (10 min)
 
 ### General Example
@@ -163,7 +182,7 @@ Priority inversion is easy to avoid:
 ...
 
 
-## In Class-Activity
+## In Class-Activity II
 
 ### Common questions regarding concurrency in iOS.
 
@@ -190,20 +209,16 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 1. What is context switching in multithreading?
 1. What are the ways we can execute an Operation? How are they different?
 1. What is DispatchSemaphore and when can we use it?
+1. What happens if you call sync() on the current or main queue?
 
 
 ## After Class
 
-<<<<<<< HEAD
-1. Assignment(s):
--  Keep working on your final project.
-=======
 1. Research:
 - study **Priority Inversions** section in Resource 2<sup>1</sup> below
 
 2. Assignment(s):
 -
->>>>>>> e86a147efadf6d8351fb28271b491d8e1bb5befd
 
 
 ## Wrap Up (5 min)
@@ -213,11 +228,6 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 ## Additional Resources
 
 1. [Priority inversion - wikipedia](https://en.wikipedia.org/wiki/Priority_inversion)
-<<<<<<< HEAD
-2. Book - Concurrency by Tutorials
-3. [Slides]()
-=======
 2. [Prioritize Work with Quality of Service Classes - from Apple](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html) <sup>1</sup>
 3. [Threading Programming Guide - from Apple](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html#//apple_ref/doc/uid/10000057i-CH8-SW1)
->>>>>>> e86a147efadf6d8351fb28271b491d8e1bb5befd
 4. []()
