@@ -4,18 +4,20 @@
 1)  -->
 
 
-## Minute-by-Minute [OPTIONAL]
+## Minute-by-Minute
 
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
-| 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:15      | Overview                  |
-| 0:20        | 0:45      | In Class Activity I       |
-| 1:05        | 0:10      | BREAK                     |
-| 1:15        | 0:45      | In Class Activity II      |
-| TOTAL       | 2:00      |                           |
+| 0:00        | 0:10      | Objectives                |
+| 0:10        | 0:15      | Initial Exercise                  |
+| 0:25        | 0:10      | Overview  I               |
+| 0:35        | 0:10     | In Class Activity I       |
+| 0:45        | 0:10      | BREAK                     |
+| 0:55        | 0:15      | Overview  II               |
+| 1:10        | 0:40      | In Class Activity II      |
+| TOTAL       | 1:50      |                           |
 
-## Why you should know this or industry application (optional) (5 min)
+## Why you should know this or industry application (5 min)
 
 Concurrency gives us many benefits when it comes to solving performance issues. Today we'll learn about the most well-known problems we can encounter if we are not being careful with our apps.
 
@@ -113,7 +115,7 @@ public var count: Int {
 
 An NSLock object implements a basic mutex for Cocoa applications. The interface for all locks is actually defined by the NSLocking protocol, which defines the **lock** and **unlock** methods. You use these methods to acquire and release the lock just as you would any mutex.
 
-## In Class-Activity I
+## In Class-Activity I (10 min)
 
 Take this code snippet into a playground and see what it does. What's wrong with it? What is the concurrency problem?
 
@@ -128,7 +130,7 @@ DispatchQueue.concurrentPerform(iterations: 100){ index in
 ```
 Using NSLock, try to fix it.
 
-## Priority Inversion (10 min)
+## Priority Inversion (15 min)
 
 ### General Example
 In 1995, NASA sent the Pathfinder mission to Mars.
@@ -176,7 +178,7 @@ Priority inversion is easy to avoid:
 - https://www.objc.io/issues/2-concurrency/concurrency-apis-and-pitfalls/
 - Resource 2<sup>1</sup> below
 
-## In Class-Activity II
+## In Class-Activity II (40 min)
 
 ### Common questions regarding concurrency in iOS.
 
@@ -212,7 +214,7 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 - study **Priority Inversions** section in Resource 2<sup>1</sup> below
 
 2. Assignment(s):
--
+- Continue working on your final project
 
 
 ## Wrap Up (5 min)
