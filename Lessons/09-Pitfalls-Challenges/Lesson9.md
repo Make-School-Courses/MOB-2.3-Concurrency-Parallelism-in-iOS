@@ -119,16 +119,42 @@ Not too long after a successful landing on our red neighboring planet, the missi
 
 The Mars rover (Sojourner) kept rebooting for unknown reasons – it suffered from a phenomenon called __*priority inversion*__ where a low-priority thread kept blocking a high-priority one.
 
+### How it happens
+
+The problem can occur when you have a high-priority and a low-priority task share a common resource:
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![priority_inversion](assets/priority_inversion.png) </br>
 
-*Source:* </br>
-https://www.objc.io/issues/2-concurrency/concurrency-apis-and-pitfalls/
+- When the low-priority task takes a lock to the common resource, it is supposed to finish off quickly in order to release its lock and to let the high-priority task execute without significant delays.
+- Since the high-priority task is blocked from running as long as the low-priority task has the lock, there is a window of opportunity for medium-priority tasks to run and to preempt the low-priority task, because the medium-priority tasks have now the highest priority of all currently runnable tasks.
+- At this moment, the medium-priority tasks hinder the low-priority task from releasing its lock, therefore effectively gaining priority over the still waiting, high-priority tasks.
+
 
 ### Priority Inversion in iOS
+Since GCD exposes background queues with different priorities, including one which even is I/O throttled, it’s good to know about this possibility.
 
-Priority inversion happens in iOS when a queue with a lower quality of service is given a higher system priority than a queue with a higher QoS.
+Priority inversion most commonly occurs in iOS when a queue with a lower quality of service is given a higher system priority than a queue with a higher QoS. As a result, blocking, spinning, and polling may occur.
 
-...
+You may recall that the QoS of a Dispatch or an Operation Queue can be changed based on the QoS of the tasks which you, the developer, submit to it.
+
+If you submit multiple tasks to a `.utility` queue with the higher-priority `.userInteractive` QoS, the system could upgrade the QoS of that queue with a priority higher than your UI queue (e.g., .`userInitiated` queue). Suddenly, all the tasks in the queue &mdash; most of which are really of the `.utility` QoS -&mdash; will end up running before the tasks from the `.userInitiated` (UI) queue.
+
+### How to avoid it
+In the case of *synchronous* work, the system will try to resolve the priority inversion automatically by raising the QoS of the lower priority work for the duration of the inversion.<sup>1</sup>
+
+But using multiple queues with different priorities adds even more complexity and unpredictability to concurrent programs.
+
+Thus, it is highly recommended (by Apple) that Developers should try to ensure that priority inversions don’t occur in the first place, so the system isn’t forced to attempt a resolution.
+
+Priority inversion is easy to avoid:
+ - In general, don’t use different priorities.
+ - If you need a higher quality of service, use a different queue
+ - When you’re using GCD, always use the default priority queue (directly, or as a target queue)
+
+*Sources:* </br>
+- https://www.objc.io/issues/2-concurrency/concurrency-apis-and-pitfalls/
+- Resource 2 below<sup>1</sup>
+
 
 ## Deadlock (10 min)
 
@@ -159,7 +185,7 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 ## After Class
 
 1. Research:
--
+- study **Priority Inversions** section in Resource 2<sup>1</sup> below
 
 2. Assignment(s):
 -
@@ -174,6 +200,6 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 ## Additional Resources
 
 1. [Priority inversion - wikipedia](https://en.wikipedia.org/wiki/Priority_inversion)
-2. []()
-3. []()
+2. [Prioritize Work with Quality of Service Classes - from Apple](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html) <sup>1</sup>
+3. [Threading Programming Guide - from Apple](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html#//apple_ref/doc/uid/10000057i-CH8-SW1)
 4. []()
