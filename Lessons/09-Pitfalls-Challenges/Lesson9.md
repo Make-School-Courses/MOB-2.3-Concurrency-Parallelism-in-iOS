@@ -4,18 +4,20 @@
 1)  -->
 
 
-## Minute-by-Minute [OPTIONAL]
+## Minute-by-Minute
 
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
-| 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:15      | Overview                  |
-| 0:20        | 0:45      | In Class Activity I       |
-| 1:05        | 0:10      | BREAK                     |
-| 1:15        | 0:45      | In Class Activity II      |
-| TOTAL       | 2:00      |                           |
+| 0:00        | 0:10      | Why Learn & Objectives                |
+| 0:10        | 0:15      | Initial Exercise                  |
+| 0:25        | 0:10      | Overview  I               |
+| 0:35        | 0:10     | In Class Activity I       |
+| 0:45        | 0:10      | BREAK                     |
+| 0:55        | 0:15      | Overview  II               |
+| 1:10        | 0:40      | In Class Activity II      |
+| TOTAL       | 1:50      |                           |
 
-## Why you should know this or industry application (optional) (5 min)
+## Why you should know this or industry application (5 min)
 
 Concurrency gives us many benefits when it comes to solving performance issues. Today we'll learn about the most well-known problems we can encounter if we are not being careful with our apps.
 
@@ -113,7 +115,7 @@ public var count: Int {
 
 An NSLock object implements a basic mutex for Cocoa applications. The interface for all locks is actually defined by the NSLocking protocol, which defines the **lock** and **unlock** methods. You use these methods to acquire and release the lock just as you would any mutex.
 
-## In Class-Activity I
+## In Class-Activity I (10 min)
 
 Take this code snippet into a playground and see what it does. What's wrong with it? What is the concurrency problem?
 
@@ -128,7 +130,7 @@ DispatchQueue.concurrentPerform(iterations: 100){ index in
 ```
 Using NSLock, try to fix it.
 
-## Priority Inversion (10 min)
+## Priority Inversion (15 min)
 
 ### General Example
 In 1995, NASA sent the Pathfinder mission to Mars.
@@ -176,7 +178,7 @@ Priority inversion is easy to avoid:
 - https://www.objc.io/issues/2-concurrency/concurrency-apis-and-pitfalls/
 - Resource 2<sup>1</sup> below
 
-## In Class-Activity II
+## In Class-Activity II (40 min)
 
 ### Common questions regarding concurrency in iOS.
 
@@ -212,7 +214,7 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 - study **Priority Inversions** section in Resource 2<sup>1</sup> below
 
 2. Assignment(s):
--
+- Continue working on your final project
 
 
 ## Wrap Up (5 min)
@@ -221,11 +223,18 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 
 ## Additional Resources
 
-1. [Priority inversion - wikipedia](https://en.wikipedia.org/wiki/Priority_inversion)
+1. [Slides](https://docs.google.com/presentation/d/1JvRyyZy50ndg0__U_dAQkIar78tIHrIJ_qK8FnL28SM/edit#slide=id.p)
 2. [Prioritize Work with Quality of Service Classes - from Apple](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html) <sup>1</sup>
+<<<<<<< HEAD
 3. [Threading Programming Guide - from Apple](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html#//apple_ref/doc/uid/10000057i-CH8-SW1)
 4. [What really happened on Mars? - and article by Glenn Reeves](https://users.cs.duke.edu/~carla/mars.html)
 5. [iOS Concurrency — Underlying Truth - an article](https://medium.com/@chetan15aga/ios-concurrency-underlying-truth-1021a0bb2a98)
 6. [NSLock](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html#//apple_ref/doc/uid/10000057i-CH8-SW1)
 7. Book - Comncurrency by Tutorials
 8. [Slides](https://docs.google.com/presentation/d/1JvRyyZy50ndg0__U_dAQkIar78tIHrIJ_qK8FnL28SM/edit?usp=sharing)
+=======
+3. [Priority inversion - wikipedia](https://en.wikipedia.org/wiki/Priority_inversion)
+4. [Threading Programming Guide - from Apple](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html#//apple_ref/doc/uid/10000057i-CH8-SW1)
+5. [What really happened on Mars? - and article by Glenn Reeves](https://users.cs.duke.edu/~carla/mars.html)
+6. [iOS Concurrency — Underlying Truth - an article](https://medium.com/@chetan15aga/ios-concurrency-underlying-truth-1021a0bb2a98)
+>>>>>>> 092b3c6c66499e62250bcd178623ad5b17e2b78f
