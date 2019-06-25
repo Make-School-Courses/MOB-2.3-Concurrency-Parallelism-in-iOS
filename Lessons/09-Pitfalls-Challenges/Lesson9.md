@@ -225,6 +225,12 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 
 1. [Slides](https://docs.google.com/presentation/d/1JvRyyZy50ndg0__U_dAQkIar78tIHrIJ_qK8FnL28SM/edit#slide=id.p)
 2. [Prioritize Work with Quality of Service Classes - from Apple](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html) <sup>1</sup>
+3. [Threading Programming Guide - from Apple](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html#//apple_ref/doc/uid/10000057i-CH8-SW1)
+4. [What really happened on Mars? - and article by Glenn Reeves](https://users.cs.duke.edu/~carla/mars.html)
+5. [iOS Concurrency — Underlying Truth - an article](https://medium.com/@chetan15aga/ios-concurrency-underlying-truth-1021a0bb2a98)
+6. [NSLock](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html#//apple_ref/doc/uid/10000057i-CH8-SW1)
+7. Book - Comncurrency by Tutorials
+8. [Slides](https://docs.google.com/presentation/d/1JvRyyZy50ndg0__U_dAQkIar78tIHrIJ_qK8FnL28SM/edit?usp=sharing)
 3. [Priority inversion - wikipedia](https://en.wikipedia.org/wiki/Priority_inversion)
 4. [Threading Programming Guide - from Apple](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html#//apple_ref/doc/uid/10000057i-CH8-SW1)
 5. [What really happened on Mars? - and article by Glenn Reeves](https://users.cs.duke.edu/~carla/mars.html)
