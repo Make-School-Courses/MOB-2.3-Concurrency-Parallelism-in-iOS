@@ -223,7 +223,7 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 
 ## Additional Resources
 
-1. [Slideds](https://docs.google.com/presentation/d/1JvRyyZy50ndg0__U_dAQkIar78tIHrIJ_qK8FnL28SM/edit#slide=id.p)
+1. [Slides](https://docs.google.com/presentation/d/1JvRyyZy50ndg0__U_dAQkIar78tIHrIJ_qK8FnL28SM/edit#slide=id.p)
 2. [Prioritize Work with Quality of Service Classes - from Apple](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html) <sup>1</sup>
 3. [Priority inversion - wikipedia](https://en.wikipedia.org/wiki/Priority_inversion)
 4. [Threading Programming Guide - from Apple](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html#//apple_ref/doc/uid/10000057i-CH8-SW1)
