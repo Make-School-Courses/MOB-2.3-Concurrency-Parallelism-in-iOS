@@ -17,7 +17,7 @@
 
 ## Why you should know this or industry application (optional) (5 min)
 
-Concurrency gives us many benefits when it comes to solving performance issues. Today we'll learn about two well-known problems we can encounter if we are not being careful with our apps.
+Concurrency gives us many benefits when it comes to solving performance issues. Today we'll learn about the most well-known problems we can encounter if we are not being careful with our apps.
 
 ## Learning Objectives (5 min)
 
