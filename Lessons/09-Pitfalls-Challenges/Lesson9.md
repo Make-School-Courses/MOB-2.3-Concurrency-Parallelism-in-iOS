@@ -110,7 +110,23 @@ public var count: Int {
 
 ## Priority Inversion (10 min)
 
-Priority inversion happens when a queue with a lower quality of service is given a higher system priority than a queue with a higher QoS.
+### General Example
+In 1995, NASA sent the Pathfinder mission to Mars.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Sojourner_on_Mars_PIA01122](assets/Sojourner_on_Mars_PIA01122.png) </br>
+
+Not too long after a successful landing on our red neighboring planet, the mission almost came to an abrupt end.
+
+The Mars rover (Sojourner) kept rebooting for unknown reasons – it suffered from a phenomenon called __*priority inversion*__ where a low-priority thread kept blocking a high-priority one.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![priority_inversion](assets/priority_inversion.png) </br>
+
+*Source:* </br>
+https://www.objc.io/issues/2-concurrency/concurrency-apis-and-pitfalls/
+
+### Priority Inversion in iOS
+
+Priority inversion happens in iOS when a queue with a lower quality of service is given a higher system priority than a queue with a higher QoS.
 
 ...
 
@@ -164,7 +180,7 @@ In pairs, try to answer as many questions as you can in the time given. Then pra
 
 ## Additional Resources
 
-1. []()
+1. [Priority inversion - wikipedia](https://en.wikipedia.org/wiki/Priority_inversion)
 2. []()
 3. []()
 4. []()
