@@ -37,7 +37,7 @@ By the end of this course, you will be able to ...
 |  7 |  Tu, June 18                      | [Operations (Pt 2)] |
 |  8 |  Th, June 20                      |  [Operations (Pt 3)] |
 |  9 |  Tu, June 25                       | [Pitfalls & Challenges]|
-| 10 |  Th, June 27                        | Class Review/Project Workshop|
+| 10 |  Th, June 27                        | [Course Review & Workshop] |
 | 11 |  Tu, July 2                       | Final Exams/Presentations |  
 
 [Introduction to Concurrency & Parallelism]: Lessons/01-Intro-Concurrency-&-Parallelism/Lesson1.md
@@ -49,7 +49,7 @@ By the end of this course, you will be able to ...
 [Operations (Pt 2)]: Lessons/07-Operations-Pt2/Lesson7.md
 [Operations (Pt 3)]:Lessons/08-Operations-Pt3/Lesson8.md
 [Pitfalls & Challenges]: Lessons/09-Pitfalls-Challenges/Lesson9.md
-[xxxx]: Lessons/xxx/LessonX.md
+[Course Review & Workshop]: Lessons/xxx/LessonX.md
 
 
 

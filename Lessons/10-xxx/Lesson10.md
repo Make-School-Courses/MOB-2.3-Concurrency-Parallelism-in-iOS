@@ -1,4 +1,4 @@
-# < Lesson 10 Title >
+# Course Review & Workshop
 
 <!-- INSTRUCTOR NOTES:
 1) For Iniital Exercise:
