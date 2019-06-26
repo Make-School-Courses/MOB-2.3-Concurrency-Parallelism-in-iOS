@@ -13,7 +13,7 @@ https://quizlet.com/_6u0szm
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
 | 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:30      | Initial Activity          |
+| 0:05        | 0:50      | Initial Activity          |
 | 0:25        | 0:15      | Overview                  |
 | 0:40        | 0:30      | In Class Activity I       |
 | 1:10        | 0:10      | BREAK                     |
@@ -27,9 +27,12 @@ https://quizlet.com/_6u0szm
 1. Implement dependencies.
 1. Review Operations by implementing a solution in a project. -->
 
-## Initial Exercise (30 min)
+## Initial Exercise (50 min)
 
-### In Teams
+### Part 1 - As a class (20 min)
+- Let's review answers to last lesson's list of questions from Activity 1
+
+### Part 2 - In Teams (30 min)
 
 ...A Quizlet game....
 
