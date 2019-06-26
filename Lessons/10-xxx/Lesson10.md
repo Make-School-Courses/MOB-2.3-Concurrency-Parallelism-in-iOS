@@ -1,7 +1,11 @@
 # < Lesson 10 Title >
 
 <!-- INSTRUCTOR NOTES:
-1)  -->
+1) For Iniital Exercise:
+- Quizlet game location is:
+https://quizlet.com/_6u0szm
+
+2)  -->
 
 
 ## Minute-by-Minute
@@ -9,7 +13,7 @@
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
 | 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:20      | Initial Activity          |
+| 0:05        | 0:30      | Initial Activity          |
 | 0:25        | 0:15      | Overview                  |
 | 0:40        | 0:30      | In Class Activity I       |
 | 1:10        | 0:10      | BREAK                     |
@@ -23,9 +27,19 @@
 1. Implement dependencies.
 1. Review Operations by implementing a solution in a project. -->
 
-## Initial Exercise (15 min)
+## Initial Exercise (30 min)
 
-...
+### In Teams
+
+...A Quizlet game....
+
+
+<!-- INSTRUCTOR NOTES:
+1) For Iniital Exercise:
+- Quizlet game location is:
+https://quizlet.com/_6u0szm
+ -->
+
 
 ## Overview/TT1 (10 min)
 
