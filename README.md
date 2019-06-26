@@ -67,7 +67,7 @@ To pass this course you must meet the following requirements:
 - Complete all required assignments
 - Pass all projects according to the associated project rubric
 - Pass the final summative assessment according to the rubric as specified in this class
-    - This will be further explained in the [study guide](ADD_STUDY_GUIDE_LNK)
+    - This will be further explained in the [study guide](StudyGuide.md)
 - Actively participate in class and abide by the attendance policy
 - Make up all classwork from all absences
 
