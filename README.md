@@ -13,10 +13,10 @@ This course covers concurrency and parallelism in iOS to optimize programming pe
 By the end of this course, you will be able to ...
 
 1. Define and distinguish concurrency from parallelism
-1. Create delayed tasks, serial and concurrent queues
-1. Identify deadlocks, race conditions and priority inversion in multi-threaded code
+1. Work with GCD Dispatch Queues and Operation Queues
+1. Identify the most common pitfalls and challenges that come with concurrency.
+1. Understand and apply Semaphores to solve syncrhonization problems.
 1. Practice common iOS interview projects & questions
-1. Apply concepts in Grand Central Dispatch to use in projects
 
 ## Schedule
 
