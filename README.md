@@ -15,7 +15,7 @@ By the end of this course, you will be able to ...
 1. Define and distinguish concurrency from parallelism
 1. Work with GCD Dispatch Queues and Operation Queues
 1. Identify the most common pitfalls and challenges that come with concurrency.
-1. Understand and apply Semaphores to solve syncrhonization problems.
+1. Understand and apply Semaphores to solve synchronization problems.
 1. Practice common iOS interview projects & questions
 
 ## Schedule
