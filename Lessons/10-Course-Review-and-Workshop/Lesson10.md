@@ -162,7 +162,7 @@ Steps required to unit test __*asynchronous*__ operations will vary depending on
 
 In general, when using the `XCTestExpectation` class, your test method waits until all expectations are fulfilled or a specified timeout expires.
 
-To illustrate a common scenario, here are the general steps you would execute to create a unit test for a background download task using an instance of teh the `XCTestExpectation` class: <sup>1</sup>
+To illustrate a common scenario, here are the general steps you would execute to create a unit test for a background download task using an instance of the the `XCTestExpectation` class: <sup>1</sup>
 
 1.  Create a new instance of `XCTestExpectation`.
 
@@ -199,7 +199,7 @@ The main challenge of testing concurrent code is that the program or information
 
 Asynchronous operations present a challenge to unit testing. In the Then phase, the results may or may not have been set to the outputs for you to observe and verify. When you write your assertions, the test may pass this time (if the outputs have been set), but fail at another time (if the outputs haven’t been set).
 
-The most common asynchronous operation is networking. Fetching data from an API over the network has latency, because data takes time to travel through wires around the globe. There can also be numerous points of failures. The server may be down. Packets can get dropped. Multiplexing can produce errors. Connection may be lost. There are many variables that can result in errors and/or delays. As a result, asynchronous testing necessitates some special handling. Fortunately, Xcode has built-in support to help with that. --> -->
+The most common asynchronous operation is networking. Fetching data from an API over the network has latency, because data takes time to travel through wires around the globe. There can also be numerous points of failures. The server may be down. Packets can get dropped. Multiplexing can produce errors. Connection may be lost. There are many variables that can result in errors and/or delays. As a result, asynchronous testing necessitates some special handling. Fortunately, Xcode has built-in support to help with that. --> 
 
 
 <!--
