@@ -38,7 +38,7 @@ https://quizlet.com/_6u0szm
 
 ### Part 2 - In Teams (30 min)
 
-- **Quizlet game**....
+- Let's play a **Quizlet game**....
 
 
 <!-- INSTRUCTOR NOTES:
