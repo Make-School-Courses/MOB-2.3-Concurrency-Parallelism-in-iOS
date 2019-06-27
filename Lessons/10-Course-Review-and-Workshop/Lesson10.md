@@ -112,6 +112,8 @@ Asynchronous operations are typically developed in one of two ways:
 - Completion handler block
 - Delegate method
 
+Networking is the most common __*asynchronous*__ operation. Fetching data from remote web services has latency &mdash; it takes time to for signals to travel across the globe &mdash; and has many variables that can result in errors or delays.
+
 <!-- The most common asynchronous operation is networking. Fetching data from an API over the network has latency, because data takes time to travel through wires around the globe. There can also be numerous points of failures. The server may be down. Packets can get dropped. Multiplexing can produce errors. Connection may be lost. There are many variables that can result in errors and/or delays.  -->
 
 ### Benefits & Challenges
@@ -123,13 +125,11 @@ With __*asynchronous*__ operations:
 - Functions do not return their result to the caller immediately but deliver it later via callback functions, blocks, notifications, or similar mechanisms, which makes testing more difficult.
 - When the function under test returns, any __*asynchronous*__ code will be ignored because it will run after the test has already finished.
 
-This makes unit testing difficult because results can be unpredictable. In the `Then` phase of your unit test, the results may or may not have been set to the outputs for you to observe and verify. When you write your assertions, the test may pass this time (if the outputs have been set), but fail at another time (if the outputs haven’t been set).
+This makes unit testing __*difficult*__ because results can be unpredictable: In the `Then` phase of your unit test, the results may or may not have been set to the outputs for you to observe and verify. When you write your assertions, the test may pass this time (if the outputs have been set), but fail at another time (if the outputs haven’t been set).
 
-It can also result in *false positives.*
+It can also result in __*false positives.*__
 
-Networking is the most common __*asynchronous*__ operation. Fetching data from remote web services has latency &mdash; it takes time to for signals to travel across the globe &mdash; and has many variables that can result in errors or delays.
-
-As a result, asynchronous testing necessitates some special handling.
+As a result, asynchronous testing requires special handling.
 
 <!-- tasks might be executed on a different thread than the invoked function yet take extended time to complete before their outputs are set.
 
@@ -156,37 +156,37 @@ Apple describes the `XCTestExpectation` class as "An expected outcome in an asyn
 > Note that it is an error to call the `fulfill()` method on an expectation that has already been fulfilled, or when the test case that vended the expectation has already completed.
 
 
+### Example Scenario
+Steps required to unit test __*asynchronous*__ operations will vary depending on the function(s) under test.
 
+In general, when using the `XCTestExpectation` class, your test method waits until all expectations are fulfilled or a specified timeout expires.
 
+To illustrate a common scenario, here are the general steps you would execute to create a unit test for a background download task using an instance of teh the `XCTestExpectation` class: <sup>1</sup>
 
+1.  Create a new instance of `XCTestExpectation`.
 
+2.  Use URLSession's `dataTask(with:)` method to create a background data task that executes your download work on a background thread.
 
-### Example Steps
+3. After starting the data task, use the `wait(for expectations:_)` function of the `XCtest` class &mdash; with the timeout parameter that you specify &mdash; to set how long the main thread will wait for the expectation to be fulfilled.
 
-For a background download task.
+```Swift
+  /*!
+   * @method -waitForExpectations:timeout:
+   * Wait on a group of expectations for up to the specified timeout. May return early based on fulfillment
+   * of the waited on expectations.
+   */
+  open func wait(for expectations: [XCTestExpectation], timeout seconds: TimeInterval)
+```
 
-1.  creates a new instance of `XCTestExpectation`.
+4. When the data task completes, its `completion handler` verifies that the downloaded data is non-nil, and fulfills the expectation by calling its` fulfill()` method to indicate that the background task completed successfully.
 
-2.  use URLSession's `dataTask(with:)` method to create a background data task that executes your download work on a background thread.
-
-3. After starting the data task, the main thread waits for the expectation to be fulfilled, with the timeout parameter that you specify.
-
-4. When the data task completes, its completion handler verifies that the downloaded data is non-nil, and fulfills the expectation by calling its fulfill() method to indicate that the background task completed successfully.
-
+#### Successful Completion
 The fulfillment of the expectation on the background thread provides a point of synchronization to indicate that the background task is complete. As long as the background task fulfills the expectation within the duration specified in the timeout parameter, this test method will pass.
 
+#### Unsuccessful Completion
 There are two ways for the test to fail:
-The data returned to the completion handler is nil, causing XCTAssertNotNil(_:_:file:line:) to trigger a test failure.
-The data task does not call its completion handler before the ten second timeout expires, perhaps because of a slow network connection or other data retrieval problem. As a result, the expectation is not fulfilled before the wait timeout expires, triggering a test failure.
-
-
-
-Your test method waits until all expectations are fulfilled or a specified timeout expires.
-
-
-
-
-
+- The data returned to the completion handler is `nil`, causing `XCTAssertNotNil(_:_:file:line:)` to trigger a test failure.
+- The data task does not call its completion handler before the timeout expires, perhaps because of a slow network connection or other data retrieval problem. As a result, the expectation is not fulfilled before the wait timeout expires, triggering a test failure.
 
 <!--
 The core of the problem is that a test is considered over as soon as its function returns. Because of that, any asynchronous code will be ignored, since it’ll run after the test has already finished.
@@ -239,7 +239,7 @@ get it to fail by:
 ## Additional Resources
 
 1. [Slides]()
-1. [Testing Asynchronous Operations with Expectations - from Apple](https://developer.apple.com/documentation/xctest/asynchronous_tests_and_expectations/testing_asynchronous_operations_with_expectations)
+1. [Testing Asynchronous Operations with Expectations - from Apple](https://developer.apple.com/documentation/xctest/asynchronous_tests_and_expectations/testing_asynchronous_operations_with_expectations)<sup>1</sup>
 1. [XCTestExpectation - from Apple](https://developer.apple.com/documentation/xctest/xctestexpectation)
 1. []()
 1. []()
