@@ -15,11 +15,9 @@ https://quizlet.com/_6u0szm
 | 0:00        | 0:05      | Objectives                |
 | 0:05        | 0:50      | Initial Activity          |
 | 0:55        | 0:10      | BREAK                     |
-| 1:05        | 0:20      | Overview  1                |
-| 0:40        | 0:20      | In Class Activity I       |
-| 1:10        | 0:10      | BREAK                     |
-| 1:20        | 0:30      | In Class Activity I       |
-| TOTAL       | 1:50      |                           |
+| 1:05        | 0:15      | Overview  1                |
+| 1:20       | 0:25      | In Class Activity I       |
+| TOTAL       | 1:45     |                           |
 
 
 ## Learning Objectives (5 min)
