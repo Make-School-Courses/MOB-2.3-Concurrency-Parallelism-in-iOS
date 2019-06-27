@@ -44,31 +44,186 @@ https://quizlet.com/_6u0szm
  -->
 
 
-## Testing Asynchronous Operations (10 min)
+## Debugging & Testing
+
+### Debugging
+
+<!--
+OUTLINE:
+- Debug Navigator
+
+- Main Thread Checker
+
+Detect invalid use of AppKit, UIKit, and other APIs from a background thread.
 
 
-Asynchronous operations are operations that do not execute directly within the current flow of code. This might be because they run on a different thread, in a delegate method, or in a callback.
+The Main Thread Checker is a standalone tool for Swift and C languages that detects invalid usage of AppKit, UIKit, and other APIs on a background thread. Updating UI on a thread other than the main thread is a common mistake that can result in missed UI updates, visual defects, data corruptions, and crashes.
+
+How the Main Thread Checker Works
+At app launch, the Main Thread Checker dynamically replaces the implementations of methods that should only be called on the main thread with a version that prepends the check. Methods known to be safe for use on background threads are excluded from this check.
+
+Example Scenario:
+
+Updating UI from a Completion Handler
+Long-running tasks such as networking are often executed in the background, and provide a completion handler to signal completion. Attempting to read or update the UI from a completion handler may cause problems.
+
+Solution
+Dispatch the call to update the label text to the main thread.
 
 
-### Why this is difficult
+Performance Impact
+The performance impact of the Main Thread Checker is minimal, with a 1–2% CPU overhead and additional process launch time of <0.1 seconds.
+Because of its minimal performance overhead, the Main Thread Checker is automatically enabled when you run your app with the Xcode debugger.
+
+-- optional (non-apple text) --
+
+The Main Thread Checker (MTC) was introduced in Xcode 9. Its goal is to simple: to detect improper use of APIs on a background thread. Updating using a background thread can cause unknown bugs, crashes and strange UI behavior that can easily be avoided.
 
 
+- TSan -->
+
+
+
+### Unit Testing Asynchronous Operations (10 min)
+
+#### Synchronous Operation Testing
+Unit testing is most commonly applied to __*synchronous*__ operations because their outputs can be observed and validated immediately after invoking the function under test.
+
+Whether the output is a function return value, a state change, or the result of methods invoked on a dependency, all of these results occur right away and in the same thread.
+
+And, with __*synchronous*__ operations, when you write the assertions in the `Then` phase of your unit test, you are reasonably guaranteed that the outputs have already been set, so you can safely compare *actual* results against your *expected* ones.
+
+Simple. Only one thread. And no worries that your outputs might not be set prior to test completion.
+
+#### Asynchronous Operation Testing
+However, modern iOS development requires a great deal of __*asynchronous*__ operations in which results might not come immediately after a function is invoked.
+
+__*Asynchronous*__ operations are operations that do not execute directly within the current flow of code. This might be because they run:
+- on a different thread
+- in a delegate method
+- in a callback
+
+Key examples:
+- Networking (most common)
+- Core Data
+- Resource-expensive screen drawing code or events
+
+Asynchronous operations are typically developed in one of two ways:
+- Completion handler block
+- Delegate method
+
+<!-- The most common asynchronous operation is networking. Fetching data from an API over the network has latency, because data takes time to travel through wires around the globe. There can also be numerous points of failures. The server may be down. Packets can get dropped. Multiplexing can produce errors. Connection may be lost. There are many variables that can result in errors and/or delays.  -->
+
+### Benefits & Challenges
+Testing __*asynchronous*__ code comes with the benefit of uncovering poor design decisions and facilitating clean implementations.
+
+The core challenge is that, in typical unit tests, a test is considered over as soon as its function returns.
+
+With __*asynchronous*__ operations:
+- Functions do not return their result to the caller immediately but deliver it later via callback functions, blocks, notifications, or similar mechanisms, which makes testing more difficult.
+- When the function under test returns, any __*asynchronous*__ code will be ignored because it will run after the test has already finished.
+
+This makes unit testing difficult because results can be unpredictable. In the `Then` phase of your unit test, the results may or may not have been set to the outputs for you to observe and verify. When you write your assertions, the test may pass this time (if the outputs have been set), but fail at another time (if the outputs haven’t been set).
+
+It can also result in *false positives.*
+
+Networking is the most common __*asynchronous*__ operation. Fetching data from remote web services has latency &mdash; it takes time to for signals to travel across the globe &mdash; and has many variables that can result in errors or delays.
+
+As a result, asynchronous testing necessitates some special handling.
+
+<!-- tasks might be executed on a different thread than the invoked function yet take extended time to complete before their outputs are set.
+
+the program or information flow is not reflected in the call stack any more. -->
 
 ### Expectations
+Fortunately, Xcode has built-in support to help with unit testing of __*asynchronous*__ operations.
 
-To test that asynchronous operations behave as expected, you create one or more expectations within your test, and then fulfill those expectations when the asynchronous operation completes successfully.
+To test that __*asynchronous*__ operations behave as expected, you create one or more **Expectations** within your test, and then __*fulfill*__ those expectations when the __*asynchronous*__ operation completes successfully.
+
+Apple describes the `XCTestExpectation` class as "An expected outcome in an asynchronous test."
+
+```Swift  
+  class XCTestExpectation : NSObject
+```
+
+...and the `XCTestExpectation` class's `fulfill()` function is simply described as "Marks the expectation as having been met."
+
+
+```Swift  
+  func fulfill()
+```
+
+> Note that it is an error to call the `fulfill()` method on an expectation that has already been fulfilled, or when the test case that vended the expectation has already completed.
+
+
+
+
+
+
+
+### Example Steps
+
+For a background download task.
+
+1.  creates a new instance of `XCTestExpectation`.
+
+2.  use URLSession's `dataTask(with:)` method to create a background data task that executes your download work on a background thread.
+
+3. After starting the data task, the main thread waits for the expectation to be fulfilled, with the timeout parameter that you specify.
+
+4. When the data task completes, its completion handler verifies that the downloaded data is non-nil, and fulfills the expectation by calling its fulfill() method to indicate that the background task completed successfully.
+
+The fulfillment of the expectation on the background thread provides a point of synchronization to indicate that the background task is complete. As long as the background task fulfills the expectation within the duration specified in the timeout parameter, this test method will pass.
+
+There are two ways for the test to fail:
+The data returned to the completion handler is nil, causing XCTAssertNotNil(_:_:file:line:) to trigger a test failure.
+The data task does not call its completion handler before the ten second timeout expires, perhaps because of a slow network connection or other data retrieval problem. As a result, the expectation is not fulfilled before the wait timeout expires, triggering a test failure.
+
+
 
 Your test method waits until all expectations are fulfilled or a specified timeout expires.
 
-### Steps
 
 
 
+
+
+<!--
+The core of the problem is that a test is considered over as soon as its function returns. Because of that, any asynchronous code will be ignored, since it’ll run after the test has already finished.
+Not only can this make code hard to test, but it can also lead to false positives.
+
+
+The main challenge of testing concurrent code is that the program or information flow is not reflected in the call stack any more. Functions do not return their result to the caller immediately, but deliver it later via callback functions, blocks, notifications, or similar mechanisms, which makes testing more difficult.
+
+
+Asynchronous operations present a challenge to unit testing. In the Then phase, the results may or may not have been set to the outputs for you to observe and verify. When you write your assertions, the test may pass this time (if the outputs have been set), but fail at another time (if the outputs haven’t been set).
+
+The most common asynchronous operation is networking. Fetching data from an API over the network has latency, because data takes time to travel through wires around the globe. There can also be numerous points of failures. The server may be down. Packets can get dropped. Multiplexing can produce errors. Connection may be lost. There are many variables that can result in errors and/or delays. As a result, asynchronous testing necessitates some special handling. Fortunately, Xcode has built-in support to help with that. --> -->
+
+
+<!--
+All the unit tests that you’ve seen so far are for testing synchronous operations. That is, the outputs can be observed and verified immediately after invoking the method on the test subject. The outputs can be function return values, state changes, or methods invoked on a dependency. All of these happen right away in the same thread. When you write the assertions in the Then phase, you’re guaranteed that the outputs have already been set so that you can safely compare the actual v.s. expected. You don’t have to worry about whether the outputs are ready or not. They are ready.
+
+However, a lot of stuff that we do in modern iOS development are asynchronous operations, such as Core Data, networking, or even some expensive drawing code or events. The results will come, but not right away. It takes time for the task to finish, and the outputs be set. In iOS, these asynchronous operations are usually coded in one of two ways:
+
+Completion handler block
+Delegate method
+
+Asynchronous operations present a challenge to unit testing. In the Then phase, the results may or may not have been set to the outputs for you to observe and verify. When you write your assertions, the test may pass this time (if the outputs have been set), but fail at another time (if the outputs haven’t been set).
+
+The most common asynchronous operation is networking. Fetching data from an API over the network has latency, because data takes time to travel through wires around the globe. There can also be numerous points of failures. The server may be down. Packets can get dropped. Multiplexing can produce errors. Connection may be lost. There are many variables that can result in errors and/or delays. As a result, asynchronous testing necessitates some special handling. Fortunately, Xcode has built-in support to help with that. -->
 
 ## In Class Activity I (60 min)
 
-### xxx
+### Async Test
 
+<!-- following steps above, complete the code:
+
+- get it to succeed
+
+get it to fail by:
+- nil - disconnect networking
+- setting a timeout that will fail  -->
 
 ## After Class
 
@@ -84,4 +239,8 @@ Your test method waits until all expectations are fulfilled or a specified timeo
 ## Additional Resources
 
 1. [Slides]()
-2. []()
+1. [Testing Asynchronous Operations with Expectations - from Apple](https://developer.apple.com/documentation/xctest/asynchronous_tests_and_expectations/testing_asynchronous_operations_with_expectations)
+1. [XCTestExpectation - from Apple](https://developer.apple.com/documentation/xctest/xctestexpectation)
+1. []()
+1. []()
+3. [iOS Unit Testing and UI Testing Tutorial - by raywenderlich](https://www.raywenderlich.com/960290-ios-unit-testing-and-ui-testing-tutorial)
