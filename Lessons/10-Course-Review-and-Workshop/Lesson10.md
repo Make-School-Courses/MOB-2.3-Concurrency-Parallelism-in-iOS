@@ -44,10 +44,10 @@ https://quizlet.com/_6u0szm
 https://quizlet.com/_6u0szm
  -->
 
-
+<!--
 ## Debugging & Testing
 
-### Debugging
+### Debugging -->
 
 <!--
 OUTLINE:
@@ -84,10 +84,9 @@ The Main Thread Checker (MTC) was introduced in Xcode 9. Its goal is to simple: 
 - TSan -->
 
 
+## Unit Testing Asynchronous Operations (20 min)
 
-### Unit Testing Asynchronous Operations (20 min)
-
-#### Synchronous Operation Testing
+### Synchronous Operation Testing
 Unit testing is most commonly applied to __*synchronous*__ operations because their outputs can be observed and validated immediately after invoking the function under test.
 
 Whether the output is a function return value, a state change, or the result of methods invoked on a dependency, all of these results occur right away and in the same thread.
@@ -96,7 +95,7 @@ And, with __*synchronous*__ operations, when you write the assertions in the `Th
 
 Simple. Only one thread. And no worries that your outputs might not be set prior to test completion.
 
-#### Asynchronous Operation Testing
+### Asynchronous Operation Testing
 However, modern iOS development requires a great deal of __*asynchronous*__ operations in which results might not come immediately after a function is invoked.
 
 __*Asynchronous*__ operations are operations that do not execute directly within the current flow of code. This might be because they run:
