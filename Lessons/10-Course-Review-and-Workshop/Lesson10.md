@@ -243,7 +243,6 @@ Review the Successful and Unsuccessful Completion notes in the Example Scenario 
 
 1. Assignment(s):
 -
-<!-- - For next class, bring your plan for the final project. This is important since we have two weeks left in the term. -->
 
 ## Wrap Up (5 min)
 
@@ -252,9 +251,7 @@ Review the Successful and Unsuccessful Completion notes in the Example Scenario 
 
 ## Additional Resources
 
-1. [Slides]()
-1. [Testing Asynchronous Operations with Expectations - from Apple](https://developer.apple.com/documentation/xctest/asynchronous_tests_and_expectations/testing_asynchronous_operations_with_expectations)<sup>1</sup>
-1. [XCTestExpectation - from Apple](https://developer.apple.com/documentation/xctest/xctestexpectation)
-1. []()
-1. []()
-3. [iOS Unit Testing and UI Testing Tutorial - by raywenderlich](https://www.raywenderlich.com/960290-ios-unit-testing-and-ui-testing-tutorial)
+1. [Slides](https://docs.google.com/presentation/d/1rIQGcpl-siO-VelTIb3J8qH9fVIk3hNswbwjS02TK80/edit#slide=id.p)
+2. [Testing Asynchronous Operations with Expectations - from Apple](https://developer.apple.com/documentation/xctest/asynchronous_tests_and_expectations/testing_asynchronous_operations_with_expectations)<sup>1</sup>
+3. [XCTestExpectation - from Apple](https://developer.apple.com/documentation/xctest/xctestexpectation)
+4. [iOS Unit Testing and UI Testing Tutorial - by raywenderlich](https://www.raywenderlich.com/960290-ios-unit-testing-and-ui-testing-tutorial)
