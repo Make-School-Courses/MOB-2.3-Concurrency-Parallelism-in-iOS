@@ -22,6 +22,10 @@ https://quizlet.com/_6u0szm
 
 ## Learning Objectives (5 min)
 
+1. Describe:
+- the challenges and benefits of unit testing **Asynchronous Operations**
+2. Implement basic examples of:
+- unit tests of an **Asynchronous Operation** (a background dataTask) using the `XCTestExpectation` class,
 <!-- 1. Identify use cases of Operations with dependencies.
 1. Implement dependencies.
 1. Review Operations by implementing a solution in a project. -->
