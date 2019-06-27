@@ -44,7 +44,24 @@ https://quizlet.com/_6u0szm
  -->
 
 
-## Overview/TT1 (10 min)
+## Testing Asynchronous Operations (10 min)
+
+
+Asynchronous operations are operations that do not execute directly within the current flow of code. This might be because they run on a different thread, in a delegate method, or in a callback.
+
+
+### Why this is difficult
+
+
+
+### Expectations
+
+To test that asynchronous operations behave as expected, you create one or more expectations within your test, and then fulfill those expectations when the asynchronous operation completes successfully.
+
+Your test method waits until all expectations are fulfilled or a specified timeout expires.
+
+### Steps
+
 
 
 
