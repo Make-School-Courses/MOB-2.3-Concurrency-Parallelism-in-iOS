@@ -14,8 +14,9 @@ https://quizlet.com/_6u0szm
 | ----------- | --------- | ------------------------- |
 | 0:00        | 0:05      | Objectives                |
 | 0:05        | 0:50      | Initial Activity          |
-| 0:25        | 0:15      | Overview                  |
-| 0:40        | 0:30      | In Class Activity I       |
+| 0:55        | 0:10      | BREAK                     |
+| 1:05        | 0:20      | Overview  1                |
+| 0:40        | 0:20      | In Class Activity I       |
 | 1:10        | 0:10      | BREAK                     |
 | 1:20        | 0:30      | In Class Activity I       |
 | TOTAL       | 1:50      |                           |
@@ -84,7 +85,7 @@ The Main Thread Checker (MTC) was introduced in Xcode 9. Its goal is to simple: 
 
 
 
-### Unit Testing Asynchronous Operations (10 min)
+### Unit Testing Asynchronous Operations (20 min)
 
 #### Synchronous Operation Testing
 Unit testing is most commonly applied to __*synchronous*__ operations because their outputs can be observed and validated immediately after invoking the function under test.
