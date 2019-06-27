@@ -49,7 +49,7 @@ By the end of this course, you will be able to ...
 [Operations (Pt 2)]: Lessons/07-Operations-Pt2/Lesson7.md
 [Operations (Pt 3)]:Lessons/08-Operations-Pt3/Lesson8.md
 [Pitfalls & Challenges]: Lessons/09-Pitfalls-Challenges/Lesson9.md
-[Course Review & Workshop]: Lessons/xxx/LessonX.md
+[Course Review & Workshop]: Lessons/10-Course-Review-and-Workshop/Lesson10.md
 
 
 
