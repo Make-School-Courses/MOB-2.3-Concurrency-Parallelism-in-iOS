@@ -199,7 +199,7 @@ The main challenge of testing concurrent code is that the program or information
 
 Asynchronous operations present a challenge to unit testing. In the Then phase, the results may or may not have been set to the outputs for you to observe and verify. When you write your assertions, the test may pass this time (if the outputs have been set), but fail at another time (if the outputs haven’t been set).
 
-The most common asynchronous operation is networking. Fetching data from an API over the network has latency, because data takes time to travel through wires around the globe. There can also be numerous points of failures. The server may be down. Packets can get dropped. Multiplexing can produce errors. Connection may be lost. There are many variables that can result in errors and/or delays. As a result, asynchronous testing necessitates some special handling. Fortunately, Xcode has built-in support to help with that. --> 
+The most common asynchronous operation is networking. Fetching data from an API over the network has latency, because data takes time to travel through wires around the globe. There can also be numerous points of failures. The server may be down. Packets can get dropped. Multiplexing can produce errors. Connection may be lost. There are many variables that can result in errors and/or delays. As a result, asynchronous testing necessitates some special handling. Fortunately, Xcode has built-in support to help with that. -->
 
 
 <!--
@@ -216,15 +216,29 @@ The most common asynchronous operation is networking. Fetching data from an API 
 
 ## In Class Activity I (60 min)
 
-### Async Test
+### Individually
+In the [starter app](https://github.com/Make-School-Labs/StarterApp-MOB-2.4-L10), a previous developer created a `testDownloadWebData()` function to unit test a background data task. However, that function is missing critical functionality.
 
-<!-- following steps above, complete the code:
+Your task is to complete the `testDownloadWebData()` function so that it successfully validates its targeted background task.
 
-- get it to succeed
+1. Complete the Code
 
-get it to fail by:
-- nil - disconnect networking
-- setting a timeout that will fail  -->
+- find the `//TODO:`s left in the function and add or change whatever is needed (*see Example Scenario above for clues*)
+
+2. Run the code and examine results
+
+- What happened? Why?
+
+3. Apply any additional required fixes
+
+- Run it again...
+
+4. Make it fail
+
+Review the Successful and Unsuccessful Completion notes in the Example Scenario above.
+
+- reduce timeout to 0.1
+
 
 ## After Class
 
