@@ -9,11 +9,11 @@
 | **Elapsed** | **Time**  | **Activity**              |
 | ----------- | --------- | ------------------------- |
 | 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:15      | Initial Exercise           |
-| 0:20        | 0:15      | Overview / TT I                 |
+| 0:05        | 0:15      | Initial Exercise          |
+| 0:20        | 0:15      | Overview / TT I           |
 | 0:35        | 0:20      | In Class Activity I       |
 | 0:55        | 0:10      | BREAK                     |
-| 1:05        | 0:15      | Overview / TT II              |
+| 1:05        | 0:15      | Overview / TT II          |
 | 1:15        | 0:35      | In Class Activity II      |
 | TOTAL       | 1:50      |                           |
 
@@ -22,13 +22,13 @@
 By the end of this lesson, you should be able to...
 
 1. Identify and describe:
-- how to create Serial and Concurrent DispatchQueues
-- how to create and use queues of various QoS levels
-- how QoS levels are inferred and promoted by GCD
-- how Captured Closure Variables behave with enqueued tasks
+  - how to create Serial and Concurrent DispatchQueues
+  - how to create and use queues of various QoS levels
+  - how QoS levels are inferred and promoted by GCD
+  - how Captured Closure Variables behave with enqueued tasks
 2. Implement basic examples of:
-- Serial Queues and Concurrent Queues with various Qos levels
-- DispatchGroups
+  - Serial Queues and Concurrent Queues with various Qos levels
+  - DispatchGroups
 
 
 ## Initial Exercise (10 min)
@@ -150,7 +150,7 @@ Tasks sent to `DispatchQueues` are most often closures.
 
 But the rules of closures do not change when used with `DispatchQueues` &mdash; you must still must properly handle a closure's captured variables if you plan to use them later.
 
-However, how GCD manages `DispatchQueues` effects the timing of events, especially the order in which the lifecycle of dependent references ends.
+However, how GCD manages `DispatchQueues` affects the timing of events, especially the order in which the lifecycle of dependent references ends.
 
 Remember: When using `DispatchQueues`, capturing references *weakly* or *strongly* should be based on your needs &mdash; especially with regard to using `self`.
 
