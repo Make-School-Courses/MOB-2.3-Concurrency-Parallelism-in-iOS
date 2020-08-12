@@ -20,26 +20,28 @@ By the end of this course, you will be able to ...
 
 ## Schedule
 
-**Course Dates:** Tuesday, August 27 – Thursday, October 10, 2019 (7 weeks)
+**Course Dates:** Wednesday, August 19 – Wednesday, October 7, 2020 (7 weeks)
 
-**Class Times:** Tuesday and Thursday at 1:30–3:20pm (14 class sessions)
+**Class Times:** Monday, Wednesday at 9:30am–12:15pm (14 class sessions)
 
 | Class |          Date          |                 Topics                  |
 |:-----:|:----------------------:|:---------------------------------------:|
-|  1 |  Tue, Aug 27                       | [Introduction to Concurrency & Parallelism] |
-|  2 |  Thu, Aug 29                       | [Grand Central Dispatch (Pt 1)] |
-|  3 |  Tue, Sept 3                       | [Grand Central Dispatch (Pt 2)]  |
-|  4 |  Thu, Sept 5                       | [Grand Central Dispatch (Pt 3)]  |
-|  5 |  Tue, Sept 10	                  | [Semaphores] |
-|  6 |  Thu, Sept 12                      | [Operations (Pt 1)] |
-|  7 |  Tue, Sept 17                      | [Operations (Pt 2)] |
-|  8 |  Thu, Sept 19                      | [Operations (Pt 3)] |
-|  9 |  Tue, Sept 24                      | [Pitfalls & Challenges]|
-| 10 |  Thu, Sept 26                      | Libraries and tools: PromiseKit |
-| 11 |  Tue, Oct 1                        | Lab day | 
-| 12 |  Thu, Oct 3                        | [Course Review & Workshop]| 
-| 13 |  Tue, Oct 8                        | Final Exam | 
-| 14 |  Thu, Oct 10                       | Presentations & Exam Review| 
+|  1 |  Wed, Aug 19               | [Introduction to Concurrency & Parallelism] |
+|  2 |  Mon, Aug 24               | [Grand Central Dispatch (Pt 1)] |
+|  3 |  Wed, Aug 26               | [Grand Central Dispatch (Pt 2)] |
+|  4 |  Mon, Aug 31               | [Grand Central Dispatch (Pt 3)] |
+|  5 |  Wed, Sept 2               | [Semaphores] |
+|  - |  Mon, Sept 7               | **Holiday- Labor Day** |
+|  6 |  Wed, Sept 9               | Project Introduction & Workshop |
+|  7 |  Mon, Sept 14              | [Operations (Pt 1)] |
+|  8 |  Wed, Sept 16              | [Operations (Pt 2)] |
+|  9 |  Mon, Sept 21              | [Operations (Pt 3)] |
+| 10 |  Wed, Sept 23              | [Pitfalls & Challenges] |
+| 11 |  Mon, Sept 28              | [Libraries + Tools + Testing] |
+| 12 |  Wed, Sept 30              | Last Project Workshop |
+| 13 |  Mon, Oct 5                | Final Exam |  
+| 14 |  Wed, Oct 7                | Project Presentations |
+
 
 [Introduction to Concurrency & Parallelism]: Lessons/01-Intro-Concurrency-&-Parallelism/Lesson1.md
 [Grand Central Dispatch (Pt 1)]: Lessons/02-Grand-Central_Dispatch-Pt1/Lesson2.md
@@ -50,7 +52,7 @@ By the end of this course, you will be able to ...
 [Operations (Pt 2)]: Lessons/07-Operations-Pt2/Lesson7.md
 [Operations (Pt 3)]:Lessons/08-Operations-Pt3/Lesson8.md
 [Pitfalls & Challenges]: Lessons/09-Pitfalls-Challenges/Lesson9.md
-[Course Review & Workshop]: Lessons/10-Course-Review-and-Workshop/Lesson10.md
+[Libraries + Tools + Testing]: Lessons/10-Course-Review-and-Workshop/Lesson10.md
 
 
 ## Class Assignments
