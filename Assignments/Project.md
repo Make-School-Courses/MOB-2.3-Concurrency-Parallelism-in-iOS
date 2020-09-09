@@ -36,13 +36,14 @@ Your task is to create an app that let's users check out the 50 most popular art
 1. Allow for the tracks to be previewed (30-sec clips), use AVFoundation
 1. Use a persistence method to save the favorite tracks, up to your criteria which one to use.
 1. Use GCD to handle concurrency.
-1. Authenticate users with the Spotify API
+1. Authenticate users with the Spotify API - should also be able to log out
 
 ## Stretch challenges
 
 1. Add favorite songs directly to a user's playlist in Spotify
-1. Implement Apple Sign In
 1. Get creative with your designs!
+1. Implement Apple Sign In
+
 
 ## Wireframes
 
