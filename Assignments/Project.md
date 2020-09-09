@@ -41,11 +41,12 @@ Your task is to create an app that let's users check out the 50 most popular art
 ## Stretch challenges
 
 1. Add favorite songs directly to a user's playlist in Spotify
+1. Implement Apple Sign In
 1. Get creative with your designs!
 
 ## Wireframes
 
-[wireframe](wire.jpeg)
+![wireframe](wire.jpeg)
 
 ## Rubric
 
