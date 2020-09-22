@@ -7,6 +7,11 @@ This course covers concurrency and parallelism in iOS to optimize programming pe
 
 [MOB 2.1](https://github.com/Make-School-Courses/MOB-2.1-Local-Persistence-in-iOS)
 
+## Course Specifics
+
+**Course Delivery**: online | 7 weeks | 14 sessions
+
+**Course Credits**: 3 units | 37.5 Seat Hours | 75 Total Hours
 
 ## Learning Outcomes
 
@@ -71,6 +76,12 @@ To pass this course you must meet the following requirements:
     - This will be further explained in the [study guide](StudyGuide.md)
 - Actively participate in class and abide by the attendance policy
 - Make up all classwork from all absences
+
+##  Information Resources
+
+Any additional resources you may need (online books, etc.) can be found here. You can also find additional resources through the library linked below:
+
+- [make.sc/library](http://make.sc/library)
 
 ## Make School Course Policies
 
