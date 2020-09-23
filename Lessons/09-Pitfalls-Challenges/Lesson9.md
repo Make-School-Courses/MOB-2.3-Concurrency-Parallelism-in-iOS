@@ -14,9 +14,6 @@ Concurrency gives us many benefits when it comes to solving performance issues. 
 - **Priority Inversion**
 2. Identify and describe how to use __*dispatch barriers*__ to alleviate issues caused by locks and semaphores
 
-## Initial Exercise (15 min)
-
-Review each other's solution for the homework.
 
 ## Race conditions
 
@@ -220,7 +217,7 @@ In pairs or groups of 3, choose up to 4 questions to ask each other. Some of the
 - Continue working on your final project
 
 
-## Wrap Up (5 min)
+## Wrap Up
 
 - Complete answering the questions as a way to study for the final exam.
 
