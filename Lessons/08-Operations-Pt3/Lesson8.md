@@ -173,7 +173,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
 
 Build and run. What’s different from the last time? Is this better? 🤔 It should be! Now each image applies the filter at its own pace.
 
-**SWITCH TIME 🔛**
+**SWITCH TIME 🔛** If you are pair programming, give the control to the other teammate.
 
 ### Step 4 - Downloading images
 
@@ -201,7 +201,7 @@ override func viewDidLoad() {
 }
 ```
 
-**Food for thought: What is compactMap doing?**
+**Food for thought: What is compactMap doing?** Think about if and share with your partner.
 
 Now change `cellForRowAt` one more time to use the `NetworkImageOperation` class and send to it the corresponding element from the urls array. Try it out, it should look as follows:
 
@@ -302,9 +302,9 @@ operationQueue.addOperation(tiltShiftOp)
 
 Try both and see what is the answer. Then you should have the tableview working in the end.
 
-### Step 6 - final fix
+### Step 6 - Final fix
 
-You have probablu noticed that the cells don't clean up before being reused. We are not caching these images but we can make it better by cleaning up the cell using the method `prepareForReuse`. Open `PhotoCell.swift` and add the following:
+You have probably noticed that the cells don't clean up before being reused. We are not caching these images but we can make it better by cleaning up the cell using the method `prepareForReuse`. Open `PhotoCell.swift` and add the following:
 
 ```swift
 override func prepareForReuse() {
