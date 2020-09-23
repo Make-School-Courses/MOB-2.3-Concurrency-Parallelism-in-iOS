@@ -3,27 +3,13 @@
 <!-- INSTRUCTOR NOTES:
 1)  -->
 
+## Why you should know this
 
-## Minute-by-Minute
+Concurrency gives us many benefits when it comes to solving performance issues. Today we'll learn about the most well-known problems we can encounter if we are not being careful with our apps and how to solve them 😉.
 
-| **Elapsed** | **Time**  | **Activity**              |
-| ----------- | --------- | ------------------------- |
-| 0:00        | 0:10      | Why Learn & Objectives                |
-| 0:10        | 0:15      | Initial Exercise                  |
-| 0:25        | 0:10      | Overview  I               |
-| 0:35        | 0:10     | In Class Activity I       |
-| 0:45        | 0:10      | BREAK                     |
-| 0:55        | 0:15      | Overview  II               |
-| 1:10        | 0:40      | In Class Activity II      |
-| TOTAL       | 1:50      |                           |
+## Learning Objectives
 
-## Why you should know this or industry application (5 min)
-
-Concurrency gives us many benefits when it comes to solving performance issues. Today we'll learn about the most well-known problems we can encounter if we are not being careful with our apps.
-
-## Learning Objectives (5 min)
-
-1. Identify, describe, and propose solutions to the following iOS concurrency challenges:
+1. Identify, describe, and propose solutions to the following concurrency challenges:
 - **Race Conditions**
 - **Priority Inversion**
 2. Identify and describe how to use __*dispatch barriers*__ to alleviate issues caused by locks and semaphores
@@ -32,38 +18,38 @@ Concurrency gives us many benefits when it comes to solving performance issues. 
 
 Review each other's solution for the homework.
 
-## Race conditions (10 min)
+## Race conditions
 
-Let's go back to when we first introduced threads.
+Let's say we have a program that depends on the timing of one or more processes to function correctly.
 
-**Threads that share the same process, also share the same address space.**
+If a thread runs or finishes at an unexpected time, it may cause unpredictable behavior:
+ - incorrect output
+ - program deadlock
 
-This means that each thread is trying to read and write to the same shared resource. This is how we can run into a situation called: **race condition**.
+Any situation where several processes access and manipulate shared data concurrently and where the result depends on timing of these processes, which are “racing” is a **race condition**.
 
-A race condition happens when multiple threads are trying to write to the same variable at the exact same time.
+🌀Note: **Thread-safe** is the term we use to describe a program, code, or data structure free of race conditions when accessed by multiple threads.
 
 ### An example
 
-Situation: We have two threads executing and both of them are trying to update a count variable.
+**Situation:** We have two threads executing and both of them are trying to update a `count` variable.
 
-Facts:
-- Reads and writes are separate tasks that the computer cannot execute in a single operation.
-- Computers work on *clock cycles* in which each tick of the clock allows a single operation to execute. (As reference, an iPhone XS can perform 2,490,000,000 clock cycles per second 😦)
+**Fact:** Reads and writes are separate tasks that the computer cannot execute in a single operation.
 
-What we do: `count += 1`
+**What we do in each thread:** `count += 1`
 
-What really happens:
+**What really happens:**
 1. We load the value of the variable `count` into memory.
 1. We increment the value of `count` by one in memory.
 1. We write the updated count back to disk.
 
 (Whiteboard drawing + explaining)
 
-Result: Race conditions lead to complicated debugging due to the non-deterministic characteristic of these scenarios.
+**Result:** Race conditions lead to complicated debugging due to the non-deterministic characteristic of these scenarios.
 
-How can we solve it: Serial queues 👍🏼
+**How can we solve it:** Serial queues 👍🏼
 
-If we have a variable that needs to be accessed concurrently, we can wrap reads and writes in a private queue.
+If we have a variable that needs to be accessed concurrently, we can wrap reads and writes in a serial queue.
 
 ```Swift
 private let countQueue = DispatchQueue(label: "countqueue")
@@ -84,8 +70,12 @@ public var count: Int {
 
 Here we are controlling the access to the variable an making sure that only a single thread at a time can access the variable.
 
+**What's another solution you can think of?**
+
+(Whiteboard drawing + explaining with locks)
+
 ### Thread barrier
-Our previous solution is effective for simple situations. But there are times when the shared resource needs more complex logic in its getters and setters. One thing you might try us using locks and semaphores which is sometimes hard to implement without getting more errors. To make up for that we can use a solution from GCD, called **dispatch barrier**.
+Our previous solution is effective for simple situations. But there are times when the shared resource needs more complex logic. To make up for that we can use a solution from GCD, called **dispatch barrier**.
 
 The main idea is that we create a concurrent queue where we can process all the read tasks we want, they can all run at the same time. But when the variable needs to be written to, then we lock the queue so that submitted tasks complete but no new submissions are run until the update is done.
 
@@ -115,6 +105,8 @@ public var count: Int {
 
 An NSLock object implements a basic mutex for Cocoa applications. The interface for all locks is actually defined by the NSLocking protocol, which defines the **lock** and **unlock** methods. You use these methods to acquire and release the lock just as you would any mutex.
 
+Check out [this example](https://github.com/evgenyneu/keychain-swift/blob/master/Sources/KeychainSwift.swift) from the library KeychainSwift and observe how they use locks.
+
 ## In Class-Activity I (10 min)
 
 Take this code snippet into a playground and see what it does. What's wrong with it? What is the concurrency problem?
@@ -128,9 +120,9 @@ DispatchQueue.concurrentPerform(iterations: 100){ index in
     print(array)
 }
 ```
-Using NSLock, try to fix it.
+Using NSLock, try to fix it. More info on what `concurrentPerform` does [in the docs](https://developer.apple.com/documentation/dispatch/dispatchqueue/2016088-concurrentperform).
 
-## Priority Inversion (15 min)
+## Priority Inversion
 
 ### General Example
 In 1995, NASA sent the Pathfinder mission to Mars.
@@ -139,7 +131,9 @@ In 1995, NASA sent the Pathfinder mission to Mars.
 
 Not too long after a successful landing on our red neighboring planet, the mission almost came to an abrupt end.
 
-The Mars rover (Sojourner) kept rebooting for unknown reasons – it suffered from a phenomenon called __*priority inversion*__ where a low-priority thread kept blocking a high-priority one.
+The Mars rover (Sojourner) kept rebooting for unknown reasons – it suffered from a phenomenon called __*priority inversion*__.
+
+Read more about what happened [here](http://www.cse.chalmers.se/~risat/Report_MarsPathFinder.pdf).
 
 ### How it happens
 
@@ -185,11 +179,13 @@ Priority inversion is easy to avoid:
 - https://www.objc.io/issues/2-concurrency/concurrency-apis-and-pitfalls/
 - Resource 2<sup>1</sup> below
 
-## In Class-Activity II (40 min)
+## In Class-Activity II
 
 ### Common questions regarding concurrency in iOS.
 
-In pairs, try to answer as many questions as you can in the time given. Then practice your understanding by taking turns and asking them to each other in an interview format.
+<!-- longer version 40 min In pairs, try to answer as many questions as you can in the time given. Then practice your understanding by taking turns and asking them to each other in an interview format.-->
+
+In pairs or groups of 3, choose up to 4 questions to ask each other. Some of these questions are very common in iOS interviews, meaning it's important we know how to explain the concepts and give examples.
 
 1. What is Concurrency?
 1. What is Parallelism?
