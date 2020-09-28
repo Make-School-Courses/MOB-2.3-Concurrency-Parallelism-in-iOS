@@ -1,26 +1,12 @@
-# Course Review & Workshop
+corresponding# Tools + Testing + Review
 
 <!-- INSTRUCTOR NOTES:
 1) For Iniital Exercise:
 - Quizlet game location is:
-https://quizlet.com/_6u0szm
-
+https://quizlet.com/530974042
 2)  -->
 
-
-## Minute-by-Minute
-
-| **Elapsed** | **Time**  | **Activity**              |
-| ----------- | --------- | ------------------------- |
-| 0:00        | 0:05      | Objectives                |
-| 0:05        | 0:50      | Initial Activity          |
-| 0:55        | 0:10      | BREAK                     |
-| 1:05        | 0:15      | Overview  1                |
-| 1:20       | 0:25      | In Class Activity I       |
-| TOTAL       | 1:45     |                           |
-
-
-## Learning Objectives (5 min)
+## Learning Objectives
 
 1. Describe:
 - the challenges and benefits of unit testing **Asynchronous Operations**
@@ -31,63 +17,61 @@ https://quizlet.com/_6u0szm
 1. Implement dependencies.
 1. Review Operations by implementing a solution in a project. -->
 
-## Initial Exercise (50 min)
-
-### Part 1 - As a class (20 min)
-- Let's review answers to last lesson's list of questions from Activity 1
-
-### Part 2 - In Teams (30 min)
+## Initial Exercise
 
 - Let's play a **Quizlet game**....
 
+## Tools - Instruments 🛠
 
-<!-- INSTRUCTOR NOTES:
-1) For Iniital Exercise:
-- Quizlet game location is:
-https://quizlet.com/_6u0szm
- -->
+Instruments is a powerful performance analysis and testing tool. It comes with Xcode's toolset.
 
-<!--
-## Debugging & Testing
+You can use it during:
+- development
+- testing
+- debugging
 
-### Debugging -->
+It provides tools called **Instruments** that are used to profile errors in you app.
 
-<!--
-OUTLINE:
-- Debug Navigator
+An **Instrument** collects data over a period of time.
 
-- Main Thread Checker
+## Time Profiler
 
-Detect invalid use of AppKit, UIKit, and other APIs from a background thread.
+Uses data provided by the operating system to collect call stacks of relevant threads at a fixed time interval.
 
+**Why?**
 
-The Main Thread Checker is a standalone tool for Swift and C languages that detects invalid usage of AppKit, UIKit, and other APIs on a background thread. Updating UI on a thread other than the main thread is a common mistake that can result in missed UI updates, visual defects, data corruptions, and crashes.
-
-How the Main Thread Checker Works
-At app launch, the Main Thread Checker dynamically replaces the implementations of methods that should only be called on the main thread with a version that prepends the check. Methods known to be safe for use on background threads are excluded from this check.
-
-Example Scenario:
-
-Updating UI from a Completion Handler
-Long-running tasks such as networking are often executed in the background, and provide a completion handler to signal completion. Attempting to read or update the UI from a completion handler may cause problems.
-
-Solution
-Dispatch the call to update the label text to the main thread.
+- We can analyze an app's responsiveness and performance.
 
 
-Performance Impact
-The performance impact of the Main Thread Checker is minimal, with a 1–2% CPU overhead and additional process launch time of <0.1 seconds.
-Because of its minimal performance overhead, the Main Thread Checker is automatically enabled when you run your app with the Xcode debugger.
+## Instruments walkthrough
 
--- optional (non-apple text) --
+### ⬆️ Track Viewer (top)
+A track shows time series trace data corresponding to one source of events (such as a process, thread or CPU core)
 
-The Main Thread Checker (MTC) was introduced in Xcode 9. Its goal is to simple: to detect improper use of APIs on a background thread. Updating using a background thread can cause unknown bugs, crashes and strange UI behavior that can easily be avoided.
+### ⬇️ Detail view (bottom)
+Explore trace data for a selected track. See the functions called on each thread during the trace.
 
+### ➡️ Extended Detail View (right)
+Provides richer info from the Instruments in use. (For example, for Time Profiler, we see the heaviest call stack)
 
-- TSan -->
+### ↔️ Inspection Head
+A selector placed at a specific time in the trace.Selects all traced events or intervals occurring at that time.
 
+## Demo time 👩🏻‍💻
 
-## Unit Testing Asynchronous Operations (20 min)
+## Profiling Tips
+
+- Time Profiler shows how your app is spending time
+- Check main thread when responsiveness issues occur
+- Profile with difficult workloads or older devices
+- Instruments supports all platforms and the simulator. But watch out when using the simulator. 👀
+- Gives you trends, are things getting faster or slower? Observes all the threads in your app at a fixed interval of time and correlates the information.
+
+## Try it out
+
+10 min - Take out an Xcode project (maybe your final project 😀) and run the Time Profiler. See if everything looks good so far.
+
+## Unit Testing Asynchronous Operations
 
 ### Synchronous Operation Testing
 Unit testing is most commonly applied to __*synchronous*__ operations because their outputs can be observed and validated immediately after invoking the function under test.
@@ -241,16 +225,6 @@ Review the Successful and Unsuccessful Completion notes in the Example Scenario 
 
 - reduce timeout to 0.1
 
-
-## After Class
-
-1. Assignment(s):
--
-
-## Wrap Up (5 min)
-
-...
-<!-- - You pair programmed today's exercise. Make sure both of you get a working copy of the project. -->
 
 ## Additional Resources
 
