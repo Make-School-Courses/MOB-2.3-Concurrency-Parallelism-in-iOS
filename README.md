@@ -25,28 +25,27 @@ By the end of this course, you will be able to ...
 
 ## Schedule
 
-**Course Dates:** Wednesday, August 19 – Wednesday, October 7, 2020 (7 weeks)
+**Course Dates:** Thursday, October 22 – Thursday, December 10, 2020 (8 weeks)
 
-**Class Times:** Monday, Wednesday at 9:30am–12:15pm (14 class sessions)
+**Class Times:** Tuesday and Thursday at 2:30–5:15pm (13 class sessions)
 
 | Class |          Date          |                 Topics                  |
 |:-----:|:----------------------:|:---------------------------------------:|
-|  1 |  Wed, Aug 19               | [Introduction to Concurrency & Parallelism] |
-|  2 |  Mon, Aug 24               | [Grand Central Dispatch (Pt 1)] |
-|  3 |  Wed, Aug 26               | [Grand Central Dispatch (Pt 2)] |
-|  4 |  Mon, Aug 31               | [Grand Central Dispatch (Pt 3)] |
-|  5 |  Wed, Sept 2               | [Semaphores] |
-|  - |  Mon, Sept 7               | **Holiday- Labor Day** |
-|  6 |  Wed, Sept 9               | Project Introduction & Workshop |
-|  7 |  Mon, Sept 14              | [Operations (Pt 1)] |
-|  8 |  Wed, Sept 16              | [Operations (Pt 2)] |
-|  9 |  Mon, Sept 21              | [Operations (Pt 3)] |
-| 10 |  Wed, Sept 23              | [Pitfalls & Challenges] |
-| 11 |  Mon, Sept 28              | [Libraries + Tools + Testing] |
-| 12 |  Wed, Sept 30              | Last Project Workshop |
-| 13 |  Mon, Oct 5                | Final Exam |  
-| 14 |  Wed, Oct 7                | Project Presentations |
-
+|  1 |  Thu, Oct 22               | [Introduction to Concurrency & Parallelism]|
+|  2 |  Tue, Oct 27               | [Grand Central Dispatch (Pt 1)] |
+|  3 |  Thu, Oct 29               | [Grand Central Dispatch (Pt 2)] |
+|  - |  Tue, Nov 3                | **Vote! - Civic Responsibility Break** |
+|  4 |  Thu, Nov 5                | [Grand Central Dispatch (Pt 3)]|
+|  5 |  Tue, Nov 10               | [Semaphores] |
+|  6 |  Thu, Nov 12               | Project Introduction & Workshop |
+|  7 |  Tue, Nov 17               | [Operations (Pt 1)] |
+|  8 |  Thu, Nov 19               | [Operations (Pt 2)] |
+|  9 |  Tue, Nov 24               | [Operations (Pt 3)] |
+|  - |  Thu, Nov 26               | **Holiday- Thanksgiving** |
+| 10 |  Tue, Dec 1                | [Pitfalls & Challenges |
+| 11 |  Thu, Dec 3                | [Libraries + Tools + Testing] |
+| 12 |  Tue, Dec 8                | Final Exam |
+| 13 |  Thu, Dec 10               | Presentations |  
 
 [Introduction to Concurrency & Parallelism]: Lessons/01-Intro-Concurrency-&-Parallelism/Lesson1.md
 [Grand Central Dispatch (Pt 1)]: Lessons/02-Grand-Central_Dispatch-Pt1/Lesson2.md
