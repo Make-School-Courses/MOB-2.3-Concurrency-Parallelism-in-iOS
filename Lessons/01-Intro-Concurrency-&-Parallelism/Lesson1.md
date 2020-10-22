@@ -8,20 +8,7 @@ https://drive.google.com/drive/u/0/folders/1NoSPe3pQJFEXBZmsHKLquYh1uzoWVWYK?ths
 2) Solution for Activity II:
 - is listed below the Activity -->
 
-## Minute-by-Minute
-
-| **Elapsed** | **Time**  | **Activity**              |
-| ----------- | --------- | ------------------------- |
-| 0:00        | 0:10     | Objectives                |
-| 0:10        | 0:20      | Overview I               |
-| 0:30        | 0:30      | In Class Activity I       |
-| 1:00        | 0:10      | BREAK                     |
-| 1:10        | 0:20      | Overview II               |
-| 1:25        | 0:25      | In Class Activity II      |
-| TOTAL       | 1:50      |                           |
-
-
-## Learning Objectives (5 min)
+## Learning Objectives
 
 By the end of this lesson, you should be able to...
 
@@ -35,7 +22,7 @@ By the end of this lesson, you should be able to...
 - the __*five major challenges*__ associated with Concurrency
 
 
-## Why you should know this (5 min)
+## Why you should know this
 
 **Q:** Why do apps need concurrent activities?
 
@@ -56,7 +43,7 @@ Concurrency issues loom large in any list of the top mistakes made by iOS develo
 
 Thus it is not surprising that questions on iOS concurrency are now a standard part of the technical interview process for iOS development jobs.
 
-## Overview/TT I (20 min)
+## Overview/TT I
 
 ### Terms & Concepts
 
@@ -223,7 +210,7 @@ https://drive.google.com/drive/u/0/folders/1NoSPe3pQJFEXBZmsHKLquYh1uzoWVWYK?ths
 -->
 
 
-## Overview/TT II (20 min)
+## Overview/TT II
 
 ### Concurrency on iOS
 
@@ -403,7 +390,7 @@ https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/tr
 - Dispatch Queues
 - Quality of Service (QoS) Priority - as defined by Apple for iOS/macOS
 
-## Wrap Up (5 min)
+## Wrap Up 
 
 - Complete reading / research
 
