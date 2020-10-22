@@ -19,7 +19,7 @@ https://quizlet.com/530974042
 
 ## Initial Exercise
 
-- Let's play a **Quizlet game**....
+- Let's play a **Quizlet game**.... [Link to study flash cards](https://quizlet.com/530974042/mob-23-final-exam-prep-flash-cards/)
 
 ## Tools - Instruments 🛠
 
