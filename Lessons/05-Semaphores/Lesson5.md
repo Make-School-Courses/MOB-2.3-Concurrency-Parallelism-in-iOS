@@ -252,18 +252,15 @@ DispatchQueue.global().async {
 ```
 
 ```Swift
-func downloadMovies(numberOfMovies: Int) {
+var array = [Int]()
+DispatchQueue.concurrentPerform(iterations: 10){
+    index in
 
-    // Create a semaphore
-
-    // Launch 8 tasks
-    // Each task should wait (pretend downloading takes 2 seconds) and inform the console once it's done.
-    // Run the tasks on a background thread.
-    // Let the semaphore know when you release the resource
-
+    let last = array.last ?? 0
+    array.append(last + 1)
+    semaphore.signal()
 }
 
-downloadMovies(numberOfMovies:2)
 ```
 
 ## After Class
@@ -272,8 +269,9 @@ downloadMovies(numberOfMovies:2)
   - What is meant by "critical section" in a program.
   - Difference between Dispatch Groups and Semaphores?
   - Multiplex (challenge)
+2. NSLock
 
-2. Assignment: Solve the **Dining Philosophers Problem** (challenge):
+3. Assignment: Solve the **Dining Philosophers Problem** (challenge):
   - https://github.com/raywenderlich/swift-algorithm-club/tree/master/DiningPhilosophers
 
 
