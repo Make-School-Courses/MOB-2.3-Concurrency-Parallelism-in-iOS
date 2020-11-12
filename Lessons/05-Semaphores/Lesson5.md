@@ -258,7 +258,7 @@ DispatchQueue.concurrentPerform(iterations: 10){
 
     let last = array.last ?? 0
     array.append(last + 1)
-    semaphore.signal()
+    print(array)
 }
 
 ```
