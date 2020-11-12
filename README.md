@@ -70,8 +70,8 @@ By the end of this course, you will be able to ...
 
 [GCD RW Tutorial]: https://www.raywenderlich.com/5370-grand-central-dispatch-tutorial-for-swift-4-part-1-2
 [Janky Table Fix]: https://github.com/Make-School-Labs/iOS-JankyTable_starter
-[Semaphore Challenge] :Lessons/05-Semaphores/Lesson5.md
-[Final Project] : Assignments/Project.md
+[Semaphore Challenge]:Lessons/05-Semaphores/Lesson5.md
+[Final Project]: Assignments/Project.md
 
 
 ### Projects
