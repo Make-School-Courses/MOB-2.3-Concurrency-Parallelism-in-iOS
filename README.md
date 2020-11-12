@@ -42,7 +42,7 @@ By the end of this course, you will be able to ...
 |  8 |  Thu, Nov 19               | [Operations (Pt 2)] |
 |  9 |  Tue, Nov 24               | [Operations (Pt 3)] |
 |  - |  Thu, Nov 26               | **Holiday- Thanksgiving** |
-| 10 |  Tue, Dec 1                | [Pitfalls & Challenges |
+| 10 |  Tue, Dec 1                | [Pitfalls & Challenges] |
 | 11 |  Thu, Dec 3                | [Libraries + Tools + Testing] |
 | 12 |  Tue, Dec 8                | Final Exam |
 | 13 |  Thu, Dec 10               | Presentations |  
@@ -59,7 +59,20 @@ By the end of this course, you will be able to ...
 [Libraries + Tools + Testing]: Lessons/10-Course-Review-and-Workshop/Lesson10.md
 
 
-## Class Assignments
+## Assignment Schedule
+
+|            Assignment                 | Date Assigned |   Due Date   |  Submission Form  |
+|:-------------------------------------:|:-------------:|:------------:|:-----------------:|
+| [GCD RW Tutorial]                     | Oct 29        | Nov 5        | Gradescope        |
+| [Janky Table Fix]                     | Nov 5         | Nov 12       | Gradescope        |
+| [Semaphore Challenge]                 | Nov 10        | Nov 12       | Gradescope        |
+| [Final Project]                       | Nov 12        | Dec 10       | Gradescope        |
+
+[GCD RW Tutorial]: https://www.raywenderlich.com/5370-grand-central-dispatch-tutorial-for-swift-4-part-1-2
+[Janky Table Fix]: https://github.com/Make-School-Labs/iOS-JankyTable_starter
+[Semaphore Challenge] :Lessons/05-Semaphores/Lesson5.md
+[Final Project] : Assignments/Project.md
+
 
 ### Projects
 
@@ -69,9 +82,9 @@ By the end of this course, you will be able to ...
 
 To pass this course you must meet the following requirements:
 
-- Complete all required assignments
-- Pass all projects according to the associated project rubric
-- Pass the final summative assessment according to the rubric as specified in this class
+- Complete all assignments listed in the Schedule
+- Pass the final project according to the associated project rubric (>=70 pts)
+- Pass the final summative assessment according to the rubric as specified in this class (>=70 pts)
     - This will be further explained in the [study guide](StudyGuide.md)
 - Actively participate in class and abide by the attendance policy
 - Make up all classwork from all absences
