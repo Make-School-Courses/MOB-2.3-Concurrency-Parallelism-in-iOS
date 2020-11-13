@@ -32,13 +32,18 @@ Your task is to create an app that let's users discover new music. The app will 
 
 Check the resources for helpful documentation!
 
+
+## Wireframes
+
+![wireframe](wire.jpeg)
+
 ## Requirements
 
 1. Adhere to the description.
 1. You must use the [Spotify API](https://developer.spotify.com/documentation/web-api/) or [Spotify SDK](https://developer.spotify.com/documentation/ios/)
 1. Allow for the tracks to be previewed (30-sec clips)
 1. Use a persistence method to save the favorite tracks, up to your criteria which one to use.
-1. Use GCD to handle concurrency.
+1. Use GCD and/or Operations to handle concurrency.
 1. Authenticate users with the Spotify API/SDK - should also be able to log out
 1. Time profile your app and show evidence of it.
 
@@ -48,11 +53,6 @@ Check the resources for helpful documentation!
 1. Create  a VC for an artist's info and top tracks.
 1. Get creative with your designs!
 1. Implement Apple Sign In
-
-
-## Wireframes
-
-![wireframe](wire.jpeg)
 
 ## Rubric
 
@@ -72,3 +72,10 @@ You must score at least 70 points to pass the assignment. Breakdown of points be
 - [Spotify API Docs](https://developer.spotify.com/documentation/web-api/)
 - [Spotify SDK Docs](https://developer.spotify.com/documentation/ios/)
 - [Spotify Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)
+- [Spartan Library](https://github.com/Daltron/Spartan)
+
+## Past Students' Work
+
+- [Example 1](https://github.com/MondaleFelix/MusicApp)
+- [Example 2](https://github.com/caocmai/spotiFav)
+- [Example 3](https://github.com/ellojess/cantatio)
