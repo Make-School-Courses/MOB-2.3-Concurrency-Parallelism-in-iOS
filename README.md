@@ -61,7 +61,7 @@ By the end of this course, you will be able to ...
 
 ## Assignment Schedule
 
-All Except the final project are grade based on completion.
+All except the final project are grade based on completion.
 
 |            Assignment                 | Date Assigned |   Due Date   |  Submission Form  |
 |:-------------------------------------:|:-------------:|:------------:|:-----------------:|
