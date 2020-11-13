@@ -251,6 +251,10 @@ DispatchQueue.global().async {
 }
 ```
 
+## Assignment
+
+What's wrong with the code? 
+
 ```Swift
 var array = [Int]()
 DispatchQueue.concurrentPerform(iterations: 10){
@@ -262,6 +266,8 @@ DispatchQueue.concurrentPerform(iterations: 10){
 }
 
 ```
+
+Evaluation: Must submit a working code snippet to Gradescope. Graded on completion.
 
 ## After Class
 1. Research:
