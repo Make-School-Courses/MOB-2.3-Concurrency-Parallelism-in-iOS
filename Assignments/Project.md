@@ -66,7 +66,7 @@ You must score at least 70 points to pass the assignment. Breakdown of points be
 1. **(15 points)** Ability to favorite a top track, and view all favorites in a list in a separate view
 1. **(5 points)** Uses Spotify API/SDK
 1. **(5 points)** Evidence of using Time Profiler
-1. **(5 points)** Code on GitHub
+1. **(5 points)** Code on GitHub. Include a [README file](https://github.com/matiassingers/awesome-readme)
 
 ## Resources
 - [Spotify API Docs](https://developer.spotify.com/documentation/web-api/)
