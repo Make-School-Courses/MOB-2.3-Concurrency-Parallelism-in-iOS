@@ -234,7 +234,7 @@ Let's look at what is going on here...
 ### Part 2 - BlockOperation with manual start()
 
 **Required Resources** </br>
-1. The [BlockOperation_ex2.playground](assets/BlockOperation_ex2.playground.zip) </br> is required. You __*must download*__ this playground as it is dependent on a playground Source file contained within it.
+1. The [BlockOperation_ex2.playground](https://github.com/Make-School-Courses/MOB-2.3-Concurrency-Parallelism-in-iOS/blob/master/Lessons/06-Operations-Pt1/assets/BlockOperation_ex2.playground.zip) </br> is required. You __*must download*__ this playground as it is dependent on a playground Source file contained within it.
 
 **Assignment Notes** </br>
 The following code is incomplete. It is intended to break a phrase into separate words (aka, "tokens"), and send each token as a separate block to a simple `BlockOperation` object called `tokenOperation`.
